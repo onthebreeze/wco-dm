@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# The whole site, in order, with the gates in between. One command, so a rebuild from a new WCO
+# release is the same operation every time.
+#
+#   scripts/build_all.sh                                   # the WCO namespace
+#   WCO_BASE=https://test-wcodm.trade-commons.org/ scripts/build_all.sh
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "== extract =="            && python3 scripts/extract.py
+echo "== fidelity =="           && python3 scripts/fidelity_check.py
+echo "== vocabulary =="         && python3 scripts/build_vocabulary.py
+echo "== validate =="           && python3 scripts/validate_vocab.py
+echo "== mappings =="           && python3 scripts/map_to_unece.py
+echo "== site =="               && python3 scripts/build_site.py
+
+echo "== search index =="
+# Pagefind runs over the finished tree, so the index covers the 900 term pages and not just the
+# four narrative ones. It is a static index served from the same bucket: no search service.
+npx --yes pagefind@^1.3.0 --site dist --output-subdir _pagefind
+
+echo
+echo "built $(find dist -name index.html | wc -l | tr -d ' ') pages into dist/"
