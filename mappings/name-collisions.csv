@@ -1,0 +1,3 @@
+local_name,qualified_as,class,dictionary_entry_name,existing_core_data_type,this_core_data_type,this_definition,source_row
+nameCode,classificationNameCode,Classification,Classification. Name. Code,Identifier,Code,"Code specifying the scientific name of original plant/animal used as a material for food products, medications, cosmetics, medical materials, etc.",1001
+nameCode,statusNameCode,Status,Status. Name. Code,Identifier,Code,Code specifying the processing status of a document.,1349

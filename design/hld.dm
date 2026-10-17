@@ -10,3 +10,5 @@ Publishing the WCo Data model as a fully navigable, resolvable, content-negotiab
 * There is rich documentation about hwo the site is maintained and generated.
 * There MAY be a need to re-architect the underlying data model - if it is found to have similar weaknesses to the UN/CEFACT CCL and BSP. Traceability from source CSV to published vocab and documents is maintained. 
 * Wherever appropriate, every class & property has a SKOS mapping to a corresponding vocab.unece.org concept URI.  
+* Use an appropriate, light, and maintainable static site framework like nextra  or whatever you think is best fit for this need.  
+* Include a local index search feature similar to vocab.unece.org

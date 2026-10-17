@@ -1,0 +1,49 @@
+{
+ "source": {
+  "library": "1.1 WCO DM LIB V4.3.0.xlsx",
+  "ois": "WCO DM OIS_V4.3.0.xlsx",
+  "version": "4.3.0"
+ },
+ "counts": {
+  "classes": 273,
+  "attributes": 1156,
+  "data_types": 37,
+  "code_lists": 135,
+  "code_lists_with_values": 12,
+  "code_lists_external": 123,
+  "ois_occurrences": 9802
+ },
+ "modules": {
+  "core": 103,
+  "document": 16,
+  "government": 23,
+  "location": 33,
+  "party": 90,
+  "transport": 8
+ },
+ "anomalies": {
+  "rows_without_a_superclass_flag": [
+   630,
+   631,
+   764,
+   765,
+   766,
+   767,
+   796,
+   871
+  ],
+  "rows_with_more_than_one_flag": [
+   {
+    "row": 928,
+    "flags": [
+     "NONE",
+     "DOC"
+    ],
+    "name": "Additional Reference. Type. Code"
+   }
+  ],
+  "classes_without_a_definition": [
+   "AuthorisationHolder"
+  ]
+ }
+}
