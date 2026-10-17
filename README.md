@@ -10,7 +10,7 @@ the repository, so that the inputs stay identifiable and re-importable.
 | File | Contents |
 |---|---|
 | `1.1 WCO DM LIB V4.3.0.xlsx` | The data model library, as three sheets: DataSet 1.2, 1.3 and 1.4; DataSet 1.5; DataSet 1.6 |
-| `WCO DM OIS_V4.3.0.xlsx` | The Online Information System export, as a single `OIS` sheet |
+| `WCO DM OIS_V4.3.0.xlsx` | The Object Information Standard, as a single `OIS` sheet |
 
 ## Licensing
 
