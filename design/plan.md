@@ -42,6 +42,22 @@ This is the weakness `hld.dm` anticipated. Transliteration comes first because i
 lossless; `mappings/normalisation-candidates.csv` then quantifies how far the model could be
 normalised, as input to that decision rather than a pre-emption of it.
 
+## Site framework
+
+Nextra, a Next.js static export, for the narrative pages only. The term pages are generated as plain
+files and the two trees merge into one prefix at deploy.
+
+The site is about ten narrative pages and roughly 1,560 generated term pages, each of which needs an
+`index.ttl` and an `index.jsonld` beside its `index.html` for content negotiation. No framework
+emits that, and rendering 1,560 React routes to obtain it would be slow for nothing. vocab.unece.org
+resolves this the same way, and the S3 uploader already merges several source trees into one prefix
+with collision resolution, because it was written for that case.
+
+Docusaurus was considered and rejected: it carries versioning machinery this vocabulary does not
+want, since the vocabulary is unversioned by design, and it owns routing in a way that complicates
+serving a generated tree at the same host. Astro would work but has no sibling precedent for a
+vocabulary site and less to reuse.
+
 ## Stages
 
 | Stage | Output | State |
