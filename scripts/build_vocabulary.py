@@ -12,7 +12,6 @@ name matches but the data type does not, the attributes are different things and
 qualified with its class, which is reported in mappings/name-collisions.csv.
 
     python3 scripts/build_vocabulary.py
-    WCO_BASE=https://test-wcodm.trade-commons.org/ python3 scripts/build_vocabulary.py
 """
 import collections
 import csv
@@ -30,7 +29,11 @@ INT = ROOT / "intermediate"
 ONT = ROOT / "ontology"
 MAP = ROOT / "mappings"
 
-BASE = os.environ.get("WCO_BASE", "https://vocabulary.wcoomd.org/").rstrip("/") + "/"
+# The vocabulary always carries the WCO-owned namespace. Only the site build rewrites it for
+# whatever host is serving, so ontology/ is the same file whoever builds it and whatever host it is
+# destined for. Putting WCO_BASE here instead would make the committed source depend on an
+# environment variable, and a test build would rewrite every published identifier.
+BASE = "https://vocabulary.wcoomd.org/"
 MODULES = ["core", "document", "government", "location", "party", "transport"]
 
 # WCO core data types to a range. Code and Identifier carry a code list or scheme rather than a
