@@ -1,0 +1,22 @@
+{
+  "name": "wco-test-cdk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Infrastructure for the WCO Data Model vocabulary test site",
+  "scripts": {
+    "synth": "cdk synth",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy --all",
+    "test": "node functions/router.test.js"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.1020.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.3",
+    "@types/node": "^22.9.0"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.170.0",
+    "constructs": "^10.4.2"
+  }
+}

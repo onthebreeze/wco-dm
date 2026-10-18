@@ -208,14 +208,24 @@ this machine.
 
 ## Publishing
 
-To AWS, from GitHub Actions. `deploy/github-actions.yml` is written and has never been run; the
-account does not exist yet.
+To AWS, from GitHub Actions, at `test-wcodm.trade-commons.org`. `deploy/cdk/` is the
+infrastructure and `.github/workflows/deploy.yml` the pipeline. Neither has been run; the account
+does not exist yet. `deploy/README.md` is the runbook and records what was decided.
 
 The shape: a private S3 bucket, a CloudFront distribution with Origin Access Control, and a
 viewer-request function that appends `/index.html`, `/index.ttl`, `/index.jsonld` or `/index.rdf`
 according to `Accept`. Nothing runs at request time but that function. The workflow builds on push
 to `main`, assumes a deploy role through OpenID Connect so no access key is stored anywhere,
 uploads what changed, and invalidates the distribution.
+
+The deployment is public but not indexed: `X-Robots-Tag: noindex, nofollow` on every response, a
+disallow at `/robots.txt` from the edge, and a banner on every page saying the rendering is
+unofficial and the model is licensed material. The banner is derived from the host, so any build
+away from `vocabulary.wcoomd.org` carries it and a deployment cannot quietly lose it.
+
+It runs in an account of its own, `wco-test`, rather than the `unece-test` account that holds the
+eight UN/CEFACT standards sites. The material is WCO's, so keeping it separate makes handing the
+deployment to WCO a transfer rather than a migration.
 
 Three things that are easy to get wrong:
 

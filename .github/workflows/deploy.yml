@@ -1,0 +1,68 @@
+# Build the site and publish it to the test deployment.
+#
+# No access key is stored. The role below trusts GitHub's own OpenID Connect token, for this
+# repository and this branch only, which is why the branch matters: push access to main is write
+# access to the bucket.
+#
+# The account, bucket and distribution are filled in once the infrastructure exists; until then
+# this workflow is disabled by the `if` on the job, so a push does not fail.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write          # required to mint the OpenID Connect token
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+env:
+  WCO_BASE: https://test-wcodm.trade-commons.org/
+  S3_BUCKET: wco-test-vocabulary
+  AWS_REGION: ap-southeast-2
+  AWS_ACCOUNT: REPLACE_WHEN_THE_ACCOUNT_EXISTS
+  CLOUDFRONT_DISTRIBUTION_ID: REPLACE_WHEN_THE_DISTRIBUTION_EXISTS
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: ${{ !startsWith(vars.AWS_ACCOUNT || 'REPLACE', 'REPLACE') }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: pip install openpyxl rdflib markdown jsonschema
+      - name: Install PlantUML
+        run: sudo apt-get update && sudo apt-get install -y plantuml
+      - run: scripts/build_all.sh
+
+      # The host is baked into every page, so a build at the wrong one is wrong everywhere. Caught
+      # here rather than after it is published.
+      - name: Check the build is at the expected host
+        run: |
+          grep -q "$WCO_BASE" dist/Consignment/index.ttl \
+            || { echo "ERROR: built at the wrong host; WCO_BASE did not take"; exit 1; }
+          grep -q 'class="banner"' dist/Consignment/index.html \
+            || { echo "ERROR: the unofficial-rendering banner is missing"; exit 1; }
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT }}:role/github-deploy-wcodm
+          aws-region: ${{ env.AWS_REGION }}
+
+      - run: pip install boto3
+      - run: python3 deploy/aws/upload-s3.py dist
+      - name: Invalidate the distribution
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths '/*'

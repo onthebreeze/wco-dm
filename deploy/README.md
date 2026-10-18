@@ -1,86 +1,137 @@
 # Deployment
 
-Nothing here has been run. It is written so that bringing the site up is one command once the
-account exists.
+The site runs on AWS: a private S3 bucket, a CloudFront distribution in front of it, and one
+viewer-request function that chooses a representation by `Accept`. Nothing else runs at request
+time. GitHub Actions builds on a push to `main`, assumes a role through OpenID Connect, uploads
+what changed and invalidates the distribution. No access key exists anywhere in this pipeline.
 
-## What the site needs
+Nothing below has been run yet. The account does not exist.
 
-A bucket, a CloudFront distribution, and a viewer-request function that appends `/index.html`,
-`/index.ttl`, `/index.jsonld` or `/index.rdf` according to the `Accept` header. That is the whole
-architecture: the origin is private, the function is a few lines, and nothing runs at request time.
+## What was decided, and why
 
-The UN/CEFACT standards sites already run exactly this. The infrastructure definition is at
-`governance/technical-architecture/aws-test/cdk/` in the UN working repository, and `sites.ts` is a
-table of sites: adding this one is an entry in that table, or the same construct deployed into a WCO
-account.
+**Its own account.** `wco-test`, a new account in the same organisation as the UN/CEFACT standards
+test sites but not the same account as them. The material is WCO's and licensed, and keeping it
+separate makes handing the deployment to WCO a transfer rather than a migration. The cost is a
+certificate, a bootstrap and an access assignment that the shared account already had.
 
-```ts
-{
-  key: 'wcodm',
-  project: 'wco-dm',
-  hostname: 'test-wcodm.trade-commons.org',
-  production: 'vocabulary.wcoomd.org',
-  negotiated: true,                        // one address, four representations
-  formats: ['ttl', 'jsonld', 'rdf'],       // this generator emits RDF/XML as well
-  deployed: false,
-}
+**`test-wcodm.trade-commons.org`.** The prefix is what says the site is not authoritative, and it
+matches the eight sibling sites.
+
+**Public, not indexed.** The distribution is open to anyone with the address. `X-Robots-Tag:
+noindex, nofollow` is set on every response and `/robots.txt` is answered from the edge with a
+disallow, both so that this rendering cannot compete with WCO's own publication in search results.
+Every page carries a banner saying it is unofficial, generated from WCO's published workbooks, and
+that the model is licensed material. The banner is derived from the host rather than from a flag:
+any build at a host other than `vocabulary.wcoomd.org` shows it, so a deployment cannot quietly
+lose the notice.
+
+That is not access control. If the licence turns out to require it, the next step is a shared
+secret checked in the viewer-request function, which is a small change to one file.
+
+## The shape
+
+```
+GitHub Actions ──OIDC──> role github-deploy-wcodm ──> bucket wco-test-vocabulary
+                                                          │
+                              CloudFront distribution ────┘
+                                   │         │
+                            router.js   headers.js        (viewer request, viewer response)
 ```
 
-`negotiated: true` is what switches the edge function from documentation routing to content
-negotiation. `formats` says which machine representations this generator actually emits: a format
-left out of it falls through to HTML rather than rewriting to a key that is not there, which is why
-adding RDF/XML is a change in the generator first and in that line second.
+`deploy/cdk/` is the infrastructure. Two stacks: the certificate in `us-east-1`, because CloudFront
+accepts no other region, and everything else in `ap-southeast-2`.
 
-The vocabulary tree, the message pages and the narrative pages share one prefix, and the function
-handles all three without a reserved-prefix list because every page is a directory holding its own
-`index.html`, `index.ttl`, `index.jsonld` and `index.rdf`. The build fails if any page is missing
-one, so the invariant the edge depends on is checked where it is created rather than assumed.
+The two edge functions are the same files the UN/CEFACT standards sites run, copied rather than
+shared because the two deployments are in different accounts and different repositories. The
+routing rule is one rule: collapse a trailing slash, pass through anything whose last segment ends
+in a file extension, otherwise append `/index.<ext>` chosen by `Accept`. `scripts/serve.py` applies
+the same rule locally, so the matrix can be checked before anything is deployed.
 
-One thing the router had to learn for this site: a version is a path segment, not a file
-extension. A release is published at `/packages/<package>/<message>/4.3.0/`, and the old rule
-treated anything after a dot as a file, which would have sent every release page to a key that does
-not exist. An extension now has to begin with a letter.
+Three things in that rule earn their place:
 
-## The account
+**A file extension must begin with a letter.** A release is published at
+`/packages/<package>/<message>/4.3.0/`, which ends in a dot and a digit. CloudFront does not
+redirect a directory to its trailing slash the way a local static server does, so treating that as
+a file is a 404 in production and a working page in every local test.
 
-The design note asks for a separate `wco-test` account, created under a personal AWS root today and
-transferable to WCO later. That keeps the WCO material out of the UN/CEFACT account and makes the
-handover a transfer rather than a migration.
+**`FORMATS` must match what the generator emits.** This site emits Turtle, JSON-LD and RDF/XML. A
+format left out of the list falls through to HTML rather than rewriting to a key that is not there.
 
-Until that account exists, the alternative is to add the site to the existing `unece-test` account
-and move it afterwards. Either way the published identifiers do not change, because the namespace is
-a build input rather than a property of the host.
+**Every page directory holds `index.html`, `index.ttl`, `index.jsonld` and `index.rdf`.** The build
+fails if one is missing, which is what lets the function be one rule with no list of exceptions.
 
-## The pipeline
+## Standing it up
 
-`deploy/gitlab-ci.yml` and `deploy/github-actions.yml` are the same job for either forge: build,
-assume a deploy role through OpenID Connect, upload what changed, invalidate. No access key is
-stored anywhere; the role trusts the forge's own token for one repository and one branch.
+The order matters: infrastructure, then DNS, then content.
 
-`deploy/aws/upload-s3.py` compares size and digest before writing, so a rebuild uploads only what
-changed. It is the uploader the UN sites use, unmodified.
+### 1. The account
 
-## Order of operations
+Create `wco-test` in the organisation, in the `standards-test` organisational unit
+(`ou-1o1i-x8n7vhbe`), so it inherits the service control policy and the budget pattern the sibling
+account uses. Give it a monthly budget of its own.
 
-1. Create the account and grant a principal in it.
-2. Deploy the infrastructure, which issues the certificate and creates the distribution.
-3. Add the DNS record for the test hostname.
-4. Merge to the deployment branch; the pipeline builds and uploads.
-5. Verify negotiation before announcing the address:
+Then an Identity Center assignment: the existing user with `AdministratorAccess` on the new
+account, and a CLI profile named `wco-test` from `aws configure sso`.
+
+### 2. Bootstrap and the certificate
+
+```bash
+cd deploy/cdk && npm install
+export CDK_DEPLOY_ACCOUNT=<the new account id>
+npx cdk bootstrap aws://$CDK_DEPLOY_ACCOUNT/ap-southeast-2 aws://$CDK_DEPLOY_ACCOUNT/us-east-1 \
+  --profile wco-test
+
+npx cdk deploy WcoTestCertificate --profile wco-test
+```
+
+That stack sits in `CREATE_IN_PROGRESS` waiting for a DNS record it cannot write itself: the hosted
+zone for `trade-commons.org` is in the management account. In another terminal:
+
+```bash
+cd deploy/cdk/dns && ./validate-certificate.sh
+```
+
+The management profile is not an SSO profile. Sign in to the console as the management account's
+root user first, then run `aws login`; starting with the command leaves a pending authorisation
+that expires in a couple of minutes.
+
+### 3. The site
+
+```bash
+npx cdk deploy WcoTestSite --profile wco-test
+cd dns && ./upsert-site-record.sh
+```
+
+The stack outputs the bucket, the distribution id and the deploy role. Put the account id and the
+distribution id into `.github/workflows/deploy.yml`, which is disabled until they are real.
+
+### 4. The content
+
+Push to `main`, or run the workflow by hand. The workflow refuses to upload a build made at the
+wrong host, and refuses one that has lost the unofficial-rendering banner.
+
+## Verifying
 
 ```bash
 host=https://test-wcodm.trade-commons.org
-for path in / /Consignment /module/party /classes/ /docs/architecture \
+for path in / /Consignment /module/party /classes/ /docs/artefact-generation \
             /packages/declarations/mar-api/4.3.0; do
   for accept in text/html text/turtle application/ld+json application/rdf+xml; do
-    printf '%-44s %-22s %s\n' "$path" "$accept" \
+    printf '%-46s %-22s %s\n' "$path" "$accept" \
       "$(curl -s -o /dev/null -w '%{http_code} %{content_type}' -H "Accept: $accept" "$host$path")"
   done
 done
+
+curl -s "$host/robots.txt"                       # disallow, served from the edge
+curl -sI "$host/Consignment" | grep -i robots    # noindex, nofollow
+curl -sI "$host/packages/meta-data/4.3.0/MDIP_4p3p0.xsd" | grep -i content-type   # application/xml
 ```
 
-`python3 scripts/serve.py 8099` applies the same rule locally, so the matrix above can be run
-against a build before anything is deployed.
+The same matrix runs locally against `scripts/serve.py`, so a failure after deployment is a
+difference between the edge and that server, and `serve.py` is the one that is wrong.
 
-A test deployment is excluded from search engines at the edge, so nothing here competes with WCO's
-own publications.
+## What it costs
+
+The sibling account runs eight sites inside a 20 USD monthly budget, most of it unused. This one
+serves a larger tree - about 160MB, against 25,000 objects for the largest UN site - but the same
+pattern: S3 storage, CloudFront requests and a certificate, all of them small at this traffic.

@@ -195,6 +195,19 @@ def search_tags(filters):
             f' data-pagefind-meta="{html.escape(meta, quote=True)}"')
 
 
+# Any host other than the WCO namespace is an unofficial copy, and says so on every page. Deriving
+# it from the base rather than from a flag means a deployment cannot quietly lose the notice: the
+# only way to serve without it is to serve from vocabulary.wcoomd.org, which is WCO's to run.
+UNOFFICIAL = BASE != SOURCE_BASE
+BANNER = (
+    '<div class="banner" role="note"><div class="wrap">'
+    '<b>Unofficial rendering.</b> This site is generated from the World Customs Organization\'s '
+    'published Data Model workbooks and is not published by the WCO. The authoritative model is at '
+    '<a href="https://datamodel.wcoomd.org/">datamodel.wcoomd.org</a>. '
+    'The WCO Data Model is licensed material; check the applicable licence before reusing anything '
+    'taken from here.</div></div>'
+)
+
 NEGOTIATE_BAR = (
     '<p class="negotiate"><span>Also available to machines.</span> This address answers as '
     '<a href="index.ttl">Turtle</a>, <a href="index.jsonld">JSON-LD</a> or '
@@ -235,6 +248,7 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
 <link rel="alternate" type="application/ld+json" href="index.jsonld">
 <link rel="alternate" type="application/rdf+xml" href="index.rdf">
 </head><body>
+{BANNER if UNOFFICIAL else ""}
 <header class="masthead"><div class="wrap">
   <a class="brand" href="{BASE}"><span class="brand-mark">WCO</span> Data Model vocabulary</a>
   <nav class="crumbs">{nav}</nav>
@@ -1874,6 +1888,10 @@ code.digest{font-size:12.5px;color:var(--muted)}
 .pf-release,.pf-change-log{background:#fbeef2;color:#8c2a4a;border-color:#f0ced9}
 .pf-rel{font-variant-numeric:tabular-nums}
 .pagefind-ui__filter-panel{font-size:14px}
+.banner{background:#fff6e5;border-bottom:1px solid #f0d9a8;color:#6b4e12;font-size:14px}
+.banner .wrap{padding:9px 0}
+.banner b{color:#8a5200}
+.banner a{color:#8a5200;text-decoration:underline}
 p.negotiate{margin:0 0 20px;padding:9px 14px;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:0 7px 7px 0;background:var(--bg);font-size:14px;color:var(--muted)}
 p.negotiate span{color:var(--brand-dark);font-weight:600}
 p.negotiate code{font-size:12.5px}
