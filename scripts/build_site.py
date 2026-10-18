@@ -297,20 +297,39 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
 
 def table(headers, rows, cls="listing", col_classes=None):
     """col_classes names each column so the stylesheet can size it: "name" for a term, "prose" for a
-    definition that must wrap, "num" for a count that must not."""
+    definition that must wrap, "num" for a count that must not.
+
+    The same names decide what the table becomes on a narrow screen, because the two kinds of table
+    here want opposite treatment. A table carrying a definition is read a row at a time, and
+    squeezing prose into a quarter of a phone's width turns forty rows into four hundred lines, so
+    those become one card per row. A table of counts is read by comparing one column against
+    another, which only works while the columns are side by side, so those keep their shape and
+    scroll.
+
+    Each cell carries its column's heading, which is what a card shows in place of the header row.
+    """
     if not rows:
         return ""
     cc = col_classes or [""] * len(headers)
+    # A table is read a row at a time when it carries prose, or when its first column is the name
+    # of the thing each row is about. A table of counts under a version, or one release against
+    # another, is read by comparing columns and keeps its shape.
+    kind = "reading" if ("prose" in cc or (cc and cc[0] == "name")) else "compact"
+    # With one value per row there is nothing to tell apart, so a card drops the column labels.
+    if len(headers) <= 2:
+        kind += " twocol"
     head = "".join(f'<th class="c-{c}">{h}</th>' if c else f"<th>{h}</th>"
                    for h, c in zip(headers, cc))
     body = "".join(
-        "<tr>" + "".join(f'<td class="c-{c}">{v}</td>' if c else f"<td>{v}</td>"
-                         for v, c in zip(r, cc)) + "</tr>"
+        "<tr>" + "".join(
+            f'<td class="c-{c}" data-label="{html.escape(str(h), quote=True)}">{v}</td>'
+            if c else f'<td data-label="{html.escape(str(h), quote=True)}">{v}</td>'
+            for v, c, h in zip(r, cc, headers)) + "</tr>"
         for r in rows)
     # Wrapped so that a table too wide for the screen scrolls inside its own box. Without it the
     # page itself gains a horizontal scrollbar and every paragraph on it moves when the reader
     # drags the table.
-    return (f'<div class="scroll-x"><table class="{cls}"><thead><tr>{head}</tr></thead>'
+    return (f'<div class="scroll-x"><table class="{cls} {kind}"><thead><tr>{head}</tr></thead>'
             f'<tbody>{body}</tbody></table></div>')
 
 
@@ -901,8 +920,16 @@ def main():
         body = renderer.convert(src.read_text())
         # The same treatment for the tables Markdown produces, which this generator does not build
         # and so cannot wrap as it goes.
-        body = body.replace("<table>", '<div class="scroll-x"><table>').replace(
-            "</table>", "</table></div>")
+        # The same treatment for the tables Markdown produces, which this generator does not build
+        # and so cannot classify as it goes. A table of four columns or more is too wide for a
+        # phone and scrolls; a narrower one reads perfectly well wrapped.
+        def wrap_table(m):
+            wide = len(re.findall(r"<th[ >]", m.group(0))) >= 4
+            cls = ' class="compact"' if wide else ""
+            return ('<div class="scroll-x">'
+                    + m.group(0).replace("<table>", f"<table{cls}>", 1) + "</div>")
+
+        body = re.sub(r"<table>.*?</table>", wrap_table, body, flags=re.S)
         title = item["title"]
         out = DIST if item["slug"] == "index" else DIST / "docs" / item["slug"]
         out.mkdir(parents=True, exist_ok=True)
@@ -1927,9 +1954,38 @@ p.negotiate code{font-size:12.5px}
   figure.diagram a{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   figure.diagram img{max-width:none;max-height:none}
   .browser-bar input{min-width:0;flex:1 1 100%}
-  table.listing{font-size:14px}
-  table.listing th,table.listing td{padding:7px 8px}
   p.negotiate{font-size:13px}
+
+  /* A table of counts keeps its shape and scrolls: the columns only mean anything beside each
+     other, and 560px is about the width at which the numbers stop colliding. */
+  table.listing.compact,.prose table.compact{min-width:560px}
+
+  /* A table carrying prose becomes one card per row. The header row goes, each cell names its own
+     column, and a row that was ten wrapped lines across four cramped columns becomes four short
+     ones. Empty cells disappear rather than leaving a label with nothing after it. */
+  table.listing.reading{font-size:15px}
+  table.listing.reading thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.listing.reading tr{display:block;border:1px solid var(--line);border-radius:8px;
+    padding:10px 12px;margin:0 0 10px;background:#fff}
+  table.listing.reading tr:hover td{background:none}
+  table.listing.reading td{display:block;border:0;padding:1px 0;width:auto;text-align:left;
+    white-space:normal}
+  table.listing.reading td:empty{display:none}
+  table.listing.reading td:first-child{font-size:16px;line-height:1.35;margin-bottom:5px}
+  /* A first column that is a short category rather than a name - added, dropped, attribute - is a
+     tag above the card, not its heading. */
+  table.listing.reading td.c-mod:first-child,table.listing.reading td.c-num:first-child,
+  table.listing.reading td.c-code:first-child{font-size:11.5px;text-transform:uppercase;
+    letter-spacing:.04em;color:var(--muted);margin-bottom:2px;display:block}
+  table.listing.reading.twocol td::before{content:none}
+  table.listing.reading td:not(:first-child)::before{content:attr(data-label);display:inline;
+    color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;
+    margin-right:6px}
+  /* A column whose heading is blank would show a bare separator, so it shows nothing. */
+  table.listing.reading td[data-label=""]::before{content:none}
+  table.listing.reading .c-prose{color:#2d3f52;margin-top:3px}
+  table.listing.reading .c-num,table.listing.reading .c-mod,table.listing.reading .c-code{
+    display:inline-block;margin-right:14px}
 }
 .jump{font-size:14px;color:var(--muted);margin:0 0 18px}
 .jump a{margin-right:2px}
