@@ -13,7 +13,7 @@
   "use strict";
 
   var DEBOUNCE = 180;
-  var LIMIT = 10;
+  var PAGE = 10;
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -73,26 +73,36 @@
       }
       var found = await pf.search(term, { filters: selected() });
       if (mine !== token) return;                       // a later keystroke has overtaken this one
-      var data = await Promise.all(found.results.slice(0, LIMIT).map(function (r) {
+      await show(term, found.results, 0, mine);
+    }
+
+    /* Results arrive as handles; each one's data is fetched only when it is about to be shown, so
+     * a search of 800 matches costs ten fetches rather than 800. "Show more" is what fetches the
+     * next ten, which is why the count and the list can disagree until it is pressed. */
+    async function show(term, handles, from, mine) {
+      var data = await Promise.all(handles.slice(from, from + PAGE).map(function (r) {
         return r.data();
       }));
       if (mine !== token) return;
-      render(term, found.results.length, data);
+      render(term, handles, from, data, mine);
     }
 
-    function render(term, total, results) {
-      panel.textContent = "";
-      panel.removeAttribute("aria-busy");
-      if (!total) {
-        panel.appendChild(el("p", "search-note",
-          "Nothing matches " + term + " in what is ticked above."));
-        return;
+    function render(term, handles, from, results, mine) {
+      var total = handles.length;
+      if (from === 0) {
+        panel.textContent = "";
+        panel.removeAttribute("aria-busy");
+        if (!total) {
+          panel.appendChild(el("p", "search-note",
+            "Nothing matches " + term + " in what is ticked above."));
+          return;
+        }
+        panel.appendChild(el("p", "search-note", total === 1 ? "1 result" : total + " results"));
+        panel.appendChild(el("ul", "search-list"));
       }
-      var count = el("p", "search-note",
-        total === 1 ? "1 result" : total + " results"
-          + (total > results.length ? ", showing the first " + results.length : ""));
-      panel.appendChild(count);
-      var list = el("ul", "search-list");
+      var more = panel.querySelector(".search-more");
+      if (more) more.remove();
+      var list = panel.querySelector(".search-list");
       results.forEach(function (r) {
         var li = el("li");
         var a = el("a", null, (r.meta && r.meta.title) || r.url);
@@ -111,7 +121,17 @@
         li.appendChild(ex);
         list.appendChild(li);
       });
-      panel.appendChild(list);
+      var shown = from + results.length;
+      if (shown < total) {
+        var button = el("button", "search-more",
+          "Show " + Math.min(PAGE, total - shown) + " more of " + total);
+        button.type = "button";
+        button.addEventListener("click", function () {
+          button.disabled = true;
+          show(term, handles, shown, mine);
+        });
+        panel.appendChild(button);
+      }
     }
 
     function schedule() {

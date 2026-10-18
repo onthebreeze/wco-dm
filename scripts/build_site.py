@@ -2001,6 +2001,10 @@ ul.terms li,ul.notes li{margin:4px 0}
 .search-list a:hover{text-decoration:underline}
 .search-excerpt{margin:3px 0 0;font-size:13.5px;color:#2d3f52;line-height:1.45}
 .search-excerpt mark{background:#fff2cd;color:inherit;padding:0 2px;border-radius:2px}
+.search-more{display:block;width:100%;margin:10px 0 4px;padding:8px 10px;font:inherit;font-size:13.5px;
+  color:var(--brand);background:var(--bg);border:1px solid var(--line);border-radius:6px;cursor:pointer}
+.search-more:hover{border-color:var(--brand)}
+.search-more[disabled]{opacity:.6;cursor:default}
 .search-filters{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:13.5px;color:#dce9f8}
 .search-filters label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
 .search-filters input{accent-color:#fff;margin:0}
