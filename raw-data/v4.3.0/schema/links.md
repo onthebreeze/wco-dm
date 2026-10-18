@@ -1,0 +1,11 @@
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/2.%20Overall%20Information%20Package%20(OIS)/2.3%20XML%20Schema/OIS/WithNotes/OIS_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/1.%20MDIP/WithNotes/MDIP_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/2.%20AIP/1.%20DIP/AEO%20MasterData/AEO_MasterData_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/2.%20AIP/1.%20DIP/UPU%20CUSRSP/UPU_CUSRSP_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/1.%20BIP/WithNotes/Declaration_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/Maritime%20API/WithNotes/MaritimeAPI_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/Maritime%20BRI/WithNotes/BRI_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/UPU%20CUSITM/WithNotes/UPU_CUSITM_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/UPU%20REFRSP/WithNotes/UPU_REFRSP_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/4.%20LPCO/1.%20BIP/WithNotes/LPCO_4p3p0.xsd
+https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/4.%20LPCO/2.%20DIP/Certificate%20of%20Origin%20(under%20the%20WCO%20TCRO)/WithNotes/e_CO_4p3p0.xsd

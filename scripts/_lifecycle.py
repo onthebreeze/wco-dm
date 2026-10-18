@@ -70,6 +70,9 @@ def merge(key_of, name_of, records_by_version, all_versions, carry=()):
             name = name_of(record)
             if name and name not in entry["_names"]:
                 entry["_names"].append(name)
+                # Which release first carried this name, so a rename is attributed to the release
+                # that made it rather than to the last release the term appears in.
+                entry.setdefault("_name_at", []).append((version, name))
             for field in carry:
                 if record.get(field):
                     entry.setdefault(f"_{field}", [])
@@ -82,6 +85,10 @@ def merge(key_of, name_of, records_by_version, all_versions, carry=()):
         record.update(lifecycle(entry["_versions"], all_versions))
         current = name_of(entry["_record"])
         record["formerNames"] = [n for n in entry["_names"] if n != current]
+        history = entry.get("_name_at") or []
+        record["nameHistory"] = [{"version": v, "name": n} for v, n in history]
+        if len(history) > 1:
+            record["renamedIn"] = history[-1][0]
         for field in carry:
             if f"_{field}" in entry:
                 record[f"all_{field}"] = entry[f"_{field}"]

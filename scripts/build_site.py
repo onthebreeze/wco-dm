@@ -169,7 +169,24 @@ def nav_html(current=None):
     return f'<nav class="sitenav">{top}</nav><nav class="subnav">{sub}</nav>'
 
 
-def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
+def search_tags(filters):
+    """Pagefind filters and metadata, declared on the indexed body.
+
+    One index, narrowed by facet, rather than one index per release. The facets are what make a
+    search for "origin" separable into the class, the properties, the code lists and the messages,
+    and they are also how a reader excludes the three superseded releases without a second index to
+    build and keep in step.
+    """
+    if not filters:
+        return ""
+    pairs = [(k, v) for k, v in filters.items() if v]
+    attr = ", ".join(f"{k}:{v}" for k, v in pairs)
+    meta = ", ".join(f"{k}:{v}" for k, v in pairs if k in ("kind", "release", "status"))
+    return (f' data-pagefind-filter="{html.escape(attr, quote=True)}"'
+            f' data-pagefind-meta="{html.escape(meta, quote=True)}"')
+
+
+def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=None):
     nav = " / ".join(f'<a href="{html.escape(h)}">{html.escape(t)}</a>' if h else html.escape(t) for t, h in crumbs)
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -187,7 +204,7 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
   <nav class="crumbs">{nav}</nav>
   <div id="search" class="search"></div>
 </div>{nav_html(current)}</header>
-<main class="wrap">{body}</main>
+<main class="wrap" data-pagefind-body{search_tags(filters)}>{body}</main>
 <footer class="wrap foot">
   <p>Generated from the WCO Data Model version {VERSION}. This address also answers as
      <a href="index.ttl">Turtle</a>, <a href="index.jsonld">JSON-LD</a> and
@@ -202,8 +219,25 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
   // skipped the index step - the box removes itself rather than sitting there broken.
   window.addEventListener('DOMContentLoaded', function () {{
     if (window.PagefindUI) {{
-      new PagefindUI({{ element: '#search', showImages: false, pageSize: 8,
-                        translations: {{ placeholder: 'Search the vocabulary' }} }});
+      new PagefindUI({{
+        element: '#search', showImages: false, pageSize: 8,
+        showEmptyFilters: false, openFilters: ['kind'],
+        translations: {{ placeholder: 'Search the vocabulary', filters_label: 'Narrow by' }},
+        // The kind of thing a result is matters more than its excerpt when one word names a
+        // class, two properties, a code list and a message, so it is shown as a badge.
+        processResult: function (result) {{
+          var kind = result.meta && result.meta.kind;
+          if (kind) {{
+            var tag = '<span class="pf-kind pf-' +
+              kind.toLowerCase().replace(/[^a-z]+/g, '-') + '">' + kind + '</span>';
+            if (result.meta.release) {{
+              tag += '<span class="pf-kind pf-rel">' + result.meta.release + '</span>';
+            }}
+            result.excerpt = tag + ' ' + (result.excerpt || '');
+          }}
+          return result;
+        }}
+      }});
     }} else {{
       var el = document.getElementById('search'); if (el) el.remove();
     }}
@@ -467,7 +501,12 @@ def write_term(g, s, kind, counts, idx):
     crumbs.append((label, None))
     subtitle = one(g, s, SKOS.definition) or one(g, s, SKOS.prefLabel) or \
         f"{KIND_LABEL.get(kind, kind)} in the WCO Data Model vocabulary."
-    (out / "index.html").write_text(page(label, subtitle, term_body(g, s, kind, idx), crumbs))
+    (out / "index.html").write_text(page(
+        label, subtitle, term_body(g, s, kind, idx), crumbs,
+        filters={"kind": KIND_LABEL.get(kind, kind),
+                 "module": (one(g, s, RDFS.isDefinedBy) or "").rsplit("/", 1)[-1],
+                 "status": (one(g, s, WCO.termStatus) or "active").rsplit("/", 1)[-1],
+                 "current": "yes"}))
     counts[kind] += 1
 
 
@@ -579,8 +618,10 @@ def main():
                   str(len(idx["scheme_props"].get(c, [])))) for c in schemes],
                 col_classes=["name", "prose", "num", "num"]) + "</section>")
 
-        (out / "index.html").write_text(page(f"{module} module", "A module of the WCO Data Model vocabulary.",
-                                             "".join(body), [("Vocabulary", BASE), ("Modules", None), (module, None)]))
+        (out / "index.html").write_text(page(
+            f"{module} module", "A module of the WCO Data Model vocabulary.", "".join(body),
+            [("Vocabulary", BASE), ("Modules", None), (module, None)],
+            filters={"kind": "Module", "module": module, "current": "yes"}))
         counts["module"] += 1
 
     # The three categories each get an index. A code list is not a detail of a property: it is a
@@ -637,7 +678,8 @@ def main():
         (DIST / folder).mkdir(parents=True, exist_ok=True)
         (DIST / folder / "index.html").write_text(page(
             title, lead, "".join(body),
-            [("Vocabulary", BASE), (title, None)], current=folder))
+            [("Vocabulary", BASE), (title, None)], current=folder,
+            filters={"kind": "Index", "current": "yes"}))
         write_rdf(DIST / folder, collection_rdf(f"{SOURCE_BASE}{folder}/", title, lead, terms))
         counts["page"] += 1
 
@@ -695,7 +737,8 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(page(
         "Code lists", "Every code list the WCO Data Model names, and what is known about each.",
-        "".join(body), [("Vocabulary", BASE), ("Code lists", None)], current="code-lists"))
+        "".join(body), [("Vocabulary", BASE), ("Code lists", None)], current="code-lists",
+        filters={"kind": "Index", "current": "yes"}))
     write_rdf(out, collection_rdf(
         f"{SOURCE_BASE}code-lists/", "Code lists",
         "Every code list the WCO Data Model names, and what is known about each.",
@@ -730,7 +773,8 @@ def main():
         'category indexes cut the other way.</p>'
         + table(["Module", "Holds", "Classes", "Properties", "Code lists"], rows_mod,
                 col_classes=["name", "prose", "num", "num", "num"]),
-        [("Vocabulary", BASE), ("Modules", None)], current="modules"))
+        [("Vocabulary", BASE), ("Modules", None)], current="modules",
+        filters={"kind": "Index", "current": "yes"}))
     write_rdf(DIST / "modules", collection_rdf(
         f"{SOURCE_BASE}modules/", "Modules", "How the WCO Data Model vocabulary is divided.",
         [MOD[m] for m in order]))
@@ -756,7 +800,8 @@ def main():
         crumbs = [("Vocabulary", BASE)] + ([] if item["slug"] == "index" else [(title, None)])
         (out / "index.html").write_text(
             page(title, "The WCO Data Model published as linked data.",
-                 f'<article class="prose">{body}</article>', crumbs, current=item["slug"]))
+                 f'<article class="prose">{body}</article>', crumbs, current=item["slug"],
+                 filters={"kind": "Documentation", "current": "yes"}))
         url = SOURCE_BASE if item["slug"] == "index" else f'{SOURCE_BASE}docs/{item["slug"]}/'
         if item["slug"] != "index":
             write_rdf(out, describe_page(
@@ -888,7 +933,9 @@ def main():
                                    col_classes=["name", "code", "num", "prose"]))
             return "".join(out)
 
-        def diagram_figure(entry, pslug, mslug, out, version):
+        def diagram_figure(entry, pslug, mslug, out, version, url_version=None):
+            """The diagram is written beside the page that shows it. The landing page shows the
+            latest release's diagram at its own address; each release page shows its own."""
             if not entry.get("diagram"):
                 return ""
             src = ROOT / "diagrams" / entry["diagram"]
@@ -896,7 +943,7 @@ def main():
                 return ""
             (out / "diagram.svg").write_text(src.read_text())
             counts["message file"] += 1
-            url = message_url(pslug, mslug, version) + "diagram.svg"
+            url = message_url(pslug, mslug, url_version) + "diagram.svg"
             if entry["diagram_boxes"] <= 12 and entry.get("diagram_cut"):
                 note = ("Each box is one vocabulary module, listing the classes of this message "
                         "that belong to it. The top level is too wide to draw class by class, and "
@@ -1049,7 +1096,11 @@ def main():
             if is_derived:
                 crumbs.append((pm.get("title", key), message_url(pslug, "base")))
             crumbs.append((name, None))
-            (out / "index.html").write_text(page(title, lead, "".join(body), crumbs, current=key))
+            (out / "index.html").write_text(page(
+                title, lead, "".join(body), crumbs, current=key,
+                filters={"kind": "Message", "package": pm.get("title", key),
+                         "release": m["latest"],
+                         "current": "yes" if m["current"] else "no"}))
             msg_url = f'{SOURCE_BASE}{message_url(pslug, mslug)[len(BASE):]}'
             msub, mme = describe_page(msg_url, title, lead, kind=DCAT.Dataset)
             for version in m["releases"]:
@@ -1093,6 +1144,7 @@ def main():
                     f'from WCO Data Model {version}.</p>',
                     f'<p class="jump">Releases: {others}</p>',
                     facts_table(stat_rows(est)),
+                    diagram_figure(e, pslug, mslug, rout, version, url_version=version),
                     '<section><h2>Machine artefacts</h2>'
                     '<p class="muted">These addresses are permanent. A later WCO release publishes '
                     'under its own version rather than replacing these files, so a document '
@@ -1142,7 +1194,10 @@ def main():
                     "".join(rbody),
                     crumbs[:-1] + [(name, message_url(pslug, mslug)), (version, None)],
                     current=key,
-                    extra_scripts=f'<script src="{BASE}message-browser.js"></script>'))
+                    extra_scripts=f'<script src="{BASE}message-browser.js"></script>',
+                    filters={"kind": "Message release", "package": pm.get("title", key),
+                             "release": version,
+                             "current": "yes" if version == CURRENT else "no"}))
                 rel_url = f'{SOURCE_BASE}{rel[len(BASE):]}'
                 rsub, rme = describe_page(
                     rel_url, f"{name} {version}", f"Release {version} of the {name} message.",
@@ -1228,7 +1283,8 @@ def main():
         out.mkdir(parents=True, exist_ok=True)
         (out / "index.html").write_text(page(
             "Information packages", "How the WCO Data Model assembles terms into messages.",
-            body, [("Vocabulary", BASE), ("Information packages", None)], current="packages"))
+            body, [("Vocabulary", BASE), ("Information packages", None)], current="packages",
+            filters={"kind": "Index", "current": "yes"}))
         osub, ome = describe_page(
             f"{SOURCE_BASE}packages/", "Information packages",
             "How the WCO Data Model assembles terms into messages.", kind=RDFS.Container)
@@ -1259,14 +1315,18 @@ def main():
             }
 
         snapshots = {v: terms_in(v) for v in RELEASES}
+        # A rename belongs to the release that made it: the one in which the new name first
+        # appears. Attributing it to the release where the term was last seen would pile every
+        # rename onto the current release.
         renames = {}
         for kind, records, name_of in (
                 ("classes", union["classes"], lambda r: r.get("class_name")),
                 ("attributes", union["attributes"], lambda r: r.get("attr_name"))):
             for r in records:
-                for former in r.get("formerNames") or []:
-                    renames.setdefault(r.get("lastSeenIn"), []).append(
-                        (kind, former, name_of(r)))
+                history = r.get("nameHistory") or []
+                for i in range(1, len(history)):
+                    renames.setdefault(history[i]["version"], []).append(
+                        (kind, history[i - 1]["name"], history[i]["name"]))
 
         rows_rel = []
         for i, version in enumerate(RELEASES):
@@ -1276,9 +1336,10 @@ def main():
                 prev = snapshots[RELEASES[i - 1]]
                 added = sum(len(snapshots[version][k] - prev[k]) for k in prev)
                 gone = sum(len(prev[k] - snapshots[version][k]) for k in prev)
-                change = f'+{added:,} / −{gone:,}'
+                change = (f'<a href="{BASE}releases/{version}/changes/">'
+                          f'+{added:,} / −{gone:,}</a>')
             else:
-                change = "first release held here"
+                change = '<span class="muted">baseline</span>' 
             rows_rel.append((
                 f'<a href="{BASE}releases/{version}/"><b>{version}</b></a>',
                 "current" if version == CURRENT else "",
@@ -1310,7 +1371,8 @@ def main():
         out.mkdir(parents=True, exist_ok=True)
         (out / "index.html").write_text(page(
             "Releases", "The four WCO Data Model releases published here.",
-            body, [("Vocabulary", BASE), ("Releases", None)], current="releases"))
+            body, [("Vocabulary", BASE), ("Releases", None)], current="releases",
+            filters={"kind": "Index", "current": "yes"}))
         rsub, rme = describe_page(f"{SOURCE_BASE}releases/", "Releases",
                                   "The WCO Data Model releases published here.",
                                   kind=RDFS.Container)
@@ -1319,17 +1381,44 @@ def main():
         write_rdf(out, rsub)
         counts["page"] += 1
 
-        # One page per release.
+        # One page per release, and a change log beside it. The release page says what the
+        # release holds; the change log says what moved since the one before it, which is a long
+        # table nobody needs in order to read the first. 4.0.0 is the baseline: it is the earliest
+        # release held here, so there is nothing to diff it against.
+        def change_sets(version, prev):
+            here, before = snapshots[version], snapshots[prev]
+            return {kind: (sorted(here[kind] - before[kind]), sorted(before[kind] - here[kind]))
+                    for kind in ("classes", "attributes", "code lists")}
+
+        def describe_term(kind, t):
+            if kind != "attributes":
+                return html.escape(str(t))
+            cls, attr_id = t
+            rec = next((a for a in union["attributes"]
+                        if a.get("class_name") == cls and a.get("attr_id") == attr_id), None)
+            name = (rec or {}).get("attr_name") or attr_id
+            return (f'{html.escape(name or "")} '
+                    f'<span class="muted">{html.escape(cls or "")} '
+                    f'<code>{html.escape(attr_id or "")}</code></span>')
+
         for i, version in enumerate(RELEASES):
             prev = RELEASES[i - 1] if i else None
-            here, before = snapshots[version], snapshots[prev] if prev else None
+            here = snapshots[version]
             out = DIST / "releases" / version
             out.mkdir(parents=True, exist_ok=True)
             meta_here = by_version.get(version, {})
+            changes = change_sets(version, prev) if prev else None
+            renamed = renames.get(version) or []
+            here_msgs = sorted((m for m in messages.values() if version in m["versions"]),
+                               key=lambda m: (m["pslug"], m["mslug"]))
+            new_msgs = [m for m in here_msgs if m["releases"][0] == version]
+            gone_msgs = ([m for m in messages.values()
+                          if m["latest"] == prev and version not in m["versions"]] if prev else [])
 
             facts = [("Release", version),
                      ("Status", "current" if version == CURRENT else
-                      f'superseded by {RELEASES[i + 1]}'),
+                      f'superseded by <a href="{BASE}releases/{RELEASES[i + 1]}/">'
+                      f'{RELEASES[i + 1]}</a>'),
                      ("Date", meta_here.get("date") or
                       '<span class="muted">not recorded here; the workbooks carry the version but '
                       'no publication date</span>'),
@@ -1337,57 +1426,57 @@ def main():
                      ("Structure workbook", html.escape(meta_here.get("ois", ""))),
                      ("Classes", f'{len(here["classes"]):,}'),
                      ("Attributes", f'{len(here["attributes"]):,}'),
-                     ("Code lists", f'{len(here["code lists"]):,}')]
+                     ("Code lists", f'{len(here["code lists"]):,}'),
+                     ("Messages", f'{len(here_msgs)}')]
+            if changes:
+                added = sum(len(a) for a, _ in changes.values())
+                dropped = sum(len(d) for _, d in changes.values())
+                facts.append(("Changed since " + prev,
+                              f'{added:,} terms added, {dropped:,} dropped, '
+                              f'{len(renamed)} renamed. '
+                              f'<a href="{BASE}releases/{version}/changes/">See the change log</a>'))
+            else:
+                facts.append(("Change log", '<span class="muted">None. This is the earliest '
+                                            'release held here, and the baseline the others are '
+                                            'compared against.</span>'))
+
             body = [f"<h1>WCO Data Model {version}</h1>",
-                    f'<p class="definition">What this release holds, and what changed in it. '
-                    f'Everything below is computed from the workbooks rather than transcribed '
-                    f'from a change log, because the model does not publish one.</p>',
-                    f'<table class="facts">' + "".join(
+                    f'<p class="definition">What this release holds. '
+                    + ("Everything is computed from the workbooks rather than transcribed from a "
+                       "change log, because the model does not publish one." if changes else
+                       "This is the baseline for every comparison on this site.") + '</p>',
+                    '<table class="facts">' + "".join(
                         f'<tr><th>{html.escape(k)}</th><td>{v}</td></tr>' for k, v in facts if v)
                     + '</table>']
 
-            if before:
-                for kind in ("classes", "attributes", "code lists"):
-                    added, gone = sorted(here[kind] - before[kind]), sorted(before[kind] - here[kind])
-                    if not added and not gone:
-                        continue
-                    def describe_term(t):
-                        if kind != "attributes":
-                            return html.escape(str(t))
-                        cls, attr_id = t
-                        rec = next((a for a in union["attributes"]
-                                    if a.get("class_name") == cls and a.get("attr_id") == attr_id),
-                                   None)
-                        name = rec.get("attr_name") if rec else attr_id
-                        return (f'{html.escape(name or "")} '
-                                f'<span class="muted">{html.escape(cls or "")} '
-                                f'<code>{html.escape(attr_id or "")}</code></span>')
-                    rows_k = []
-                    for t in added[:400]:
-                        rows_k.append(("added", describe_term(t)))
-                    for t in gone[:400]:
-                        rows_k.append(("dropped", describe_term(t)))
-                    body.append(
-                        f'<section><h2>{kind.capitalize()}: {len(added)} added, '
-                        f'{len(gone)} dropped</h2>'
-                        + table(["", "Term"], rows_k, col_classes=["mod", "prose"])
-                        + ('<p class="muted">A dropped term is still published, marked deprecated '
-                           'in this release.</p>' if gone else "") + '</section>')
-
-                renamed = renames.get(version) or []
+            if changes:
+                summary_rows = []
+                for kind, (added_, dropped_) in changes.items():
+                    summary_rows.append((
+                        kind.capitalize(),
+                        f'{len(added_):,}' if added_ else "",
+                        f'{len(dropped_):,}' if dropped_ else "",
+                        f'<a href="{BASE}releases/{version}/changes/#{kind.replace(" ", "-")}">'
+                        f'see them</a>' if added_ or dropped_ else ""))
                 if renamed:
-                    body.append(
-                        f'<section><h2>Renamed ({len(renamed)})</h2>'
-                        '<p class="muted">The identifier stayed, the name changed. These are '
-                        'renames rather than a removal and an addition only because identity here '
-                        'is the WCO identifier.</p>'
-                        + table(["Kind", "Was", "Is now"],
-                                [(k, html.escape(a or ""), html.escape(b or ""))
-                                 for k, a, b in sorted(renamed)],
-                                col_classes=["mod", "prose", "prose"]) + '</section>')
+                    summary_rows.append((
+                        "Renamed", "", "",
+                        f'<a href="{BASE}releases/{version}/changes/#renamed">'
+                        f'{len(renamed)} terms</a>'))
+                if new_msgs or gone_msgs:
+                    summary_rows.append((
+                        "Messages", f'{len(new_msgs)}' if new_msgs else "",
+                        f'{len(gone_msgs)}' if gone_msgs else "",
+                        f'<a href="{BASE}releases/{version}/changes/#messages">see them</a>'))
+                body.append(
+                    f'<section><h2>What changed since {prev}</h2>'
+                    + table(["", "Added", "Dropped", ""], summary_rows,
+                            col_classes=["name", "num", "num", "mod"])
+                    + f'<p class="muted">A dropped term is still published, marked deprecated and '
+                      f'naming {version} as the release that dropped it. '
+                      f'<a href="{BASE}releases/{version}/changes/">The change log</a> lists every '
+                      f'one.</p></section>')
 
-            here_msgs = sorted((m for m in messages.values() if version in m["versions"]),
-                               key=lambda m: (m["pslug"], m["mslug"]))
             mrows = []
             for m in here_msgs:
                 e = m["versions"][version]
@@ -1408,15 +1497,84 @@ def main():
                         col_classes=["name", "mod", "num", "mod"]) + '</section>')
 
             (out / "index.html").write_text(page(
-                f"WCO Data Model {version}", f"What release {version} holds and what changed in it.",
+                f"WCO Data Model {version}", f"What release {version} holds.",
                 "".join(body),
                 [("Vocabulary", BASE), ("Releases", f"{BASE}releases/"), (version, None)],
-                current="releases"))
+                current="releases",
+                filters={"kind": "Release", "release": version,
+                         "current": "yes" if version == CURRENT else "no"}))
             vsub, vme = describe_page(
                 f"{SOURCE_BASE}releases/{version}/", f"WCO Data Model {version}",
-                f"What release {version} holds and what changed in it.", kind=DCAT.Dataset)
+                f"What release {version} holds.", kind=DCAT.Dataset)
             vsub.add((vme, DCTERMS.hasVersion, rdflib.Literal(version)))
             write_rdf(out, vsub)
+            counts["page"] += 1
+
+            if not changes:
+                continue
+
+            # The change log itself.
+            cbody = [f"<h1>What changed in {version}</h1>",
+                     f'<p class="definition">Every difference between '
+                     f'<a href="{BASE}releases/{prev}/">{prev}</a> and '
+                     f'<a href="{BASE}releases/{version}/">{version}</a>, computed from the '
+                     f'workbooks. Identity is the WCO identifier, so a term that changed name is '
+                     f'listed as renamed rather than as one term removed and another added.</p>']
+            for kind, (added_, dropped_) in changes.items():
+                anchor = kind.replace(" ", "-")
+                if not added_ and not dropped_:
+                    cbody.append(f'<section id="{anchor}"><h2>{kind.capitalize()}</h2>'
+                                 '<p class="muted">Nothing added or dropped.</p></section>')
+                    continue
+                rows_k = [("added", describe_term(kind, t)) for t in added_]
+                rows_k += [("dropped", describe_term(kind, t)) for t in dropped_]
+                cbody.append(
+                    f'<section id="{anchor}"><h2>{kind.capitalize()}: {len(added_)} added, '
+                    f'{len(dropped_)} dropped</h2>'
+                    + table(["", "Term"], rows_k, col_classes=["mod", "prose"])
+                    + ('<p class="muted">A dropped term keeps its address and is published '
+                       'deprecated.</p>' if dropped_ else "") + '</section>')
+            if renamed:
+                cbody.append(
+                    f'<section id="renamed"><h2>Renamed ({len(renamed)})</h2>'
+                    '<p class="muted">The identifier stayed, the name changed.</p>'
+                    + table(["Kind", "Was", "Is now"],
+                            [(k, html.escape(a or ""), html.escape(b or ""))
+                             for k, a, b in sorted(renamed)],
+                            col_classes=["mod", "prose", "prose"]) + '</section>')
+            if new_msgs or gone_msgs:
+                rows_m = [("added",
+                           f'<a href="{message_url(m["pslug"], m["mslug"], version)}">'
+                           f'{html.escape(display_name(m["key"], m["mslug"], m["versions"][version]))}'
+                           f'</a> <span class="muted">{m["pslug"]}</span>') for m in new_msgs]
+                rows_m += [("dropped",
+                            f'<a href="{message_url(m["pslug"], m["mslug"])}">'
+                            f'{html.escape(display_name(m["key"], m["mslug"], m["entry"]))}</a> '
+                            f'<span class="muted">last in {m["latest"]}</span>')
+                           for m in gone_msgs]
+                cbody.append(
+                    f'<section id="messages"><h2>Messages: {len(new_msgs)} added, '
+                    f'{len(gone_msgs)} dropped</h2>'
+                    + table(["", "Message"], rows_m, col_classes=["mod", "prose"])
+                    + '<p class="muted">A dropped message keeps its pages, its schema and its '
+                      'structure for the releases that had it.</p></section>')
+
+            cout = out / "changes"
+            cout.mkdir(parents=True, exist_ok=True)
+            (cout / "index.html").write_text(page(
+                f"What changed in {version}",
+                f"Every difference between {prev} and {version}.",
+                "".join(cbody),
+                [("Vocabulary", BASE), ("Releases", f"{BASE}releases/"),
+                 (version, f"{BASE}releases/{version}/"), ("Changes", None)],
+                current="releases",
+                filters={"kind": "Change log", "release": version,
+                         "current": "yes" if version == CURRENT else "no"}))
+            csub, cme = describe_page(
+                f"{SOURCE_BASE}releases/{version}/changes/", f"What changed in {version}",
+                f"Every difference between {prev} and {version}.")
+            csub.add((cme, DCTERMS.isPartOf, rdflib.URIRef(f"{SOURCE_BASE}releases/{version}/")))
+            write_rdf(cout, csub)
             counts["page"] += 1
 
     # Every directory holding a page must hold its machine representations too. The edge function
@@ -1539,6 +1697,14 @@ code.digest{font-size:12.5px;color:var(--muted)}
 .browser .kidcount{font-size:11.5px;color:#8294a6;margin-left:auto;white-space:nowrap}
 .browser-failed .browser-tree{color:var(--muted);padding:18px}
 @media (max-width:760px){.browser-panes{flex-direction:column}.browser-detail{border-left:0;border-top:1px solid var(--line)}}
+.pf-kind{display:inline-block;border-radius:4px;padding:1px 7px;font-size:12px;font-weight:600;margin-right:6px;background:var(--bg);color:var(--muted);border:1px solid var(--line);vertical-align:middle}
+.pf-class{background:#eaf2fd;color:#0b4ea2;border-color:#c5dbf7}
+.pf-property{background:#f0f0fb;color:#4b3f9e;border-color:#d9d6f3}
+.pf-code-list,.pf-code{background:#eef7ef;color:#1d6b33;border-color:#cfe6d4}
+.pf-message,.pf-message-release{background:#fdf2e6;color:#8a5200;border-color:#f3dcc0}
+.pf-release,.pf-change-log{background:#fbeef2;color:#8c2a4a;border-color:#f0ced9}
+.pf-rel{font-variant-numeric:tabular-nums}
+.pagefind-ui__filter-panel{font-size:14px}
 .jump{font-size:14px;color:var(--muted);margin:0 0 18px}
 .jump a{margin-right:2px}
 a.modhead{text-decoration:none}
