@@ -204,7 +204,8 @@ where that vocabulary answers today. `UNECE_RESOLVES` in `build_site.py` is the 
 when the production deployment lands.
 
 `UNECE_ONTOLOGY` points at a local checkout of the vocab-bsp repository; the default is the path on
-this machine.
+this machine. Where that checkout is absent, as on a build server, the step says so and skips: the
+decided mappings are committed, so the site builds without it and only new candidates need it.
 
 ## Publishing
 

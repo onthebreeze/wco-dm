@@ -193,8 +193,15 @@ def score(a, b):
 
 def main():
     if not UNECE_ONT.exists():
-        print(f"vocab.unece.org ontology not found at {UNECE_ONT}; set UNECE_ONTOLOGY", file=sys.stderr)
-        return 2
+        # Refreshing the candidates needs a checkout of the UN/CEFACT vocabulary, which a build
+        # server has no reason to have. The decided mappings are committed in ontology/mappings.ttl
+        # and the ledger beside it, so the site builds without this step; only new candidates and
+        # changed scores need it. Skipping rather than failing is what lets the pipeline run
+        # anywhere, and it says so rather than passing quietly.
+        print(f"  the UN/CEFACT vocabulary is not at {UNECE_ONT}, so the mapping candidates are "
+              f"not refreshed.\n  The decided mappings in ontology/mappings.ttl are used as they "
+              f"stand. Set UNECE_ONTOLOGY to a checkout to refresh them.", file=sys.stderr)
+        return 0
 
     wco = rdflib.Graph()
     for f in sorted(ONT.glob("*.ttl")):
