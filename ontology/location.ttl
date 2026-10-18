@@ -292,19 +292,6 @@ wco:WasteDeliveryLocation a owl:Class ;
 # Properties
 # --------------------------------------------------------------------------
 
-wco:acceptancelocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Acceptancelocation identification identifier"@en ;
-    skos:definition "Identification of the location where the goods are taken over by the carrier from the consignor."@en ;
-    schema:domainIncludes wco:AcceptanceLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L099" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 92" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
 wco:anchorageIndicator a owl:DatatypeProperty ;
     rdfs:label "Anchorage indicator"@en ;
     skos:definition "Indicator of the arrival of vessels at anchorage location or departure of vessels from anchorage location."@en ;
@@ -314,45 +301,6 @@ wco:anchorageIndicator a owl:DatatypeProperty ;
     wco:jsonTag "anchorageIndicator" ;
     wco:attributeId "461" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 101, 120" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:approvedestablishmentlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Approvedestablishmentlocation identification identifier"@en ;
-    skos:definition "Identification of a facility approved for a specific purpose by a government authority."@en ;
-    schema:domainIncludes wco:ApprovedEstablishmentLocation ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "UN/LOCODE (an..5) + user codes (an..30) Or user codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L058" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 96" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:arrivalconveyancefacilityIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Arrivalconveyancefacility identification identifier"@en ;
-    skos:definition "Identification of a terminal, warehouse or yard where a means of transport arrives."@en ;
-    schema:domainIncludes wco:ArrivalConveyanceFacility ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L054" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 99" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:arrivallocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Arrivallocation identification identifier"@en ;
-    skos:definition "Identification of the arrival location. This would be a port for sea, airport for air and border post for land crossing."@en ;
-    schema:domainIncludes wco:ArrivalLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L109" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 107" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
@@ -368,58 +316,6 @@ wco:authorizationIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
-wco:berthlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Berthlocation identification identifier"@en ;
-    skos:definition "Identification of the location in port where the means of transport will berth."@en ;
-    schema:domainIncludes wco:BerthLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L121" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 113" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:departureconveyancefacilityIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Departureconveyancefacility identification identifier"@en ;
-    skos:definition "Identification of a terminal, warehouse or yard where a means of transport departs."@en ;
-    schema:domainIncludes wco:DepartureConveyanceFacility ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L053" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 118" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:departurelocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Departurelocation identification identifier"@en ;
-    skos:definition "Identification of the place of departure of the goods."@en ;
-    schema:domainIncludes wco:DepartureLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L101" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 125" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:destinationlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Destinationlocation identification identifier"@en ;
-    skos:definition "Identification of the location of goods destination."@en ;
-    schema:domainIncludes wco:DestinationLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L103" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 133" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
 wco:disembarkationDateTime a owl:DatatypeProperty ;
     rdfs:label "Disembarkation date time"@en ;
     skos:definition "Date and time of disembarkation of a person on board."@en ;
@@ -429,19 +325,6 @@ wco:disembarkationDateTime a owl:DatatypeProperty ;
     wco:jsonTag "disembarkationDateTime" ;
     wco:attributeId "615" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 140" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:disembarkationlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Disembarkationlocation identification identifier"@en ;
-    skos:definition "Identification of a port or location of disembarkation."@en ;
-    schema:domainIncludes wco:DisembarkationLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L091" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 139" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
@@ -457,94 +340,16 @@ wco:embarkationDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
-wco:embarkationlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Embarkationlocation identification identifier"@en ;
-    skos:definition "Identification of a port or location of embarkation."@en ;
-    schema:domainIncludes wco:EmbarkationLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L093" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 143" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:examinationlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Examinationlocation identification identifier"@en ;
-    skos:definition "Identification of a location where goods are to be examined if different from the specified goods item location."@en ;
-    schema:domainIncludes wco:ExaminationLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L029" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 147" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:examinationlocationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Examinationlocation type code"@en ;
-    skos:definition "Code specifying the type of examination place."@en ;
-    schema:domainIncludes wco:ExaminationLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list> ;
-    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "L113" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 148" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:facilitylocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Facilitylocation identification identifier"@en ;
-    skos:definition "Identification of a building or location that provides a particular service or is used for a particular industry."@en ;
-    schema:domainIncludes wco:FacilityLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L051" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 151" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:facilitylocationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Facilitylocation type code"@en ;
-    skos:definition "Code specifying the facility type."@en ;
-    schema:domainIncludes wco:FacilityLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list> ;
-    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "L047" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 152" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:finaltransportmeansloadinglocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Finaltransportmeansloadinglocation identification identifier"@en ;
-    skos:definition "Identification of a location where a consignment is placed aboard the final means of transport for the journey to a customs territory of a country or union of countries."@en ;
-    schema:domainIncludes wco:FinalTransportMeansLoadingLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L084" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 154" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:freetradezoneIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Freetradezone identification identifier"@en ;
-    skos:definition "Identification of Free Trade Zone (or Foreign Free Zone) where a particular consignment is to be or has been located."@en ;
-    schema:domainIncludes wco:FreeTradeZone ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L066" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 157" ;
+wco:goodsLocationIdentificationTypeCode a owl:ObjectProperty ;
+    rdfs:label "Goods location identification type code"@en ;
+    skos:definition "Code specifying the type of identification used to identify a location."@en ;
+    schema:domainIncludes wco:GoodsLocation ;
+    schema:rangeIncludes wco-cl:goods-location-identification-type-code-list ;
+    wco:codeListBasis "User code list (see EU CDM code list for DE 16 15 046 000)"@en ;
+    wco:xmlTag "IdentificationTypeCode" ;
+    wco:jsonTag "identificationTypeCode" ;
+    wco:attributeId "571" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 165" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
@@ -561,58 +366,6 @@ wco:goodsconsignedlocationIdentificationIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
-wco:goodslocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Goodslocation identification identifier"@en ;
-    skos:definition "Identification of the location of goods."@en ;
-    schema:domainIncludes wco:GoodsLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L017" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 163" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:goodslocationIdentificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Goodslocation identification type code"@en ;
-    skos:definition "Code specifying the type of identification used to identify a location."@en ;
-    schema:domainIncludes wco:GoodsLocation ;
-    schema:rangeIncludes wco-cl:goods-location-identification-type-code-list ;
-    wco:codeListBasis "User code list (see EU CDM code list for DE 16 15 046 000)"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "571" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 165" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:goodslocationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Goodslocation type code"@en ;
-    skos:definition "Code specifying the type of goods location."@en ;
-    schema:domainIncludes wco:GoodsLocation ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "UN/EDIFACT code list 3227 For use with the EU CDM: - Code A Designated location - Code B Authorised place - Code C Approved place - Code D Other"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "L110" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 164" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:goodsreceiptlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Goodsreceiptlocation identification identifier"@en ;
-    skos:definition "Identification of the location at which the goods have been or are to be received by the consignee."@en ;
-    schema:domainIncludes wco:GoodsReceiptLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L004" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 169" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
 wco:itineraryFunctionCode a owl:DatatypeProperty ;
     rdfs:label "Itinerary function code"@en ;
     skos:definition "Code specifying the type of the itinerary location."@en ;
@@ -623,32 +376,6 @@ wco:itineraryFunctionCode a owl:DatatypeProperty ;
     wco:jsonTag "functionCode" ;
     wco:attributeId "251" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 176" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:itineraryIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Itinerary identification identifier"@en ;
-    skos:definition "Identification of a single port of call or other location of the itinerary of a means of transport."@en ;
-    schema:domainIncludes wco:Itinerary ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L006" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 172" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:landinglocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Landinglocation identification identifier"@en ;
-    skos:definition "Identification of a landing location, wharf, or quay where ships may tie up and load, unload, or lie at rest."@en ;
-    schema:domainIncludes wco:LandingLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L075" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 184" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
@@ -664,19 +391,6 @@ wco:loadingDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
-wco:loadinglocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Loadinglocation identification identifier"@en ;
-    skos:definition "Identification of a seaport, airport, freight terminal, rail station or other location at which goods are loaded onto the means of transport being used for their carriage."@en ;
-    schema:domainIncludes wco:LoadingLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L010" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 187" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
 wco:nameIdentificationIdentifier a owl:DatatypeProperty ;
     rdfs:label "Name identification identifier"@en ;
     skos:definition "Identification of the location/port where waste of any type was or will be delivered."@en ;
@@ -687,32 +401,6 @@ wco:nameIdentificationIdentifier a owl:DatatypeProperty ;
     wco:jsonTag "id" ;
     wco:attributeId "L116" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 231" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:permittedportIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Permittedport identification identifier"@en ;
-    skos:definition "Identification of the authorized office through which the authorized party is allowed to bring the goods identified on the LPCO."@en ;
-    schema:domainIncludes wco:PermittedPort ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L073" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 192" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:registeredfacilityIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Registeredfacility identification identifier"@en ;
-    skos:definition "Identification of a facility that has been formally documented as compliant with regulations or statutes by a regulatory authority."@en ;
-    schema:domainIncludes wco:RegisteredFacility ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L086" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 195" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
@@ -753,32 +441,6 @@ wco:routingRegionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
-wco:shiptoshipactivitylocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Shiptoshipactivitylocation identification identifier"@en ;
-    skos:definition "Identification of a seaport, airport, freight terminal, rail station or other place at which a ship-to-ship activity takes place."@en ;
-    schema:domainIncludes wco:ShipToShipActivityLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L104" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 198" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:stowpositionIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Stowposition identification identifier"@en ;
-    skos:definition "Identification of the equipment location on the conveyance."@en ;
-    schema:domainIncludes wco:StowPosition ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "UN/LOCODE + User codes OR BayRowTier OR User code list (based on IMO FAL Convention)"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L041" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 200" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
 wco:takingOverGoodsDateTime a owl:DatatypeProperty ;
     rdfs:label "Taking over goods date time"@en ;
     skos:definition "Date and time when the goods are taken over."@en ;
@@ -788,110 +450,6 @@ wco:takingOverGoodsDateTime a owl:DatatypeProperty ;
     wco:jsonTag "takingOverGoodsDateTime" ;
     wco:attributeId "466" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 93" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:terminalIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Terminal identification identifier"@en ;
-    skos:definition "Identification of the location of a terminal."@en ;
-    schema:domainIncludes wco:Terminal ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L049" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 203" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:transhipmentlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transhipmentlocation identification identifier"@en ;
-    skos:definition "Identification of the location where goods are to be transferred from one means of transport to another during the course of one transport operation."@en ;
-    schema:domainIncludes wco:TranshipmentLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L015" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 206" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:transhipmentlocationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Transhipmentlocation type code"@en ;
-    skos:definition "Code specifying the type of location of transhipment."@en ;
-    schema:domainIncludes wco:TranshipmentLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list> ;
-    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "L111" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 207" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:transitdeparturelocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transitdeparturelocation identification identifier"@en ;
-    skos:definition "Identification of the location at which the goods depart under customs control of the transit procedure."@en ;
-    schema:domainIncludes wco:TransitDepartureLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L087" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 210" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:transitdestinationlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transitdestinationlocation identification identifier"@en ;
-    skos:definition "Identification of the location at which the goods are destined under customs control of transit procedure."@en ;
-    schema:domainIncludes wco:TransitDestinationLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L008" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 214" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:transportequipmentlocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transportequipmentlocation identification identifier"@en ;
-    skos:definition "Identification of the location of the transport equipment for which the position and status of a transport equipment is being reported."@en ;
-    schema:domainIncludes wco:TransportEquipmentLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L095" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 217" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:unloadinglocationIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Unloadinglocation identification identifier"@en ;
-    skos:definition "Identification of a seaport, airport, freight terminal, rail station or other location at which goods are unloaded from the means of transport having been used for their carriage."@en ;
-    schema:domainIncludes wco:UnloadingLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L013" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 220" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:warehouseIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Warehouse identification identifier"@en ;
-    skos:definition "Identification of a warehouse where a particular goods shipment will be / is / has been stored."@en ;
-    schema:domainIncludes wco:Warehouse ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "L019" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 224" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
@@ -918,18 +476,5 @@ wco:warehouseTypeCode a owl:DatatypeProperty ;
     wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
     wco:attributeId "L112" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 225" ;
-    rdfs:isDefinedBy wco-mod:location ;
-    wco:termStatus ts:active .
-
-wco:wastedeliverylocationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Wastedeliverylocation type code"@en ;
-    skos:definition "Code specifying the type of place/port where waste of any type was or will be delivered (e.g. last or next port)."@en ;
-    schema:domainIncludes wco:WasteDeliveryLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list> ;
-    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "L118" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 232" ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .

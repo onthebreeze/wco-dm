@@ -5,11 +5,16 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <https://vocabulary.wcoomd.org/securityLevelCode> skos:exactMatch <https://vocab.unece.org/securityLevelCode> .
+<https://vocabulary.wcoomd.org/addressTypeCode> skos:exactMatch <https://vocab.unece.org/addressTypeCode> .
+<https://vocabulary.wcoomd.org/paymentMethodCode> skos:exactMatch <https://vocab.unece.org/paymentMethodCode> .
+<https://vocabulary.wcoomd.org/startDateTime> skos:exactMatch <https://vocab.unece.org/startDateTime> .
 <https://vocabulary.wcoomd.org/Carrier> skos:relatedMatch <https://vocab.unece.org/carrier> .
 <https://vocabulary.wcoomd.org/Consignment> skos:closeMatch <https://vocab.unece.org/Consignment> .
 <https://vocabulary.wcoomd.org/Measure> skos:closeMatch <https://vocab.unece.org/Measure> .
 <https://vocabulary.wcoomd.org/ProductName> skos:relatedMatch <https://vocab.unece.org/productName> .
 <https://vocabulary.wcoomd.org/Seal> skos:closeMatch <https://vocab.unece.org/Seal> .
 <https://vocabulary.wcoomd.org/countryCode> skos:closeMatch <https://vocab.unece.org/countryCode> .
+<https://vocabulary.wcoomd.org/dueDateTime> skos:closeMatch <https://vocab.unece.org/dueDateTime> .
 <https://vocabulary.wcoomd.org/paymentAmount> skos:closeMatch <https://vocab.unece.org/paymentAmount> .
 <https://vocabulary.wcoomd.org/taxAmount> skos:closeMatch <https://vocab.unece.org/taxAmount> .
+<https://vocabulary.wcoomd.org/transportMeansTypeCode> skos:closeMatch <https://vocab.unece.org/transportMeansTypeCode> .

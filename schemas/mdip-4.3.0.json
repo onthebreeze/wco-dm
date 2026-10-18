@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "$id": "https://test-wcodm.trade-commons.org/schemas/mdip-4.3.0.json",
+ "$id": "http://localhost:8099/schemas/mdip-4.3.0.json",
  "title": "Meta Data Information Package",
  "description": "Details related to meta data to be used related to the document.",
  "x-wco-data-model-version": "4.3.0",
@@ -12,7 +12,7 @@
    "description": "Code specifying the version of the WCO Data Model (e.g. 3.40).",
    "x-wco-code-list": "WCO code list/WCODataModelVersion",
    "x-wco-id": "MD17",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/wcoDataModelVersionCode"
+   "x-wco-term": "http://localhost:8099/wcoDataModelVersionCode"
   },
   "wcoCategoryCode": {
    "type": "string",
@@ -20,7 +20,7 @@
    "description": "Code specifying the category within the WCO Data Model.",
    "x-wco-code-list": "WCO code list/WCOCategory",
    "x-wco-id": "MD18",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/wcoCategoryCode"
+   "x-wco-term": "http://localhost:8099/wcoCategoryCode"
   },
   "wcoTypeCode": {
    "type": "string",
@@ -28,7 +28,7 @@
    "description": "Code specifying the WCO Type.",
    "x-wco-code-list": "WCO code list/WCOType",
    "x-wco-id": "MD19",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/wcoTypeCode"
+   "x-wco-term": "http://localhost:8099/wcoTypeCode"
   },
   "responsibleCountryCode": {
    "type": "string",
@@ -37,7 +37,7 @@
    "description": "Code specifying the country controlling the specification, maintenance and publication of the message type.",
    "x-wco-code-list": "ISO 3166-1",
    "x-wco-id": "MD21",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/responsibleCountryCode"
+   "x-wco-term": "http://localhost:8099/responsibleCountryCode"
   },
   "responsibleAgencyCode": {
    "type": "string",
@@ -45,14 +45,14 @@
    "description": "Code specifying the agency controlling the specification, maintenance and publication of the message type.",
    "x-wco-code-list": "UN/EDIFACT code list 0051",
    "x-wco-id": "MD22",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/responsibleAgencyCode"
+   "x-wco-term": "http://localhost:8099/responsibleAgencyCode"
   },
   "responsibleAgencyName": {
    "type": "string",
    "maxLength": 70,
    "description": "Name to identify the agency controlling the specification, maintenance and publication of the message type.",
    "x-wco-id": "MD23",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/responsibleagencynameText"
+   "x-wco-term": "http://localhost:8099/responsibleagencynameText"
   },
   "agencyAssignedCustomizationCode": {
    "type": "string",
@@ -60,7 +60,7 @@
    "description": "Code specifying the agency responsible for the design and maintenance of the message type concerned, which further identifies the message.",
    "x-wco-code-list": "User code list",
    "x-wco-id": "MD24",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/agencyAssignedCustomizationCode"
+   "x-wco-term": "http://localhost:8099/agencyAssignedCustomizationCode"
   },
   "agencyAssignedCustomizationVersionCode": {
    "type": "string",
@@ -68,14 +68,14 @@
    "description": "Code specifying the version of the agency assigned customization.",
    "x-wco-code-list": "User code list",
    "x-wco-id": "MD25",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/agencyAssignedCustomizationVersionCode"
+   "x-wco-term": "http://localhost:8099/agencyAssignedCustomizationVersionCode"
   },
   "functionalDefinition": {
    "type": "string",
    "maxLength": 512,
    "description": "Definition of the function of the message.",
    "x-wco-id": "MD26",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/functionalDefinitionText"
+   "x-wco-term": "http://localhost:8099/functionalDefinitionText"
   },
   "binaryFile": {
    "type": "array",
@@ -87,110 +87,110 @@
       "maxLength": 256,
       "description": "Identification of this binary file.",
       "x-wco-id": "551",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+      "x-wco-term": "http://localhost:8099/identificationIdentifier"
      },
      "title": {
       "type": "string",
       "maxLength": 256,
       "description": "Title of this binary file.",
       "x-wco-id": "552",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/titleText"
+      "x-wco-term": "http://localhost:8099/titleText"
      },
      "authorName": {
       "type": "string",
       "maxLength": 70,
       "description": "Name of the author for this binary file.",
       "x-wco-id": "553",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/authorNameText"
+      "x-wco-term": "http://localhost:8099/authorNameText"
      },
      "versionId": {
       "type": "string",
       "maxLength": 17,
       "description": "Identification of the version for this binary file.",
       "x-wco-id": "554",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/versionIdentifier"
+      "x-wco-term": "http://localhost:8099/versionIdentifier"
      },
      "fileNameText": {
       "type": "string",
       "maxLength": 256,
       "description": "Name of the file usually including the file type for this binary file.",
       "x-wco-id": "555",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/fileNameText"
+      "x-wco-term": "http://localhost:8099/fileNameText"
      },
      "uriid": {
       "type": "string",
       "maxLength": 2048,
       "description": "Identification of the Uniform Resource Identifier (URI) for this binary file.",
       "x-wco-id": "556",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/uriIdentifier"
+      "x-wco-term": "http://localhost:8099/uriIdentifier"
      },
      "mimeCode": {
       "type": "string",
       "maxLength": 255,
       "description": "Code specifying the Multipurpose Internet Mail Extensions (MIME) type for this binary file.",
       "x-wco-id": "557",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/mimeCode"
+      "x-wco-term": "http://localhost:8099/mimeCode"
      },
      "encodingCode": {
       "type": "string",
       "maxLength": 17,
       "description": "Code specifying the encoding of this binary file.",
       "x-wco-id": "558",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/encodingCode"
+      "x-wco-term": "http://localhost:8099/encodingCode"
      },
      "characterSetCode": {
       "type": "string",
       "pattern": "^\\d{1,17}$",
       "description": "Code specifying the character set for this binary file.",
       "x-wco-id": "559",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/characterSetCode"
+      "x-wco-term": "http://localhost:8099/characterSetCode"
      },
      "includedBinaryObject": {
       "type": "string",
       "description": "Binary object included for this file.",
       "x-wco-id": "560",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/includedBinaryObject"
+      "x-wco-term": "http://localhost:8099/includedBinaryObject"
      },
      "access": {
       "type": "string",
       "maxLength": 256,
       "description": "Information on access for this binary file such as security and download parameters.",
       "x-wco-id": "561",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/accessText"
+      "x-wco-term": "http://localhost:8099/accessText"
      },
      "description": {
       "type": "string",
       "maxLength": 256,
       "description": "Description of this binary file.",
       "x-wco-id": "562",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/descriptionText"
+      "x-wco-term": "http://localhost:8099/descriptionText"
      },
      "sizeMeasure": {
       "type": "string",
       "description": "Measure of the size of this binary file.",
       "x-wco-id": "563",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/sizeMeasure"
+      "x-wco-term": "http://localhost:8099/sizeMeasure"
      },
      "typeCode": {
       "type": "string",
       "maxLength": 6,
       "description": "Code specifying the type of binary file, such as photo, spreadsheet.",
       "x-wco-id": "564",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+      "x-wco-term": "http://localhost:8099/typeCode"
      },
      "hashCode": {
       "type": "string",
       "maxLength": 256,
       "description": "Hash code of the binary file.",
       "x-wco-id": "565",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/hashCodeText"
+      "x-wco-term": "http://localhost:8099/hashCodeText"
      },
      "hashCodeAlgorithmIdCode": {
       "type": "string",
       "maxLength": 6,
       "description": "Code specifying the algorithm used to calculate the hash code (e.g. MD5).",
       "x-wco-id": "566",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/hashCodeAlgorithmIDCode"
+      "x-wco-term": "http://localhost:8099/hashCodeAlgorithmIDCode"
      }
     },
     "additionalProperties": false,
@@ -208,28 +208,28 @@
       "pattern": "^\\d{1}$",
       "description": "Indicator requesting acknowledgement of the interchange.",
       "x-wco-id": "MD01",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/acknowledgementRequestIndicator"
+      "x-wco-term": "http://localhost:8099/acknowledgementRequestIndicator"
      },
      "applicationReferenceId": {
       "type": "string",
       "maxLength": 70,
       "description": "Identification of the application area assigned by the sender, to which the messages in the interchange relate (e.g. the message identifier if all the messages in the interchange are of the same type).",
       "x-wco-id": "MD02",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/applicationReferenceIdentifier"
+      "x-wco-term": "http://localhost:8099/applicationReferenceIdentifier"
      },
      "communicationsAgreementId": {
       "type": "string",
       "maxLength": 35,
       "description": "Identification of the type of agreement under which the interchange takes place by name or code.",
       "x-wco-id": "MD03",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/communicationsAgreementIdentifier"
+      "x-wco-term": "http://localhost:8099/communicationsAgreementIdentifier"
      },
      "preparationDateTime": {
       "type": "string",
       "maxLength": 35,
       "description": "Date and time locally when an interchange or a functional group was prepared.",
       "x-wco-id": "MD04",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/preparationDateTime"
+      "x-wco-term": "http://localhost:8099/preparationDateTime"
      },
      "syntaxIdentificationCode": {
       "type": "string",
@@ -238,7 +238,7 @@
       "description": "Code specifying the agency controlling a syntax and syntax level used in an interchange.",
       "x-wco-code-list": "UN/EDIFACT code list 0001",
       "x-wco-id": "MD05",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/syntaxIdentificationCode"
+      "x-wco-term": "http://localhost:8099/syntaxIdentificationCode"
      },
      "syntaxVersionCode": {
       "type": "string",
@@ -246,21 +246,21 @@
       "description": "Code specifying the version number of the syntax identified in the syntax identifier (e.g. 0001).",
       "x-wco-code-list": "UN/EDIFACT code list 0002",
       "x-wco-id": "MD06",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/syntaxVersionCode"
+      "x-wco-term": "http://localhost:8099/syntaxVersionCode"
      },
      "testIndicator": {
       "type": "string",
       "pattern": "^\\d{1}$",
       "description": "Indicator that the interchange is a test.",
       "x-wco-id": "MD07",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/testIndicator"
+      "x-wco-term": "http://localhost:8099/testIndicator"
      },
      "sequenceNumeric": {
       "type": "string",
       "pattern": "^\\d{1,5}$",
       "description": "Number indicating the position in a sequence.",
       "x-wco-id": "006",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+      "x-wco-term": "http://localhost:8099/sequenceNumeric"
      },
      "recipient": {
       "type": "array",
@@ -272,7 +272,7 @@
          "maxLength": 35,
          "description": "Identification of the (message) recipient.",
          "x-wco-id": "R161",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "roleCode": {
          "type": "string",
@@ -280,7 +280,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         },
         "identificationIssuingCountryCode": {
          "type": "string",
@@ -289,7 +289,7 @@
          "description": "Code specifying the issuing country of the identification.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "R147",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIssuingCountryCode"
+         "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
         },
         "communication": {
          "type": "array",
@@ -301,7 +301,7 @@
             "maxLength": 256,
             "description": "Identification of the communication address.",
             "x-wco-id": "240",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "typeCode": {
             "type": "string",
@@ -309,7 +309,7 @@
             "description": "Code specifying the type of communication address.",
             "x-wco-code-list": "UN/EDIFACT code list 3155",
             "x-wco-id": "253",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
            }
           },
           "additionalProperties": false,
@@ -327,7 +327,7 @@
             "pattern": "^\\d{1,5}$",
             "description": "Number indicating the position in a sequence.",
             "x-wco-id": "006",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+            "x-wco-term": "http://localhost:8099/sequenceNumeric"
            },
            "id": {
             "type": "string",
@@ -335,7 +335,7 @@
             "description": "Identification of an additional party (e.g. VAT number).",
             "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
             "x-wco-id": "511",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "identificationIssuingCountryCode": {
             "type": "string",
@@ -344,7 +344,7 @@
             "description": "Code specifying the issuing country of the identification.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "550",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIssuingCountryCode"
+            "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
            }
           },
           "additionalProperties": false,
@@ -368,7 +368,7 @@
          "maxLength": 35,
          "description": "Identification of the (message) sender.",
          "x-wco-id": "R162",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "roleCode": {
          "type": "string",
@@ -376,7 +376,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         },
         "identificationIssuingCountryCode": {
          "type": "string",
@@ -385,7 +385,7 @@
          "description": "Code specifying the issuing country of the identification.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "R147",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIssuingCountryCode"
+         "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
         },
         "communication": {
          "type": "array",
@@ -397,7 +397,7 @@
             "maxLength": 256,
             "description": "Identification of the communication address.",
             "x-wco-id": "240",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "typeCode": {
             "type": "string",
@@ -405,7 +405,7 @@
             "description": "Code specifying the type of communication address.",
             "x-wco-code-list": "UN/EDIFACT code list 3155",
             "x-wco-id": "253",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
            }
           },
           "additionalProperties": false,
@@ -423,7 +423,7 @@
             "pattern": "^\\d{1,5}$",
             "description": "Number indicating the position in a sequence.",
             "x-wco-id": "006",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+            "x-wco-term": "http://localhost:8099/sequenceNumeric"
            },
            "id": {
             "type": "string",
@@ -431,7 +431,7 @@
             "description": "Identification of an additional party (e.g. VAT number).",
             "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
             "x-wco-id": "511",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "identificationIssuingCountryCode": {
             "type": "string",
@@ -440,7 +440,7 @@
             "description": "Code specifying the issuing country of the identification.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "550",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIssuingCountryCode"
+            "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
            }
           },
           "additionalProperties": false,
@@ -471,7 +471,7 @@
       "description": "Identification of the interaction between trading partners to achieve a given business objective.",
       "x-wco-code-list": "These values will be summarized and will be hierarchical where applicable. \nThis list can be extended.\nDefault value \"ALL\" if no restrictions apply.",
       "x-wco-id": "MD09",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/businessProcessIdentifier"
+      "x-wco-term": "http://localhost:8099/businessProcessIdentifier"
      },
      "productClassificationId": {
       "type": "string",
@@ -479,7 +479,7 @@
       "description": "Identification of the goods or services concerned in the collaboration.",
       "x-wco-code-list": "Use relevant HS codes OR text.\nDefault value \"ALL\" if no restrictions apply.",
       "x-wco-id": "MD10",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/productClassificationIdentifier"
+      "x-wco-term": "http://localhost:8099/productClassificationIdentifier"
      },
      "industryClassificationId": {
       "type": "string",
@@ -487,7 +487,7 @@
       "description": "Identification of the relevant trading partner industries.",
       "x-wco-code-list": "UN International Standard Industrial Classification (ISIC).\nDefault value \"ALL\" if no restrictions apply.",
       "x-wco-id": "MD11",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/industryClassificationIdentifier"
+      "x-wco-term": "http://localhost:8099/industryClassificationIdentifier"
      },
      "geopoliticalId": {
       "type": "string",
@@ -495,7 +495,7 @@
       "description": "Identification of where the business process is to be conducted.",
       "x-wco-code-list": "ISO 3166  including ISO 3166_1 and ISO 3166_2.\nDefault value \"ALL\" if no restrictions apply.",
       "x-wco-id": "MD12",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/geopoliticalIdentifier"
+      "x-wco-term": "http://localhost:8099/geopoliticalIdentifier"
      },
      "officialConstraintslId": {
       "type": "string",
@@ -503,7 +503,7 @@
       "description": "Identification of any legal restrictions or requirements on this business process.",
       "x-wco-code-list": "Proposed guideline: Use relevant laws, treaties OR regulations : User code list and abbreviations are allowed. \nDefault  value \"NONE\" if no restrictions apply.",
       "x-wco-id": "MD13",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/officialConstraintsIdentifier"
+      "x-wco-term": "http://localhost:8099/officialConstraintsIdentifier"
      },
      "businessProcessRoleId": {
       "type": "string",
@@ -511,7 +511,7 @@
       "description": "Identification of the roles played by the trading partners. \nThese can be derived from the Business Process.",
       "x-wco-code-list": "To be supplied by the producer of My IP.\nDefault value \"ALL\" if no restrictions apply. \n<Examples: Broker, ImpORter, forwarder etc.",
       "x-wco-id": "MD14",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/businessProcessRoleIdentifier"
+      "x-wco-term": "http://localhost:8099/businessProcessRoleIdentifier"
      },
      "supportingRoleId": {
       "type": "string",
@@ -519,7 +519,7 @@
       "description": "Identification of other significant parties that will be using the data in the messages. Determine their role in the overall process.",
       "x-wco-code-list": "To be supplied by the producer of My IP.\nDefault value \"ALL\" if no restrictions apply.",
       "x-wco-id": "MD15",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/supportingRoleIdentifier"
+      "x-wco-term": "http://localhost:8099/supportingRoleIdentifier"
      },
      "systemCapabilitiesId": {
       "type": "string",
@@ -527,7 +527,7 @@
       "description": "Identification of major restrictions derived from system, a class of systems or standard in the business situation. Identify the type of system.",
       "x-wco-code-list": "To be supplied by the producer of My IP.\nDefault value \"ALL\" if no restrictions apply.",
       "x-wco-id": "MD16",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/systemCapabilitiesIdentifier"
+      "x-wco-term": "http://localhost:8099/systemCapabilitiesIdentifier"
      }
     },
     "additionalProperties": false,

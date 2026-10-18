@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "$id": "https://test-wcodm.trade-commons.org/schemas/aip-aeomra-4.3.0.json",
+ "$id": "http://localhost:8099/schemas/aip-aeomra-4.3.0.json",
  "title": "Additional Information Package — aeomra",
  "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
  "x-wco-data-model-version": "4.3.0",
@@ -18,35 +18,35 @@
       "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
       "x-wco-code-list": "ISO 3166-1",
       "x-wco-id": "242",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+      "x-wco-term": "http://localhost:8099/countryCode"
      },
      "countryAgencyName": {
       "type": "string",
       "maxLength": 35,
       "description": "Name of the agency responsible for the country’s Authorized Economic Operator (AEO) program.",
       "x-wco-id": "625",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/countryAgencyNameText"
+      "x-wco-term": "http://localhost:8099/countryAgencyNameText"
      },
      "programName": {
       "type": "string",
       "maxLength": 35,
       "description": "Name of the country’s Authorized Economic Operator (AEO) program.",
       "x-wco-id": "626",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/programNameText"
+      "x-wco-term": "http://localhost:8099/programNameText"
      },
      "membersQuantity": {
       "type": "string",
       "pattern": "^\\d{1,6}$",
       "description": "Quantity specifying the number of members in a country’s Authorized Economic Operator (AEO) program.",
       "x-wco-id": "627",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/membersQuantity"
+      "x-wco-term": "http://localhost:8099/membersQuantity"
      },
      "establishedYearDateTime": {
       "type": "string",
       "maxLength": 35,
       "description": "Date and time the AEO program was established.",
       "x-wco-id": "628",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/establishedYearDateTime"
+      "x-wco-term": "http://localhost:8099/establishedYearDateTime"
      },
      "typeCode": {
       "type": "string",
@@ -54,7 +54,7 @@
       "description": "Code specifying whether the country’s Authorized Economic Operator (AEO) program is a security based program, compliance based, or both.",
       "x-wco-code-list": "WCO code list/AEOProgramTypeCode",
       "x-wco-id": "629",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+      "x-wco-term": "http://localhost:8099/aeoProgramTypeCode"
      },
      "communication": {
       "type": "array",
@@ -66,7 +66,7 @@
          "maxLength": 256,
          "description": "Identification of the communication address.",
          "x-wco-id": "240",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "typeCode": {
          "type": "string",
@@ -74,14 +74,14 @@
          "description": "Code specifying the type of communication address.",
          "x-wco-code-list": "UN/EDIFACT code list 3155",
          "x-wco-id": "253",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+         "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
         },
         "name": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the communication identifier.",
          "x-wco-id": "636",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         }
        },
        "additionalProperties": false,
@@ -100,7 +100,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         }
        },
        "additionalProperties": false,
@@ -118,7 +118,7 @@
          "maxLength": 70,
          "description": "Name of a department or employee.",
          "x-wco-id": "246",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "communication": {
          "type": "array",
@@ -130,7 +130,7 @@
             "maxLength": 256,
             "description": "Identification of the communication address.",
             "x-wco-id": "240",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "typeCode": {
             "type": "string",
@@ -138,7 +138,7 @@
             "description": "Code specifying the type of communication address.",
             "x-wco-code-list": "UN/EDIFACT code list 3155",
             "x-wco-id": "253",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
            }
           },
           "additionalProperties": false,
@@ -163,7 +163,7 @@
          "description": "Code specifying the type of program or partner profile (e.g. MRA (Mutual Recognition Arrangement/Agreement), JWP (the Joint Work Plan), PGA (Participating Government Agency)).",
          "x-wco-code-list": "WCO code list/ProgramPartnerProfileTypeCode",
          "x-wco-id": "634",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+         "x-wco-term": "http://localhost:8099/programPartnerProfileTypeCode"
         },
         "countryCode": {
          "type": "string",
@@ -172,28 +172,28 @@
          "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "242",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+         "x-wco-term": "http://localhost:8099/countryCode"
         },
         "agencyName": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the agency responsible for the country’s program or partner profile.",
          "x-wco-id": "631",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/agencyNameText"
+         "x-wco-term": "http://localhost:8099/agencyNameText"
         },
         "programName": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the country’s program or partner profile.",
          "x-wco-id": "632",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/programNameText"
+         "x-wco-term": "http://localhost:8099/programNameText"
         },
         "signedDateTime": {
          "type": "string",
          "maxLength": 35,
          "description": "Date and time the country’s program or partner profile was signed.",
          "x-wco-id": "633",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/signedDateTime"
+         "x-wco-term": "http://localhost:8099/signedDateTime"
         }
        },
        "additionalProperties": false,

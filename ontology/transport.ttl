@@ -92,45 +92,6 @@ wco:TransitTransportMeans a owl:Class ;
 # Properties
 # --------------------------------------------------------------------------
 
-wco:arrivaltransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Arrivaltransportmeans identification identifier"@en ;
-    skos:definition "Identification of the means of transport at the time of arrival."@en ;
-    schema:domainIncludes wco:ArrivalTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T002" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 818" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:arrivaltransportmeansIdentificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Arrivaltransportmeans identification type code"@en ;
-    skos:definition "Code specifying type of identifier of the means of transport used for the carriage of the goods at arrival."@en ;
-    schema:domainIncludes wco:ArrivalTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-identification-type-code-list ;
-    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "T034" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 819" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:arrivaltransportmeansTypeCode a owl:ObjectProperty ;
-    rdfs:label "Arrivaltransportmeans type code"@en ;
-    skos:definition "Code specifying means of transport used for the carriage of the goods at arrival."@en ;
-    schema:domainIncludes wco:ArrivalTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "T008" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 820" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
 wco:ballastOrCargoTypeCode a owl:ObjectProperty ;
     rdfs:label "Ballast or cargo type code"@en ;
     skos:definition "Code specifying whether the vessel entered the port in ballast, with bulk cargo or general cargo."@en ;
@@ -153,45 +114,6 @@ wco:bookingReferenceIdentifier a owl:DatatypeProperty ;
     wco:jsonTag "bookingReferenceId" ;
     wco:attributeId "602" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 873" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:bordertransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Bordertransportmeans identification identifier"@en ;
-    skos:definition "Identification of the means of transport used in crossing the border."@en ;
-    schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T006" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 826" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:bordertransportmeansIdentificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Bordertransportmeans identification type code"@en ;
-    skos:definition "Code specifying type of identifier of the means of transport used for the carriage of the goods in crossing the border."@en ;
-    schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-identification-type-code-list ;
-    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "T018" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 827" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:bordertransportmeansTypeCode a owl:ObjectProperty ;
-    rdfs:label "Bordertransportmeans type code"@en ;
-    skos:definition "Code specifying type of means of transport used for the carriage of the goods in crossing the border."@en ;
-    schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "T010" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 828" ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
@@ -293,45 +215,6 @@ wco:crewQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:departuretransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Departuretransportmeans identification identifier"@en ;
-    skos:definition "Identification of the means of transport at the time of departure."@en ;
-    schema:domainIncludes wco:DepartureTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T004" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 878" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:departuretransportmeansIdentificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Departuretransportmeans identification type code"@en ;
-    skos:definition "Code specifying the type of identifier of the means of transport at departure."@en ;
-    schema:domainIncludes wco:DepartureTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-identification-type-code-list ;
-    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "T029" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 879" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:departuretransportmeansTypeCode a owl:ObjectProperty ;
-    rdfs:label "Departuretransportmeans type code"@en ;
-    skos:definition "Code specifying the type of means of transport used for the carriage of the goods at departure."@en ;
-    schema:domainIncludes wco:DepartureTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "T009" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 880" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
 wco:directionCode a owl:ObjectProperty ;
     rdfs:label "Direction code"@en ;
     skos:definition "Code specifying the direction of the transport means (i.e., inbound or outbound)."@en ;
@@ -390,32 +273,6 @@ wco:draftLevelForMeasure a owl:ObjectProperty ;
     wco:jsonTag "draftLevelForMeasure" ;
     wco:attributeId "485" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 863" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:harvestingtransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Harvestingtransportmeans identification identifier"@en ;
-    skos:definition "Identification of the harvesting transport means."@en ;
-    schema:domainIncludes wco:HarvestingTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T016" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 884" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:harvestingtransportmeansTypeCode a owl:ObjectProperty ;
-    rdfs:label "Harvestingtransportmeans type code"@en ;
-    skos:definition "Code specifying the type of means of transport used for harvesting."@en ;
-    schema:domainIncludes wco:HarvestingTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "T017" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 885" ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
@@ -549,45 +406,6 @@ wco:passengerQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:passivetransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Passivetransportmeans identification identifier"@en ;
-    skos:definition "Identification of the passive transport means."@en ;
-    schema:domainIncludes wco:PassiveTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T026" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 888" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:passivetransportmeansIdentificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Passivetransportmeans identification type code"@en ;
-    skos:definition "Code specifying type of identification of passive transport means."@en ;
-    schema:domainIncludes wco:PassiveTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-identification-type-code-list ;
-    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "T027" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 889" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:passivetransportmeansTypeCode a owl:ObjectProperty ;
-    rdfs:label "Passivetransportmeans type code"@en ;
-    skos:definition "Code specifying the type of passive means of transport that is being transported by the active means of transport."@en ;
-    schema:domainIncludes wco:PassiveTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "T036" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 890" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
 wco:registrationNationalityCode a owl:ObjectProperty ;
     rdfs:label "Registration nationality code"@en ;
     skos:definition "Code specifying nationality of active means of transport used for the carriage of the goods at place of arrival (import)."@en ;
@@ -666,58 +484,6 @@ wco:summerDeadWeightTonnageMeasure a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:transhipmenttransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transhipmenttransportmeans identification identifier"@en ;
-    skos:definition "Identification of the means of transport used at the time of transhipment."@en ;
-    schema:domainIncludes wco:TranshipmentTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T031" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 894" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:transhipmenttransportmeansIdentificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Transhipmenttransportmeans identification type code"@en ;
-    skos:definition "Code specifying the type of identification of transhipment transport means."@en ;
-    schema:domainIncludes wco:TranshipmentTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-identification-type-code-list ;
-    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "T032" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 895" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:transittransportmeansIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transittransportmeans identification identifier"@en ;
-    skos:definition "Identification of the means of transport used for transit."@en ;
-    schema:domainIncludes wco:TransitTransportMeans ;
-    schema:rangeIncludes xsd:string ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "T007" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 899" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
-wco:transittransportmeansTypeCode a owl:ObjectProperty ;
-    rdfs:label "Transittransportmeans type code"@en ;
-    skos:definition "Code specifying the type of means of transport used for transit."@en ;
-    schema:domainIncludes wco:TransitTransportMeans ;
-    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "T011" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 900" ;
-    rdfs:isDefinedBy wco-mod:transport ;
-    wco:termStatus ts:active .
-
 wco:transportEquipmentQuantity a owl:ObjectProperty ;
     rdfs:label "Transport equipment quantity"@en ;
     skos:definition "Quantity specifying the total number of freight containers or similar unit load devices."@en ;
@@ -727,6 +493,41 @@ wco:transportEquipmentQuantity a owl:ObjectProperty ;
     wco:jsonTag "transportEquipmentQuantity" ;
     wco:attributeId "150" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 833" ;
+    rdfs:isDefinedBy wco-mod:transport ;
+    wco:termStatus ts:active .
+
+wco:transportMeansIdentificationTypeCode a owl:ObjectProperty ;
+    rdfs:label "Transport means identification type code"@en ;
+    skos:definition "Code specifying type of identifier of the means of transport used for the carriage of the goods at arrival."@en ;
+    skos:scopeNote "BorderTransportMeans: Code specifying type of identifier of the means of transport used for the carriage of the goods in crossing the border."@en ;
+    skos:scopeNote "DepartureTransportMeans: Code specifying the type of identifier of the means of transport at departure."@en ;
+    skos:scopeNote "PassiveTransportMeans: Code specifying type of identification of passive transport means."@en ;
+    skos:scopeNote "TranshipmentTransportMeans: Code specifying the type of identification of transhipment transport means."@en ;
+    schema:domainIncludes wco:ArrivalTransportMeans, wco:BorderTransportMeans, wco:DepartureTransportMeans, wco:PassiveTransportMeans, wco:TranshipmentTransportMeans ;
+    schema:rangeIncludes wco-cl:transport-means-identification-type-code-list ;
+    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
+    wco:xmlTag "IdentificationTypeCode" ;
+    wco:jsonTag "identificationTypeCode" ;
+    wco:attributeId "T018", "T027", "T029", "T032", "T034" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 819, 827, 879, 889, 895" ;
+    rdfs:isDefinedBy wco-mod:transport ;
+    wco:termStatus ts:active .
+
+wco:transportMeansTypeCode a owl:ObjectProperty ;
+    rdfs:label "Transport means type code"@en ;
+    skos:definition "Code specifying means of transport used for the carriage of the goods at arrival."@en ;
+    skos:scopeNote "BorderTransportMeans: Code specifying type of means of transport used for the carriage of the goods in crossing the border."@en ;
+    skos:scopeNote "DepartureTransportMeans: Code specifying the type of means of transport used for the carriage of the goods at departure."@en ;
+    skos:scopeNote "HarvestingTransportMeans: Code specifying the type of means of transport used for harvesting."@en ;
+    skos:scopeNote "PassiveTransportMeans: Code specifying the type of passive means of transport that is being transported by the active means of transport."@en ;
+    skos:scopeNote "TransitTransportMeans: Code specifying the type of means of transport used for transit."@en ;
+    schema:domainIncludes wco:ArrivalTransportMeans, wco:BorderTransportMeans, wco:DepartureTransportMeans, wco:HarvestingTransportMeans, wco:PassiveTransportMeans, wco:TransitTransportMeans ;
+    schema:rangeIncludes wco-cl:transport-means-type-code-list ;
+    wco:codeListBasis "UN/Recommendation 28"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "T008", "T009", "T010", "T011", "T017", "T036" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 820, 828, 880, 885, 890, 900" ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 

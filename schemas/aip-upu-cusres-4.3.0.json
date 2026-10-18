@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "$id": "https://test-wcodm.trade-commons.org/schemas/aip-upu-cusres-4.3.0.json",
+ "$id": "http://localhost:8099/schemas/aip-upu-cusres-4.3.0.json",
  "title": "Additional Information Package — upu cusres",
  "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
  "x-wco-data-model-version": "4.3.0",
@@ -11,7 +11,7 @@
    "maxLength": 70,
    "description": "Identification of a specific information exchange.",
    "x-wco-id": "D026",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/functionalReferenceIdentifier"
+   "x-wco-term": "http://localhost:8099/functionalReferenceIdentifier"
   },
   "packageTypeCode": {
    "type": "string",
@@ -19,7 +19,7 @@
    "description": "Code specifying the type of additional information package (Response, InterGov).",
    "x-wco-code-list": "WCO code list/AIPTypeCode",
    "x-wco-id": "593",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/packageTypeCode"
+   "x-wco-term": "http://localhost:8099/packageTypeCode"
   },
   "additionalInformation": {
    "type": "array",
@@ -32,14 +32,14 @@
       "description": "Code specifying the form of an additional statement.",
       "x-wco-code-list": "User code list",
       "x-wco-id": "226",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/statementCode"
+      "x-wco-term": "http://localhost:8099/statementCode"
      },
      "statementDescription": {
       "type": "string",
       "maxLength": 512,
       "description": "Description of an additional statement.",
       "x-wco-id": "225",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/statementDescriptionText"
+      "x-wco-term": "http://localhost:8099/statementDescriptionText"
      },
      "statementTypeCode": {
       "type": "string",
@@ -47,7 +47,7 @@
       "description": "Code specifying the subject of the additional statement.",
       "x-wco-code-list": "UN/EDIFACT code list 4451",
       "x-wco-id": "369",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/statementTypeCode"
+      "x-wco-term": "http://localhost:8099/statementTypeCode"
      }
     },
     "additionalProperties": false,
@@ -67,35 +67,35 @@
       "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
       "x-wco-code-list": "ISO 3166-1",
       "x-wco-id": "242",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+      "x-wco-term": "http://localhost:8099/countryCode"
      },
      "countryAgencyName": {
       "type": "string",
       "maxLength": 35,
       "description": "Name of the agency responsible for the country’s Authorized Economic Operator (AEO) program.",
       "x-wco-id": "625",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/countryAgencyNameText"
+      "x-wco-term": "http://localhost:8099/countryAgencyNameText"
      },
      "programName": {
       "type": "string",
       "maxLength": 35,
       "description": "Name of the country’s Authorized Economic Operator (AEO) program.",
       "x-wco-id": "626",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/programNameText"
+      "x-wco-term": "http://localhost:8099/programNameText"
      },
      "membersQuantity": {
       "type": "string",
       "pattern": "^\\d{1,6}$",
       "description": "Quantity specifying the number of members in a country’s Authorized Economic Operator (AEO) program.",
       "x-wco-id": "627",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/membersQuantity"
+      "x-wco-term": "http://localhost:8099/membersQuantity"
      },
      "establishedYearDateTime": {
       "type": "string",
       "maxLength": 35,
       "description": "Date and time the AEO program was established.",
       "x-wco-id": "628",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/establishedYearDateTime"
+      "x-wco-term": "http://localhost:8099/establishedYearDateTime"
      },
      "typeCode": {
       "type": "string",
@@ -103,7 +103,7 @@
       "description": "Code specifying whether the country’s Authorized Economic Operator (AEO) program is a security based program, compliance based, or both.",
       "x-wco-code-list": "WCO code list/AEOProgramTypeCode",
       "x-wco-id": "629",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+      "x-wco-term": "http://localhost:8099/aeoProgramTypeCode"
      },
      "communication": {
       "type": "array",
@@ -115,7 +115,7 @@
          "maxLength": 256,
          "description": "Identification of the communication address.",
          "x-wco-id": "240",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "typeCode": {
          "type": "string",
@@ -123,14 +123,14 @@
          "description": "Code specifying the type of communication address.",
          "x-wco-code-list": "UN/EDIFACT code list 3155",
          "x-wco-id": "253",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+         "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
         },
         "name": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the communication identifier.",
          "x-wco-id": "636",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         }
        },
        "additionalProperties": false,
@@ -149,7 +149,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         }
        },
        "additionalProperties": false,
@@ -167,7 +167,7 @@
          "maxLength": 70,
          "description": "Name of a department or employee.",
          "x-wco-id": "246",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "communication": {
          "type": "array",
@@ -179,7 +179,7 @@
             "maxLength": 256,
             "description": "Identification of the communication address.",
             "x-wco-id": "240",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "typeCode": {
             "type": "string",
@@ -187,7 +187,7 @@
             "description": "Code specifying the type of communication address.",
             "x-wco-code-list": "UN/EDIFACT code list 3155",
             "x-wco-id": "253",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
            }
           },
           "additionalProperties": false,
@@ -212,7 +212,7 @@
          "description": "Code specifying the type of program or partner profile (e.g. MRA (Mutual Recognition Arrangement/Agreement), JWP (the Joint Work Plan), PGA (Participating Government Agency)).",
          "x-wco-code-list": "WCO code list/ProgramPartnerProfileTypeCode",
          "x-wco-id": "634",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+         "x-wco-term": "http://localhost:8099/programPartnerProfileTypeCode"
         },
         "countryCode": {
          "type": "string",
@@ -221,28 +221,28 @@
          "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "242",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+         "x-wco-term": "http://localhost:8099/countryCode"
         },
         "agencyName": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the agency responsible for the country’s program or partner profile.",
          "x-wco-id": "631",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/agencyNameText"
+         "x-wco-term": "http://localhost:8099/agencyNameText"
         },
         "programName": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the country’s program or partner profile.",
          "x-wco-id": "632",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/programNameText"
+         "x-wco-term": "http://localhost:8099/programNameText"
         },
         "signedDateTime": {
          "type": "string",
          "maxLength": 35,
          "description": "Date and time the country’s program or partner profile was signed.",
          "x-wco-id": "633",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/signedDateTime"
+         "x-wco-term": "http://localhost:8099/signedDateTime"
         }
        },
        "additionalProperties": false,
@@ -267,7 +267,7 @@
       "description": "Code specifying the type of governmental examination.",
       "x-wco-code-list": "User code list",
       "x-wco-id": "449",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+      "x-wco-term": "http://localhost:8099/authenticationTypeCode"
      },
      "controlResult": {
       "type": "array",
@@ -280,7 +280,7 @@
          "description": "Code specifying the results of a control.",
          "x-wco-code-list": "User code list",
          "x-wco-id": "444",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationCode"
+         "x-wco-term": "http://localhost:8099/controlresultIdentificationCode"
         }
        },
        "additionalProperties": false,
@@ -304,7 +304,7 @@
       "maxLength": 70,
       "description": "Name of the party accepting liability for goods held or moving under a customs authorization and, when applicable, a guarantee.",
       "x-wco-id": "R001",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+      "x-wco-term": "http://localhost:8099/nameText"
      },
      "id": {
       "type": "string",
@@ -312,7 +312,7 @@
       "description": "Identification of the party accepting liability for goods held or moving under a customs authorization and - when applicable - a guarantee.",
       "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
       "x-wco-id": "R002",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+      "x-wco-term": "http://localhost:8099/identificationIdentifier"
      },
      "address": {
       "type": "array",
@@ -324,7 +324,7 @@
          "maxLength": 35,
          "description": "Name of a city.",
          "x-wco-id": "241",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/cityNameText"
+         "x-wco-term": "http://localhost:8099/cityNameText"
         },
         "countryCode": {
          "type": "string",
@@ -333,14 +333,14 @@
          "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "242",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+         "x-wco-term": "http://localhost:8099/countryCode"
         },
         "line": {
          "type": "string",
          "maxLength": 256,
          "description": "Specification of the postal delivery point such as street and number or post office box.",
          "x-wco-id": "239",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/lineText"
+         "x-wco-term": "http://localhost:8099/lineText"
         },
         "postcodeId": {
          "type": "string",
@@ -348,7 +348,7 @@
          "description": "Identification of the postal zone or address.",
          "x-wco-code-list": "User code list",
          "x-wco-id": "245",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/postcodeIdentifier"
+         "x-wco-term": "http://localhost:8099/postcodeIdentifier"
         }
        },
        "additionalProperties": false,
@@ -366,7 +366,7 @@
          "pattern": "^\\d{1,5}$",
          "description": "Number indicating the position in a sequence.",
          "x-wco-id": "006",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+         "x-wco-term": "http://localhost:8099/sequenceNumeric"
         },
         "id": {
          "type": "string",
@@ -374,7 +374,7 @@
          "description": "Identification of an additional party (e.g. VAT number).",
          "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
          "x-wco-id": "511",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "identificationIssuingCountryCode": {
          "type": "string",
@@ -383,7 +383,7 @@
          "description": "Code specifying the issuing country of the identification.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "550",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIssuingCountryCode"
+         "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
         }
        },
        "additionalProperties": false,
@@ -402,7 +402,7 @@
          "description": "Code specifying the status of a document.",
          "x-wco-code-list": "UN/EDIFACT code list 1373",
          "x-wco-id": "D047",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/statusCode"
+         "x-wco-term": "http://localhost:8099/documentStatusCode"
         },
         "authorizationWithdrawal": {
          "type": "array",
@@ -414,14 +414,14 @@
             "maxLength": 35,
             "description": "Date and time the document (e.g. license, visa, permit, certificate) is effective.",
             "x-wco-id": "276",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/effectiveDateTime"
+            "x-wco-term": "http://localhost:8099/effectiveDateTime"
            },
            "expirationDateTime": {
             "type": "string",
             "maxLength": 35,
             "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate).",
             "x-wco-id": "275",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/expirationDateTime"
+            "x-wco-term": "http://localhost:8099/expirationDateTime"
            }
           },
           "additionalProperties": false,
@@ -439,14 +439,14 @@
             "maxLength": 35,
             "description": "Date and time the document (e.g. license, visa, permit, certificate) is effective.",
             "x-wco-id": "276",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/effectiveDateTime"
+            "x-wco-term": "http://localhost:8099/effectiveDateTime"
            },
            "expirationDateTime": {
             "type": "string",
             "maxLength": 35,
             "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate).",
             "x-wco-id": "275",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/expirationDateTime"
+            "x-wco-term": "http://localhost:8099/expirationDateTime"
            },
            "countryCode": {
             "type": "string",
@@ -455,7 +455,7 @@
             "description": "Code specifying the country of exclusion.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "447",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+            "x-wco-term": "http://localhost:8099/countryCode"
            }
           },
           "additionalProperties": false,
@@ -485,7 +485,7 @@
       "maxLength": 35,
       "description": "Date and time the goods have been released from government custody.",
       "x-wco-id": "277",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/releaseDateTime"
+      "x-wco-term": "http://localhost:8099/releaseDateTime"
      }
     },
     "additionalProperties": false,

@@ -1,8 +1,12 @@
 {
  "aip": {
   "nodes": 440,
-  "context_terms": 113,
-  "ambiguous_tags": [],
+  "context_terms": 110,
+  "ambiguous_tags": [
+   "functionCode",
+   "id",
+   "typeCode"
+  ],
   "derived": {
    "etir": 89,
    "sstl": 8,
@@ -18,14 +22,24 @@
  },
  "bip-dec": {
   "nodes": 9064,
-  "context_terms": 583,
+  "context_terms": 572,
   "ambiguous_tags": [
+   "accountId",
    "authentication",
+   "categoryCode",
+   "conditionCode",
+   "functionCode",
    "id",
+   "identificationCode",
+   "identificationTypeCode",
+   "methodCode",
    "name",
    "nameCode",
    "quantityQuantity",
-   "rateNumeric"
+   "rateNumeric",
+   "roleCode",
+   "statusCode",
+   "typeCode"
   ],
   "derived": {
    "mar-api": 86,
@@ -36,11 +50,15 @@
  },
  "bip-lpco": {
   "nodes": 763,
-  "context_terms": 231,
+  "context_terms": 227,
   "ambiguous_tags": [
    "authentication",
+   "categoryCode",
+   "functionCode",
+   "id",
    "name",
-   "nameCode"
+   "nameCode",
+   "typeCode"
   ],
   "derived": {
    "coo-wco-tcro": 107,
@@ -49,8 +67,10 @@
  },
  "mdip": {
   "nodes": 67,
-  "context_terms": 51,
-  "ambiguous_tags": [],
+  "context_terms": 50,
+  "ambiguous_tags": [
+   "typeCode"
+  ],
   "derived": {}
  }
 }

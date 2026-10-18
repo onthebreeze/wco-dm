@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "$id": "https://test-wcodm.trade-commons.org/schemas/bip-lpco-coo-wco-tcro-4.3.0.json",
+ "$id": "http://localhost:8099/schemas/bip-lpco-coo-wco-tcro-4.3.0.json",
  "title": "LPCO Base Information Package — coo wco tcro",
  "description": "Details related to Licenses, Permits, Certificates or Others.",
  "x-wco-data-model-version": "4.3.0",
@@ -12,7 +12,7 @@
    "description": "Code specifying the category of a document.",
    "x-wco-code-list": "User code list",
    "x-wco-id": "D031",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/categoryCode"
+   "x-wco-term": "http://localhost:8099/authorizationholderCategoryCode"
   },
   "functionCode": {
    "type": "string",
@@ -20,21 +20,21 @@
    "description": "Code specifying the function of a document.",
    "x-wco-code-list": "UN/EDIFACT code list 1225",
    "x-wco-id": "D046",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/functionCode"
+   "x-wco-term": "http://localhost:8099/documentFunctionCode"
   },
   "id": {
    "type": "string",
    "maxLength": 70,
    "description": "Identification of a specific document.",
    "x-wco-id": "D014",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+   "x-wco-term": "http://localhost:8099/identificationIdentifier"
   },
   "issueDateTime": {
    "type": "string",
    "maxLength": 35,
    "description": "Date and time the document was issued and when appropriate, signed or otherwise authenticated.",
    "x-wco-id": "D011",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/issueDateTime"
+   "x-wco-term": "http://localhost:8099/issueDateTime"
   },
   "issueLocationId": {
    "type": "string",
@@ -42,14 +42,14 @@
    "description": "Identification of the location at which a document was issued and when appropriate, signed or otherwise authenticated.",
    "x-wco-code-list": "UN/LOCODE",
    "x-wco-id": "D012",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/issueLocationIdentifier"
+   "x-wco-term": "http://localhost:8099/issueLocationIdentifier"
   },
   "issueLocationName": {
    "type": "string",
    "maxLength": 256,
    "description": "Name of the location at which a document was issued and when needed, signed or otherwise authenticated.",
    "x-wco-id": "D034",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/issueLocationNameText"
+   "x-wco-term": "http://localhost:8099/issueLocationNameText"
   },
   "typeCode": {
    "type": "string",
@@ -57,7 +57,7 @@
    "description": "Code specifying the name of a document.",
    "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
    "x-wco-id": "D013",
-   "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+   "x-wco-term": "http://localhost:8099/aipTypeCode"
   },
   "authentication": {
    "type": "array",
@@ -69,28 +69,28 @@
       "maxLength": 35,
       "description": "Date and time when this authentication was actually signed or otherwise authenticated.",
       "x-wco-id": "451",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/actualDateTime"
+      "x-wco-term": "http://localhost:8099/actualDateTime"
      },
      "actualLocationId": {
       "type": "string",
       "maxLength": 17,
       "description": "Identification of the location where a document was signed or otherwise authenticated.",
       "x-wco-id": "544",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/actualLocationIdentifier"
+      "x-wco-term": "http://localhost:8099/actualLocationIdentifier"
      },
      "authentication": {
       "type": "string",
       "maxLength": 256,
       "description": "Statement providing proof that the document has been authenticated.",
       "x-wco-id": "104",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/authenticationText"
+      "x-wco-term": "http://localhost:8099/authenticationText"
      },
      "locationName": {
       "type": "string",
       "maxLength": 256,
       "description": "Name of a location where a document was signed or otherwise authenticated.",
       "x-wco-id": "539",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/locationNameText"
+      "x-wco-term": "http://localhost:8099/locationNameText"
      },
      "authenticator": {
       "type": "array",
@@ -102,7 +102,7 @@
          "maxLength": 70,
          "description": "Name of the party which certifies that a document is authentic.",
          "x-wco-id": "R007",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "roleCode": {
          "type": "string",
@@ -110,7 +110,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         }
        },
        "additionalProperties": false,
@@ -134,14 +134,14 @@
       "pattern": "^\\d{1}$",
       "description": "Indicator of an additional statement.",
       "x-wco-id": "581",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/statementIndicator"
+      "x-wco-term": "http://localhost:8099/statementIndicator"
      },
      "statementDescription": {
       "type": "string",
       "maxLength": 512,
       "description": "Description of an additional statement.",
       "x-wco-id": "225",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/statementDescriptionText"
+      "x-wco-term": "http://localhost:8099/statementDescriptionText"
      },
      "statementTypeCode": {
       "type": "string",
@@ -149,7 +149,7 @@
       "description": "Code specifying the subject of the additional statement.",
       "x-wco-code-list": "UN/EDIFACT code list 4451",
       "x-wco-id": "369",
-      "x-wco-term": "https://test-wcodm.trade-commons.org/statementTypeCode"
+      "x-wco-term": "http://localhost:8099/statementTypeCode"
      }
     },
     "additionalProperties": false,
@@ -172,7 +172,7 @@
          "maxLength": 70,
          "description": "Name to identify the means of transport used for the carriage of the goods in crossing the border.",
          "x-wco-id": "T005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "id": {
          "type": "string",
@@ -180,7 +180,7 @@
          "description": "Identification of the means of transport used in crossing the border.",
          "x-wco-code-list": "Sea: ITU Standard or Lloyd's number\nAir: IATA aircraft ID\nRoad: national license plate\nRail: locomotive number",
          "x-wco-id": "T006",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "typeCode": {
          "type": "string",
@@ -188,21 +188,21 @@
          "description": "Code specifying type of means of transport used for the carriage of the goods in crossing the border.",
          "x-wco-code-list": "UN/Recommendation 28",
          "x-wco-id": "T010",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+         "x-wco-term": "http://localhost:8099/transportMeansTypeCode"
         },
         "departureDateTime": {
          "type": "string",
          "maxLength": 35,
          "description": "Date and time of departure of the means of transport.",
          "x-wco-id": "156",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/departureDateTime"
+         "x-wco-term": "http://localhost:8099/departureDateTime"
         },
         "journeyId": {
          "type": "string",
          "maxLength": 17,
          "description": "Identification of the journey of a means of transport, for example voyage number, flight number, trip number.",
          "x-wco-id": "149",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/journeyIdentifier"
+         "x-wco-term": "http://localhost:8099/journeyIdentifier"
         }
        },
        "additionalProperties": false,
@@ -220,7 +220,7 @@
          "maxLength": 70,
          "description": "Name of the party to which goods are consigned.",
          "x-wco-id": "R014",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "id": {
          "type": "string",
@@ -228,7 +228,7 @@
          "description": "Identification of a party to which goods are consigned.",
          "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
          "x-wco-id": "R015",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "roleCode": {
          "type": "string",
@@ -236,7 +236,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         },
         "address": {
          "type": "array",
@@ -249,14 +249,14 @@
             "description": "Code specifying the type of address.",
             "x-wco-code-list": "UN/EDIFACT code list 3131",
             "x-wco-id": "410",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/addressTypeCode"
            },
            "cityName": {
             "type": "string",
             "maxLength": 35,
             "description": "Name of a city.",
             "x-wco-id": "241",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/cityNameText"
+            "x-wco-term": "http://localhost:8099/cityNameText"
            },
            "countryCode": {
             "type": "string",
@@ -265,14 +265,14 @@
             "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "242",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+            "x-wco-term": "http://localhost:8099/countryCode"
            },
            "countryName": {
             "type": "string",
             "maxLength": 35,
             "description": "Name of the country or other geographical entity.",
             "x-wco-id": "412",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryNameText"
+            "x-wco-term": "http://localhost:8099/countryNameText"
            },
            "countrySubDivisionCode": {
             "type": "string",
@@ -280,21 +280,21 @@
             "description": "Code specifying the name of a country subdivision.",
             "x-wco-code-list": "ISO 3166-2 OR User code list",
             "x-wco-id": "244",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countrySubDivisionCode"
+            "x-wco-term": "http://localhost:8099/countrySubDivisionCode"
            },
            "countrySubDivisionName": {
             "type": "string",
             "maxLength": 35,
             "description": "Name of a country subdivision.",
             "x-wco-id": "243",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countrySubDivisionNameText"
+            "x-wco-term": "http://localhost:8099/countrySubDivisionNameText"
            },
            "line": {
             "type": "string",
             "maxLength": 256,
             "description": "Specification of the postal delivery point such as street and number or post office box.",
             "x-wco-id": "239",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/lineText"
+            "x-wco-term": "http://localhost:8099/lineText"
            },
            "postcodeId": {
             "type": "string",
@@ -302,7 +302,7 @@
             "description": "Identification of the postal zone or address.",
             "x-wco-code-list": "User code list",
             "x-wco-id": "245",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/postcodeIdentifier"
+            "x-wco-term": "http://localhost:8099/postcodeIdentifier"
            }
           },
           "additionalProperties": false,
@@ -326,7 +326,7 @@
          "pattern": "^\\d{1,5}$",
          "description": "Number indicating the position in a sequence.",
          "x-wco-id": "006",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+         "x-wco-term": "http://localhost:8099/sequenceNumeric"
         },
         "commodity": {
          "type": "array",
@@ -338,13 +338,13 @@
             "maxLength": 512,
             "description": "Description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport.",
             "x-wco-id": "137",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/descriptionText"
+            "x-wco-term": "http://localhost:8099/descriptionText"
            },
            "valueAmount": {
             "type": "string",
             "description": "Amount indicating the value of the commodity (not to be used for customs valuation purposes).",
             "x-wco-id": "306",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/valueAmount"
+            "x-wco-term": "http://localhost:8099/valueAmount"
            },
            "classification": {
             "type": "array",
@@ -356,7 +356,7 @@
                "maxLength": 18,
                "description": "Identification of the non-commercial categorization of a commodity by a standard-setting organization.",
                "x-wco-id": "145",
-               "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+               "x-wco-term": "http://localhost:8099/identificationIdentifier"
               },
               "identificationTypeCode": {
                "type": "string",
@@ -364,7 +364,7 @@
                "description": "Code specifying the commodity classification (e.g. Harmonized Tariff Schedule (HTS), Export Control Classification Code (ECCC), UNDG Code list, International Code of Zoological Nomenclature).",
                "x-wco-code-list": "UN/EDIFACT code list 7143",
                "x-wco-id": "337",
-               "x-wco-term": "https://test-wcodm.trade-commons.org/identificationTypeCode"
+               "x-wco-term": "http://localhost:8099/classificationIdentificationTypeCode"
               }
              },
              "additionalProperties": false,
@@ -382,7 +382,7 @@
                "maxLength": 70,
                "description": "Name of the party or person who has produced the product.",
                "x-wco-id": "R034",
-               "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+               "x-wco-term": "http://localhost:8099/nameText"
               },
               "id": {
                "type": "string",
@@ -390,7 +390,7 @@
                "description": "Identification of the party or person who has produced the product.",
                "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
                "x-wco-id": "R035",
-               "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+               "x-wco-term": "http://localhost:8099/identificationIdentifier"
               },
               "address": {
                "type": "array",
@@ -402,7 +402,7 @@
                   "maxLength": 35,
                   "description": "Name of a city.",
                   "x-wco-id": "241",
-                  "x-wco-term": "https://test-wcodm.trade-commons.org/cityNameText"
+                  "x-wco-term": "http://localhost:8099/cityNameText"
                  },
                  "countryCode": {
                   "type": "string",
@@ -411,14 +411,14 @@
                   "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
                   "x-wco-code-list": "ISO 3166-1",
                   "x-wco-id": "242",
-                  "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+                  "x-wco-term": "http://localhost:8099/countryCode"
                  },
                  "line": {
                   "type": "string",
                   "maxLength": 256,
                   "description": "Specification of the postal delivery point such as street and number or post office box.",
                   "x-wco-id": "239",
-                  "x-wco-term": "https://test-wcodm.trade-commons.org/lineText"
+                  "x-wco-term": "http://localhost:8099/lineText"
                  },
                  "postcodeId": {
                   "type": "string",
@@ -426,7 +426,7 @@
                   "description": "Identification of the postal zone or address.",
                   "x-wco-code-list": "User code list",
                   "x-wco-id": "245",
-                  "x-wco-term": "https://test-wcodm.trade-commons.org/postcodeIdentifier"
+                  "x-wco-term": "http://localhost:8099/postcodeIdentifier"
                  }
                 },
                 "additionalProperties": false,
@@ -455,19 +455,19 @@
             "type": "string",
             "description": "Weight of goods including packing but excluding carrier's equipment.",
             "x-wco-id": "131",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/grossWeightMeasure"
+            "x-wco-term": "http://localhost:8099/grossWeightMeasure"
            },
            "netNetWeightMeasure": {
             "type": "string",
             "description": "Weight of the goods themselves without any packing.",
             "x-wco-id": "128",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/netNetWeightMeasure"
+            "x-wco-term": "http://localhost:8099/netNetWeightMeasure"
            },
            "tariffQuantity": {
             "type": "string",
             "description": "Quantity specifying the goods in the unit as required by customs for tariff, statistical, fiscal purposes or as indicated in \"type\".",
             "x-wco-id": "130",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/tariffQuantity"
+            "x-wco-term": "http://localhost:8099/tariffQuantity"
            }
           },
           "additionalProperties": false,
@@ -485,14 +485,14 @@
             "maxLength": 70,
             "description": "Identification of an invoice by reference number.",
             "x-wco-id": "D016",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            },
            "issueDateTime": {
             "type": "string",
             "maxLength": 35,
             "description": "Date and time of issue of an invoice.",
             "x-wco-id": "D015",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/issueDateTime"
+            "x-wco-term": "http://localhost:8099/issueDateTime"
            },
            "typeCode": {
             "type": "string",
@@ -500,7 +500,7 @@
             "description": "Code specifying the type of an invoice.",
             "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
             "x-wco-id": "D025",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/aipTypeCode"
            },
            "issuer": {
             "type": "array",
@@ -512,7 +512,7 @@
                "maxLength": 70,
                "description": "Name of the party having issued the document.",
                "x-wco-id": "R167",
-               "x-wco-term": "https://test-wcodm.trade-commons.org/text"
+               "x-wco-term": "http://localhost:8099/text"
               },
               "id": {
                "type": "string",
@@ -520,7 +520,7 @@
                "description": "Identification of the party having issued the document.",
                "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
                "x-wco-id": "R168",
-               "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+               "x-wco-term": "http://localhost:8099/identificationIdentifier"
               }
              },
              "additionalProperties": false,
@@ -545,7 +545,7 @@
             "description": "Code specifying the criterion of determination as to whether a good qualifies as an originating good in accordance with the rules.",
             "x-wco-code-list": "User code list",
             "x-wco-id": "436",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/ruleCode"
+            "x-wco-term": "http://localhost:8099/ruleCode"
            },
            "countryCode": {
             "type": "string",
@@ -554,14 +554,14 @@
             "description": "Code specifying the country in which the goods have been produced or manufactured, according to criteria laid down for the application of the Customs tariff or quantitative restrictions, or any measure related to trade.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "063",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+            "x-wco-term": "http://localhost:8099/countryCode"
            },
            "regionId": {
             "type": "string",
             "maxLength": 9,
             "description": "Identification of the region in which the goods have been produced or manufactured, according to criteria laid down for the purposes of application of the Customs tariff, or quantitative restrictions, or of any other measure related to trade.",
             "x-wco-id": "066",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/regionIdentifier"
+            "x-wco-term": "http://localhost:8099/regionIdentifier"
            }
           },
           "additionalProperties": false,
@@ -580,14 +580,14 @@
             "description": "Marks and or numbers on a transport unit or package.",
             "x-wco-code-list": "UN/ECE Recommendation 15",
             "x-wco-id": "142",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/marksNumbersText"
+            "x-wco-term": "http://localhost:8099/marksNumbersText"
            },
            "quantityQuantity": {
             "type": "string",
             "pattern": "^\\d{1,8}$",
             "description": "Quantity specifying the number of individual items packaged in such a way that they cannot be divided without first undoing the packing.",
             "x-wco-id": "144",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/packageQuantity"
+            "x-wco-term": "http://localhost:8099/packageQuantity"
            },
            "typeCode": {
             "type": "string",
@@ -595,7 +595,7 @@
             "description": "Code specifying the type of package of an item.",
             "x-wco-code-list": "UN/ECE Recommendation 21 Annex VI",
             "x-wco-id": "141",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/packagingTypeCode"
            }
           },
           "additionalProperties": false,
@@ -619,7 +619,7 @@
          "maxLength": 70,
          "description": "Name of the party consigning goods as stipulated in the transport contract by the party ordering transport.",
          "x-wco-id": "R020",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "id": {
          "type": "string",
@@ -627,7 +627,7 @@
          "description": "Identification of the party consigning goods as stipulated in the transport contract by the party ordering the transport.",
          "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
          "x-wco-id": "R021",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/identificationIdentifier"
         },
         "roleCode": {
          "type": "string",
@@ -635,7 +635,7 @@
          "description": "Code specifying the role of a party.",
          "x-wco-code-list": "UN/EDIFACT code list 3035",
          "x-wco-id": "R005",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/roleCode"
+         "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
         },
         "address": {
          "type": "array",
@@ -648,14 +648,14 @@
             "description": "Code specifying the type of address.",
             "x-wco-code-list": "UN/EDIFACT code list 3131",
             "x-wco-id": "410",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+            "x-wco-term": "http://localhost:8099/addressTypeCode"
            },
            "cityName": {
             "type": "string",
             "maxLength": 35,
             "description": "Name of a city.",
             "x-wco-id": "241",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/cityNameText"
+            "x-wco-term": "http://localhost:8099/cityNameText"
            },
            "countryCode": {
             "type": "string",
@@ -664,14 +664,14 @@
             "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "242",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+            "x-wco-term": "http://localhost:8099/countryCode"
            },
            "countryName": {
             "type": "string",
             "maxLength": 35,
             "description": "Name of the country or other geographical entity.",
             "x-wco-id": "412",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryNameText"
+            "x-wco-term": "http://localhost:8099/countryNameText"
            },
            "countrySubDivisionCode": {
             "type": "string",
@@ -679,21 +679,21 @@
             "description": "Code specifying the name of a country subdivision.",
             "x-wco-code-list": "ISO 3166-2 OR User code list",
             "x-wco-id": "244",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countrySubDivisionCode"
+            "x-wco-term": "http://localhost:8099/countrySubDivisionCode"
            },
            "countrySubDivisionName": {
             "type": "string",
             "maxLength": 35,
             "description": "Name of a country subdivision.",
             "x-wco-id": "243",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countrySubDivisionNameText"
+            "x-wco-term": "http://localhost:8099/countrySubDivisionNameText"
            },
            "line": {
             "type": "string",
             "maxLength": 256,
             "description": "Specification of the postal delivery point such as street and number or post office box.",
             "x-wco-id": "239",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/lineText"
+            "x-wco-term": "http://localhost:8099/lineText"
            },
            "postcodeId": {
             "type": "string",
@@ -701,7 +701,7 @@
             "description": "Identification of the postal zone or address.",
             "x-wco-code-list": "User code list",
             "x-wco-id": "245",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/postcodeIdentifier"
+            "x-wco-term": "http://localhost:8099/postcodeIdentifier"
            }
           },
           "additionalProperties": false,
@@ -725,7 +725,7 @@
          "maxLength": 70,
          "description": "Name of the exhibition in cases where goods are sent from the territory of the exporting Party for exhibition in another country and sold during or after the exhibition for importation into the territory of a Party.",
          "x-wco-id": "622",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "typeCode": {
          "type": "string",
@@ -733,7 +733,7 @@
          "description": "Code specifying the type of an exhibition event.",
          "x-wco-code-list": "User code list",
          "x-wco-id": "623",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+         "x-wco-term": "http://localhost:8099/authenticationTypeCode"
         },
         "address": {
          "type": "array",
@@ -745,7 +745,7 @@
             "maxLength": 35,
             "description": "Name of a city.",
             "x-wco-id": "241",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/cityNameText"
+            "x-wco-term": "http://localhost:8099/cityNameText"
            },
            "countryCode": {
             "type": "string",
@@ -754,14 +754,14 @@
             "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
             "x-wco-code-list": "ISO 3166-1",
             "x-wco-id": "242",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/countryCode"
+            "x-wco-term": "http://localhost:8099/countryCode"
            },
            "line": {
             "type": "string",
             "maxLength": 256,
             "description": "Specification of the postal delivery point such as street and number or post office box.",
             "x-wco-id": "239",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/lineText"
+            "x-wco-term": "http://localhost:8099/lineText"
            },
            "postcodeId": {
             "type": "string",
@@ -769,7 +769,7 @@
             "description": "Identification of the postal zone or address.",
             "x-wco-code-list": "User code list",
             "x-wco-id": "245",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/postcodeIdentifier"
+            "x-wco-term": "http://localhost:8099/postcodeIdentifier"
            }
           },
           "additionalProperties": false,
@@ -793,7 +793,7 @@
          "maxLength": 256,
          "description": "Name of a seaport, airport, freight terminal, rail station or other location at which goods are loaded onto the means of transport being used for their carriage.",
          "x-wco-id": "L009",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "id": {
          "type": "string",
@@ -801,7 +801,7 @@
          "description": "Identification of a seaport, airport, freight terminal, rail station or other location at which goods are loaded onto the means of transport being used for their carriage.",
          "x-wco-code-list": "UN/LOCODE + User codes OR User code list",
          "x-wco-id": "L010",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/subsequentdeclarationofficeIdentificationIdentifier"
         }
        },
        "additionalProperties": false,
@@ -820,7 +820,7 @@
          "description": "Code specifying the characteristics (e.g. size and type of a piece of transport equipment).",
          "x-wco-code-list": "ISO, IATA, EDIFACT (8053 or 8155) OR User code list",
          "x-wco-id": "152",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/characteristicCode"
+         "x-wco-term": "http://localhost:8099/characteristicCode"
         },
         "seal": {
          "type": "array",
@@ -832,14 +832,14 @@
             "pattern": "^\\d{1,5}$",
             "description": "Number indicating the position in a sequence.",
             "x-wco-id": "006",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+            "x-wco-term": "http://localhost:8099/sequenceNumeric"
            },
            "id": {
             "type": "string",
             "maxLength": 35,
             "description": "Identification of a seal affixed to a piece of transport equipment by number.",
             "x-wco-id": "165",
-            "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+            "x-wco-term": "http://localhost:8099/identificationIdentifier"
            }
           },
           "additionalProperties": false,
@@ -863,7 +863,7 @@
          "maxLength": 256,
          "description": "Name of the unloading location, seaport, airport, freight terminal, rail station or other location at which the cargo is to be unloaded from the means of transport having been used for their carriage.",
          "x-wco-id": "L012",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+         "x-wco-term": "http://localhost:8099/nameText"
         },
         "id": {
          "type": "string",
@@ -871,7 +871,7 @@
          "description": "Identification of a seaport, airport, freight terminal, rail station or other location at which goods are unloaded from the means of transport having been used for their carriage.",
          "x-wco-code-list": "UN/LOCODE + User codes",
          "x-wco-id": "L013",
-         "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+         "x-wco-term": "http://localhost:8099/appealofficeIdentificationIdentifier"
         }
        },
        "additionalProperties": false,

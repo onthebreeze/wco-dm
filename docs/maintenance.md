@@ -68,13 +68,18 @@ properties. Twelve properties were affected and the split is recorded in
 
 | Value | Properties | What it does |
 |---|---|---|
-| `class` (default) | 737 | One property per class, as the WCO Data Model itself is organised |
-| `domain` | 442 | One property per distinct value domain, so classes that genuinely share a domain keep sharing a term |
+| `domain` (default) | 441 | One property per distinct value domain, so classes that genuinely share a domain keep sharing a term |
+| `class` | 737 | One property per class, as the WCO Data Model itself is organised |
 | `none` | 409 | Leave them merged, carrying every domain |
 
-`class` is unambiguous but duplicative: `identificationIdentifier` has six value domains across 173
-classes and becomes 173 properties. `domain` reaches the same end - no property with more than one
-value domain - with 167 fewer of them.
+Both reach the same end, no property with more than one value domain. `class` is duplicative:
+`identificationIdentifier` has six value domains across 173 classes and would become 173 properties
+differing in name only.
+
+A property split by domain is named after the list it codes against, with the `List` suffix dropped,
+so `AddressTypeCodeList` gives `addressTypeCode`. Where the list is one the register does not hold,
+its name is the external reference rather than the concept - "UN/EDIFACT code list 3035" would give
+`unEdifactCodeList3035` - so the class supplies the name instead.
 
 **Identifiers do not move.** The source carries a WCO-owned namespace and the build rewrites it for
 whatever host is serving. Changing the base in the source would re-home every published term.

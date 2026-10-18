@@ -45,7 +45,7 @@ MODULES = ["core", "document", "government", "location", "party", "transport"]
 #   "domain" - split per distinct value domain, so classes that genuinely share a domain keep
 #              sharing a term. Fewer properties for the same result.
 #   "none"   - leave them merged, carrying every domain.
-SPLIT_DISAGREEING = os.environ.get("WCO_SPLIT", "class")
+SPLIT_DISAGREEING = os.environ.get("WCO_SPLIT", "domain")
 
 # WCO core data types to a range. Code and Identifier carry a code list or scheme rather than a
 # literal type, so they are resolved per attribute below.
@@ -236,9 +236,24 @@ def main():
                 first = occs[0]
                 if SPLIT_DISAGREEING == "class":
                     new_key = camel(f"{first['class']} {victim['local']}")
+                elif len(groups) == 1:
+                    new_key = victim["local"]
+                elif first["range"].startswith("wco-cl:"):
+                    # Named after the list it codes against, with the List suffix dropped:
+                    # AddressTypeCodeList gives addressTypeCode. Naming it after both the list and
+                    # the property it came from would give addressTypeCodeListTypeCode.
+                    tail = first["range"].rstrip(">").rsplit("/", 1)[-1].rsplit(":", 1)[-1]
+                    tail = re.sub(r"-?list$", "", tail)
+                    new_key = camel(tail)
                 else:
-                    tail = first["range"].rsplit("/", 1)[-1].rsplit(":", 1)[-1]
-                    new_key = camel(f"{tail} {victim['local']}") if len(groups) > 1 else victim["local"]
+                    # Either an uncoded part, or one coded against a list the register does not
+                    # hold, whose name is the external reference rather than the concept:
+                    # "UN/EDIFACT code list 3035" would give unEdifactCodeList3035. The class is
+                    # the better name in both cases.
+                    new_key = (victim["local"] if first["range"] == "xsd:string"
+                               else camel(f"{first['class']} {victim['local']}"))
+                if new_key in props and props[new_key].get("split_from") != victim["local"]:
+                    new_key = camel(f"{first['class']} {victim['local']}")
                 p2 = dict(victim)
                 p2.update({
                     "local": new_key,

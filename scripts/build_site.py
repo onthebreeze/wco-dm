@@ -435,35 +435,58 @@ def main():
     mod_link = lambda t: (f'<a href="{BASE}module/{module_of(t)}">{html.escape(module_of(t))}</a>'
                           if module_of(t) else "")
 
-    all_classes = sorted((t for t in kinds if kinds[t] == "class"), key=lambda t: display_label(g, t).lower())
-    (DIST / "classes").mkdir(parents=True, exist_ok=True)
-    (DIST / "classes" / "index.html").write_text(page(
-        "Classes", "Every class the WCO Data Model vocabulary defines.",
-        f"<h1>Classes ({len(all_classes)})</h1>"
-        '<p class="definition">A class is a group of information the model treats as a thing: a '
-        'consignment, a party, a means of transport. Its properties are listed on its own page.</p>'
-        + table(["Class", "Module", "Definition", "Properties"],
-                [(term_link(g, c), mod_link(c), short(one(g, c, SKOS.definition), 120),
-                  str(len(idx["class_props"].get(c, [])))) for c in all_classes],
-                col_classes=["name", "mod", "prose", "num"]),
-        [("Vocabulary", BASE), ("Classes", None)], current="classes"))
-    counts["page"] += 1
+    # Both indexes are grouped by the WCO superclass the model assigns each term to, because a flat
+    # list of 283 classes or 441 properties is a wall rather than a way in.
+    MODULE_ORDER = ["core", "party", "location", "document", "government", "transport", "data-types"]
+    MODULE_NOTE = {
+        "core": "Cross-cutting terms, used throughout the model and not tied to one superclass.",
+        "party": "The people and organisations in a transaction, and the roles they play.",
+        "location": "Places, addresses and the geography of a movement.",
+        "document": "Documents, their references and the attachments that travel with them.",
+        "government": "Authorities, procedures and the decisions they take.",
+        "transport": "Means of transport, equipment and the movement itself.",
+        "data-types": "The core data types and their supplementary components.",
+    }
 
-    all_props = sorted((t for t in kinds if kinds[t] == "property"), key=lambda t: display_label(g, t).lower())
-    (DIST / "properties").mkdir(parents=True, exist_ok=True)
-    (DIST / "properties" / "index.html").write_text(page(
-        "Properties", "Every property the WCO Data Model vocabulary defines.",
-        f"<h1>Properties ({len(all_props)})</h1>"
-        '<p class="definition">A property is a single piece of information about a class. One '
-        'property serves every class that uses it, so the same concept has one address however many '
-        'classes carry it.</p>'
-        + table(["Property", "Module", "Definition", "Value", "Used by"],
-                [(term_link(g, t), mod_link(t), short(one(g, t, SKOS.definition), 100),
-                  render_range(g, t, limit=1),
-                  str(len(list(g.objects(t, SCHEMA.domainIncludes))))) for t in all_props],
-                col_classes=["name", "mod", "prose", "value", "num"]),
-        [("Vocabulary", BASE), ("Properties", None)], current="properties"))
-    counts["page"] += 1
+    def grouped_index(kind, title, lead, headers, row, col_classes, folder):
+        terms = [t for t in kinds if kinds[t] == kind]
+        by_module = defaultdict(list)
+        for t in terms:
+            by_module[module_of(t)].append(t)
+        order = [m for m in MODULE_ORDER if by_module.get(m)] + \
+                sorted(m for m in by_module if m not in MODULE_ORDER)
+        jump = " · ".join(f'<a href="#{m}">{html.escape(m)} ({len(by_module[m])})</a>' for m in order)
+        body = [f"<h1>{title} ({len(terms)})</h1>", f'<p class="definition">{lead}</p>',
+                f'<p class="jump">{jump}</p>']
+        for m in order:
+            items = sorted(by_module[m], key=lambda t: display_label(g, t).lower())
+            body.append(
+                f'<section id="{html.escape(m)}"><h2>{html.escape(m)} ({len(items)})</h2>'
+                + (f'<p class="muted">{MODULE_NOTE[m]}</p>' if m in MODULE_NOTE else "")
+                + table(headers, [row(t) for t in items], col_classes=col_classes) + "</section>")
+        (DIST / folder).mkdir(parents=True, exist_ok=True)
+        (DIST / folder / "index.html").write_text(page(
+            title, lead, "".join(body),
+            [("Vocabulary", BASE), (title, None)], current=folder))
+        counts["page"] += 1
+
+    grouped_index(
+        "class", "Classes",
+        "A class is a group of information the model treats as a thing: a consignment, a party, a "
+        "means of transport. Grouped by the WCO superclass each belongs to.",
+        ["Class", "Definition", "Properties"],
+        lambda c: (term_link(g, c), short(one(g, c, SKOS.definition), 140),
+                   str(len(idx["class_props"].get(c, [])))),
+        ["name", "prose", "num"], "classes")
+
+    grouped_index(
+        "property", "Properties",
+        "A property is a single piece of information about a class. One property serves every class "
+        "that uses it, so the same concept has one address however many classes carry it.",
+        ["Property", "Definition", "Value", "Used by"],
+        lambda t: (term_link(g, t), short(one(g, t, SKOS.definition), 110), render_range(g, t, limit=1),
+                   str(len(list(g.objects(t, SCHEMA.domainIncludes))))),
+        ["name", "prose", "value", "num"], "properties")
 
     # A code list register, grouped by what the model actually knows about each list.
     schemes = sorted(g.subjects(RDF.type, SKOS.ConceptScheme), key=lambda t: display_label(g, t).lower())
@@ -669,6 +692,8 @@ table.listing td{overflow-wrap:anywhere}
 .c-num{width:84px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .c-rel{width:190px}
 .c-mod{width:110px;white-space:nowrap}
+.jump{font-size:14px;color:var(--muted);margin:0 0 18px}
+.jump a{margin-right:2px}
 .rel{font-weight:600;color:var(--brand)}
 .rel-candidate{color:var(--muted);font-weight:500}
 a.more{font-size:13.5px;color:var(--muted)}
