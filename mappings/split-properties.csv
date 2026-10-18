@@ -7,7 +7,10 @@ functionCode,6,6,domain
 categoryCode,3,3,domain
 statusCode,2,2,domain
 conditionCode,3,3,domain
+requestOverrideCode,2,2,domain
 currentCode,2,2,domain
+changeReasonCode,2,2,domain
 accountIdentificationIdentifier,2,2,domain
+goodsStatusCode,2,2,domain
 identificationCode,3,3,domain
 methodCode,2,2,domain

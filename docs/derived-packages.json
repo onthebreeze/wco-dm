@@ -1,5 +1,5 @@
 {
-  "_note": "Descriptions for the Information Packages and the derived packages that subset them. The group is what the workbook's own heading row says and is authoritative. The gloss expands an abbreviation the workbook never spells out; where the source is 'editorial' it is our wording, not WCO's, and should be checked before publication.",
+  "_note": "Descriptions for the Information Packages and the derived packages that subset them. The group is what the workbook's own heading row says and is authoritative. A key may be qualified by its package (bip-dec:upu) where the same abbreviation names a different message in two packages. The gloss expands an abbreviation the workbook never spells out; where the source is 'editorial' it is our wording, not WCO's, and should be checked before publication. Where a message's column heading changed between releases, the later entry lists the earlier headings in aliases and explains the join in alias_note; that join is editorial.",
   "packages": {
     "bip-dec": {
       "title": "Declaration",
@@ -27,13 +27,21 @@
       "name": "Maritime API",
       "group": "Derived IP",
       "gloss": "Advance Passenger Information for maritime arrivals and departures, aligned to the IMO FAL forms.",
-      "source": "editorial"
+      "source": "editorial",
+      "aliases": [
+        "api"
+      ],
+      "alias_note": "Headed API in 4.0.0 and 4.1.0, absent from 4.2.0, and Mar. API in 4.3.0. Treated here as one message on the strength of the name alone, since the position count changed. Our judgement, not a statement by WCO."
     },
     "mar-bri": {
       "name": "Maritime BRI",
       "group": "Derived IP",
       "gloss": "Booking Reservation Information. Added in WCO Data Model 4.1.0 for the cruise industry.",
-      "source": "WCO 4.1.0 release note"
+      "source": "WCO 4.1.0 release note",
+      "aliases": [
+        "bri"
+      ],
+      "alias_note": "Headed BRI in 4.1.0 and 4.2.0 and Mar. BRI in 4.3.0. Treated here as one message: the two carry the same 144 positions. Our judgement, not a statement by WCO."
     },
     "upu-cusitm": {
       "name": "UPU CUSITM",
@@ -75,7 +83,11 @@
       "name": "AEO Master Data",
       "group": "InterGov DIP",
       "gloss": "The master data describing an Authorised Economic Operator, exchanged between administrations.",
-      "source": "editorial"
+      "source": "editorial",
+      "aliases": [
+        "aeo-masterdata"
+      ],
+      "alias_note": "Spelt AEO MasterData before 4.2.0 and AEO Master Data after. One message."
     },
     "aeomra": {
       "name": "AEOMRA",
@@ -117,7 +129,155 @@
       "name": "UPU CUSRES",
       "group": "Response DIP",
       "gloss": "The Universal Postal Union response to a CUSITM message. The workbook spells it CUSRES in the column and CUSRSP2 in the heading above it.",
-      "source": "WCO-UPU joint message standards"
+      "source": "WCO-UPU joint message standards",
+      "aliases": [
+        "upu"
+      ],
+      "alias_note": "The Response package's postal message: headed UPU in 4.0.0 to 4.2.0, UPU CUSRSP in the 4.1.0 detail block and UPU CUSRES in 4.3.0. One message. The Declaration package's UPU is a different message and stays separate."
+    },
+    "cites": {
+      "group": "Derived IP",
+      "name": "CITES",
+      "source": "editorial",
+      "gloss": "The electronic permit of the Convention on International Trade in Endangered Species of Wild Fauna and Flora. Carried in 4.0.0 and 4.1.0."
+    },
+    "ecoo": {
+      "group": "Derived IP",
+      "name": "eCoO",
+      "source": "workbook heading",
+      "gloss": "Electronic Certificate of Origin. The Overall Information Structure heads the same column EU CoO."
+    },
+    "atiga-coo": {
+      "group": "Derived IP",
+      "name": "ATIGA CoO",
+      "source": "editorial",
+      "gloss": "Certificate of Origin under the ASEAN Trade in Goods Agreement."
+    },
+    "etir-guar": {
+      "group": "Derived IP",
+      "name": "eTIR Guarantee",
+      "source": "workbook heading",
+      "gloss": "The guarantee message of the UNECE eTIR international system."
+    },
+    "etir-carv": {
+      "group": "Derived IP",
+      "name": "eTIR CARV",
+      "source": "workbook heading",
+      "gloss": "An eTIR carnet message. The Overall Information Structure heads the column TIR CARV and neither sheet spells the abbreviation out."
+    },
+    "ecoc": {
+      "group": "Derived IP",
+      "name": "eCoC",
+      "source": "workbook heading",
+      "gloss": "Electronic Certificate of Conformity. The Overall Information Structure heads the same column EU CoC."
+    },
+    "codex": {
+      "group": "Derived IP",
+      "name": "Codex",
+      "source": "editorial",
+      "gloss": "The Codex Alimentarius model certificate for food exports."
+    },
+    "e-phyto": {
+      "group": "Derived IP",
+      "name": "ePhyto",
+      "source": "editorial",
+      "gloss": "The electronic phytosanitary certificate of the International Plant Protection Convention. The workbook's detail columns for it are headed IPPC."
+    },
+    "unesco-cert": {
+      "group": "Derived IP",
+      "name": "UNESCO Certificate",
+      "source": "workbook heading",
+      "gloss": "The export certificate for cultural objects. The workbook heads its detail block Cultural Objects."
+    },
+    "eata": {
+      "group": "Derived IP",
+      "name": "eATA",
+      "source": "workbook heading",
+      "gloss": "The ATA Carnet for temporary admission. The workbook heads its detail block eATA Carnet Data."
+    },
+    "oie-cert": {
+      "group": "Derived IP",
+      "name": "OIE Certificate",
+      "source": "editorial",
+      "gloss": "The international veterinary certificate of the World Organisation for Animal Health, which was the OIE when this release was published. The workbook heads its detail block OIE Model."
+    },
+    "bip-dec:aei": {
+      "group": "Derived IP",
+      "name": "AEI",
+      "source": "editorial",
+      "gloss": "A Declaration subset the workbook heads DIP AEI and never spells out."
+    },
+    "bip-dec:api": {
+      "group": "Derived IP",
+      "name": "API",
+      "source": "editorial",
+      "gloss": "Advance Passenger Information. Carried as its own derived package until 4.1.0; 4.3.0 carries the same ground as Maritime API."
+    },
+    "bip-dec:dv1": {
+      "group": "Derived IP",
+      "name": "DV1",
+      "source": "editorial",
+      "gloss": "The customs valuation declaration, the form known as DV1."
+    },
+    "bip-dec:irg": {
+      "group": "Derived IP",
+      "name": "IRG",
+      "source": "editorial",
+      "gloss": "A Declaration subset the workbook heads IRG and never spells out."
+    },
+    "bip-dec:msw": {
+      "group": "Derived IP",
+      "name": "MSW",
+      "source": "workbook heading",
+      "gloss": "Maritime Single Window. The workbook heads its detail block DIP MSW (B2MSW), business to Maritime Single Window."
+    },
+    "bip-dec:sad": {
+      "group": "Derived IP",
+      "name": "SAD",
+      "source": "workbook heading",
+      "gloss": "The Single Administrative Document. The workbook heads its detail block DIP SAD (SARS)."
+    },
+    "bip-dec:upu": {
+      "group": "Derived IP",
+      "name": "UPU",
+      "source": "editorial",
+      "gloss": "The Universal Postal Union declaration message, which 4.2.0 splits into UPU CUSITM and UPU REFRSP."
+    },
+    "bip-dec:val": {
+      "group": "Derived IP",
+      "name": "VAL",
+      "source": "editorial",
+      "gloss": "Valuation. The Overall Information Structure heads the neighbouring column Validation in 4.1.0, which is one of the two."
+    },
+    "bip-dec:bri": {
+      "group": "Derived IP",
+      "name": "Maritime BRI",
+      "source": "WCO 4.1.0 release note",
+      "gloss": "Booking Reservation Information. Added in WCO Data Model 4.1.0 for the cruise industry, and headed Mar. BRI from 4.3.0."
+    },
+    "aeo-masterdata": {
+      "group": "InterGov DIP",
+      "name": "AEO Master Data",
+      "source": "workbook heading",
+      "gloss": "The master data describing an Authorised Economic Operator, exchanged between administrations. Spelt AEO MasterData before 4.2.0."
+    },
+    "aip:msw": {
+      "group": "Response DIP",
+      "name": "MSW",
+      "source": "workbook heading",
+      "gloss": "The Maritime Single Window response. The workbook heads its detail block MSW SW2B, Single Window to business."
+    },
+    "aip:upu": {
+      "group": "Response DIP",
+      "name": "UPU",
+      "source": "workbook heading",
+      "gloss": "The Universal Postal Union response, headed UPU CUSRSP in 4.1.0 and UPU CUSRES from 4.3.0."
+    },
+    "aip:api": {
+      "group": "Response DIP",
+      "name": "API",
+      "source": "editorial",
+      "gloss": "An Advance Passenger Information response, carried only in 4.0.0."
     }
   }
 }

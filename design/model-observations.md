@@ -11,68 +11,40 @@ cheap to reproduce now that the source is extracted.
 
 Every count below comes from WCO Data Model 4.3.0, Library workbook, sheet `DataSet 1.2, 1.3, 1.4`.
 
-## 1. Roles are modelled as classes, and the model also carries the role as data
+## 1. The superclass is recorded and then discarded
 
-The Library has one device that looks like generalization: the **SuperClass Usage** columns, which
-flag each class as NONE, DOC, GOV, LOC, PAR or TRA. 171 of the 273 classes carry one. Exactly one
-class carries two.
+The Library carries a SuperClass block that nothing downstream uses. Every class names its
+superclass - SC1 RootDocument, SC2 GovernmentAgency, SC3 Location, SC4 Party, SC5 TransportMeans -
+and every attribute names the superclass element it realises. The model therefore does state that a
+Carrier is a Party, and that Agent identifier and Carrier identifier are both S009, identification.
 
-It is a flag rather than a parent. There is no `Party` class, no `Location` class and no `Document`
-class in the Library, so there is nothing for a subclass to point at and nothing to inherit. What
-the flag marks is that the class *uses* the superclass's standard attributes, and each class then
-restates them under its own name: `Agent identifier`, `Applicant identifier`,
-`Assembler identifier`.
+| Release | Classes with a superclass | Attributes realising a superclass element |
+|---|---|---|
+| 4.0.0 | 163 of 260 | 540 of 1,092 |
+| 4.1.0 | 167 of 266 | 557 of 1,146 |
+| 4.2.0 | 170 of 273 | 558 of 1,152 |
+| 4.3.0 | 170 of 273 | 559 of 1,156 |
 
-The effect is clearest in the party superclass.
+There is no Party row in the class list, nothing inherits, and each subclass restates the inherited
+elements under its own name. The published artefacts carry none of it.
 
-| | |
-|---|---|
-| Classes flagged PAR | 90 |
-| Distinct attribute signatures, taking the attributes as named | 90 |
-| Distinct attribute signatures, after removing the class name from each attribute | 28 |
-| Classes sharing the single commonest signature | 43 |
+An earlier version of this note said the model had no generalization. That was wrong: it has one,
+in columns 23 to 26 of the Library sheet, which the extractor was not reading. The site now
+publishes it - five minted superclasses, `rdfs:subClassOf` on the 170 classes that carry one, and
+the superclass element on each property - without merging anything on that basis, so no term moved.
 
-That signature is `identifier`, `name`, `identification issuing country code`, `role code`. Ten
-further classes carry the same minus the name, and five add a category of person code, so about 58
-of the 90 differ from one another in nothing but what they are called: Applicant, Assembler,
-Authenticator, AuthorizedPerson, Carrier, Consolidator, ConsortiumCarrier, Deconsolidator,
-Distiller, Stevedore, and the rest.
+The duplication is what remains. Ninety classes are flagged PAR; taken as named they have 90
+distinct attribute signatures, and with the class name removed from each attribute they collapse to
+28, one of which covers 43 of them: identifier, name, identification issuing country code, role
+code. 83 of the 90 already carry a Role code attribute, so the role is stated three times - as the
+class, as the superclass link, and as a value.
 
-**83 of the 90 already carry a Role code attribute.** The model therefore expresses the role twice,
-once as the class and once as a value inside it, and two statements that can disagree.
+**Why:** the question of when a thing deserves its own class has been answered differently in
+different parts of the model, and the model states no rule.
 
-The same pattern is milder elsewhere. 14 of the 23 classes flagged GOV have exactly one attribute,
-an identifier: AppealOffice, BorderingOffice, ContactOffice, ExitOffice, ExportOffice,
-GuaranteeOffice, ItineraryOffice, PaymentOffice, PresentationOffice, SupervisingOffice and four
-more. Six of the 33 flagged LOC are an identifier and a name.
-
-Not every one of them is a role. MasterDataOffice carries a country code and a validity period;
-EntryOffice carries a sequence number; the transport classes each have substantial structure of
-their own. The point is that the model has no stated rule separating the two cases, so the question
-has been answered differently in different places.
-
-### A candidate principle
-
-A class earns its own identity when it has state or structure that the general class does not: an
-attribute, a relationship or a lifecycle of its own. A distinction carried entirely by which
-property points at it is a **role**, and a role belongs in the data or in the property name at the
-point of use, not in a new class.
-
-A usable test: strip the class name from the front of each of its attributes. If what remains is a
-subset of the general class's attributes, it is a role.
-
-### What is on the other side of the argument
-
-The role-as-class pattern is not an accident and it buys three things in a message. The tag names
-the position unambiguously without a discriminator, which matters in XML and in EDIFACT before it.
-Cardinality can differ per role - one Exporter, many Carriers - without a conditional rule. And a
-constraint can be attached to one role without attaching it to parties in general.
-
-The cost is paid in the Library rather than in the message: 90 party classes, an `identifier`
-attribute defined 174 times across the model, and a vocabulary that cannot say two of these classes
-are the same kind of thing. Whether that trade is still the right one is the discussion, and it is
-a different question for a message format than for a published vocabulary, which is part of why it
-is worth having now.
+**How to apply:** a class earns its identity when it has state or structure the general class does
+not. The model already has the data to test it: a class whose attributes all realise superclass
+elements has nothing of its own.
 
 ## 2. Nothing in any Information Package is mandatory
 

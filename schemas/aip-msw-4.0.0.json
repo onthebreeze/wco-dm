@@ -1,0 +1,158 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://vocabulary.wcoomd.org/schemas/aip-msw-4.0.0.json",
+ "title": "Additional Information Package — msw",
+ "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
+ "x-wco-data-model-version": "4.0.0",
+ "type": "object",
+ "properties": {
+  "function": {
+   "type": "string",
+   "pattern": "^\\d{1,2}$",
+   "description": "Code specifying the function of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1225",
+   "x-wco-id": "D046",
+   "x-wco-term": "https://vocabulary.wcoomd.org/documentFunctionCode"
+  },
+  "functionalReference": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific information exchange.",
+   "x-wco-id": "D026",
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
+  },
+  "issue": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Date and time the document was issued and when appropriate, signed or otherwise authenticated.",
+   "x-wco-id": "D011",
+   "x-wco-term": "https://vocabulary.wcoomd.org/issueDateTime"
+  },
+  "type": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the name of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+   "x-wco-id": "D013",
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+  },
+  "Submitter": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of the party who presents a document or data for the approval, consideration, or decision of another.",
+      "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+      "x-wco-id": "R059",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the submitter of written or electronic documentation.",
+    "x-wco-id": "17B"
+   }
+  },
+  "AdditionalInformation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "statementDescription": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of an additional statement.",
+      "x-wco-id": "225",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementDescriptionText"
+     },
+     "statementType": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the subject of the additional statement.",
+      "x-wco-code-list": "UN/EDIFACT code list 4451",
+      "x-wco-id": "369",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementTypeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the special request from declarant to government to take or not to take action.",
+    "x-wco-id": "03A"
+   }
+  },
+  "Error": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "description": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of a data validation error.",
+      "x-wco-id": "488",
+      "x-wco-term": "https://vocabulary.wcoomd.org/descriptionText"
+     },
+     "validation": {
+      "type": "string",
+      "maxLength": 8,
+      "description": "Code specifying a data validation error.",
+      "x-wco-code-list": "User codes",
+      "x-wco-id": "377",
+      "x-wco-term": "https://vocabulary.wcoomd.org/validationCode"
+     },
+     "Pointer": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "tag": {
+         "type": "string",
+         "maxLength": 4,
+         "description": "Identification of the data element tag.",
+         "x-wco-id": "381",
+         "x-wco-term": "https://vocabulary.wcoomd.org/tagIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to a functional attribute within a declaration.",
+       "x-wco-id": "97A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to data validation errors.",
+    "x-wco-id": "53A"
+   }
+  },
+  "Declaration": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.",
+    "x-wco-id": "42A"
+   }
+  },
+  "LPCO": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "Details related to Licenses, Permits, Certificates or Others.",
+    "x-wco-id": "74B"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "58C"
+}

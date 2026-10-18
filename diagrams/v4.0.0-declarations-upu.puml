@@ -1,0 +1,141 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title upu 4.0.0
+class "Declaration" as C0 <<root>> {
+  4 elements
+}
+class "GoodsMeasure" as C1 {
+  1 element
+}
+class "AdditionalDocument" as C2 {
+  3 elements
+}
+class "CurrencyExchange" as C3 {
+  1 element
+}
+class "DutyTaxFee" as C4 {
+  1 element
+}
+class "GoodsShipment" as C5 {
+  1 element
+}
+class "UCR" as C6 {
+  1 element
+}
+class "AdditionalInformation" as C7 {
+  1 element
+}
+class "Consignee" as C8 {
+  1 element
+}
+class "Consignment" as C9
+class "Consignor" as C10 {
+  1 element
+}
+class "CustomsValuation" as C11 {
+  2 elements
+}
+class "DeliveryDestinationParty" as C12 {
+  1 element
+}
+class "ExportCountry" as C13 {
+  1 element
+}
+class "GoodsItem" as C14 {
+  2 elements
+}
+class "Importer" as C15 {
+  3 elements
+}
+class "ArrivalTransportMeans" as C16 {
+  1 element
+}
+class "BorderTransportMeans" as C17 {
+  1 element
+}
+class "Itinerary" as C18 {
+  2 elements
+}
+class "UnloadingLocation" as C19 {
+  1 element
+}
+class "Address" as C20 {
+  4 elements
+}
+class "Address" as C21 {
+  4 elements
+}
+class "Commodity" as C22 {
+  1 element
+}
+class "GoodsMeasure" as C23 {
+  1 element
+}
+class "Origin" as C24 {
+  1 element
+}
+class "Packaging" as C25 {
+  4 elements
+}
+class "Communication" as C26 {
+  2 elements
+}
+class "Classification" as C27 {
+  1 element
+}
+class "InvoiceLine" as C28 {
+  1 element
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C0 *-- "0..*" C4
+C0 *-- "0..*" C5
+C0 *-- "0..*" C6
+C5 *-- "0..*" C7
+C5 *-- "0..*" C8
+C5 *-- "0..*" C9
+C5 *-- "0..*" C10
+C5 *-- "0..*" C11
+C5 *-- "0..*" C12
+C5 *-- "0..*" C13
+C5 *-- "0..*" C14
+C5 *-- "0..*" C15
+C9 *-- "0..*" C16
+C9 *-- "0..*" C17
+C9 *-- "0..*" C18
+C9 *-- "0..*" C19
+C10 *-- "0..*" C20
+C12 *-- "0..*" C21
+C14 *-- "0..*" C22
+C14 *-- "0..*" C23
+C14 *-- "0..*" C24
+C14 *-- "0..*" C25
+C15 *-- "0..*" C26
+C22 *-- "0..*" C27
+C22 *-- "0..*" C28
+@enduml

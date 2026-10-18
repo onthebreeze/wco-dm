@@ -11,10 +11,11 @@ positions, and sending each one again would make the file ten times the size for
 
     python3 scripts/build_package_views.py
 
-Writes views/<package>/<message>/tree.json, views/manifest.json, and a .puml per message in
-diagrams/ which is rendered to .svg when plantuml is on the path.
+Writes views/v<release>/<package>/<message>/tree.json, views/manifest.json, and a .puml per
+message per release in diagrams/, rendered to .svg when plantuml is on the path.
 """
 import json
+import os
 import pathlib
 import re
 import shutil
@@ -26,7 +27,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import rdflib
 from rdflib.namespace import OWL, RDF, SKOS
 
-from build_schemas import PKG, SOURCE_BASE, VERSION, build_tree, clean_tag
+import _release  # noqa: E402
+
+from build_schemas import SOURCE_BASE, build_tree, clean_tag
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ONT, VIEWS, DIAGRAMS = ROOT / "ontology", ROOT / "views", ROOT / "diagrams"
@@ -252,37 +255,34 @@ def puml_by_module(title, by_path, root, top, modules):
     return "\n".join(lines) + "\n"
 
 
-def render(puml_path):
-    if not shutil.which("plantuml"):
-        return False
-    subprocess.run(["plantuml", "-tsvg", str(puml_path)], check=True,
+def render_all(paths):
+    """One plantuml invocation for every diagram.
+
+    Each invocation starts a JVM, which costs about two seconds; at 106 diagrams that was most of
+    the build. Rendering them in one call takes the same work down to a single start.
+    """
+    if not paths or not shutil.which("plantuml"):
+        return set()
+    subprocess.run(["plantuml", "-tsvg", "-nometadata"] + [str(p) for p in paths], check=True,
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    return puml_path.with_suffix(".svg").exists()
+    return {p for p in paths if p.with_suffix(".svg").exists()}
 
 
-def main():
-    vocab = vocabulary_index()
-    # The workbook names a derived package in column-heading shorthand ("mar. api"). The readable
-    # name lives with the rest of the package metadata, so the diagram carries that instead.
-    meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
-    names = {k: v.get("name", k) for k, v in meta["derived"].items()}
-    pkg_names = {k: v.get("title", k) for k, v in meta["packages"].items()}
-    VIEWS.mkdir(exist_ok=True)
-    DIAGRAMS.mkdir(exist_ok=True)
-    manifest, rendered, missing = {}, 0, 0
-
-    for path in sorted(PKG.glob("*.json")):
+def build(version, vocab, names, pkg_names, pending):
+    pkg_dir = ROOT / "intermediate" / f"v{version}" / "packages"
+    entries = {}
+    for path in sorted(pkg_dir.glob("*.json")):
         if path.name == "summary.json":
             continue
         pkg = json.loads(path.read_text())
         key, nodes = pkg["key"], pkg["nodes"]
         pslug = PKG_SLUG[key]
-        entry = {"key": key, "slug": pslug, "title": pkg["title"],
-                 "description": pkg["description"], "source": pkg["source"],
-                 "messages": {}}
+        entry = {"key": key, "slug": pslug, "title": pkg_names.get(key, pkg["title"]),
+                 "description": pkg["description"], "source": pkg["source"], "messages": {}}
 
         work = [(None, pkg["title"], None)]
-        work += [(slugify(d), d, pkg["derived_package_groups"].get(d, "")) for d in pkg["derived_packages"]]
+        work += [(slugify(d), d, pkg["derived_package_groups"].get(d, ""))
+                 for d in pkg["derived_packages"]]
         for mslug, mtitle, group in work:
             by_path, children = build_tree(nodes, keep=None if mslug is None else mtitle)
             root = next((n["path"] for n in nodes if n["depth"] == 1), None)
@@ -291,24 +291,23 @@ def main():
             view = build_view(by_path, children, root, vocab)
             name = mslug or "base"
             display = names.get(mslug, mtitle) if mslug else pkg_names.get(key, mtitle)
-            out = VIEWS / pslug / name
+            out = VIEWS / f"v{version}" / pslug / name
             out.mkdir(parents=True, exist_ok=True)
-            view.update({"package": key, "message": name, "title": display, "version": VERSION})
-            (out / "tree.json").write_text(json.dumps(view, ensure_ascii=False, separators=(",", ":")) + "\n")
+            view.update({"package": key, "message": name, "title": display, "version": version})
+            (out / "tree.json").write_text(
+                json.dumps(view, ensure_ascii=False, separators=(",", ":")) + "\n")
 
-            diagram = f"{pslug}-{name}"
-            text, boxes, cut = puml(display, by_path, children, root, vocab[4])
+            diagram = f"v{version}-{pslug}-{name}"
+            text, boxes, cut = puml(f"{display} {version}", by_path, children, root, vocab[4])
             (DIAGRAMS / f"{diagram}.puml").write_text(text)
-            ok = render(DIAGRAMS / f"{diagram}.puml")
-            rendered += ok
-            missing += (not ok)
+            pending.append(DIAGRAMS / f"{diagram}.puml")
             entry["messages"][name] = {
                 "slug": name, "title": display, "group": group,
                 "derived": mslug is not None,
-                "schema": f"{key}-{mslug}-{VERSION}.json" if mslug else f"{key}-{VERSION}.json",
-                "context": (f"{key}-{mslug}-{VERSION}-context.jsonld" if mslug
-                            else f"{key}-{VERSION}-context.jsonld"),
-                "diagram": f"{diagram}.svg" if ok else None,
+                "schema": f"{key}-{mslug}-{version}.json" if mslug else f"{key}-{version}.json",
+                "context": (f"{key}-{mslug}-{version}-context.jsonld" if mslug
+                            else f"{key}-{version}-context.jsonld"),
+                "diagram": f"{diagram}.svg",
                 "diagram_boxes": boxes, "diagram_cut": cut,
                 "stats": view["stats"],
                 "top_level": [
@@ -319,13 +318,39 @@ def main():
                     for p in children.get(root, [])
                 ],
             }
-            print(f"  {pslug}/{name}: {view['stats']['nodes']} nodes, "
-                  f"{boxes} boxes in the diagram{' (cut)' if cut else ''}"
-                  f"{'' if ok else ' [no svg: plantuml not found]'}")
-        manifest[key] = entry
+        entries[key] = entry
+    print(f"  {version}: {sum(len(e['messages']) for e in entries.values())} messages")
+    return entries
 
-    (VIEWS / "manifest.json").write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
-    print(f"  {rendered} diagrams rendered, {missing} not")
+
+def main():
+    vocab = vocabulary_index()
+    # The workbook names a derived package in column-heading shorthand ("mar. api"). The readable
+    # name lives with the rest of the package metadata, so the diagram carries that instead.
+    meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
+    names = {k: v.get("name", k) for k, v in meta["derived"].items()}
+    pkg_names = {k: v.get("title", k) for k, v in meta["packages"].items()}
+
+    VIEWS.mkdir(exist_ok=True)
+    DIAGRAMS.mkdir(exist_ok=True)
+    versions = ([_release.version(_release.release_dir())] if os.environ.get("WCO_RELEASE")
+                else [_release.version(r) for r in _release.releases()])
+    pending = []
+    manifest = {v: build(v, vocab, names, pkg_names, pending) for v in versions}
+    drawn = render_all(pending)
+    if len(drawn) < len(pending):
+        missing = {p.with_suffix(".svg").name for p in pending} - {
+            p.with_suffix(".svg").name for p in drawn}
+        for release in manifest.values():
+            for pkg in release.values():
+                for entry in pkg["messages"].values():
+                    if entry["diagram"] in missing:
+                        entry["diagram"] = None
+    print(f"  {len(drawn)} of {len(pending)} diagrams rendered"
+          + ("" if len(drawn) == len(pending) else " (plantuml not found, or a diagram failed)"))
+    (VIEWS / "manifest.json").write_text(
+        json.dumps({"releases": manifest}, indent=1, ensure_ascii=False) + "\n")
+    print(f"  {len(versions)} releases in views/manifest.json")
     return 0
 
 

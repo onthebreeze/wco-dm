@@ -12,10 +12,10 @@ The WCO Data Model is the authority. This site is generated from a release of it
 source of truth. Where this site and the published model differ, the published model is right and
 the difference is a defect here.
 
-The release published here is **WCO Data Model 4.3.0**, taken from the Library and Overall
-Information Structure workbooks together with the four Information Package workbooks. Every term
-records the file, sheet and row it came from, so any statement on this site can be taken back to the
-cell that produced it.
+Four releases are published here - **4.0.0, 4.1.0, 4.2.0 and 4.3.0** - each taken from its Library
+and Overall Information Structure workbooks together with its four Information Package workbooks.
+Every term records the file, sheet and row it came from, so any statement on this site can be taken
+back to the cell that produced it.
 
 Changes to the model itself are a WCO matter. They arrive here as a new release of the workbooks,
 and the maintenance process that produces them is WCO's own, documented by WCO. This site does not
@@ -33,7 +33,7 @@ below is the one this publication holds itself to.
 | Human and machine readable | Published as RDF and as pages, not one or the other | Every address negotiates to HTML, Turtle, JSON-LD or RDF/XML |
 | Persistent identifiers | A published address resolves indefinitely and never changes meaning | Flat, version-free identifiers; the vocabulary evolves in place |
 | Lifecycle, not deletion | A term that falls out of use is marked, not removed | `wco:termStatus`, with retired terms still resolving |
-| Versioning where it belongs | Messages are pinned; terms are not | Unversioned vocabulary, versioned message schemas |
+| Versioning where it belongs | Messages are pinned; terms are not | Unversioned vocabulary across four releases, with a schema and context per message per release |
 | Change control | A documented, reviewable change process | Generator changes reviewed as a diff in `ontology/` |
 | Declared scope | A reader can tell what the model is for and what it excludes | Customs and cross-border regulatory data; see the architecture page |
 | Mappings with a status | Relationships to other vocabularies carry their authority | SKOS mappings to vocab.unece.org, each with a recorded decision maker |
@@ -42,7 +42,8 @@ below is the one this publication holds itself to.
 
 ## Term lifecycle
 
-Every class, property, code list and code value carries a `wco:termStatus`.
+Every class, property, code list and code value carries a `wco:termStatus`, and with it the release
+that introduced the term and, where it has gone, the release that dropped it.
 
 | State | Meaning |
 |---|---|
@@ -51,9 +52,14 @@ Every class, property, code list and code value carries a `wco:termStatus`.
 | deprecated | Still published, but its use is discouraged |
 | retired | Withdrawn, and retained so that existing references still resolve |
 
-Everything generated from release 4.3.0 is active. A term never disappears: a retired term keeps its
-address and says that it is retired, because an identifier that stops resolving breaks every document
-that ever used it.
+The vocabulary is built from every release at once, so a term introduced in 4.1.0 says so, and one
+dropped after 4.1.0 is published as deprecated rather than left out. A term never disappears: it
+keeps its address and says what became of it, because an identifier that stops resolving breaks
+every document that ever used it.
+
+Identity across releases is the WCO identifier rather than the name. Attribute 429 is Traveller
+status code in 4.1.0 and Traveler status code in 4.2.0; by name that is a removal and an addition,
+by identifier it is the rename it was, and the earlier name is kept as an alternate label.
 
 ## Versioning: the vocabulary evolves, the messages are pinned
 

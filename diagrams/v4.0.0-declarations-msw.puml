@@ -1,0 +1,82 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title msw 4.0.0
+class "Declaration" as C0 <<root>> {
+  6 elements
+}
+class "AdditionalDocument" as C1 <<more>> {
+  7 elements
+  1 class below
+}
+class "AdditionalInformation" as C2 {
+  3 elements
+}
+class "Agent" as C3 <<more>> {
+  2 elements
+  3 classes below
+}
+class "BorderTransportMeans" as C4 <<more>> {
+  19 elements
+  42 classes below
+}
+class "Carrier" as C5 <<more>> {
+  2 elements
+  3 classes below
+}
+class "CompanySecurityOfficer" as C6 <<more>> {
+  1 element
+  3 classes below
+}
+class "Consignment" as C7 <<more>> {
+  2 elements
+  34 classes below
+}
+class "Declarant" as C8 <<more>> {
+  3 elements
+  2 classes below
+}
+class "EntryOffice" as C9 {
+  2 elements
+}
+class "PreviousDocument" as C10 {
+  1 element
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C0 *-- "0..*" C4
+C0 *-- "0..*" C5
+C0 *-- "0..*" C6
+C0 *-- "0..*" C7
+C0 *-- "0..*" C8
+C0 *-- "0..*" C9
+C0 *-- "0..*" C10
+note as N
+  Classes only, to the depth that stays readable.
+  A shaded box has further classes inside it.
+end note
+@enduml

@@ -1,0 +1,71 @@
+{
+ "mdip": {
+  "title": "Meta Data Information Package",
+  "nodes": 67,
+  "classes": 10,
+  "elements": 57,
+  "repeating": 9,
+  "max_depth": 5,
+  "derived_packages": []
+ },
+ "aip": {
+  "title": "Additional Information Package",
+  "nodes": 416,
+  "classes": 87,
+  "elements": 329,
+  "repeating": 86,
+  "max_depth": 6,
+  "derived_packages": [
+   "etir",
+   "sstl",
+   "aeo masterdata",
+   "cntrl",
+   "inf",
+   "bussval",
+   "techval",
+   "sta",
+   "msw",
+   "upu",
+   "api"
+  ]
+ },
+ "bip-dec": {
+  "title": "Declaration Base Information Package",
+  "nodes": 8924,
+  "classes": 1813,
+  "elements": 7111,
+  "repeating": 1810,
+  "max_depth": 11,
+  "derived_packages": [
+   "aei",
+   "api",
+   "dv1",
+   "irg",
+   "msw",
+   "sad",
+   "upu",
+   "val"
+  ]
+ },
+ "bip-lpco": {
+  "title": "LPCO Base Information Package",
+  "nodes": 717,
+  "classes": 163,
+  "elements": 554,
+  "repeating": 162,
+  "max_depth": 8,
+  "derived_packages": [
+   "cites",
+   "ecoo",
+   "etir guar",
+   "atiga_coo",
+   "etir carv",
+   "ecoc",
+   "codex",
+   "e-phyto",
+   "unesco cert",
+   "eata",
+   "oie cert"
+  ]
+ }
+}

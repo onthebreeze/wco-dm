@@ -35,20 +35,45 @@ whole site is one toolchain and one visual language.
 ## Rebuilding from a new WCO release
 
 ```
-python3 scripts/extract.py          # 1. read the new workbooks in raw-data/
-python3 scripts/fidelity_check.py   # 2. check that nothing was lost on the way in
-python3 scripts/build_vocabulary.py # 3. regenerate the vocabulary
-python3 scripts/validate_vocab.py   # 4. check it holds together
-python3 scripts/map_to_unece.py     # 5. refresh mapping candidates, keeping decisions
-python3 scripts/extract_packages.py # 6. read the four Information Package workbooks
-python3 scripts/build_schemas.py    # 7. generate a schema and context per package
-python3 scripts/validate_schemas.py # 8. check each one is valid and still rejects something
-python3 scripts/build_package_views.py  # 9. the browsable tree and the diagram per message
-python3 scripts/build_site.py       # 10. build the pages
+python3 scripts/extract.py --all          # 1. read every release in raw-data/
+python3 scripts/fidelity_check.py --all   # 2. check that nothing was lost on the way in
+python3 scripts/build_vocabulary.py       # 3. one vocabulary from every release
+python3 scripts/validate_vocab.py         # 4. check it holds together
+python3 scripts/map_to_unece.py           # 5. refresh mapping candidates, keeping decisions
+python3 scripts/extract_packages.py --all # 6. the four package workbooks of every release
+python3 scripts/build_schemas.py          # 7. a schema and context per message per release
+python3 scripts/validate_schemas.py       # 8. check each one is valid and still rejects something
+python3 scripts/build_package_views.py    # 9. the browsable tree and the diagram per message
+python3 scripts/build_site.py             # 10. build the pages
 ```
+
+A new WCO release is a new directory under `raw-data/`, named for its version, and nothing else.
+The workbooks are found by what they are rather than by name, because the releases do not agree:
+4.0.0 calls the path column XPath where the others call it UML Model Path, 4.2.0 writes Attribute
+UPI where the others write Attr. UPI, and 4.3.0 adds a JSON Tag Name column that shifts everything
+after it. Every column is resolved by heading for the same reason.
 
 `scripts/build_all.sh` runs the lot, including the search index. The diff in `ontology/` after step
 3 is the review: it shows exactly what changed in the model.
+
+## The vocabulary spans releases; the messages do not
+
+`build_vocabulary.py` reads every release at once and publishes one set of terms. A term is
+identified by its WCO identifier rather than by its name, so a rename is a rename: attribute 429 is
+Traveller status code in 4.1.0 and Traveler status code in 4.2.0, and the earlier spelling becomes
+an alternate label on one term rather than a second term. Class 17C is spelt both AuthorisationHolder
+and AuthorizationHolder in the same workbook, in all four releases, and merges the same way.
+
+A term absent from the newest release is published as deprecated, naming the release that dropped
+it. 72 attribute positions and 3 code lists are in that state today; no class has ever been removed.
+
+One rule keeps published identifiers still. Where adding an older release introduces a second value
+domain for a property name, the split that follows gives the original name to whichever part the
+current release uses, so history does not move an address that is already published.
+
+`build_schemas.py` and `build_package_views.py` run per release instead, because a message format
+has to be pinned. 106 schema and context pairs across the four releases, and a browsable structure
+for each.
 
 ## The checks, and why each exists
 
@@ -81,14 +106,14 @@ worse than no schema, since it looks like a control.
 `build_package_views.py` writes two things per message, for the four packages and the sixteen
 derived packages alike.
 
-`views/<package>/<message>/tree.json` is the message as data: every position with its cardinality,
+`views/v<release>/<package>/<message>/tree.json` is the message as data: every position with its cardinality,
 its tags, the vocabulary term it is bound to and the code list its values come from. Names and
 definitions are pooled into one string table and referenced by index, because the Declaration
 repeats 243 classes over 1,847 positions and sending each one again would multiply the file for no
 extra meaning. It is minified because it is a transport format for the browser widget; the
 reviewable form of the same content is `intermediate/packages/*.json`.
 
-`diagrams/<package>-<message>.puml` is the conceptual view, rendered to SVG when plantuml is on the
+`diagrams/v<release>-<package>-<message>.puml` is the conceptual view, rendered to SVG when plantuml is on the
 path and committed so that the site builds without it. There are two shapes. A message whose top
 level is small enough is drawn class by class, as deep as stays readable. The three Base packages
 are not: the Declaration has 67 classes directly under its root, which graphviz lays out in one

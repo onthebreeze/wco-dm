@@ -8,6 +8,11 @@ This site publishes the same model as a linked data vocabulary: every class, pro
 its own address, and that address answers a reader with a page and a machine with Turtle, JSON-LD or
 RDF/XML.
 
+Four releases are held here, [4.0.0 to 4.3.0](releases/). The vocabulary is one unversioned set of
+terms across all of them: each term says which release introduced it and, where it has gone, which
+release dropped it, and nothing is deleted. The messages are versioned, so each release has its own
+schemas, contexts and browsable structures.
+
 ## Three kinds of term
 
 The vocabulary has three categories, and a code list is one of them rather than a detail hanging off
@@ -16,9 +21,9 @@ Turtle and as JSON-LD.
 
 | | | |
 |---|---|---|
-| [Classes](classes/) | 283 | A group of information the model treats as a thing: a consignment, a party, a means of transport |
-| [Properties](properties/) | 409 | A single piece of information about a class. One property serves every class that uses it |
-| [Code lists](code-lists/) | 171 | The value domain of a coded property, with its codes where WCO owns them |
+| [Classes](classes/) | 287 | A group of information the model treats as a thing: a consignment, a party, a means of transport |
+| [Properties](properties/) | 452 | A single piece of information about a class. One property serves every class that uses it |
+| [Code lists](code-lists/) | 177 | The value domain of a coded property, with its codes where WCO owns them |
 
 Mappings to vocab.unece.org are carried on the term pages, where a corresponding concept exists.
 

@@ -1,0 +1,127 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title val 4.1.0
+class "Declaration" as C0 <<root>> {
+  4 elements
+}
+class "CurrencyExchange" as C1 {
+  2 elements
+}
+class "GoodsShipment" as C2 {
+  1 element
+}
+class "Buyer" as C3 {
+  2 elements
+}
+class "AdditionalDocument" as C4 {
+  4 elements
+}
+class "AdditionalInformation" as C5 {
+  2 elements
+}
+class "CustomsValuation" as C6 {
+  6 elements
+}
+class "GoodsItem" as C7 {
+  3 elements
+}
+class "Invoice" as C8 {
+  3 elements
+}
+class "Seller" as C9 {
+  2 elements
+}
+class "TradeTerms" as C10 {
+  5 elements
+}
+class "Address" as C11 {
+  7 elements
+}
+class "Contact" as C12 {
+  1 element
+}
+class "Communication" as C13 {
+  2 elements
+}
+class "ChargeDeduction" as C14 {
+  2 elements
+}
+class "LoadingLocation" as C15 {
+  4 elements
+}
+class "Commodity" as C16 {
+  1 element
+}
+class "ValuationAdjustment" as C17 {
+  3 elements
+}
+class "Address" as C18 {
+  7 elements
+}
+class "Contact" as C19 {
+  1 element
+}
+class "Communication" as C20 {
+  2 elements
+}
+class "Communication" as C21 {
+  2 elements
+}
+class "CurrencyExchange" as C22 {
+  2 elements
+}
+class "InvoiceLine" as C23 {
+  2 elements
+}
+class "Communication" as C24 {
+  2 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C2 *-- "0..*" C3
+C2 *-- "0..*" C4
+C2 *-- "0..*" C5
+C2 *-- "0..*" C6
+C2 *-- "0..*" C7
+C2 *-- "0..*" C8
+C2 *-- "0..*" C9
+C2 *-- "0..*" C10
+C3 *-- "0..*" C11
+C3 *-- "0..*" C12
+C3 *-- "0..*" C13
+C6 *-- "0..*" C14
+C6 *-- "0..*" C15
+C7 *-- "0..*" C16
+C7 *-- "0..*" C17
+C9 *-- "0..*" C18
+C9 *-- "0..*" C19
+C9 *-- "0..*" C20
+C12 *-- "0..*" C21
+C14 *-- "0..*" C22
+C16 *-- "0..*" C23
+C19 *-- "0..*" C24
+@enduml

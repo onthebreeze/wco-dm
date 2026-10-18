@@ -38,7 +38,12 @@ def main():
         if not list(v.iter_errors({"thisFieldIsNotInTheWcoDataModel": True})):
             failures.append((f.name, "accepts a field the model does not have"))
 
-    print(f"{len(files)} schemas checked")
+    by_release = {}
+    for f in files:
+        version = f.stem.split("-")[-1].replace("-context", "")
+        by_release[version] = by_release.get(version, 0) + 1
+    print(f"{len(files)} schemas checked across {len(by_release)} releases: "
+          + ", ".join(f"{v} ({n})" for v, n in sorted(by_release.items())))
     if failures:
         print(f"\n{len(failures)} failed:")
         for name, why in failures:

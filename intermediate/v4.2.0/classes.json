@@ -1,0 +1,3824 @@
+[
+ {
+  "class_id": "16C",
+  "class_name": "AEOMutualRecognitionParty",
+  "module": "core",
+  "uml_path": "AEOMutualRecognitionParty",
+  "definition": "Details related to the role of the further parties in the supply chain having obtained a trusted trader certificate but otherwise not being identified in the declarations (e.g. warehouse keeper, freight forwarder).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 202
+  }
+ },
+ {
+  "class_id": "71C",
+  "class_name": "AEOProgramProfile",
+  "module": "core",
+  "uml_path": "AEOProgramProfile",
+  "definition": "Details related to the Authorized Economic Operator (AEO) program.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 938
+  }
+ },
+ {
+  "class_id": "71C",
+  "class_name": "AEOProrgramProfile",
+  "module": "core",
+  "uml_path": "AEOProgramProfile/agencyName",
+  "definition": null,
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 940
+  }
+ },
+ {
+  "class_id": "58C",
+  "class_name": "AIP",
+  "module": "core",
+  "uml_path": "AIP",
+  "definition": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 630
+  }
+ },
+ {
+  "class_id": "01A",
+  "class_name": "AcceptanceLocation",
+  "module": "core",
+  "uml_path": "AcceptanceLocation",
+  "definition": "Details related to the location of acceptance.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 62
+  }
+ },
+ {
+  "class_id": "24C",
+  "class_name": "Action",
+  "module": "core",
+  "uml_path": "Action",
+  "definition": "Details related to an action taken on declaration data.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 901
+  }
+ },
+ {
+  "class_id": "02A",
+  "class_name": "AdditionalDocument",
+  "module": "core",
+  "uml_path": "AdditionalDocument",
+  "definition": "Details related to additional documents as part of a declaration or as part of a response.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 689
+  }
+ },
+ {
+  "class_id": "23C",
+  "class_name": "AdditionalIdentifier",
+  "module": "core",
+  "uml_path": "AdditionalIdentifier",
+  "definition": "Details related to an additional identification of a party.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 903
+  }
+ },
+ {
+  "class_id": "03A",
+  "class_name": "AdditionalInformation",
+  "module": "core",
+  "uml_path": "AdditionalInformation",
+  "definition": "Details related to the special request from declarant to government to take or not to take action.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 908
+  }
+ },
+ {
+  "class_id": "59C",
+  "class_name": "AdditionalProcedure",
+  "module": "core",
+  "uml_path": "AdditionalProcedure",
+  "definition": "Details related to an additional procedure.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 920
+  }
+ },
+ {
+  "class_id": "52C",
+  "class_name": "AdditionalReference",
+  "module": "core",
+  "uml_path": "AdditionalReference",
+  "definition": "Details related to an additional reference.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 922
+  }
+ },
+ {
+  "class_id": "04A",
+  "class_name": "Address",
+  "module": "core",
+  "uml_path": "Address",
+  "definition": "Details related to an address.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 925
+  }
+ },
+ {
+  "class_id": "05A",
+  "class_name": "Agent",
+  "module": "core",
+  "uml_path": "Agent",
+  "definition": "Details related to the party authorized to act on behalf of another party.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 206
+  }
+ },
+ {
+  "class_id": "06A",
+  "class_name": "Amendment",
+  "module": "core",
+  "uml_path": "Amendment",
+  "definition": "Details related to updating declaration data. Can cover the entire WCO Data Model.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 945
+  }
+ },
+ {
+  "class_id": "07A",
+  "class_name": "AppealOffice",
+  "module": "core",
+  "uml_path": "AppealOffice",
+  "definition": "Details related to the government agency office where an appeal can be lodged.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 3
+  }
+ },
+ {
+  "class_id": "30C",
+  "class_name": "Applicant",
+  "module": "core",
+  "uml_path": "Applicant",
+  "definition": "Details related to the party who applies for something.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 213
+  }
+ },
+ {
+  "class_id": "08A",
+  "class_name": "ApprovedEstablishmentLocation",
+  "module": "core",
+  "uml_path": "ApprovedEstablishmentLocation",
+  "definition": "Details related to a facility approved for a specific purpose by a government authority.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 66
+  }
+ },
+ {
+  "class_id": "09A",
+  "class_name": "ArrivalConveyanceFacility",
+  "module": "core",
+  "uml_path": "ArrivalConveyanceFacility",
+  "definition": "Details related to the conveyance facilities at the arrival location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 69
+  }
+ },
+ {
+  "class_id": "11C",
+  "class_name": "ArrivalLocation",
+  "module": "core",
+  "uml_path": "ArrivalLocation",
+  "definition": "Details related to the first arrival location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 77
+  }
+ },
+ {
+  "class_id": "10A",
+  "class_name": "ArrivalTransportMeans",
+  "module": "core",
+  "uml_path": "ArrivalTransportMeans",
+  "definition": "Details related to the means of transport at arrival.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 785
+  }
+ },
+ {
+  "class_id": "50B",
+  "class_name": "Assembler",
+  "module": "core",
+  "uml_path": "Assembler",
+  "definition": "Details related to the party responsible for putting together various components or parts into a product or commodity in its form or condition as imported.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 218
+  }
+ },
+ {
+  "class_id": "71B",
+  "class_name": "AssigningParty",
+  "module": "core",
+  "uml_path": "AssigningParty",
+  "definition": "Details related to the party who assigns any identifier to a shipment.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 223
+  }
+ },
+ {
+  "class_id": "11A",
+  "class_name": "AssociatedTransportDocument",
+  "module": "core",
+  "uml_path": "AssociatedTransportDocument",
+  "definition": "Details related to an association from Master Bill(s) to House Bill(s).",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 709
+  }
+ },
+ {
+  "class_id": "61B",
+  "class_name": "Authentication",
+  "module": "core",
+  "uml_path": "Authentication",
+  "definition": "Details related to the authentication of a document.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 947
+  }
+ },
+ {
+  "class_id": "12A",
+  "class_name": "Authenticator",
+  "module": "core",
+  "uml_path": "Authenticator",
+  "definition": "Details related to an authenticating party.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 227
+  }
+ },
+ {
+  "class_id": "17C",
+  "class_name": "AuthorisationHolder",
+  "module": "party",
+  "uml_path": "AuthorizationHolder/role",
+  "definition": null,
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 234
+  }
+ },
+ {
+  "class_id": "88B",
+  "class_name": "Authorization",
+  "module": "core",
+  "uml_path": "Authorization",
+  "definition": "Details related to authorizations.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 712
+  }
+ },
+ {
+  "class_id": "17C",
+  "class_name": "AuthorizationHolder",
+  "module": "core",
+  "uml_path": "AuthorizationHolder",
+  "definition": "Details related to the holder of the authorization.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 232
+  }
+ },
+ {
+  "class_id": "90B",
+  "class_name": "AuthorizationWithdrawal",
+  "module": "core",
+  "uml_path": "AuthorizationWithdrawal",
+  "definition": "Details related to the withdrawal of an authorization.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 954
+  }
+ },
+ {
+  "class_id": "13A",
+  "class_name": "AuthorizedPerson",
+  "module": "core",
+  "uml_path": "AuthorizedPerson",
+  "definition": "Details related to a person designated under relevant legislation for the purpose of issuing official assurances.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 237
+  }
+ },
+ {
+  "class_id": "14A",
+  "class_name": "Bank",
+  "module": "core",
+  "uml_path": "Bank",
+  "definition": "Details related to the requirement for payment to a financial institution.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 957
+  }
+ },
+ {
+  "class_id": "72B",
+  "class_name": "BinaryFile",
+  "module": "core",
+  "uml_path": "BinaryFile",
+  "definition": "Details related to the computer file or program stored in a binary format.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 960
+  }
+ },
+ {
+  "class_id": "15A",
+  "class_name": "BorderTransportMeans",
+  "module": "core",
+  "uml_path": "BorderTransportMeans",
+  "definition": "Details related to the means of transport crossing the border of the Customs territory.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 792
+  }
+ },
+ {
+  "class_id": "42C",
+  "class_name": "BorderingOffice",
+  "module": "core",
+  "uml_path": "BorderingOffice",
+  "definition": "Details related to the government agency office across the border, facing the current object.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 5
+  }
+ },
+ {
+  "class_id": "06C",
+  "class_name": "Bunker",
+  "module": "core",
+  "uml_path": "Bunker",
+  "definition": "Details related to the bunkers onboard a vessel.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 977
+  }
+ },
+ {
+  "class_id": "16A",
+  "class_name": "Buyer",
+  "module": "core",
+  "uml_path": "Buyer",
+  "definition": "Details related to the party to which merchandise or services are sold.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 242
+  }
+ },
+ {
+  "class_id": "66C",
+  "class_name": "Cabin",
+  "module": "core",
+  "uml_path": "Cabin",
+  "definition": "Details related to the cabin.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 979
+  }
+ },
+ {
+  "class_id": "93B",
+  "class_name": "CallPurpose",
+  "module": "core",
+  "uml_path": "CallPurpose",
+  "definition": "Details related to the purpose of the conveyance call.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 983
+  }
+ },
+ {
+  "class_id": "17A",
+  "class_name": "CargoFacilityLocation",
+  "module": "core",
+  "uml_path": "CargoFacilityLocation",
+  "definition": "Details related to the name of the terminal, warehouse, or yard where the goods are to be on or off loaded.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 83
+  }
+ },
+ {
+  "class_id": "73B",
+  "class_name": "CarriedTransportEquipment",
+  "module": "core",
+  "uml_path": "CarriedTransportEquipment",
+  "definition": "Details related to the piece of transport equipment carried on this piece of transport equipment, such as a container placed on a rail wagon.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 986
+  }
+ },
+ {
+  "class_id": "18A",
+  "class_name": "Carrier",
+  "module": "core",
+  "uml_path": "Carrier",
+  "definition": "Details related to the party undertaking or arranging transport of goods between named points.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 248
+  }
+ },
+ {
+  "class_id": "19A",
+  "class_name": "CertificateOfResponsibilityHolder",
+  "module": "core",
+  "uml_path": "CertificateOfResponsibilityHolder",
+  "definition": "Details related to the party holding the Certificate of Financial Responsibility (COFR).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 253
+  }
+ },
+ {
+  "class_id": "20A",
+  "class_name": "Certifier",
+  "module": "core",
+  "uml_path": "Certifier",
+  "definition": "Details related to the party which certifies something.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 257
+  }
+ },
+ {
+  "class_id": "94B",
+  "class_name": "Characteristic",
+  "module": "core",
+  "uml_path": "Characteristic",
+  "definition": "Details related to the characteristic.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 989
+  }
+ },
+ {
+  "class_id": "58B",
+  "class_name": "ChargeDeduction",
+  "module": "core",
+  "uml_path": "ChargeDeduction",
+  "definition": "Details related to the charges and deductions relevant to customs value (e.g. international freight, insurance, and post importation charges for construction, erection).",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 992
+  }
+ },
+ {
+  "class_id": "21A",
+  "class_name": "Classification",
+  "module": "core",
+  "uml_path": "Classification",
+  "definition": "Details related to the non-commercial categorization of a commodity by a standard-setting organization.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 995
+  }
+ },
+ {
+  "class_id": "22A",
+  "class_name": "CommercialDriversLicense",
+  "module": "core",
+  "uml_path": "CommercialDriversLicense",
+  "definition": "Details related to the license issued by appropriate authority allowing a driver to operate a commercial (i.e., non-private) vehicle for transporting people or commercial cargo.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1001
+  }
+ },
+ {
+  "class_id": "23A",
+  "class_name": "Commodity",
+  "module": "core",
+  "uml_path": "Commodity",
+  "definition": "Details related to the properties of the goods.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1005
+  }
+ },
+ {
+  "class_id": "24A",
+  "class_name": "CommodityRelatedPackaging",
+  "module": "core",
+  "uml_path": "CommodityRelatedPackaging",
+  "definition": "Details related to packaging including packing material, size, dimension, hierarchy, certification and marking.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1030
+  }
+ },
+ {
+  "class_id": "25A",
+  "class_name": "Communication",
+  "module": "core",
+  "uml_path": "Communication",
+  "definition": "Details related to communication including number and number type.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1039
+  }
+ },
+ {
+  "class_id": "1MD",
+  "class_name": "CommunicationMetaData",
+  "module": "core",
+  "uml_path": "CommunicationMetaData",
+  "definition": "Details related to meta data to be used for communication purposes.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 883
+  }
+ },
+ {
+  "class_id": "26A",
+  "class_name": "CompanySecurityOfficer",
+  "module": "core",
+  "uml_path": "CompanySecurityOfficer",
+  "definition": "Details related to the company security officer as described in IMO Circular MSC 1130.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 262
+  }
+ },
+ {
+  "class_id": "65C",
+  "class_name": "ConnectionTransportMeans",
+  "module": "core",
+  "uml_path": "ConnectionTransportMeans",
+  "definition": "Details related to the means of transport the traveler uses to join or leave the primary means of transport.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 837
+  }
+ },
+ {
+  "class_id": "27A",
+  "class_name": "Consignee",
+  "module": "core",
+  "uml_path": "Consignee",
+  "definition": "Details related to the party to which goods are consigned.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 266
+  }
+ },
+ {
+  "class_id": "28A",
+  "class_name": "Consignment",
+  "module": "core",
+  "uml_path": "Consignment",
+  "definition": "Details related to the transport between a consignor and a consignee as specified in the transport contract document.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1043
+  }
+ },
+ {
+  "class_id": "29A",
+  "class_name": "ConsignmentItem",
+  "module": "core",
+  "uml_path": "ConsignmentItem",
+  "definition": "Details related to an item in a consignment.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1063
+  }
+ },
+ {
+  "class_id": "30A",
+  "class_name": "Consignor",
+  "module": "core",
+  "uml_path": "Consignor",
+  "definition": "Details related to the party which, by contract with a carrier, consigns or sends goods with the carrier, or has them conveyed by him.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 272
+  }
+ },
+ {
+  "class_id": "31A",
+  "class_name": "Consolidator",
+  "module": "core",
+  "uml_path": "Consolidator",
+  "definition": "Details related to the party consolidating consignments in one large or master consignment.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 278
+  }
+ },
+ {
+  "class_id": "32A",
+  "class_name": "ConsortiumCarrier",
+  "module": "core",
+  "uml_path": "ConsortiumCarrier",
+  "definition": "Details related to the marine carrier that transports goods for more than one shipping line between named points.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 283
+  }
+ },
+ {
+  "class_id": "33A",
+  "class_name": "Constituent",
+  "module": "core",
+  "uml_path": "Constituent",
+  "definition": "Details related to the element or component element in a commodity including description, percentage, quantity, name, active ingredient and yield amount.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1071
+  }
+ },
+ {
+  "class_id": "34A",
+  "class_name": "Contact",
+  "module": "core",
+  "uml_path": "Contact",
+  "definition": "Details related to contact information of a department or employee.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1079
+  }
+ },
+ {
+  "class_id": "35A",
+  "class_name": "ContactOffice",
+  "module": "core",
+  "uml_path": "ContactOffice",
+  "definition": "Details related to the location of a government agency contact office.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 7
+  }
+ },
+ {
+  "class_id": "36A",
+  "class_name": "ContainerOperator",
+  "module": "core",
+  "uml_path": "ContainerOperator",
+  "definition": "Details related to the party to whom the possession of specified property (e.g. container) has been conveyed for a period of time in return for rental payments.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 288
+  }
+ },
+ {
+  "class_id": "37A",
+  "class_name": "ContainerTerminalOperator",
+  "module": "core",
+  "uml_path": "ContainerTerminalOperator",
+  "definition": "Details related to the party operating a container terminal.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 292
+  }
+ },
+ {
+  "class_id": "2MD",
+  "class_name": "ContextMetaData",
+  "module": "core",
+  "uml_path": "ContextMetaData",
+  "definition": "Details related to meta data to be used related to the context.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 892
+  }
+ },
+ {
+  "class_id": "38A",
+  "class_name": "Control",
+  "module": "core",
+  "uml_path": "Control",
+  "definition": "Details related to (governmental) examination.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1082
+  }
+ },
+ {
+  "class_id": "47C",
+  "class_name": "ControlOffice",
+  "module": "core",
+  "uml_path": "ControlOffice",
+  "definition": "Details related to the relevant governmental office where goods are available for further governmental control.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 9
+  }
+ },
+ {
+  "class_id": "83B",
+  "class_name": "ControlResult",
+  "module": "core",
+  "uml_path": "ControlResult",
+  "definition": "Details related to the outcome of (governmental) examination.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1091
+  }
+ },
+ {
+  "class_id": "44C",
+  "class_name": "Counterpart",
+  "module": "core",
+  "uml_path": "Counterpart",
+  "definition": "Details related to the party opposing to something or someone, especially in a process.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 296
+  }
+ },
+ {
+  "class_id": "39A",
+  "class_name": "CrewMember",
+  "module": "core",
+  "uml_path": "CrewMember",
+  "definition": "Details related to crew members.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 298
+  }
+ },
+ {
+  "class_id": "40A",
+  "class_name": "CurrencyExchange",
+  "module": "core",
+  "uml_path": "CurrencyExchange",
+  "definition": "Details related to rate at which one specified currency is expressed in another specified currency.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1096
+  }
+ },
+ {
+  "class_id": "41A",
+  "class_name": "CustomsValuation",
+  "module": "core",
+  "uml_path": "CustomsValuation",
+  "definition": "Details related to valuation applying to the shipment.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1099
+  }
+ },
+ {
+  "class_id": "12C",
+  "class_name": "DangerousGoods",
+  "module": "core",
+  "uml_path": "DangerousGoods",
+  "definition": "Details related to the dangerous goods.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1107
+  }
+ },
+ {
+  "class_id": "37B",
+  "class_name": "DangerousGoodsContactParty",
+  "module": "core",
+  "uml_path": "DangerousGoodsContactParty",
+  "definition": "Details related to a dangerous goods contact person/party who can provide detailed information regarding dangerous goods.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 304
+  }
+ },
+ {
+  "class_id": "57B",
+  "class_name": "Declarant",
+  "module": "core",
+  "uml_path": "Declarant",
+  "definition": "Details related to the party who makes a declaration to an official body or - where legally permitted - in whose name, or on whose behalf, a declaration to an official body is made.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 309
+  }
+ },
+ {
+  "class_id": "42A",
+  "class_name": "Declaration",
+  "module": "core",
+  "uml_path": "Declaration",
+  "definition": "Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 640
+  }
+ },
+ {
+  "class_id": "92B",
+  "class_name": "DeclarationGuarantee",
+  "module": "core",
+  "uml_path": "DeclarationGuarantee",
+  "definition": "Details related to the undertaking given in cash, bond or as a written guarantee to ensure that an obligation will be fulfilled (e.g. under a transit procedure) related to a declaration.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 716
+  }
+ },
+ {
+  "class_id": "10C",
+  "class_name": "DeclarationOffice",
+  "module": "core",
+  "uml_path": "DeclarationOffice",
+  "definition": "Details related to the government office at which a declaration is lodged.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 12
+  }
+ },
+ {
+  "class_id": "43A",
+  "class_name": "Deconsolidator",
+  "module": "core",
+  "uml_path": "Deconsolidator",
+  "definition": "Details related to the party responsible for dividing a consolidated consignment into its original single consignments and making them available for delivery.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 315
+  }
+ },
+ {
+  "class_id": "04C",
+  "class_name": "Defects",
+  "module": "core",
+  "uml_path": "Defects",
+  "definition": "Details related to the defects noted.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1115
+  }
+ },
+ {
+  "class_id": "53C",
+  "class_name": "DeferredPayment",
+  "module": "core",
+  "uml_path": "DeferredPayment",
+  "definition": "Details related to a deferred payment.\nIt may refer both to deferred payment of import and export duty and to tax credit.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1118
+  }
+ },
+ {
+  "class_id": "44A",
+  "class_name": "DeliveryDestinationParty",
+  "module": "core",
+  "uml_path": "DeliveryDestinationParty",
+  "definition": "Details related to the party to which goods are to be delivered.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 320
+  }
+ },
+ {
+  "class_id": "45A",
+  "class_name": "DepartureConveyanceFacility",
+  "module": "core",
+  "uml_path": "DepartureConveyanceFacility",
+  "definition": "Details related to the conveyance facilities at the departure location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 85
+  }
+ },
+ {
+  "class_id": "98B",
+  "class_name": "DepartureLocation",
+  "module": "core",
+  "uml_path": "DepartureLocation",
+  "definition": "Details related to departure location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 92
+  }
+ },
+ {
+  "class_id": "46A",
+  "class_name": "DepartureTransportMeans",
+  "module": "core",
+  "uml_path": "DepartureTransportMeans",
+  "definition": "Details related to the goods in the context of export.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 844
+  }
+ },
+ {
+  "class_id": "99B",
+  "class_name": "DestinationLocation",
+  "module": "core",
+  "uml_path": "DestinationLocation",
+  "definition": "Details related to the destination location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 100
+  }
+ },
+ {
+  "class_id": "63B",
+  "class_name": "DisembarkationLocation",
+  "module": "core",
+  "uml_path": "DisembarkationLocation",
+  "definition": "Details related to the disembarkation location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 106
+  }
+ },
+ {
+  "class_id": "54C",
+  "class_name": "DispatchCountry",
+  "module": "core",
+  "uml_path": "DispatchCountry",
+  "definition": "Details related to the country from which goods were initially dispatched to the country in which the goods are located at the time of their release into the customs procedure.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1120
+  }
+ },
+ {
+  "class_id": "47A",
+  "class_name": "Distiller",
+  "module": "core",
+  "uml_path": "Distiller",
+  "definition": "Details related to the person or company whose business it is to extract alcoholic liquors by distillation.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 325
+  }
+ },
+ {
+  "class_id": "48A",
+  "class_name": "Distributor",
+  "module": "core",
+  "uml_path": "Distributor",
+  "definition": "Details related to the party distributing goods.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 330
+  }
+ },
+ {
+  "class_id": "55B",
+  "class_name": "DomesticDutyTaxParty",
+  "module": "core",
+  "uml_path": "DomesticDutyTaxParty",
+  "definition": "Details related to the party responsible for the national VAT or Goods & Services Tax.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 335
+  }
+ },
+ {
+  "class_id": "49A",
+  "class_name": "DraymanOrLighterman",
+  "module": "core",
+  "uml_path": "DraymanOrLighterman",
+  "definition": "Details related to the party that moves goods within port limits on either land or water.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 340
+  }
+ },
+ {
+  "class_id": "50A",
+  "class_name": "DutyTaxFee",
+  "module": "core",
+  "uml_path": "DutyTaxFee",
+  "definition": "Details related to calculation of one instance of one duty, one tax, and/or one fee. \nComment: Each instance of this class is to be used for a single occurrence of duty, tax or fee.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1122
+  }
+ },
+ {
+  "class_id": "39C",
+  "class_name": "DutyTaxFeeAssessmentBasis",
+  "module": "core",
+  "uml_path": "DutyTaxFeeAssessmentBasis",
+  "definition": "Details related to the amount on which a duty or tax or fee will be assessed.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1133
+  }
+ },
+ {
+  "class_id": "50C",
+  "class_name": "EconomicOperator",
+  "module": "core",
+  "uml_path": "EconomicOperator",
+  "definition": "Details related to an economic operator in whose premises the goods can be controlled.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 345
+  }
+ },
+ {
+  "class_id": "65B",
+  "class_name": "Effects",
+  "module": "core",
+  "uml_path": "Effects",
+  "definition": "Details related to personal effects.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1137
+  }
+ },
+ {
+  "class_id": "64B",
+  "class_name": "EmbarkationLocation",
+  "module": "core",
+  "uml_path": "EmbarkationLocation",
+  "definition": "Details related to the embarkation location.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 110
+  }
+ },
+ {
+  "class_id": "34C",
+  "class_name": "EmergencySchedule",
+  "module": "core",
+  "uml_path": "EmergencySchedule",
+  "definition": "Details related to the emergency schedule (i.e., as identified in the IMO EmS Guide - Emergency Response Procedures for Ships Carrying Dangerous Goods).",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1143
+  }
+ },
+ {
+  "class_id": "51A",
+  "class_name": "EntryOffice",
+  "module": "core",
+  "uml_path": "EntryOffice",
+  "definition": "Details related to the office of entry.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 15
+  }
+ },
+ {
+  "class_id": "52A",
+  "class_name": "EquipmentOwner",
+  "module": "core",
+  "uml_path": "EquipmentOwner",
+  "definition": "Details related to the owner of equipment (e.g. container).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 348
+  }
+ },
+ {
+  "class_id": "53A",
+  "class_name": "Error",
+  "module": "core",
+  "uml_path": "Error",
+  "definition": "Details related to data validation errors.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1145
+  }
+ },
+ {
+  "class_id": "69C",
+  "class_name": "Event",
+  "module": "core",
+  "uml_path": "Consignment/Event",
+  "definition": "Details related to an event.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1060
+  }
+ },
+ {
+  "class_id": "54A",
+  "class_name": "ExaminationLocation",
+  "module": "core",
+  "uml_path": "ExaminationLocation",
+  "definition": "Details related to the location of physical examination.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 114
+  }
+ },
+ {
+  "class_id": "89B",
+  "class_name": "Exclusion",
+  "module": "core",
+  "uml_path": "Exclusion",
+  "definition": "Details related to an exclusion.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1151
+  }
+ },
+ {
+  "class_id": "55A",
+  "class_name": "Exhibitor",
+  "module": "core",
+  "uml_path": "Exhibitor",
+  "definition": "Details related to the party who offers items for exhibit or show.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 353
+  }
+ },
+ {
+  "class_id": "56A",
+  "class_name": "ExitOffice",
+  "module": "core",
+  "uml_path": "ExitOffice",
+  "definition": "Details related to the office of exit.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 19
+  }
+ },
+ {
+  "class_id": "95B",
+  "class_name": "ExportCountry",
+  "module": "core",
+  "uml_path": "ExportCountry",
+  "definition": "Details related to the export country.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1155
+  }
+ },
+ {
+  "class_id": "49C",
+  "class_name": "ExportOffice",
+  "module": "core",
+  "uml_path": "ExportOffice",
+  "definition": "Details related to the office of export where the export formalities are completed.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 21
+  }
+ },
+ {
+  "class_id": "57A",
+  "class_name": "Exporter",
+  "module": "core",
+  "uml_path": "Exporter",
+  "definition": "Details related to the person/party who makes or on whose behalf an export declaration is made.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 358
+  }
+ },
+ {
+  "class_id": "58A",
+  "class_name": "FacilityLocation",
+  "module": "core",
+  "uml_path": "FacilityLocation",
+  "definition": "Details related to a location of a facility.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 118
+  }
+ },
+ {
+  "class_id": "59A",
+  "class_name": "FeedlotParty",
+  "module": "core",
+  "uml_path": "FeedlotParty",
+  "definition": "Details related to a commercial establishment that feeds livestock.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 363
+  }
+ },
+ {
+  "class_id": "60A",
+  "class_name": "FinalTransportMeansLoadingLocation",
+  "module": "core",
+  "uml_path": "FinalTransportMeansLoadingLocation",
+  "definition": "Details related to the location where a consignment is placed aboard the final means of transport for the journey to a customs territory of a country or union of countries.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 122
+  }
+ },
+ {
+  "class_id": "67C",
+  "class_name": "FinancialCard",
+  "module": "core",
+  "uml_path": "FinancialCard",
+  "definition": "Details related to the financial card.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1159
+  }
+ },
+ {
+  "class_id": "61A",
+  "class_name": "FreeTradeZone",
+  "module": "core",
+  "uml_path": "FreeTradeZone",
+  "definition": "Details related to a free trade zone (or foreign free zone) where a particular consignment is to be or has been located.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 124
+  }
+ },
+ {
+  "class_id": "62A",
+  "class_name": "Freight",
+  "module": "core",
+  "uml_path": "Freight",
+  "definition": "Details related to freight payment, rate quantity, type, and amount.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1163
+  }
+ },
+ {
+  "class_id": "48C",
+  "class_name": "GeoLocation",
+  "module": "core",
+  "uml_path": "GeoLocation",
+  "definition": "Details related to coordinates from Global Navigation Satellite Systems (GNSS) where goods are available.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1168
+  }
+ },
+ {
+  "class_id": "63A",
+  "class_name": "GoodsConsignedLocation",
+  "module": "core",
+  "uml_path": "GoodsConsignedLocation",
+  "definition": "Details related to the location from where the goods were consigned.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 127
+  }
+ },
+ {
+  "class_id": "68A",
+  "class_name": "GoodsItem",
+  "module": "core",
+  "uml_path": "GoodsItem",
+  "definition": "Details related to the goods item as declared to Government Agency.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1171
+  }
+ },
+ {
+  "class_id": "64A",
+  "class_name": "GoodsLocation",
+  "module": "core",
+  "uml_path": "GoodsLocation",
+  "definition": "Details related to the location of the goods.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 130
+  }
+ },
+ {
+  "class_id": "65A",
+  "class_name": "GoodsMeasure",
+  "module": "core",
+  "uml_path": "GoodsMeasure",
+  "definition": "Details related to goods weight, quantities, and amounts.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1177
+  }
+ },
+ {
+  "class_id": "66A",
+  "class_name": "GoodsReceiptLocation",
+  "module": "core",
+  "uml_path": "GoodsReceiptLocation",
+  "definition": "Details related to the location at which the goods are to be received by the consignee.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 136
+  }
+ },
+ {
+  "class_id": "67A",
+  "class_name": "GoodsShipment",
+  "module": "core",
+  "uml_path": "GoodsShipment",
+  "definition": "Details related to the movement and the handling of goods shipped together on one or more means of transport between original consignor and final consignee.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1189
+  }
+ },
+ {
+  "class_id": "69A",
+  "class_name": "GovernmentOfficer",
+  "module": "core",
+  "uml_path": "GovernmentOfficer",
+  "definition": "Details related to the person appointed to some position of responsibility or authority in the government.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 368
+  }
+ },
+ {
+  "class_id": "70A",
+  "class_name": "GovernmentProcedure",
+  "module": "core",
+  "uml_path": "GovernmentProcedure",
+  "definition": "Details related to the current and previous government procedure.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1196
+  }
+ },
+ {
+  "class_id": "71A",
+  "class_name": "GovernmentServiceRequestor",
+  "module": "core",
+  "uml_path": "GovernmentServiceRequestor",
+  "definition": "Details related to the person/party requesting inspection, grading, or other government service.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 372
+  }
+ },
+ {
+  "class_id": "72A",
+  "class_name": "Grower",
+  "module": "core",
+  "uml_path": "Grower",
+  "definition": "Details related to the person/party who grows commercial crops.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 377
+  }
+ },
+ {
+  "class_id": "14C",
+  "class_name": "GuaranteeOffice",
+  "module": "core",
+  "uml_path": "GuaranteeOffice",
+  "definition": "Details related to the government agency office related to the guarantee.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 23
+  }
+ },
+ {
+  "class_id": "73A",
+  "class_name": "Handling",
+  "module": "core",
+  "uml_path": "Handling",
+  "definition": "Details related to the handling and special handling of a consignment and/or delivery.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1200
+  }
+ },
+ {
+  "class_id": "76B",
+  "class_name": "HarvestingTransportMeans",
+  "module": "core",
+  "uml_path": "HarvestingTransportMeans",
+  "definition": "Details related to the harvesting transport means.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 851
+  }
+ },
+ {
+  "class_id": "21C",
+  "class_name": "HouseConsignment",
+  "module": "core",
+  "uml_path": "HouseConsignment",
+  "definition": "Details related to the transport between a consignor and a consignee as specified in the transport contract document.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1203
+  }
+ },
+ {
+  "class_id": "33C",
+  "class_name": "IMOCompany",
+  "module": "core",
+  "uml_path": "IMOCompany",
+  "definition": "Details related to the company shown in the Continuous Synopsis Record (CSR).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 382
+  }
+ },
+ {
+  "class_id": "68B",
+  "class_name": "IPR",
+  "module": "core",
+  "uml_path": "IPR",
+  "definition": "Details related to the Intellectual Property Rights.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 726
+  }
+ },
+ {
+  "class_id": "80A",
+  "class_name": "ISPSResponsibleParty",
+  "module": "core",
+  "uml_path": "ISPSResponsibleParty",
+  "definition": "Details related to the International Ship and Port Facility Security Code (ISPS) responsible party.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 404
+  }
+ },
+ {
+  "class_id": "74A",
+  "class_name": "Importer",
+  "module": "core",
+  "uml_path": "Importer",
+  "definition": "Details related to the party who makes - or on whose behalf a customs clearing agent or other authorized person makes - an import declaration.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 385
+  }
+ },
+ {
+  "class_id": "75A",
+  "class_name": "InsuranceCompany",
+  "module": "core",
+  "uml_path": "InsuranceCompany",
+  "definition": "Details related to the company engaged in the business of insurance.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 390
+  }
+ },
+ {
+  "class_id": "76A",
+  "class_name": "IntermediateCarrier",
+  "module": "core",
+  "uml_path": "IntermediateCarrier",
+  "definition": "Details related to the carrier who transports the goods from consignor to exporting carrier and/or from importing carrier to consignee or between other named points.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 395
+  }
+ },
+ {
+  "class_id": "77A",
+  "class_name": "IntermediateConsignee",
+  "module": "core",
+  "uml_path": "IntermediateConsignee",
+  "definition": "Details related to the party who takes possession of the goods from consignor to exporting carrier and/or from importing carrier to consignee.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 400
+  }
+ },
+ {
+  "class_id": "78A",
+  "class_name": "Invoice",
+  "module": "core",
+  "uml_path": "Invoice",
+  "definition": "Details related to the information of a commercial invoice.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 720
+  }
+ },
+ {
+  "class_id": "79A",
+  "class_name": "InvoiceLine",
+  "module": "core",
+  "uml_path": "InvoiceLine",
+  "definition": "Details related to the line item of an invoice.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1207
+  }
+ },
+ {
+  "class_id": "70C",
+  "class_name": "Issuer",
+  "module": "core",
+  "uml_path": "Issuer",
+  "definition": "Details related to the issuing party.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 409
+  }
+ },
+ {
+  "class_id": "81A",
+  "class_name": "Itinerary",
+  "module": "core",
+  "uml_path": "Itinerary",
+  "definition": "Details related to the itinerary of the means of transport.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 139
+  }
+ },
+ {
+  "class_id": "82B",
+  "class_name": "ItineraryOffice",
+  "module": "core",
+  "uml_path": "ItineraryOffice",
+  "definition": "Details related to the government agency office related to the itinerary.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 25
+  }
+ },
+ {
+  "class_id": "74B",
+  "class_name": "LPCO",
+  "module": "core",
+  "uml_path": "LPCO",
+  "definition": "Details related to Licenses, Permits, Certificates or Others.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 668
+  }
+ },
+ {
+  "class_id": "85A",
+  "class_name": "LPCOAuthorizedParty",
+  "module": "core",
+  "uml_path": "LPCOAuthorizedParty",
+  "definition": "Details related to the party to whom the license, permit, certificate, or other required document (LPCO) is issued.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 416
+  }
+ },
+ {
+  "class_id": "82A",
+  "class_name": "LandingLocation",
+  "module": "core",
+  "uml_path": "LandingLocation",
+  "definition": "Details related to a landing place, wharf, or quay where ships may tie up and load, unload, or to lie at rest.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 151
+  }
+ },
+ {
+  "class_id": "83A",
+  "class_name": "LoadingLocation",
+  "module": "core",
+  "uml_path": "LoadingLocation",
+  "definition": "Details related to the location at which the goods (i.e., consignments) are loaded on to the active means of transport.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 154
+  }
+ },
+ {
+  "class_id": "84A",
+  "class_name": "LoadingProofParty",
+  "module": "core",
+  "uml_path": "LoadingProofParty",
+  "definition": "Details related to the party responsible for proof of vanning.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 412
+  }
+ },
+ {
+  "class_id": "63C",
+  "class_name": "LoyaltyProgram",
+  "module": "core",
+  "uml_path": "LoyaltyProgram",
+  "definition": "Details related to the loyalty program.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 732
+  }
+ },
+ {
+  "class_id": "3MD",
+  "class_name": "MDIP",
+  "module": "core",
+  "uml_path": "MDIP",
+  "definition": "Details related to meta data to be used related to the document.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 873
+  }
+ },
+ {
+  "class_id": "86A",
+  "class_name": "Manufacturer",
+  "module": "core",
+  "uml_path": "Manufacturer",
+  "definition": "Details related to the party which manufactures goods.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 421
+  }
+ },
+ {
+  "class_id": "45C",
+  "class_name": "MasterDataOffice",
+  "module": "core",
+  "uml_path": "MasterDataOffice",
+  "definition": "Details related to the master data government agency office.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 27
+  }
+ },
+ {
+  "class_id": "28C",
+  "class_name": "MasterDataParty",
+  "module": "core",
+  "uml_path": "MasterDataParty",
+  "definition": "Details related to the party in the context of master data.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 426
+  }
+ },
+ {
+  "class_id": "26C",
+  "class_name": "MasterDataRecipient",
+  "module": "core",
+  "uml_path": "MasterDataRecipient",
+  "definition": "Details related to the recipient of the master data.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 33
+  }
+ },
+ {
+  "class_id": "27C",
+  "class_name": "MasterDataSender",
+  "module": "core",
+  "uml_path": "MasterDataSender",
+  "definition": "Details related to the sender of the master data.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 36
+  }
+ },
+ {
+  "class_id": "91B",
+  "class_name": "NationalReference",
+  "module": "core",
+  "uml_path": "NationalReference",
+  "definition": "Details related to a national reference.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1210
+  }
+ },
+ {
+  "class_id": "88A",
+  "class_name": "NonVesselOperatingCarrier",
+  "module": "core",
+  "uml_path": "NonVesselOperatingCarrier",
+  "definition": "Details related to the common carrier that does not operate the vessels.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 433
+  }
+ },
+ {
+  "class_id": "89A",
+  "class_name": "NotifyParty",
+  "module": "core",
+  "uml_path": "NotifyParty",
+  "definition": "Details related to the party to be notified.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 437
+  }
+ },
+ {
+  "class_id": "90A",
+  "class_name": "ObligationGuarantee",
+  "module": "core",
+  "uml_path": "ObligationGuarantee",
+  "definition": "Details related to the undertaking given in cash, bond or as a written guarantee to ensure that an obligation will be fulfilled (e.g. under a transit procedure).",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 737
+  }
+ },
+ {
+  "class_id": "86B",
+  "class_name": "OperationDischarge",
+  "module": "core",
+  "uml_path": "OperationDischarge",
+  "definition": "Details related to the discharge of an operation.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1213
+  }
+ },
+ {
+  "class_id": "80B",
+  "class_name": "OperationStart",
+  "module": "core",
+  "uml_path": "OperationStart",
+  "definition": "Details related to the start of an operation.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1215
+  }
+ },
+ {
+  "class_id": "84B",
+  "class_name": "OperationTermination",
+  "module": "core",
+  "uml_path": "OperationTermination",
+  "definition": "Details related to the termination of an operation.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1218
+  }
+ },
+ {
+  "class_id": "87A",
+  "class_name": "Operator",
+  "module": "core",
+  "uml_path": "Operator",
+  "definition": "Details related to the operator of a mode of transport (e.g. pilot, driver, master of vessel).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 443
+  }
+ },
+ {
+  "class_id": "91A",
+  "class_name": "OrganicCertifyingOrganization",
+  "module": "core",
+  "uml_path": "OrganicCertifyingOrganization",
+  "definition": "Details related to the accredited organization whose business it is to certify organic growth processes.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 448
+  }
+ },
+ {
+  "class_id": "92A",
+  "class_name": "Origin",
+  "module": "core",
+  "uml_path": "Origin",
+  "definition": "Details related to the origin of the goods.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1222
+  }
+ },
+ {
+  "class_id": "93A",
+  "class_name": "Packaging",
+  "module": "core",
+  "uml_path": "Packaging",
+  "definition": "Details related to packaging.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1228
+  }
+ },
+ {
+  "class_id": "01C",
+  "class_name": "Packer",
+  "module": "core",
+  "uml_path": "Packer",
+  "definition": "Details related to the party packing goods.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 453
+  }
+ },
+ {
+  "class_id": "19C",
+  "class_name": "PassiveTransportMeans",
+  "module": "core",
+  "uml_path": "PassiveTransportMeans",
+  "definition": "Details related to the passive means of transport that is being transported by the active means of transport.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 855
+  }
+ },
+ {
+  "class_id": "56B",
+  "class_name": "Payer",
+  "module": "core",
+  "uml_path": "Payer",
+  "definition": "Details related to the person/party paying an amount of duty.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 458
+  }
+ },
+ {
+  "class_id": "94A",
+  "class_name": "Payment",
+  "module": "core",
+  "uml_path": "Payment",
+  "definition": "Details related to payment details.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1240
+  }
+ },
+ {
+  "class_id": "95A",
+  "class_name": "PaymentOffice",
+  "module": "core",
+  "uml_path": "PaymentOffice",
+  "definition": "Details related to the government agency office where payment can be or has been made.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 39
+  }
+ },
+ {
+  "class_id": "96A",
+  "class_name": "PermittedPort",
+  "module": "core",
+  "uml_path": "PermittedPort",
+  "definition": "Details related to an authorized office through which the authorized party is allowed to bring the goods identified on the LPCO.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 160
+  }
+ },
+ {
+  "class_id": "60C",
+  "class_name": "PersonData",
+  "module": "core",
+  "uml_path": "PersonData",
+  "definition": "Details related to the person.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1247
+  }
+ },
+ {
+  "class_id": "67B",
+  "class_name": "PersonOnBoard",
+  "module": "core",
+  "uml_path": "PersonOnBoard",
+  "definition": "Details related to the person on board of a transport means.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1260
+  }
+ },
+ {
+  "class_id": "97A",
+  "class_name": "Pointer",
+  "module": "core",
+  "uml_path": "Pointer",
+  "definition": "Details related to a functional attribute within a declaration.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1264
+  }
+ },
+ {
+  "class_id": "98A",
+  "class_name": "PortFacilitySecurityOfficer",
+  "module": "core",
+  "uml_path": "PortFacilitySecurityOfficer",
+  "definition": "Details related to the individual (i.e., person) designated as the port facility security officer responsible for port security requirements.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 463
+  }
+ },
+ {
+  "class_id": "38C",
+  "class_name": "PortReceptionFacilityProvider",
+  "module": "core",
+  "uml_path": "PortReceptionFacilityProvider",
+  "definition": "Details related to the provider of port reception facility.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 467
+  }
+ },
+ {
+  "class_id": "15C",
+  "class_name": "PresentationOffice",
+  "module": "core",
+  "uml_path": "PresentationOffice",
+  "definition": "Details related to the government agency office of presentation.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 41
+  }
+ },
+ {
+  "class_id": "99A",
+  "class_name": "PreviousDocument",
+  "module": "core",
+  "uml_path": "PreviousDocument",
+  "definition": "Details related to the previous document.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 754
+  }
+ },
+ {
+  "class_id": "68C",
+  "class_name": "Principal",
+  "module": "core",
+  "uml_path": "Principal",
+  "definition": "Details related to a party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 470
+  }
+ },
+ {
+  "class_id": "60B",
+  "class_name": "Process",
+  "module": "core",
+  "uml_path": "Process",
+  "definition": "Details related to a Process which has, will, or is required to be performed on a commodity.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1269
+  }
+ },
+ {
+  "class_id": "70B",
+  "class_name": "Processor",
+  "module": "core",
+  "uml_path": "Processor",
+  "definition": "Details related to a party or person who has or will apply a process.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 477
+  }
+ },
+ {
+  "class_id": "01B",
+  "class_name": "Producer",
+  "module": "core",
+  "uml_path": "Producer",
+  "definition": "Details related to the producer of the product.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 482
+  }
+ },
+ {
+  "class_id": "46B",
+  "class_name": "Product",
+  "module": "core",
+  "uml_path": "Product",
+  "definition": "Details related to the tangible article or substance produced by human or mechanical effort or by a natural process.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1277
+  }
+ },
+ {
+  "class_id": "48B",
+  "class_name": "ProductCharacteristics",
+  "module": "core",
+  "uml_path": "ProductCharacteristics",
+  "definition": "Details related to the characteristics of a product.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1280
+  }
+ },
+ {
+  "class_id": "49B",
+  "class_name": "ProductCriteriaConformance",
+  "module": "core",
+  "uml_path": "ProductCriteriaConformance",
+  "definition": "Details related to the criteria conformance of a product.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1286
+  }
+ },
+ {
+  "class_id": "47B",
+  "class_name": "ProductName",
+  "module": "core",
+  "uml_path": "ProductName",
+  "definition": "Details related to the name of a product.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1289
+  }
+ },
+ {
+  "class_id": "03C",
+  "class_name": "ProductUsage",
+  "module": "core",
+  "uml_path": "ProductUsage",
+  "definition": "Details related to the usage of a product.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1292
+  }
+ },
+ {
+  "class_id": "72C",
+  "class_name": "ProfilePartner",
+  "module": "core",
+  "uml_path": "ProfilePartner",
+  "definition": "Details related to the profile of a partner.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1299
+  }
+ },
+ {
+  "class_id": "02B",
+  "class_name": "PropertyOperator",
+  "module": "core",
+  "uml_path": "PropertyOperator",
+  "definition": "Details related to the party which operates property.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 487
+  }
+ },
+ {
+  "class_id": "03B",
+  "class_name": "PropertyOwner",
+  "module": "core",
+  "uml_path": "PropertyOwner",
+  "definition": "Details related to the party owning a property.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 492
+  }
+ },
+ {
+  "class_id": "40C",
+  "class_name": "Rate",
+  "module": "core",
+  "uml_path": "Rate",
+  "definition": "Details related to multiple rates to be returned for a single occurrence of duty, tax or fee.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1305
+  }
+ },
+ {
+  "class_id": "4MD",
+  "class_name": "Recipient",
+  "module": "core",
+  "uml_path": "Recipient",
+  "definition": "Details related to the recipient of a message (technical information).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 497
+  }
+ },
+ {
+  "class_id": "04B",
+  "class_name": "RecognizedSecurityOrganization",
+  "module": "core",
+  "uml_path": "RecognizedSecurityOrganization",
+  "definition": "Details related to the security organization granting the security certificate.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 501
+  }
+ },
+ {
+  "class_id": "59B",
+  "class_name": "RefundRecipientParty",
+  "module": "core",
+  "uml_path": "RefundRecipientParty",
+  "definition": "Details related to the party to receive a refund.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 505
+  }
+ },
+ {
+  "class_id": "25C",
+  "class_name": "RefusalToStart",
+  "module": "core",
+  "uml_path": "RefusalToStart",
+  "definition": "Details related to the refusal to start an operation.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1309
+  }
+ },
+ {
+  "class_id": "05B",
+  "class_name": "RegisteredFacility",
+  "module": "core",
+  "uml_path": "RegisteredFacility",
+  "definition": "Details related to a facility that has been formally documented as compliant with regulations or statutes by a regulatory authority.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 162
+  }
+ },
+ {
+  "class_id": "31C",
+  "class_name": "ReleaseOffice",
+  "module": "core",
+  "uml_path": "ReleaseOffice",
+  "definition": "Details related to the requested office where the decision to release the goods declaration from customs custody is to be made.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 43
+  }
+ },
+ {
+  "class_id": "52B",
+  "class_name": "RepairParty",
+  "module": "core",
+  "uml_path": "RepairParty",
+  "definition": "Details related to the party responsible for substantial repair of transport equipment.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 510
+  }
+ },
+ {
+  "class_id": "06B",
+  "class_name": "RepresentativePerson",
+  "module": "core",
+  "uml_path": "RepresentativePerson",
+  "definition": "Details related to the person acting as a representative.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 515
+  }
+ },
+ {
+  "class_id": "66B",
+  "class_name": "Reservation",
+  "module": "core",
+  "uml_path": "Reservation",
+  "definition": "Details related to a reservation (e.g. seat number).",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1311
+  }
+ },
+ {
+  "class_id": "08B",
+  "class_name": "ResponsibleGovernmentAgency",
+  "module": "core",
+  "uml_path": "ResponsibleGovernmentAgency",
+  "definition": "Details related to the responsible government agency.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 46
+  }
+ },
+ {
+  "class_id": "69B",
+  "class_name": "RightHolder",
+  "module": "core",
+  "uml_path": "RightHolder",
+  "definition": "Details related to the right holder.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 520
+  }
+ },
+ {
+  "class_id": "43C",
+  "class_name": "Role",
+  "module": "core",
+  "uml_path": "Role",
+  "definition": "Details related to the role assigned to the government agency office.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1316
+  }
+ },
+ {
+  "class_id": "44B",
+  "class_name": "Seal",
+  "module": "core",
+  "uml_path": "Seal",
+  "definition": "Details related to the seal affixed to a piece of transport equipment, used to secure an object and protect from unauthorized entry or tampering.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1318
+  }
+ },
+ {
+  "class_id": "53B",
+  "class_name": "SealingParty",
+  "module": "core",
+  "uml_path": "SealingParty",
+  "definition": "Details related to the party affixing or activating the seal for regulatory purposes.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 525
+  }
+ },
+ {
+  "class_id": "32C",
+  "class_name": "Security",
+  "module": "core",
+  "uml_path": "Security",
+  "definition": "Details related to security.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1324
+  }
+ },
+ {
+  "class_id": "09B",
+  "class_name": "Seller",
+  "module": "core",
+  "uml_path": "Seller",
+  "definition": "Details related to the party selling merchandise to a buyer.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 528
+  }
+ },
+ {
+  "class_id": "5MD",
+  "class_name": "Sender",
+  "module": "core",
+  "uml_path": "Sender",
+  "definition": "Details related to the sender of a message (technical information).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 534
+  }
+ },
+ {
+  "class_id": "08C",
+  "class_name": "ShipChandler",
+  "module": "core",
+  "uml_path": "ShipChandler",
+  "definition": "Details related to the retail dealer who specializes in supplies or equipment for ships, known as ship's stores.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 538
+  }
+ },
+ {
+  "class_id": "10B",
+  "class_name": "ShipSecurityOfficer",
+  "module": "core",
+  "uml_path": "ShipSecurityOfficer",
+  "definition": "Details related to the officer who is appointed as Ship Security Officer.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 543
+  }
+ },
+ {
+  "class_id": "54B",
+  "class_name": "ShipToShipActivity",
+  "module": "core",
+  "uml_path": "ShipToShipActivity",
+  "definition": "Details related to operations taking place between ships whether at sea, in inshore waters or within harbor limits while not berthed.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1325
+  }
+ },
+ {
+  "class_id": "45B",
+  "class_name": "ShipToShipActivityLocation",
+  "module": "core",
+  "uml_path": "ShipToShipActivityLocation",
+  "definition": "Details related to the location where the ship-to-ship activity takes place.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 165
+  }
+ },
+ {
+  "class_id": "11B",
+  "class_name": "Source",
+  "module": "core",
+  "uml_path": "Source",
+  "definition": "Details related to the source of goods in accordance with regulation and laws.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1331
+  }
+ },
+ {
+  "class_id": "41C",
+  "class_name": "SpecificTaxBaseRate",
+  "module": "core",
+  "uml_path": "SpecificTaxBaseRate",
+  "definition": "Details related to rate expressed as Currency Quantity per Unit of Measure.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1336
+  }
+ },
+ {
+  "class_id": "55C",
+  "class_name": "SplitConsignment",
+  "module": "core",
+  "uml_path": "SplitConsignment",
+  "definition": "Details related to the consignment covered by the related transport document were split.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1339
+  }
+ },
+ {
+  "class_id": "12B",
+  "class_name": "Status",
+  "module": "core",
+  "uml_path": "Status",
+  "definition": "Details related to status.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1342
+  }
+ },
+ {
+  "class_id": "13B",
+  "class_name": "Stevedore",
+  "module": "core",
+  "uml_path": "Stevedore",
+  "definition": "Details related to the stevedoring company.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 547
+  }
+ },
+ {
+  "class_id": "14B",
+  "class_name": "Storage",
+  "module": "core",
+  "uml_path": "Storage",
+  "definition": "Details related to the place goods have been stored prior to their journey, or in the course of their journey to destination.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1348
+  }
+ },
+ {
+  "class_id": "05C",
+  "class_name": "StoresItem",
+  "module": "core",
+  "uml_path": "StoresItem",
+  "definition": "Details related to the item in the ship's stores.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1352
+  }
+ },
+ {
+  "class_id": "15B",
+  "class_name": "StowPosition",
+  "module": "core",
+  "uml_path": "StowPosition",
+  "definition": "Details related to the location on board a means of transport where specified goods or transport equipment has been or are to be stowed.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 168
+  }
+ },
+ {
+  "class_id": "16B",
+  "class_name": "StuffingEstablishment",
+  "module": "core",
+  "uml_path": "StuffingEstablishment",
+  "definition": "Details related to the location where the goods are loaded into the transport equipment.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 551
+  }
+ },
+ {
+  "class_id": "17B",
+  "class_name": "Submitter",
+  "module": "core",
+  "uml_path": "Submitter",
+  "definition": "Details related to the submitter of written or electronic documentation.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 557
+  }
+ },
+ {
+  "class_id": "61C",
+  "class_name": "SubsequentDeclarationOffice",
+  "module": "core",
+  "uml_path": "SubsequentDeclarationOffice",
+  "definition": "Details related to the customs office location of duty/tax payment at which a subsequent declaration is lodged.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 50
+  }
+ },
+ {
+  "class_id": "35C",
+  "class_name": "SubsidiaryRisk",
+  "module": "core",
+  "uml_path": "SubsidiaryRisk",
+  "definition": "Details related to any risk in addition to the class to which dangerous goods are assigned and which is determined by a requirement to have a subsidiary risk.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1354
+  }
+ },
+ {
+  "class_id": "97B",
+  "class_name": "SupervisingOffice",
+  "module": "core",
+  "uml_path": "SupervisingOffice",
+  "definition": "Details related to the government agency office responsible for supervising the discharge of a government procedure.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 52
+  }
+ },
+ {
+  "class_id": "18C",
+  "class_name": "SupplementaryDeclarant",
+  "module": "core",
+  "uml_path": "SupplementaryDeclarant",
+  "definition": "Details related to the supplementary declarant, for risk analysis purposes.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 562
+  }
+ },
+ {
+  "class_id": "18B",
+  "class_name": "Supplier",
+  "module": "core",
+  "uml_path": "Supplier",
+  "definition": "Details related to the supplier of the goods and or services.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 567
+  }
+ },
+ {
+  "class_id": "51C",
+  "class_name": "SupportingDocument",
+  "module": "core",
+  "uml_path": "SupportingDocument",
+  "definition": "Details related to specific rules applicable together with reference data of the documents produced in support of the declaration.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 761
+  }
+ },
+ {
+  "class_id": "19B",
+  "class_name": "Surety",
+  "module": "core",
+  "uml_path": "Surety",
+  "definition": "Details related to the natural or legal person who accepts responsibility in due legal form for the financial consequences of non-fulfillment of another's obligations to the Customs (CCC).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 572
+  }
+ },
+ {
+  "class_id": "56C",
+  "class_name": "TaxBase",
+  "module": "core",
+  "uml_path": "TaxBase",
+  "definition": "Details related to the basis of taxes.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1356
+  }
+ },
+ {
+  "class_id": "57C",
+  "class_name": "TaxCalculation",
+  "module": "core",
+  "uml_path": "TaxCalculation",
+  "definition": "Details related to the calculation of taxes.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1361
+  }
+ },
+ {
+  "class_id": "20B",
+  "class_name": "Temperature",
+  "module": "core",
+  "uml_path": "Temperature",
+  "definition": "Details related to temperature.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1365
+  }
+ },
+ {
+  "class_id": "21B",
+  "class_name": "Terminal",
+  "module": "core",
+  "uml_path": "Terminal",
+  "definition": "Details related to the terminal for transport vehicles.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 170
+  }
+ },
+ {
+  "class_id": "64C",
+  "class_name": "Ticket",
+  "module": "core",
+  "uml_path": "Ticket",
+  "definition": "Details related to the ticket.",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 764
+  }
+ },
+ {
+  "class_id": "96B",
+  "class_name": "TotalPersons",
+  "module": "core",
+  "uml_path": "TotalPersons",
+  "definition": "Details related to the total number of persons (e.g. passengers, crew).",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1372
+  }
+ },
+ {
+  "class_id": "73C",
+  "class_name": "TradeRole",
+  "module": "core",
+  "uml_path": "TradeRole",
+  "definition": "Details related to the trade roles.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1375
+  }
+ },
+ {
+  "class_id": "22B",
+  "class_name": "TradeTerms",
+  "module": "core",
+  "uml_path": "TradeTerms",
+  "definition": "Details related to trade terms.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1377
+  }
+ },
+ {
+  "class_id": "02C",
+  "class_name": "TradingParty",
+  "module": "core",
+  "uml_path": "TradingParty",
+  "definition": "Details related to the party responsible for the trade of commercial products.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 578
+  }
+ },
+ {
+  "class_id": "23B",
+  "class_name": "TranshipmentLocation",
+  "module": "core",
+  "uml_path": "TranshipmentLocation",
+  "definition": "Details related to the location where goods are to be transferred from one means of transport to another during the course of one transport.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 173
+  }
+ },
+ {
+  "class_id": "20C",
+  "class_name": "TranshipmentTransportMeans",
+  "module": "core",
+  "uml_path": "TranshipmentTransportMeans",
+  "definition": "Details related to the transhipment transport means.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 860
+  }
+ },
+ {
+  "class_id": "24B",
+  "class_name": "TransitControl",
+  "module": "core",
+  "uml_path": "TransitControl",
+  "definition": "Details related to the transit movement details for control purposes.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1384
+  }
+ },
+ {
+  "class_id": "25B",
+  "class_name": "TransitDepartureLocation",
+  "module": "core",
+  "uml_path": "TransitDepartureLocation",
+  "definition": "Details related to the location at which the goods depart under customs control of a transit procedure.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 178
+  }
+ },
+ {
+  "class_id": "26B",
+  "class_name": "TransitDestinationLocation",
+  "module": "core",
+  "uml_path": "TransitDestinationLocation",
+  "definition": "Details related to the location at which the goods are destined under customs control of transit procedure.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 181
+  }
+ },
+ {
+  "class_id": "27B",
+  "class_name": "TransitOffice",
+  "module": "core",
+  "uml_path": "TransitOffice",
+  "definition": "Details related to the customs offices of transit.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 54
+  }
+ },
+ {
+  "class_id": "78B",
+  "class_name": "TransitOperation",
+  "module": "core",
+  "uml_path": "TransitOperation",
+  "definition": "Details related to the transit operation.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1388
+  }
+ },
+ {
+  "class_id": "87B",
+  "class_name": "TransitOperationDischargeOffice",
+  "module": "core",
+  "uml_path": "TransitOperationDischargeOffice",
+  "definition": "Details related to the government agency office related to the transit operation.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 56
+  }
+ },
+ {
+  "class_id": "81B",
+  "class_name": "TransitOperationStartOffice",
+  "module": "core",
+  "uml_path": "TransitOperationStartOffice",
+  "definition": "Details related to the government agency office where the transit operation starts.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 58
+  }
+ },
+ {
+  "class_id": "85B",
+  "class_name": "TransitOperationTerminationOffice",
+  "module": "core",
+  "uml_path": "TransitOperationTerminationOffice",
+  "definition": "Details related to the government agency office where the transit operation terminates.",
+  "superclass_id": "SC2",
+  "superclass": "GovernmentAgency",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 60
+  }
+ },
+ {
+  "class_id": "28B",
+  "class_name": "TransitPrincipal",
+  "module": "core",
+  "uml_path": "TransitPrincipal",
+  "definition": "Details related to the party accepting liability for goods held or moving under a customs authorization and - when applicable - a guarantee.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 583
+  }
+ },
+ {
+  "class_id": "29B",
+  "class_name": "TransitTransportMeans",
+  "module": "core",
+  "uml_path": "TransitTransportMeans",
+  "definition": "Details related to the means of transport for transit.",
+  "superclass_id": "SC5",
+  "superclass": "TransportMeans",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 866
+  }
+ },
+ {
+  "class_id": "30B",
+  "class_name": "TransportContractDocument",
+  "module": "core",
+  "uml_path": "TransportContractDocument",
+  "definition": "Details related to the consignment which corresponds to one transport contract. (Known as consignment by the Transport group).",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 767
+  }
+ },
+ {
+  "class_id": "31B",
+  "class_name": "TransportEquipment",
+  "module": "core",
+  "uml_path": "TransportEquipment",
+  "definition": "Details related to transport equipment used for the consignment.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1393
+  }
+ },
+ {
+  "class_id": "77B",
+  "class_name": "TransportEquipmentLocation",
+  "module": "core",
+  "uml_path": "TransportEquipmentLocation",
+  "definition": "Details related to the location of the transport equipment for which the position and status of a transport equipment are being reported.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 184
+  }
+ },
+ {
+  "class_id": "09C",
+  "class_name": "TransportEquipmentMeasure",
+  "module": "core",
+  "uml_path": "TransportEquipmentMeasure",
+  "definition": "Details related to the goods weight, quantities, and amounts of a transport equipment.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1407
+  }
+ },
+ {
+  "class_id": "32B",
+  "class_name": "TransportMeansOperator",
+  "module": "core",
+  "uml_path": "TransportMeansOperator",
+  "definition": "Details related to the operator of a means of transport (e.g. the captain of a vessel).",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 588
+  }
+ },
+ {
+  "class_id": "33B",
+  "class_name": "TransportMeansOwner",
+  "module": "core",
+  "uml_path": "TransportMeansOwner",
+  "definition": "Details related to the owner of means of transport.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 593
+  }
+ },
+ {
+  "class_id": "13C",
+  "class_name": "TransportedCommodity",
+  "module": "core",
+  "uml_path": "TransportedCommodity",
+  "definition": "Details related to the properties of the transported goods.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1391
+  }
+ },
+ {
+  "class_id": "62C",
+  "class_name": "TravelAgency",
+  "module": "core",
+  "uml_path": "TravelAgency",
+  "definition": "Details related to the travel agency.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 598
+  }
+ },
+ {
+  "class_id": "34B",
+  "class_name": "TravelDocument",
+  "module": "core",
+  "uml_path": "TravelDocument",
+  "definition": "Details related to the travel document (e.g. passport).",
+  "superclass_id": "SC1",
+  "superclass": "RootDocument",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 775
+  }
+ },
+ {
+  "class_id": "46C",
+  "class_name": "TreatmentFacilityProvider",
+  "module": "core",
+  "uml_path": "TreatmentFacilityProvider",
+  "definition": "Details related to the provider of a treatment facility.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 602
+  }
+ },
+ {
+  "class_id": "35B",
+  "class_name": "UCR",
+  "module": "core",
+  "uml_path": "UCR",
+  "definition": "Details related to the Unique Trader Reference such as Unique Consignment Reference (UCR).",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1409
+  }
+ },
+ {
+  "class_id": "36B",
+  "class_name": "UltimateConsignee",
+  "module": "core",
+  "uml_path": "UltimateConsignee",
+  "definition": "Details related to the party who has been designated on the invoice or packing list as the final recipient of the stated merchandise.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 605
+  }
+ },
+ {
+  "class_id": "38B",
+  "class_name": "UnloadingLocation",
+  "module": "core",
+  "uml_path": "UnloadingLocation",
+  "definition": "Details related to the location at which the goods (i.e., consignment) are unloaded from the active means of transport having been used for their carriage.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 187
+  }
+ },
+ {
+  "class_id": "51B",
+  "class_name": "UnloadingParty",
+  "module": "core",
+  "uml_path": "UnloadingParty",
+  "definition": "Details related to the party responsible for unloading goods.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 610
+  }
+ },
+ {
+  "class_id": "39B",
+  "class_name": "ValuationAdjustment",
+  "module": "core",
+  "uml_path": "ValuationAdjustment",
+  "definition": "Details related to valuation adjustments.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1412
+  }
+ },
+ {
+  "class_id": "40B",
+  "class_name": "VehicleOwner",
+  "module": "core",
+  "uml_path": "VehicleOwner",
+  "definition": "Details related to the party who holds title to the vehicle.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 615
+  }
+ },
+ {
+  "class_id": "41B",
+  "class_name": "Verifier",
+  "module": "core",
+  "uml_path": "Verifier",
+  "definition": "Details related to the person recognized under relevant legislation to undertake official assurance verification.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 620
+  }
+ },
+ {
+  "class_id": "42B",
+  "class_name": "Veterinarian",
+  "module": "core",
+  "uml_path": "Veterinarian",
+  "definition": "Details related to the person who practices veterinary medicine.",
+  "superclass_id": "SC4",
+  "superclass": "Party",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 625
+  }
+ },
+ {
+  "class_id": "43B",
+  "class_name": "Warehouse",
+  "module": "core",
+  "uml_path": "Warehouse",
+  "definition": "Details related to the warehouse where a particular goods shipment will be / is / has been stored.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 191
+  }
+ },
+ {
+  "class_id": "36C",
+  "class_name": "Waste",
+  "module": "core",
+  "uml_path": "Waste",
+  "definition": "Details related to waste and cargo residues which are onboard the vessel.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1416
+  }
+ },
+ {
+  "class_id": "37C",
+  "class_name": "WasteDeliveryLocation",
+  "module": "core",
+  "uml_path": "WasteDeliveryLocation",
+  "definition": "Details related to the location/port where waste of any type was or will be delivered.",
+  "superclass_id": "SC3",
+  "superclass": "Location",
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 198
+  }
+ },
+ {
+  "class_id": "07C",
+  "class_name": "WasteItem",
+  "module": "core",
+  "uml_path": "WasteItem",
+  "definition": "Details related to waste and cargo residues which are onboard the vessel and which will be either (partly) delivered or will (partly) remain on board during a port call.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1421
+  }
+ },
+ {
+  "class_id": "22C",
+  "class_name": "WriteOff",
+  "module": "core",
+  "uml_path": "WriteOff",
+  "definition": "Details related to write-off documents.",
+  "superclass_id": null,
+  "superclass": null,
+  "source": {
+   "file": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "sheet": "DataSet 1.2, 1.3, 1.4",
+   "row": 1424
+  }
+ }
+]

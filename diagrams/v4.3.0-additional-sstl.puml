@@ -1,0 +1,39 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title SSTL 4.3.0
+class "AIP" as C0 <<root>> {
+  3 elements
+}
+class "Control" as C1 {
+  1 element
+}
+class "ControlResult" as C2 {
+  1 element
+}
+C0 *-- "0..*" C1
+C1 *-- "0..*" C2
+@enduml

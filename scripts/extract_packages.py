@@ -20,10 +20,6 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _release  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "intermediate" / "packages"
-RELEASE = _release.release_dir()
-VERSION = _release.version(RELEASE)
-RAW = RELEASE
 
 # key -> (sheet, human name, what it is). The file is whichever workbook of the release is that
 # package; releases have renamed them before.
@@ -43,8 +39,12 @@ PACKAGES = {
 # block - the IMO Compendium mapping, the per-DIP names and definitions - and is not a flag.
 # Matching on the group rather than on the column is what keeps the Declaration's four derived
 # packages from becoming forty.
+# 4.0.0 and 4.1.0 name the same blocks differently, and the Declaration's "Main Procedures" block
+# (IM, EX, CRI, CRE, CONV, TRT) is deliberately absent: those flag which customs procedure uses a
+# position, which is a different axis from which message does.
 DERIVED_GROUP = ("derived ip", "dip use", "intergov projects", "intergov dip",
-                 "intergov work in progress", "response category", "response dip")
+                 "intergov work in progress", "response category", "response dip",
+                 "ig projects", "ig derived ip", "res category", "res derived ip")
 
 
 def column_groups(row1, row2):
@@ -67,10 +67,13 @@ def norm(text):
     return " ".join(str(text or "").replace("_x000D_", " ").split()).strip().lower()
 
 
-def read_package(key):
+def read_package(key, release, version):
     sheet, title, description = PACKAGES[key]
-    filename = _release.workbook(key, RELEASE).name
-    wb = openpyxl.load_workbook(RAW / filename, read_only=True, data_only=True)
+    filename = _release.workbook(key, release).name
+    wb = openpyxl.load_workbook(release / filename, read_only=True, data_only=True)
+    sheet = sheet if sheet in wb.sheetnames else next(
+        (s for s in wb.sheetnames if s.lower().startswith(sheet.split(" ")[0].lower())),
+        wb.sheetnames[0])
     ws = wb[sheet]
     rows = list(ws.iter_rows(values_only=True))
     headers = [norm(c) for c in rows[2]]
@@ -83,21 +86,27 @@ def read_package(key):
                 return str(row[col[n]]).strip()
         return None
 
-    body = [r for r in rows[3:] if r[0] and str(r[0]).strip()]
-    dips, dip_group = [], {}
+    path_col = next((col[h] for h in ("uml model path", "xpath") if h in col), 0)
+    body = [r for r in rows[3:] if r[path_col] and str(r[path_col]).strip()]
+    # A derived package is a column whose nearest group heading was named in the second row and is
+    # one of the derived blocks. The detail blocks that follow - the IMO Compendium mapping, the
+    # per-certificate box numbers in 4.0.0 - are named in the first row, which is what ends the
+    # span without a column count having to be written down anywhere.
+    dips, dip_group, dip_col = [], {}, {}
     for i, h in enumerate(headers):
         if not h:
             continue
         group, level = groups.get(i, (None, None))
         if level != "row2" or not group or not group.startswith(DERIVED_GROUP):
             continue
-        if sum(1 for r in body if r[i] not in (None, "")):
+        if sum(1 for r in body if i < len(r) and r[i] not in (None, "")):
             dips.append(h)
             dip_group[h] = group
+            dip_col[h] = i
 
     nodes = []
     for n, r in enumerate(body, start=4):
-        path = str(r[col["uml model path"]]).strip()
+        path = str(r[path_col]).strip()
         node = {
             "path": path,
             "depth": len(path.split("/")),
@@ -113,8 +122,10 @@ def read_package(key):
             "json_tag": get(r, "json tag"),
             "type": get(r, "type"),            # C for a class, E for an element
             "seq": get(r, "seq. no."),
-            "uci": get(r, "dec uci", "lpco uci", "ig", "res", "class"),
-            "used_by": sorted(h for h in dips if r[headers.index(h)] not in (None, "")),
+            "uci": get(r, "dec uci", "lpco uci", "mdip uci", "ig uci", "res uci",
+                       "ig", "res", "class"),
+            "used_by": sorted(h for h in dips
+                              if dip_col[h] < len(r) and r[dip_col[h]] not in (None, "")),
             "source": {"file": filename, "sheet": sheet, "row": n},
         }
         nodes.append(node)
@@ -122,34 +133,44 @@ def read_package(key):
     wb.close()
     return {
         "key": key, "title": title, "description": description,
-        "source": {"file": filename, "sheet": sheet, "version": VERSION},
+        "source": {"file": filename, "sheet": sheet, "version": version},
         "derived_packages": dips,
         "derived_package_groups": dip_group,
         "nodes": nodes,
     }
 
 
-def main():
-    OUT.mkdir(parents=True, exist_ok=True)
+def extract(release):
+    version = _release.version(release)
+    out = ROOT / "intermediate" / f"v{version}" / "packages"
+    out.mkdir(parents=True, exist_ok=True)
     summary = {}
     for key in PACKAGES:
-        pkg = read_package(key)
-        (OUT / f"{key}.json").write_text(json.dumps(pkg, indent=1, ensure_ascii=False) + "\n")
+        pkg = read_package(key, release, version)
+        (out / f"{key}.json").write_text(json.dumps(pkg, indent=1, ensure_ascii=False) + "\n")
         classes = sum(1 for n in pkg["nodes"] if n["type"] == "C")
         elements = sum(1 for n in pkg["nodes"] if n["type"] == "E")
         repeating = sum(1 for n in pkg["nodes"] if (n["max"] or "").lower() == "unbounded")
         summary[key] = {
             "title": pkg["title"], "nodes": len(pkg["nodes"]),
-            "classes": classes, "elements": elements,
-            "repeating": repeating,
+            "classes": classes, "elements": elements, "repeating": repeating,
             "max_depth": max(n["depth"] for n in pkg["nodes"]),
             "derived_packages": pkg["derived_packages"],
         }
-        print(f"  {key}: {len(pkg['nodes'])} nodes ({classes} classes, {elements} elements, "
-              f"{repeating} repeating), depth {summary[key]['max_depth']}, "
-              f"{len(pkg['derived_packages'])} derived packages")
+    (out / "summary.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False) + "\n")
+    total = sum(s["nodes"] for s in summary.values())
+    dips = sum(len(s["derived_packages"]) for s in summary.values())
+    print(f"  {version}: {total} positions across {len(summary)} packages, {dips} derived packages")
+    for key, s in summary.items():
+        print(f"      {key:9} {s['nodes']:5} positions, {len(s['derived_packages'])} derived: "
+              f"{', '.join(s['derived_packages']) or 'none'}")
+    return summary
 
-    (OUT / "summary.json").write_text(json.dumps(summary, indent=1, ensure_ascii=False) + "\n")
+
+def main():
+    releases = _release.releases() if "--all" in sys.argv else [_release.release_dir()]
+    for release in releases:
+        extract(release)
     return 0
 
 

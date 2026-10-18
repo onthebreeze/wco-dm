@@ -1,76 +1,241 @@
 {
- "aip": {
-  "nodes": 440,
-  "context_terms": 110,
-  "ambiguous_tags": [
-   "functionCode",
-   "id",
-   "typeCode"
-  ],
-  "derived": {
-   "etir": 89,
-   "sstl": 8,
-   "aeo-master-data": 46,
-   "aeomra": 25,
-   "cntrl": 252,
-   "inf": 258,
-   "bussval": 140,
-   "techval": 123,
-   "sta": 244,
-   "upu-cusres": 58
+ "releases": {
+  "4.0.0": {
+   "aip": {
+    "nodes": 416,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "etir": 89,
+     "sstl": 8,
+     "aeo-masterdata": 45,
+     "cntrl": 252,
+     "inf": 258,
+     "bussval": 140,
+     "techval": 123,
+     "sta": 244,
+     "msw": 18,
+     "upu": 12,
+     "api": 344
+    }
+   },
+   "bip-dec": {
+    "nodes": 8924,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "aei": 261,
+     "api": 65,
+     "dv1": 64,
+     "irg": 180,
+     "msw": 322,
+     "sad": 278,
+     "upu": 77,
+     "val": 97
+    }
+   },
+   "bip-lpco": {
+    "nodes": 717,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "cites": 125,
+     "ecoo": 71,
+     "etir-guar": 134,
+     "atiga-coo": 88,
+     "etir-carv": 55,
+     "ecoc": 85,
+     "codex": 102,
+     "e-phyto": 94,
+     "unesco-cert": 168,
+     "eata": 122,
+     "oie-cert": 119
+    }
+   },
+   "mdip": {
+    "nodes": 67,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {}
+   }
+  },
+  "4.1.0": {
+   "aip": {
+    "nodes": 416,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "etir": 89,
+     "sstl": 8,
+     "aeo-masterdata": 45,
+     "cntrl": 252,
+     "inf": 258,
+     "bussval": 140,
+     "techval": 123,
+     "sta": 244,
+     "msw": 18,
+     "upu": 12
+    }
+   },
+   "bip-dec": {
+    "nodes": 9031,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "aei": 261,
+     "api": 62,
+     "bri": 144,
+     "dv1": 64,
+     "irg": 180,
+     "msw": 322,
+     "sad": 278,
+     "upu": 77,
+     "val": 97
+    }
+   },
+   "bip-lpco": {
+    "nodes": 717,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "cites": 125,
+     "ecoo": 71,
+     "etir-guar": 134,
+     "atiga-coo": 88,
+     "etir-carv": 55,
+     "ecoc": 85,
+     "codex": 102,
+     "e-phyto": 94,
+     "unesco-cert": 168,
+     "eata": 122,
+     "oie-cert": 119
+    }
+   },
+   "mdip": {
+    "nodes": 67,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {}
+   }
+  },
+  "4.2.0": {
+   "aip": {
+    "nodes": 440,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "etir": 89,
+     "sstl": 8,
+     "aeo-master-data": 46,
+     "cntrl": 252,
+     "inf": 258,
+     "bussval": 140,
+     "techval": 123,
+     "sta": 244,
+     "upu": 58
+    }
+   },
+   "bip-dec": {
+    "nodes": 9241,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "bri": 144,
+     "upu-cusitm": 81,
+     "upu-refrsp": 26
+    }
+   },
+   "bip-lpco": {
+    "nodes": 758,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {
+     "coo-wco-tcro": 107,
+     "customs-bond": 35
+    }
+   },
+   "mdip": {
+    "nodes": 69,
+    "context_terms": 0,
+    "ambiguous_tags": [],
+    "derived": {}
+   }
+  },
+  "4.3.0": {
+   "aip": {
+    "nodes": 440,
+    "context_terms": 110,
+    "ambiguous_tags": [
+     "functionCode",
+     "id",
+     "typeCode"
+    ],
+    "derived": {
+     "etir": 89,
+     "sstl": 8,
+     "aeo-master-data": 46,
+     "aeomra": 25,
+     "cntrl": 252,
+     "inf": 258,
+     "bussval": 140,
+     "techval": 123,
+     "sta": 244,
+     "upu-cusres": 58
+    }
+   },
+   "bip-dec": {
+    "nodes": 9064,
+    "context_terms": 572,
+    "ambiguous_tags": [
+     "accountId",
+     "authentication",
+     "categoryCode",
+     "conditionCode",
+     "functionCode",
+     "id",
+     "identificationCode",
+     "identificationTypeCode",
+     "methodCode",
+     "name",
+     "nameCode",
+     "quantityQuantity",
+     "rateNumeric",
+     "roleCode",
+     "statusCode",
+     "typeCode"
+    ],
+    "derived": {
+     "mar-api": 86,
+     "mar-bri": 144,
+     "upu-cusitm": 83,
+     "upu-refrsp": 26
+    }
+   },
+   "bip-lpco": {
+    "nodes": 763,
+    "context_terms": 227,
+    "ambiguous_tags": [
+     "authentication",
+     "categoryCode",
+     "functionCode",
+     "id",
+     "name",
+     "nameCode",
+     "typeCode"
+    ],
+    "derived": {
+     "coo-wco-tcro": 107,
+     "customs-bond": 35
+    }
+   },
+   "mdip": {
+    "nodes": 67,
+    "context_terms": 50,
+    "ambiguous_tags": [
+     "typeCode"
+    ],
+    "derived": {}
+   }
   }
- },
- "bip-dec": {
-  "nodes": 9064,
-  "context_terms": 572,
-  "ambiguous_tags": [
-   "accountId",
-   "authentication",
-   "categoryCode",
-   "conditionCode",
-   "functionCode",
-   "id",
-   "identificationCode",
-   "identificationTypeCode",
-   "methodCode",
-   "name",
-   "nameCode",
-   "quantityQuantity",
-   "rateNumeric",
-   "roleCode",
-   "statusCode",
-   "typeCode"
-  ],
-  "derived": {
-   "mar-api": 86,
-   "mar-bri": 144,
-   "upu-cusitm": 83,
-   "upu-refrsp": 26
-  }
- },
- "bip-lpco": {
-  "nodes": 763,
-  "context_terms": 227,
-  "ambiguous_tags": [
-   "authentication",
-   "categoryCode",
-   "functionCode",
-   "id",
-   "name",
-   "nameCode",
-   "typeCode"
-  ],
-  "derived": {
-   "coo-wco-tcro": 107,
-   "customs-bond": 35
-  }
- },
- "mdip": {
-  "nodes": 67,
-  "context_terms": 50,
-  "ambiguous_tags": [
-   "typeCode"
-  ],
-  "derived": {}
  }
 }

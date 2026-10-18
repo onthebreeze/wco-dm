@@ -1,0 +1,185 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title eTIR Guarantee 4.0.0
+class "LPCO" as C0 <<root>> {
+  1 element
+}
+class "ObligationGuarantee" as C1 {
+  8 elements
+}
+class "AdditionalDocument" as C2 {
+  3 elements
+}
+class "Surety" as C3 {
+  2 elements
+}
+class "TransitOperation" as C4 {
+  2 elements
+}
+class "TransitPrincipal" as C5 {
+  3 elements
+}
+class "BinaryFile" as C6 {
+  16 elements
+}
+class "NationalReference" as C7 {
+  2 elements
+}
+class "AdditionalIdentifier" as C8 {
+  3 elements
+}
+class "OperationStart" as C9 {
+  2 elements
+}
+class "OperationTermination" as C10 {
+  3 elements
+}
+class "OperationDischarge" as C11 {
+  1 element
+}
+class "RefusalToStart" as C12 {
+  1 element
+}
+class "Address" as C13 {
+  4 elements
+}
+class "AdditionalIdentifier" as C14 {
+  3 elements
+}
+class "Authorization" as C15 {
+  1 element
+}
+class "AdditionalInformation" as C16 {
+  1 element
+}
+class "Consignment" as C17 {
+  1 element
+}
+class "Control" as C18 {
+  2 elements
+}
+class "Itinerary" as C19
+class "TransitOffice" as C20 {
+  1 element
+}
+class "TransitOperationStartOffice" as C21 {
+  1 element
+}
+class "AdditionalInformation" as C22 {
+  1 element
+}
+class "Consignment" as C23 {
+  1 element
+}
+class "Control" as C24 {
+  2 elements
+}
+class "TransitOperationTerminationOffice" as C25 {
+  1 element
+}
+class "TransitOperationDischargeOffice" as C26 {
+  1 element
+}
+class "AdditionalInformation" as C27 {
+  1 element
+}
+class "Control" as C28 {
+  1 element
+}
+class "TransitOperationStartOffice" as C29 {
+  1 element
+}
+class "AuthorizationWithdrawal" as C30 {
+  2 elements
+}
+class "Exclusion" as C31 {
+  3 elements
+}
+class "TransportEquipment" as C32 {
+  1 element
+}
+class "ControlResult" as C33 {
+  3 elements
+}
+class "ItineraryOffice" as C34 {
+  1 element
+}
+class "TransportEquipment" as C35 {
+  2 elements
+}
+class "ControlResult" as C36 {
+  3 elements
+}
+class "ControlResult" as C37 {
+  1 element
+}
+class "Seal" as C38 {
+  4 elements
+}
+class "Seal" as C39 {
+  4 elements
+}
+C0 *-- "0..*" C1
+C1 *-- "0..*" C2
+C1 *-- "0..*" C3
+C1 *-- "0..*" C4
+C1 *-- "0..*" C5
+C2 *-- "0..*" C6
+C2 *-- "0..*" C7
+C3 *-- "0..*" C8
+C4 *-- "0..*" C9
+C4 *-- "0..*" C10
+C4 *-- "0..*" C11
+C4 *-- "0..*" C12
+C5 *-- "0..*" C13
+C5 *-- "0..*" C14
+C5 *-- "0..*" C15
+C9 *-- "0..*" C16
+C9 *-- "0..*" C17
+C9 *-- "0..*" C18
+C9 *-- "0..*" C19
+C9 *-- "0..*" C20
+C9 *-- "0..*" C21
+C10 *-- "0..*" C22
+C10 *-- "0..*" C23
+C10 *-- "0..*" C24
+C10 *-- "0..*" C25
+C11 *-- "0..*" C26
+C12 *-- "0..*" C27
+C12 *-- "0..*" C28
+C12 *-- "0..*" C29
+C15 *-- "0..*" C30
+C15 *-- "0..*" C31
+C17 *-- "0..*" C32
+C18 *-- "0..*" C33
+C19 *-- "0..*" C34
+C23 *-- "0..*" C35
+C24 *-- "0..*" C36
+C28 *-- "0..*" C37
+C32 *-- "0..*" C38
+C35 *-- "0..*" C39
+@enduml

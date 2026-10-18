@@ -47,7 +47,7 @@
   "authenticator": "https://vocabulary.wcoomd.org/Authenticator",
   "authorName": "https://vocabulary.wcoomd.org/authorNameText",
   "authorization": "https://vocabulary.wcoomd.org/Authorization",
-  "authorizationHolder": "https://vocabulary.wcoomd.org/AuthorisationHolder",
+  "authorizationHolder": "https://vocabulary.wcoomd.org/AuthorizationHolder",
   "authorizationId": "https://vocabulary.wcoomd.org/authorizationIdentifier",
   "authorizedPerson": "https://vocabulary.wcoomd.org/AuthorizedPerson",
   "ballastOrCargoTypeCode": "https://vocabulary.wcoomd.org/ballastOrCargoTypeCode",

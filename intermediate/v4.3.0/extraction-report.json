@@ -1,0 +1,105 @@
+{
+ "source": {
+  "library": "1.1 WCO DM LIB V4.3.0.xlsx",
+  "ois": "WCO DM OIS_V4.3.0.xlsx",
+  "version": "4.3.0"
+ },
+ "counts": {
+  "classes": 273,
+  "attributes": 1156,
+  "data_types": 37,
+  "code_lists": 135,
+  "code_lists_with_values": 12,
+  "code_lists_external": 123,
+  "ois_occurrences": 9802,
+  "classes_with_a_superclass": 170,
+  "attributes_with_a_superclass_element": 559
+ },
+ "superclasses": {
+  "SC1": "RootDocument",
+  "SC2": "GovernmentAgency",
+  "SC3": "Location",
+  "SC4": "Party",
+  "SC5": "TransportMeans"
+ },
+ "superclass_elements": {
+  "S001": "identification",
+  "S002": "name",
+  "S003": "identification",
+  "S004": "type",
+  "S005": "role",
+  "S008": "name",
+  "S009": "identification",
+  "S010": "role",
+  "S022": "amount",
+  "S023": "acceptance",
+  "S024": "cancellation",
+  "S025": "category",
+  "S026": "effective",
+  "S027": "expiration",
+  "S028": "function",
+  "S029": "functionName",
+  "S030": "functionalReference",
+  "S031": "identification",
+  "S032": "issue",
+  "S033": "issueLocationIdentification",
+  "S034": "issueLocationName",
+  "S035": "issuingParty",
+  "S036": "language",
+  "S038": "name",
+  "S039": "original",
+  "S040": "rejection",
+  "S041": "status",
+  "S042": "type",
+  "S043": "version",
+  "S044": "verification",
+  "S045": "replyType",
+  "S046": "validityDuration",
+  "S047": "goodsItem",
+  "S048": "operationType",
+  "S049": "name",
+  "S050": "identification",
+  "S051": "identificationType",
+  "S052": "type",
+  "S053": "registrationNationality",
+  "S054": "intermediateTransportMeansModeAndTypeIdentification",
+  "S055": "mode",
+  "S056": "movementDescription",
+  "S057": "identificationIssuingCountry",
+  "S058": "type",
+  "S061": "personCategory"
+ },
+ "modules": {
+  "core": 103,
+  "document": 16,
+  "government": 23,
+  "location": 33,
+  "party": 90,
+  "transport": 8
+ },
+ "anomalies": {
+  "rows_without_a_superclass_flag": [
+   630,
+   631,
+   764,
+   765,
+   766,
+   767,
+   796,
+   871
+  ],
+  "rows_with_more_than_one_flag": [
+   {
+    "row": 928,
+    "flags": [
+     "NONE",
+     "DOC"
+    ],
+    "name": "Additional Reference. Type. Code"
+   }
+  ],
+  "classes_without_a_definition": [
+   "AuthorisationHolder"
+  ]
+ }
+}

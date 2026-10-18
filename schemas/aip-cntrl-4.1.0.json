@@ -1,0 +1,2071 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://vocabulary.wcoomd.org/schemas/aip-cntrl-4.1.0.json",
+ "title": "Additional Information Package — cntrl",
+ "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
+ "x-wco-data-model-version": "4.1.0",
+ "type": "object",
+ "properties": {
+  "function": {
+   "type": "string",
+   "pattern": "^\\d{1,2}$",
+   "description": "Code specifying the function of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1225",
+   "x-wco-id": "D046",
+   "x-wco-term": "https://vocabulary.wcoomd.org/documentFunctionCode"
+  },
+  "functionalReference": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific information exchange.",
+   "x-wco-id": "D026",
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
+  },
+  "identification": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific document.",
+   "x-wco-id": "D014",
+   "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+  },
+  "issue": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Date and time the document was issued and when appropriate, signed or otherwise authenticated.",
+   "x-wco-id": "D011",
+   "x-wco-term": "https://vocabulary.wcoomd.org/issueDateTime"
+  },
+  "language": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the language used or requested.",
+   "x-wco-code-list": "UN/EDIFACT code list 3453",
+   "x-wco-id": "D041",
+   "x-wco-term": "https://vocabulary.wcoomd.org/languageCode"
+  },
+  "type": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the name of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+   "x-wco-id": "D013",
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+  },
+  "version": {
+   "type": "string",
+   "maxLength": 9,
+   "description": "Identification of the version of a specific document/message number.",
+   "x-wco-id": "D055",
+   "x-wco-term": "https://vocabulary.wcoomd.org/versionIdentifier"
+  },
+  "replyType": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the type of reply required or transmitted.",
+   "x-wco-code-list": "UN/EDIFACT code list 4343 OR User codes",
+   "x-wco-id": "D040",
+   "x-wco-term": "https://vocabulary.wcoomd.org/replyTypeCode"
+  },
+  "Authenticator": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of the party which certifies that a document is authentic.",
+      "x-wco-id": "R007",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of a party which certifies that a document is authentic.",
+      "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+      "x-wco-id": "R008",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the role of a party.",
+      "x-wco-code-list": "UN/EDIFACT code list 3035",
+      "x-wco-id": "R005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+     },
+     "identificationIssuingCountry": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "Code specifying the issuing country of the identification.",
+      "x-wco-code-list": "ISO 3166-1",
+      "x-wco-id": "R147",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+     },
+     "Address": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3131",
+         "x-wco-id": "410",
+         "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+        },
+        "cityName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a city.",
+         "x-wco-id": "241",
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+        },
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "242",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "countryName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the country or other geographical entity.",
+         "x-wco-id": "412",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryNameText"
+        },
+        "countrySubDivision": {
+         "type": "string",
+         "maxLength": 9,
+         "description": "Code specifying the name of a country subdivision.",
+         "x-wco-code-list": "ISO 3166-2 OR User codes",
+         "x-wco-id": "244",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+        },
+        "countrySubDivisionName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a country subdivision.",
+         "x-wco-id": "243",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+        },
+        "line": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Specification of the postal delivery point such as street and number or post office box.",
+         "x-wco-id": "239",
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+        },
+        "postcode": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the postal zone or address.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "245",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+        },
+        "streetName": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Name of a street.",
+         "x-wco-id": "519",
+         "x-wco-term": "https://vocabulary.wcoomd.org/streetNameText"
+        },
+        "houseNumber": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a house by number.",
+         "x-wco-id": "520",
+         "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberIdentifier"
+        },
+        "houseNumberAddition": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a house by additional number.",
+         "x-wco-id": "521",
+         "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberAdditionText"
+        },
+        "postOfficeBox": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a Post-Office Box.",
+         "x-wco-id": "522",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postOfficeBoxIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an address.",
+       "x-wco-id": "04A"
+      }
+     },
+     "Contact": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of a department or employee.",
+         "x-wco-id": "246",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "function": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the function of a contact (e.g. department or person).",
+         "x-wco-code-list": "UN/EDIFACT code list 3139",
+         "x-wco-id": "487",
+         "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to contact information of a department or employee.",
+       "x-wco-id": "34A"
+      }
+     },
+     "Communication": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Identification of the communication address.",
+         "x-wco-id": "240",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of communication address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3155",
+         "x-wco-id": "253",
+         "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to communication including number and number type.",
+       "x-wco-id": "25A"
+      }
+     },
+     "AdditionalIdentifier": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of an additional party (e.g. VAT number).",
+         "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+         "x-wco-id": "511",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "550",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an additional identification of a party.",
+       "x-wco-id": "23C"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to an authenticating party.",
+    "x-wco-id": "12A"
+   }
+  },
+  "InsuranceCompany": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of the company engaged to provide the insurance for the cargo.",
+      "x-wco-id": "R039",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of a company engaged in the business of insurance.",
+      "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+      "x-wco-id": "R040",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the role of a party.",
+      "x-wco-code-list": "UN/EDIFACT code list 3035",
+      "x-wco-id": "R005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+     },
+     "identificationIssuingCountry": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "Code specifying the issuing country of the identification.",
+      "x-wco-code-list": "ISO 3166-1",
+      "x-wco-id": "R147",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+     },
+     "Address": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3131",
+         "x-wco-id": "410",
+         "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+        },
+        "cityName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a city.",
+         "x-wco-id": "241",
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+        },
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "242",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "countryName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the country or other geographical entity.",
+         "x-wco-id": "412",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryNameText"
+        },
+        "countrySubDivision": {
+         "type": "string",
+         "maxLength": 9,
+         "description": "Code specifying the name of a country subdivision.",
+         "x-wco-code-list": "ISO 3166-2 OR User codes",
+         "x-wco-id": "244",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+        },
+        "countrySubDivisionName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a country subdivision.",
+         "x-wco-id": "243",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+        },
+        "line": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Specification of the postal delivery point such as street and number or post office box.",
+         "x-wco-id": "239",
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+        },
+        "postcode": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the postal zone or address.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "245",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+        },
+        "streetName": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Name of a street.",
+         "x-wco-id": "519",
+         "x-wco-term": "https://vocabulary.wcoomd.org/streetNameText"
+        },
+        "houseNumber": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a house by number.",
+         "x-wco-id": "520",
+         "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberIdentifier"
+        },
+        "houseNumberAddition": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a house by additional number.",
+         "x-wco-id": "521",
+         "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberAdditionText"
+        },
+        "postOfficeBox": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a Post-Office Box.",
+         "x-wco-id": "522",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postOfficeBoxIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an address.",
+       "x-wco-id": "04A"
+      }
+     },
+     "Contact": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of a department or employee.",
+         "x-wco-id": "246",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "function": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the function of a contact (e.g. department or person).",
+         "x-wco-code-list": "UN/EDIFACT code list 3139",
+         "x-wco-id": "487",
+         "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to contact information of a department or employee.",
+       "x-wco-id": "34A"
+      }
+     },
+     "Communication": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Identification of the communication address.",
+         "x-wco-id": "240",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of communication address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3155",
+         "x-wco-id": "253",
+         "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to communication including number and number type.",
+       "x-wco-id": "25A"
+      }
+     },
+     "AdditionalIdentifier": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of an additional party (e.g. VAT number).",
+         "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+         "x-wco-id": "511",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "550",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an additional identification of a party.",
+       "x-wco-id": "23C"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the company engaged in the business of insurance.",
+    "x-wco-id": "75A"
+   }
+  },
+  "Submitter": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of the party who presents a document or data for the approval, consideration, or decision of another.",
+      "x-wco-id": "R058",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of the party who presents a document or data for the approval, consideration, or decision of another.",
+      "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+      "x-wco-id": "R059",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the role of a party.",
+      "x-wco-code-list": "UN/EDIFACT code list 3035",
+      "x-wco-id": "R005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+     },
+     "identificationIssuingCountry": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "Code specifying the issuing country of the identification.",
+      "x-wco-code-list": "ISO 3166-1",
+      "x-wco-id": "R147",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+     },
+     "Address": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3131",
+         "x-wco-id": "410",
+         "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+        },
+        "cityName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a city.",
+         "x-wco-id": "241",
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+        },
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "242",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "countryName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the country or other geographical entity.",
+         "x-wco-id": "412",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryNameText"
+        },
+        "countrySubDivision": {
+         "type": "string",
+         "maxLength": 9,
+         "description": "Code specifying the name of a country subdivision.",
+         "x-wco-code-list": "ISO 3166-2 OR User codes",
+         "x-wco-id": "244",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+        },
+        "countrySubDivisionName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a country subdivision.",
+         "x-wco-id": "243",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+        },
+        "line": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Specification of the postal delivery point such as street and number or post office box.",
+         "x-wco-id": "239",
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+        },
+        "postcode": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the postal zone or address.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "245",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+        },
+        "streetName": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Name of a street.",
+         "x-wco-id": "519",
+         "x-wco-term": "https://vocabulary.wcoomd.org/streetNameText"
+        },
+        "houseNumber": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a house by number.",
+         "x-wco-id": "520",
+         "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberIdentifier"
+        },
+        "houseNumberAddition": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a house by additional number.",
+         "x-wco-id": "521",
+         "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberAdditionText"
+        },
+        "postOfficeBox": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of a Post-Office Box.",
+         "x-wco-id": "522",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postOfficeBoxIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an address.",
+       "x-wco-id": "04A"
+      }
+     },
+     "Contact": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of a department or employee.",
+         "x-wco-id": "246",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "function": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the function of a contact (e.g. department or person).",
+         "x-wco-code-list": "UN/EDIFACT code list 3139",
+         "x-wco-id": "487",
+         "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to contact information of a department or employee.",
+       "x-wco-id": "34A"
+      }
+     },
+     "Communication": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Identification of the communication address.",
+         "x-wco-id": "240",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of communication address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3155",
+         "x-wco-id": "253",
+         "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to communication including number and number type.",
+       "x-wco-id": "25A"
+      }
+     },
+     "AdditionalIdentifier": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of an additional party (e.g. VAT number).",
+         "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+         "x-wco-id": "511",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "550",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an additional identification of a party.",
+       "x-wco-id": "23C"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the submitter of written or electronic documentation.",
+    "x-wco-id": "17B"
+   }
+  },
+  "AdditionalDocument": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "category": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the category of a document.",
+      "x-wco-code-list": "User codes",
+      "x-wco-id": "D031",
+      "x-wco-term": "https://vocabulary.wcoomd.org/authorizationholderCategoryCode"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Identification of a document providing additional information.",
+      "x-wco-id": "D005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "type": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of an additional document.",
+      "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+      "x-wco-id": "D006",
+      "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+     },
+     "version": {
+      "type": "string",
+      "maxLength": 9,
+      "description": "Identification of the version of a specific document/message number.",
+      "x-wco-id": "D055",
+      "x-wco-term": "https://vocabulary.wcoomd.org/versionIdentifier"
+     },
+     "Authenticator": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the party which certifies that a document is authentic.",
+         "x-wco-id": "R007",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of a party which certifies that a document is authentic.",
+         "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+         "x-wco-id": "R008",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "role": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the role of a party.",
+         "x-wco-code-list": "UN/EDIFACT code list 3035",
+         "x-wco-id": "R005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "R147",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        },
+        "Address": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3131",
+            "x-wco-id": "410",
+            "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+           },
+           "cityName": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Name of a city.",
+            "x-wco-id": "241",
+            "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+           },
+           "country": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "242",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+           },
+           "countrySubDivision": {
+            "type": "string",
+            "maxLength": 9,
+            "description": "Code specifying the name of a country subdivision.",
+            "x-wco-code-list": "ISO 3166-2 OR User codes",
+            "x-wco-id": "244",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+           },
+           "countrySubDivisionName": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Name of a country subdivision.",
+            "x-wco-id": "243",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+           },
+           "line": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Specification of the postal delivery point such as street and number or post office box.",
+            "x-wco-id": "239",
+            "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+           },
+           "postcode": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of the postal zone or address.",
+            "x-wco-code-list": "User codes",
+            "x-wco-id": "245",
+            "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+           },
+           "streetName": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Name of a street.",
+            "x-wco-id": "519",
+            "x-wco-term": "https://vocabulary.wcoomd.org/streetNameText"
+           },
+           "houseNumber": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a house by number.",
+            "x-wco-id": "520",
+            "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberIdentifier"
+           },
+           "houseNumberAddition": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a house by additional number.",
+            "x-wco-id": "521",
+            "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberAdditionText"
+           },
+           "postOfficeBox": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a Post-Office Box.",
+            "x-wco-id": "522",
+            "x-wco-term": "https://vocabulary.wcoomd.org/postOfficeBoxIdentifier"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an address.",
+          "x-wco-id": "04A"
+         }
+        },
+        "Contact": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "name": {
+            "type": "string",
+            "maxLength": 70,
+            "description": "Name of a department or employee.",
+            "x-wco-id": "246",
+            "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+           },
+           "function": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the function of a contact (e.g. department or person).",
+            "x-wco-code-list": "UN/EDIFACT code list 3139",
+            "x-wco-id": "487",
+            "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+           },
+           "Communication": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "identification": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Identification of the communication address.",
+               "x-wco-id": "240",
+               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+              },
+              "type": {
+               "type": "string",
+               "maxLength": 3,
+               "description": "Code specifying the type of communication address.",
+               "x-wco-code-list": "UN/EDIFACT code list 3155",
+               "x-wco-id": "253",
+               "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+              }
+             },
+             "additionalProperties": false,
+             "description": "Details related to communication including number and number type.",
+             "x-wco-id": "25A"
+            }
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to contact information of a department or employee.",
+          "x-wco-id": "34A"
+         }
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        },
+        "AdditionalIdentifier": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "identification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Identification of an additional party (e.g. VAT number).",
+            "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+            "x-wco-id": "511",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "identificationIssuingCountry": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the issuing country of the identification.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "550",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an additional identification of a party.",
+          "x-wco-id": "23C"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an authenticating party.",
+       "x-wco-id": "12A"
+      }
+     },
+     "BinaryFile": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Identification of this binary file.",
+         "x-wco-id": "551",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "title": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Title of this binary file.",
+         "x-wco-id": "552",
+         "x-wco-term": "https://vocabulary.wcoomd.org/titleText"
+        },
+        "authorName": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the author for this binary file.",
+         "x-wco-id": "553",
+         "x-wco-term": "https://vocabulary.wcoomd.org/authorNameText"
+        },
+        "version": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the version for this binary file.",
+         "x-wco-id": "554",
+         "x-wco-term": "https://vocabulary.wcoomd.org/versionIdentifier"
+        },
+        "fileName": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Name of the file usually including the file type for this binary file.",
+         "x-wco-id": "555",
+         "x-wco-term": "https://vocabulary.wcoomd.org/fileNameText"
+        },
+        "URI": {
+         "type": "string",
+         "maxLength": 2048,
+         "description": "Identification of the Uniform Resource Identifier (URI) for this binary file.",
+         "x-wco-id": "556",
+         "x-wco-term": "https://vocabulary.wcoomd.org/uriIdentifier"
+        },
+        "MIME": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Code specifying the Multipurpose Internet Mail Extensions (MIME) type for this binary file.",
+         "x-wco-id": "557",
+         "x-wco-term": "https://vocabulary.wcoomd.org/mimeCode"
+        },
+        "encoding": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Code specifying the encoding of this binary file.",
+         "x-wco-id": "558",
+         "x-wco-term": "https://vocabulary.wcoomd.org/encodingCode"
+        },
+        "characterSet": {
+         "type": "string",
+         "pattern": "^\\d{1,17}$",
+         "description": "Code specifying the character set for this binary file.",
+         "x-wco-id": "559",
+         "x-wco-term": "https://vocabulary.wcoomd.org/characterSetCode"
+        },
+        "included": {
+         "type": "string",
+         "description": "Binary object included for this file.",
+         "x-wco-id": "560",
+         "x-wco-term": "https://vocabulary.wcoomd.org/includedBinaryObject"
+        },
+        "access": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Information on access for this binary file such as security and download parameters.",
+         "x-wco-id": "561",
+         "x-wco-term": "https://vocabulary.wcoomd.org/accessText"
+        },
+        "description": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Description of this binary file.",
+         "x-wco-id": "562",
+         "x-wco-term": "https://vocabulary.wcoomd.org/descriptionText"
+        },
+        "size": {
+         "type": "string",
+         "description": "Measure of the size of this binary file.",
+         "x-wco-id": "563",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sizeMeasure"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 6,
+         "description": "Code specifying the type of binary file, such as photo, spreadsheet.",
+         "x-wco-id": "564",
+         "x-wco-term": "https://vocabulary.wcoomd.org/typeCode"
+        },
+        "hashCode": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Hash code of the binary file.",
+         "x-wco-id": "565",
+         "x-wco-term": "https://vocabulary.wcoomd.org/hashCodeText"
+        },
+        "hashCodeAlgorithmID": {
+         "type": "string",
+         "maxLength": 6,
+         "description": "Code specifying the algorithm used to calculate the hash code (e.g. MD5).",
+         "x-wco-id": "566",
+         "x-wco-term": "https://vocabulary.wcoomd.org/hashCodeAlgorithmIDCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the computer file or program stored in a binary format.",
+       "x-wco-id": "72B"
+      }
+     },
+     "InsuranceCompany": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the company engaged to provide the insurance for the cargo.",
+         "x-wco-id": "R039",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of a company engaged in the business of insurance.",
+         "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+         "x-wco-id": "R040",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "role": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the role of a party.",
+         "x-wco-code-list": "UN/EDIFACT code list 3035",
+         "x-wco-id": "R005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "R147",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        },
+        "Address": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3131",
+            "x-wco-id": "410",
+            "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+           },
+           "cityName": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Name of a city.",
+            "x-wco-id": "241",
+            "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+           },
+           "country": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "242",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+           },
+           "countrySubDivision": {
+            "type": "string",
+            "maxLength": 9,
+            "description": "Code specifying the name of a country subdivision.",
+            "x-wco-code-list": "ISO 3166-2 OR User codes",
+            "x-wco-id": "244",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+           },
+           "countrySubDivisionName": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Name of a country subdivision.",
+            "x-wco-id": "243",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+           },
+           "line": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Specification of the postal delivery point such as street and number or post office box.",
+            "x-wco-id": "239",
+            "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+           },
+           "postcode": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of the postal zone or address.",
+            "x-wco-code-list": "User codes",
+            "x-wco-id": "245",
+            "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+           },
+           "streetName": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Name of a street.",
+            "x-wco-id": "519",
+            "x-wco-term": "https://vocabulary.wcoomd.org/streetNameText"
+           },
+           "houseNumber": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a house by number.",
+            "x-wco-id": "520",
+            "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberIdentifier"
+           },
+           "houseNumberAddition": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a house by additional number.",
+            "x-wco-id": "521",
+            "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberAdditionText"
+           },
+           "postOfficeBox": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a Post-Office Box.",
+            "x-wco-id": "522",
+            "x-wco-term": "https://vocabulary.wcoomd.org/postOfficeBoxIdentifier"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an address.",
+          "x-wco-id": "04A"
+         }
+        },
+        "Contact": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "name": {
+            "type": "string",
+            "maxLength": 70,
+            "description": "Name of a department or employee.",
+            "x-wco-id": "246",
+            "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+           },
+           "function": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the function of a contact (e.g. department or person).",
+            "x-wco-code-list": "UN/EDIFACT code list 3139",
+            "x-wco-id": "487",
+            "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+           },
+           "Communication": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "identification": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Identification of the communication address.",
+               "x-wco-id": "240",
+               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+              },
+              "type": {
+               "type": "string",
+               "maxLength": 3,
+               "description": "Code specifying the type of communication address.",
+               "x-wco-code-list": "UN/EDIFACT code list 3155",
+               "x-wco-id": "253",
+               "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+              }
+             },
+             "additionalProperties": false,
+             "description": "Details related to communication including number and number type.",
+             "x-wco-id": "25A"
+            }
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to contact information of a department or employee.",
+          "x-wco-id": "34A"
+         }
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        },
+        "AdditionalIdentifier": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "identification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Identification of an additional party (e.g. VAT number).",
+            "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+            "x-wco-id": "511",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "identificationIssuingCountry": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the issuing country of the identification.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "550",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an additional identification of a party.",
+          "x-wco-id": "23C"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the company engaged in the business of insurance.",
+       "x-wco-id": "75A"
+      }
+     },
+     "Submitter": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the party who presents a document or data for the approval, consideration, or decision of another.",
+         "x-wco-id": "R058",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of the party who presents a document or data for the approval, consideration, or decision of another.",
+         "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+         "x-wco-id": "R059",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "role": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the role of a party.",
+         "x-wco-code-list": "UN/EDIFACT code list 3035",
+         "x-wco-id": "R005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "R147",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        },
+        "Address": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3131",
+            "x-wco-id": "410",
+            "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+           },
+           "cityName": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Name of a city.",
+            "x-wco-id": "241",
+            "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+           },
+           "country": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "242",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+           },
+           "countrySubDivision": {
+            "type": "string",
+            "maxLength": 9,
+            "description": "Code specifying the name of a country subdivision.",
+            "x-wco-code-list": "ISO 3166-2 OR User codes",
+            "x-wco-id": "244",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+           },
+           "countrySubDivisionName": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Name of a country subdivision.",
+            "x-wco-id": "243",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+           },
+           "line": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Specification of the postal delivery point such as street and number or post office box.",
+            "x-wco-id": "239",
+            "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+           },
+           "postcode": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of the postal zone or address.",
+            "x-wco-code-list": "User codes",
+            "x-wco-id": "245",
+            "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+           },
+           "streetName": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Name of a street.",
+            "x-wco-id": "519",
+            "x-wco-term": "https://vocabulary.wcoomd.org/streetNameText"
+           },
+           "houseNumber": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a house by number.",
+            "x-wco-id": "520",
+            "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberIdentifier"
+           },
+           "houseNumberAddition": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a house by additional number.",
+            "x-wco-id": "521",
+            "x-wco-term": "https://vocabulary.wcoomd.org/houseNumberAdditionText"
+           },
+           "postOfficeBox": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Identification of a Post-Office Box.",
+            "x-wco-id": "522",
+            "x-wco-term": "https://vocabulary.wcoomd.org/postOfficeBoxIdentifier"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an address.",
+          "x-wco-id": "04A"
+         }
+        },
+        "Contact": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "name": {
+            "type": "string",
+            "maxLength": 70,
+            "description": "Name of a department or employee.",
+            "x-wco-id": "246",
+            "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+           },
+           "function": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the function of a contact (e.g. department or person).",
+            "x-wco-code-list": "UN/EDIFACT code list 3139",
+            "x-wco-id": "487",
+            "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+           },
+           "Communication": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "identification": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Identification of the communication address.",
+               "x-wco-id": "240",
+               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+              },
+              "type": {
+               "type": "string",
+               "maxLength": 3,
+               "description": "Code specifying the type of communication address.",
+               "x-wco-code-list": "UN/EDIFACT code list 3155",
+               "x-wco-id": "253",
+               "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+              }
+             },
+             "additionalProperties": false,
+             "description": "Details related to communication including number and number type.",
+             "x-wco-id": "25A"
+            }
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to contact information of a department or employee.",
+          "x-wco-id": "34A"
+         }
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        },
+        "AdditionalIdentifier": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "identification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Identification of an additional party (e.g. VAT number).",
+            "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+            "x-wco-id": "511",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "identificationIssuingCountry": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the issuing country of the identification.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "550",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an additional identification of a party.",
+          "x-wco-id": "23C"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the submitter of written or electronic documentation.",
+       "x-wco-id": "17B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to additional documents as part of a declaration or as part of a response.",
+    "x-wco-id": "02A"
+   }
+  },
+  "AdditionalInformation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "statement": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Code specifying the form of an additional statement.",
+      "x-wco-code-list": "User codes",
+      "x-wco-id": "226",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementCode"
+     },
+     "statementDescription": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of an additional statement.",
+      "x-wco-id": "225",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementDescriptionText"
+     },
+     "statementType": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the subject of the additional statement.",
+      "x-wco-code-list": "UN/EDIFACT code list 4451",
+      "x-wco-id": "369",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementTypeCode"
+     },
+     "Pointer": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "documentSection": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying a section of a document/message.",
+         "x-wco-code-list": "UN/EDIFACT code list 1049",
+         "x-wco-id": "375",
+         "x-wco-term": "https://vocabulary.wcoomd.org/documentSectionCode"
+        },
+        "tag": {
+         "type": "string",
+         "maxLength": 4,
+         "description": "Identification of the data element tag.",
+         "x-wco-id": "381",
+         "x-wco-term": "https://vocabulary.wcoomd.org/tagIdentifier"
+        },
+        "Location": {
+         "type": "string",
+         "maxLength": 512,
+         "description": "Location in the document in syntax (e.g. XPath).",
+         "x-wco-id": "512",
+         "x-wco-term": "https://vocabulary.wcoomd.org/locationText"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to a functional attribute within a declaration.",
+       "x-wco-id": "97A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the special request from declarant to government to take or not to take action.",
+    "x-wco-id": "03A"
+   }
+  },
+  "ContactOffice": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "identification": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Identification of the location of a government office where contact can be made.",
+      "x-wco-code-list": "UN/LOCODE + User codes",
+      "x-wco-id": "G002",
+      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+     },
+     "Contact": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of a department or employee.",
+         "x-wco-id": "246",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "function": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the function of a contact (e.g. department or person).",
+         "x-wco-code-list": "UN/EDIFACT code list 3139",
+         "x-wco-id": "487",
+         "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to contact information of a department or employee.",
+       "x-wco-id": "34A"
+      }
+     },
+     "Communication": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Identification of the communication address.",
+         "x-wco-id": "240",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of communication address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3155",
+         "x-wco-id": "253",
+         "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to communication including number and number type.",
+       "x-wco-id": "25A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the location of a government agency contact office.",
+    "x-wco-id": "35A"
+   }
+  },
+  "Control": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time by when the event has to be completed.",
+      "x-wco-id": "264",
+      "x-wco-term": "https://vocabulary.wcoomd.org/limitDateTime"
+     },
+     "eventStart": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time at which a specified event becomes effective.",
+      "x-wco-id": "355",
+      "x-wco-term": "https://vocabulary.wcoomd.org/eventStartDateTime"
+     },
+     "eventEnd": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time at which a specified event is completed.",
+      "x-wco-id": "356",
+      "x-wco-term": "https://vocabulary.wcoomd.org/eventEndDateTime"
+     },
+     "type": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of governmental examination.",
+      "x-wco-code-list": "User codes",
+      "x-wco-id": "449",
+      "x-wco-term": "https://vocabulary.wcoomd.org/authenticationTypeCode"
+     },
+     "ControlResult": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the results of a control.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "444",
+         "x-wco-term": "https://vocabulary.wcoomd.org/controlresultIdentificationCode"
+        },
+        "examinationImage": {
+         "type": "string",
+         "description": "Digital information resulting from an inspection or examination (e.g. x-ray scan of a container).",
+         "x-wco-id": "405",
+         "x-wco-term": "https://vocabulary.wcoomd.org/examinationImageBinaryObject"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the outcome of (governmental) examination.",
+       "x-wco-id": "83B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to (governmental) examination.",
+    "x-wco-id": "38A"
+   }
+  },
+  "Status": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "effective": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time a specified event becomes effective.",
+      "x-wco-id": "380",
+      "x-wco-term": "https://vocabulary.wcoomd.org/effectiveDateTime"
+     },
+     "name": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the processing status of a document.",
+      "x-wco-code-list": "UN/EDIFACT code list 4405 OR User codes",
+      "x-wco-id": "379",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statusNameCode"
+     },
+     "release": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time the goods have been released from government custody.",
+      "x-wco-id": "277",
+      "x-wco-term": "https://vocabulary.wcoomd.org/releaseDateTime"
+     },
+     "Pointer": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "documentSection": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying a section of a document/message.",
+         "x-wco-code-list": "UN/EDIFACT code list 1049",
+         "x-wco-id": "375",
+         "x-wco-term": "https://vocabulary.wcoomd.org/documentSectionCode"
+        },
+        "tag": {
+         "type": "string",
+         "maxLength": 4,
+         "description": "Identification of the data element tag.",
+         "x-wco-id": "381",
+         "x-wco-term": "https://vocabulary.wcoomd.org/tagIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to a functional attribute within a declaration.",
+       "x-wco-id": "97A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to status.",
+    "x-wco-id": "12B"
+   }
+  },
+  "Declaration": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.",
+    "x-wco-id": "42A"
+   }
+  },
+  "LPCO": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "Details related to Licenses, Permits, Certificates or Others.",
+    "x-wco-id": "74B"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "58C"
+}

@@ -1,0 +1,1910 @@
+[
+ {
+  "seq": "1",
+  "name": "ActionCode",
+  "basis": "UN/EDIFACT code list 1229 OR User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 3
+  }
+ },
+ {
+  "seq": "2",
+  "name": "AdditionalProcedureCode",
+  "basis": "User code list (see EU CDM code list for DE 11 10 001 000)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 4
+  }
+ },
+ {
+  "seq": "3",
+  "name": "AddressTypeCode",
+  "basis": "UN/EDIFACT code list 3131",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 5
+  }
+ },
+ {
+  "seq": "4",
+  "name": "AEOProgramTypeCode",
+  "basis": "WCO code list/AEOProgramTypeCode",
+  "codes": [
+   {
+    "code": "C",
+    "description": "Compliance"
+   },
+   {
+    "code": "F",
+    "description": "Both"
+   },
+   {
+    "code": "S",
+    "description": "Security and safety"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 6
+  }
+ },
+ {
+  "seq": "5",
+  "name": "AgentFunctionCode",
+  "basis": "UN/EDIFACT code list 4405\nFor use with the EU CDM:\n- code 2 (Representative (direct representation within the meaning of Article 18(1 of the code))\n- code 3 (Representative (indirect representation within the meaning of Article 18(1 of the code))",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 7
+  }
+ },
+ {
+  "seq": "6",
+  "name": "AgentQualityAssuranceCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 166 and 167)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 8
+  }
+ },
+ {
+  "seq": "7",
+  "name": "AIPTypeCode",
+  "basis": "WCO code list/AIPTypeCode",
+  "codes": [
+   {
+    "code": "1",
+    "description": "InterGov"
+   },
+   {
+    "code": "2",
+    "description": "Response"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 9
+  }
+ },
+ {
+  "seq": "8",
+  "name": "ArrivalConfirmationCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 164 and 165)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 10
+  }
+ },
+ {
+  "seq": "9",
+  "name": "BallastOrCargoTypeCode",
+  "basis": "UN/EDIFACT code list 7085",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 11
+  }
+ },
+ {
+  "seq": "10",
+  "name": "BondActivityTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 12
+  }
+ },
+ {
+  "seq": "11",
+  "name": "BunkerFuelTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 13
+  }
+ },
+ {
+  "seq": "12",
+  "name": "BusinessTypeCode",
+  "basis": "ISIC code list OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 14
+  }
+ },
+ {
+  "seq": "13",
+  "name": "CallPurposeCode",
+  "basis": "UN/EDIFACT code list 8025",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 15
+  }
+ },
+ {
+  "seq": "14",
+  "name": "CarrierSplitConsignmentCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 156 and 157)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 16
+  }
+ },
+ {
+  "seq": "15",
+  "name": "ChangeReasonCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 17
+  }
+ },
+ {
+  "seq": "16",
+  "name": "CharacteristicCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 18
+  }
+ },
+ {
+  "seq": "17",
+  "name": "CharacteristicValueCode",
+  "basis": "UN/EDIFACT code list 7111 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 19
+  }
+ },
+ {
+  "seq": "18",
+  "name": "ChargesTypeCode",
+  "basis": "UN/EDIFACT code list 5025\nFor use with the EU CDM:\n- AB  Commissions and brokerage, except buying commissions   \n- AD  Containers and packing   \n- AE  Materials, components, parts and similar items incorporated in the imported goods   \n- AF  Tools, dies, moulds and similar items used in the production of the imported goods  \n- AG  Materials consumed in the production of the imported goods\n- AH  Engineering, development, artwork, design work and plans and sketches undertaken elsewhere than in the European Union and necessary for the production of the imported goods   \n- AI  Royalties and license fees\n- AJ  Proceeds of any subsequent resale, disposal or use accruing to the seller   \n- AK  Transport costs, loading and handling charges and insurance costs up to the place of introduction in the European Union   \n- AL  Indirect payments and other payments (Article 70 of the code)\n- AN  Additions based on a decision granted in accordance with Article 71 of Delegated Regulation (EU) 2015/2446. Deductions (As defined under Articles 72 of the Code)   \n- BA  Costs of transport after arrival at the place of introduction   \n- BB  Charges for construction, erection, assembly, maintenance or technical assistance undertaken after importation   \n- BC  Import duties or other charges payable in the Union for reason of the import or sale of goods   \n- BD  Interest charges   \n- BE  Charges for the right to reproduce the imported goods in the European Union   \n- BF  Buying commissions  \n- BG  Deductions based on a decision granted in accordance with Article 71 of Delegated Regulation (EU) 2015/2446",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 20
+  }
+ },
+ {
+  "seq": "19",
+  "name": "ClassificationNameCode",
+  "basis": "UN/EDIFACT code list 7357",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 21
+  }
+ },
+ {
+  "seq": "20",
+  "name": "CommodityCategoryCode",
+  "basis": "UN/EDIFACT code list 7009",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 22
+  }
+ },
+ {
+  "seq": "21",
+  "name": "CommodityCategoryQualifierCode",
+  "basis": "UN/EDIFACT code list 3055 OR User codes (1131)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 23
+  }
+ },
+ {
+  "seq": "22",
+  "name": "CommodityCharacteristicQualifierCode",
+  "basis": "UN/EDIFACT code list 7081",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 24
+  }
+ },
+ {
+  "seq": "23",
+  "name": "CommodityClassificationTypeCode",
+  "basis": "UN/EDIFACT code list 7143",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 25
+  }
+ },
+ {
+  "seq": "24",
+  "name": "CommodityDangerousGoodsPackingGroupCode",
+  "basis": "UN/EDIFACT code list 7233",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 26
+  }
+ },
+ {
+  "seq": "25",
+  "name": "CommodityIdentifierTypeCode",
+  "basis": "UN/EDIFACT code list 7143",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 27
+  }
+ },
+ {
+  "seq": "26",
+  "name": "CommodityIdentityNumberQualifierCode",
+  "basis": "UN/EDIFACT code list 7405",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 28
+  }
+ },
+ {
+  "seq": "27",
+  "name": "CommodityNameQualifierCode",
+  "basis": "UN/EDIFACT code list 7081",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 29
+  }
+ },
+ {
+  "seq": "28",
+  "name": "CommodityPhysicalStateCode",
+  "basis": "UN/EDIFACT code list 7007",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 30
+  }
+ },
+ {
+  "seq": "29",
+  "name": "CommodityProcessTypeIdentificationCode",
+  "basis": "UN/EDIFACT code list 7187",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 31
+  }
+ },
+ {
+  "seq": "30",
+  "name": "CommunicationMeansTypeCode",
+  "basis": "UN/EDIFACT code list 3155",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 32
+  }
+ },
+ {
+  "seq": "31",
+  "name": "CommunicationQualifierCode",
+  "basis": "WCO code list/CommunicationSubTypeCode",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 33
+  }
+ },
+ {
+  "seq": "32",
+  "name": "ConstituentElementOrComponentCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 34
+  }
+ },
+ {
+  "seq": "33",
+  "name": "ContactFunctionCode",
+  "basis": "UN/EDIFACT code list 3139",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 35
+  }
+ },
+ {
+  "seq": "34",
+  "name": "ContainerLegalStatusCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 162 and 163)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 36
+  }
+ },
+ {
+  "seq": "35",
+  "name": "ContainerStatusCode",
+  "basis": "UN/EDIFACT code list 8249",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 37
+  }
+ },
+ {
+  "seq": "36",
+  "name": "ContainerTransportCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 68 and 69)\nFor use with the EU CDM:\n- code 0 (Goods not transported in containers)\n- code 1 (Goods transported in containers)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 38
+  }
+ },
+ {
+  "seq": "37",
+  "name": "ControlResultCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 39
+  }
+ },
+ {
+  "seq": "38",
+  "name": "ControlTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 40
+  }
+ },
+ {
+  "seq": "39",
+  "name": "CountryCode",
+  "basis": "ISO 3166-1",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 41
+  }
+ },
+ {
+  "seq": "40",
+  "name": "CountryRelationshipCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 42
+  }
+ },
+ {
+  "seq": "41",
+  "name": "CountrySubDivisionCode",
+  "basis": "ISO 3166-2 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 43
+  }
+ },
+ {
+  "seq": "42",
+  "name": "CriteriaConformanceCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 44
+  }
+ },
+ {
+  "seq": "43",
+  "name": "CurrencyCode",
+  "basis": "ISO 4217",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 45
+  }
+ },
+ {
+  "seq": "44",
+  "name": "DangerousGoodsRegulationsCode",
+  "basis": "UN/EDIFACT code list 8273",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 46
+  }
+ },
+ {
+  "seq": "45",
+  "name": "DeclarantFunctionCode",
+  "basis": "UN/EDIFACT code list 4405",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 47
+  }
+ },
+ {
+  "seq": "46",
+  "name": "DocumentCategoryCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 48
+  }
+ },
+ {
+  "seq": "47",
+  "name": "DocumentFunctionCode",
+  "basis": "UN/EDIFACT code list 1225",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 49
+  }
+ },
+ {
+  "seq": "48",
+  "name": "DocumentMessageSectionCode",
+  "basis": "UN/EDIFACT code list 1049",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 50
+  }
+ },
+ {
+  "seq": "49",
+  "name": "DocumentStatusCode",
+  "basis": "UN/EDIFACT code list 1373",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 51
+  }
+ },
+ {
+  "seq": "50",
+  "name": "DocumentTypeCode",
+  "basis": "UN/EDIFACT code list 1001 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 52
+  }
+ },
+ {
+  "seq": "51",
+  "name": "DutyRegimeCode",
+  "basis": "UN/EDIFACT code list 9213 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 53
+  }
+ },
+ {
+  "seq": "52",
+  "name": "EndorsementCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 54
+  }
+ },
+ {
+  "seq": "53",
+  "name": "EquipmentTypeCode",
+  "basis": "UN/EDIFACT code list 8053",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 55
+  }
+ },
+ {
+  "seq": "54",
+  "name": "ErrorCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 56
+  }
+ },
+ {
+  "seq": "55",
+  "name": "EventTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 57
+  }
+ },
+ {
+  "seq": "56",
+  "name": "FreeTradeZoneStatusCode",
+  "basis": "UN/EDIFACT code list 4405",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 58
+  }
+ },
+ {
+  "seq": "57",
+  "name": "FreightChargeApportioningMethodCode",
+  "basis": "WCO code list/FreightChargeApportioningMethodCode",
+  "codes": [
+   {
+    "code": "160",
+    "description": "To be added"
+   },
+   {
+    "code": "161",
+    "description": "Security (including cash deposit)"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 59
+  }
+ },
+ {
+  "seq": "58",
+  "name": "FreightChargePaymentMethodCode",
+  "basis": "UN/EDIFACT code list 4215",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 60
+  }
+ },
+ {
+  "seq": "59",
+  "name": "GoodsGroupNameCode",
+  "basis": "UN/EDIFACT code list 7059",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 61
+  }
+ },
+ {
+  "seq": "60",
+  "name": "GoodsLocationIdentificationTypeCode",
+  "basis": "User code list (see EU CDM code list for DE 16 15 046 000)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 62
+  }
+ },
+ {
+  "seq": "61",
+  "name": "GoodsMeasureFunctionCode",
+  "basis": "UN/EDIFACT code list 6311",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 63
+  }
+ },
+ {
+  "seq": "62",
+  "name": "GovernmentAgencyNameCode",
+  "basis": "UN/LOCODE (an..5) + User codes (an..12)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 64
+  }
+ },
+ {
+  "seq": "63",
+  "name": "GovernmentAgencyTypeCode",
+  "basis": "UN/EDIFACT code list 9415",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 65
+  }
+ },
+ {
+  "seq": "64",
+  "name": "GovernmentProcedureCode",
+  "basis": "UN/EDIFACT code list 7365\nFor Customs:  User codes, categorized based on the revised Kyoto Convention",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 66
+  }
+ },
+ {
+  "seq": "65",
+  "name": "GuaranteeActivityTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 67
+  }
+ },
+ {
+  "seq": "66",
+  "name": "HandlingCode",
+  "basis": "UN/EDIFACT code list 4079",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 68
+  }
+ },
+ {
+  "seq": "67",
+  "name": "INFShipClassCode",
+  "basis": "Chapter VII of SOLAS (Carriage of dangerous goods)",
+  "codes": [
+   {
+    "code": "INF1",
+    "description": "Ships which are certified to carry INF cargo with an aggregate activity less than 4,000 TBq"
+   },
+   {
+    "code": "INF2",
+    "description": "Ships which are certified to carry irradiated nuclear fuel or high-level radioactive wastes with an aggregate activity less than 2 x 106 TBq and ships which are certified to carry plutonium with an aggregate activity less than 2??105 TBq"
+   },
+   {
+    "code": "INF3",
+    "description": "Ships which are certified to carry irradiated nuclear fuel or high-level radioactive wastes and ships which are certified to carry plutonium with no restriction of the maximum aggregate activity of the materials"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 69
+  }
+ },
+ {
+  "seq": "68",
+  "name": "IntendedUseCode",
+  "basis": "WCO code list/IntendedUseCode OR User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 70
+  }
+ },
+ {
+  "seq": "69",
+  "name": "IPRTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 71
+  }
+ },
+ {
+  "seq": "70",
+  "name": "LanguageCode",
+  "basis": "UN/EDIFACT code list 3453",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 72
+  }
+ },
+ {
+  "seq": "71",
+  "name": "LocationFunctionCode",
+  "basis": "UN/EDIFACT code list 3227",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 73
+  }
+ },
+ {
+  "seq": "72",
+  "name": "LPCOExemptionCode",
+  "basis": "UN/EDIFACT code list 4183",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 74
+  }
+ },
+ {
+  "seq": "73",
+  "name": "MeasurementUnitCode",
+  "basis": "UN/EDIFACT code list 6411",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 75
+  }
+ },
+ {
+  "seq": "74",
+  "name": "ObligationGuaranteeCode",
+  "basis": "WCO code list/ObligationGuaranteeCode OR User code list",
+  "codes": [
+   {
+    "code": "M",
+    "description": "Guarantee"
+   },
+   {
+    "code": "O",
+    "description": "Security by individual guarantee"
+   },
+   {
+    "code": "P",
+    "description": "Security from declarant's guarantee account"
+   },
+   {
+    "code": "Q",
+    "description": "Security from consignee's guarantee account (standing authority)"
+   },
+   {
+    "code": "R",
+    "description": "Agent's bond"
+   },
+   {
+    "code": "S",
+    "description": "Security by undertaking"
+   },
+   {
+    "code": "T",
+    "description": "To be added"
+   },
+   {
+    "code": "U",
+    "description": "To be added"
+   },
+   {
+    "code": "W",
+    "description": "To be added"
+   },
+   {
+    "code": "Z",
+    "description": "Immediate payment by cash or equivalent"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 76
+  }
+ },
+ {
+  "seq": "75",
+  "name": "OriginRuleCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 77
+  }
+ },
+ {
+  "seq": "76",
+  "name": "OriginTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 78
+  }
+ },
+ {
+  "seq": "77",
+  "name": "PackageHierarchyCode",
+  "basis": "UN/EDIFACT code list 7075",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 79
+  }
+ },
+ {
+  "seq": "78",
+  "name": "PackageTypeCode",
+  "basis": "UN/ECE Recommendation 21 Annex VI",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 80
+  }
+ },
+ {
+  "seq": "79",
+  "name": "PartyRelationshipCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 135, 136 and 137)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 81
+  }
+ },
+ {
+  "seq": "80",
+  "name": "PaymentMethodCode",
+  "basis": "WCO code list/PaymentMethodCode",
+  "codes": [
+   {
+    "code": "A",
+    "description": "Payment in cash"
+   },
+   {
+    "code": "B",
+    "description": "Payment by credit card"
+   },
+   {
+    "code": "C",
+    "description": "Payment by check"
+   },
+   {
+    "code": "D",
+    "description": "Others not found elsewhere in code table"
+   },
+   {
+    "code": "E",
+    "description": "Deferred or postponed payment"
+   },
+   {
+    "code": "G",
+    "description": "Postponed payment"
+   },
+   {
+    "code": "H",
+    "description": "Electronic credit transfer"
+   },
+   {
+    "code": "J",
+    "description": "Payment through post office administration (postal consignments) or other public sector or government department"
+   },
+   {
+    "code": "K",
+    "description": "Excise credit or rebate"
+   },
+   {
+    "code": "L",
+    "description": "Zero Duty or Duty Exempt"
+   },
+   {
+    "code": "O",
+    "description": "Guarantee lodged with Intervention"
+   },
+   {
+    "code": "P",
+    "description": "From agent's cash account"
+   },
+   {
+    "code": "R",
+    "description": "Guarantee of the amount payable"
+   },
+   {
+    "code": "S",
+    "description": "Individual guarantee account"
+   },
+   {
+    "code": "T",
+    "description": "From agent's guarantee account"
+   },
+   {
+    "code": "U",
+    "description": "From agent's guarantee - standing authority"
+   },
+   {
+    "code": "V",
+    "description": "From agent's guarantee - individual authority"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 82
+  }
+ },
+ {
+  "seq": "81",
+  "name": "PaymentTermsCode",
+  "basis": "UN/ECE Recommendation 17",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 83
+  }
+ },
+ {
+  "seq": "82",
+  "name": "PaymentTypeCode",
+  "basis": "WCO code list/PaymentTypeCode",
+  "codes": [
+   {
+    "code": "F",
+    "description": "Fare"
+   },
+   {
+    "code": "T",
+    "description": "Total"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 84
+  }
+ },
+ {
+  "seq": "83",
+  "name": "PersonCategoryCode",
+  "basis": "User code list (preferably new WCO code list)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 85
+  }
+ },
+ {
+  "seq": "84",
+  "name": "PersonGenderCode",
+  "basis": "UN/EDIFACT code list 3499",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 86
+  }
+ },
+ {
+  "seq": "85",
+  "name": "PersonNationalityCode",
+  "basis": "UN/EDIFACT code list 3207",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 87
+  }
+ },
+ {
+  "seq": "86",
+  "name": "PersonStatusCode",
+  "basis": "UN/EDIFACT code list 3035\nUN/EDIFACT code list 7365",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 88
+  }
+ },
+ {
+  "seq": "87",
+  "name": "PersonTypeCode",
+  "basis": "UN/EDIFACT code list 3035",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 89
+  }
+ },
+ {
+  "seq": "88",
+  "name": "ProgramPartnerProfileTypeCode",
+  "basis": "WCO code list/ProgramPartnerProfileTypeCode",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 90
+  }
+ },
+ {
+  "seq": "89",
+  "name": "RateTypeCode",
+  "basis": "UN/EDIFACT code list 5419",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 91
+  }
+ },
+ {
+  "seq": "90",
+  "name": "ReconciliationReasonCode",
+  "basis": "UN/EDIFACT code list 4183",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 92
+  }
+ },
+ {
+  "seq": "91",
+  "name": "ReferenceTypeCode",
+  "basis": "UN/EDIFACT code list 1153.\nFor EU CDM usage:\nAdditional references must be entered in the form of a code defined in Title I.\nThe list of additional references and their respective codes can be found in the TARIC database, their format is a1an3.\nMember States may define national codes, national codes must have the format n1an3",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 93
+  }
+ },
+ {
+  "seq": "92",
+  "name": "ReplyTypeCode",
+  "basis": "EDIFACT 4343 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 94
+  }
+ },
+ {
+  "seq": "93",
+  "name": "RequestOverrideCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 95
+  }
+ },
+ {
+  "seq": "94",
+  "name": "ResealCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 96
+  }
+ },
+ {
+  "seq": "95",
+  "name": "ResponsibleAgencyCode",
+  "basis": "UN/EDIFACT code list 0051",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 97
+  }
+ },
+ {
+  "seq": "96",
+  "name": "RoleCode",
+  "basis": "UN/EDIFACT code list 3035",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 98
+  }
+ },
+ {
+  "seq": "97",
+  "name": "SealConditionCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 99
+  }
+ },
+ {
+  "seq": "98",
+  "name": "SealingPartyTypeCode",
+  "basis": "UN/EDIFACT code list 9303",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 100
+  }
+ },
+ {
+  "seq": "99",
+  "name": "SealTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 101
+  }
+ },
+ {
+  "seq": "100",
+  "name": "SecurityCode",
+  "basis": "User code list\n(EU CDM codes available, could be the basis for new WCO code list)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 102
+  }
+ },
+ {
+  "seq": "101",
+  "name": "SecurityLevelCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 103
+  }
+ },
+ {
+  "seq": "102",
+  "name": "SensitiveGoodsCode",
+  "basis": "UN/EDIFACT code list 7365 subset (codes 170, 171 and 172) OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 104
+  }
+ },
+ {
+  "seq": "103",
+  "name": "SourceTypeCode",
+  "basis": "UN/EDIFACT code list 3227",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 105
+  }
+ },
+ {
+  "seq": "104",
+  "name": "SpecificCircumstancesCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 106
+  }
+ },
+ {
+  "seq": "105",
+  "name": "StatementCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 107
+  }
+ },
+ {
+  "seq": "106",
+  "name": "StatementTypeCode",
+  "basis": "UN/EDIFACT code list 4451",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 108
+  }
+ },
+ {
+  "seq": "107",
+  "name": "StatusCode",
+  "basis": "UN/EDIFACT code list 4405 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 109
+  }
+ },
+ {
+  "seq": "108",
+  "name": "SupplementaryFilingTypeCode",
+  "basis": "User code list (preferably new WCO code list)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 110
+  }
+ },
+ {
+  "seq": "109",
+  "name": "SyntaxIdentifierCode",
+  "basis": "UN/EDIFACT code list 0001",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 111
+  }
+ },
+ {
+  "seq": "110",
+  "name": "SyntaxVersionCode",
+  "basis": "UN/EDIFACT code list 0002",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 112
+  }
+ },
+ {
+  "seq": "111",
+  "name": "TariffClassSpecificationCode",
+  "basis": "UN/EDIFACT code list 5243",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 113
+  }
+ },
+ {
+  "seq": "112",
+  "name": "TaxOrFeeTypeCode",
+  "basis": "UN/EDIFACT code list 5153 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 114
+  }
+ },
+ {
+  "seq": "113",
+  "name": "TemperatureCategoryCode",
+  "basis": "UN/EDIFACT code list 6155",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 115
+  }
+ },
+ {
+  "seq": "114",
+  "name": "TerminationTypeCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 116
+  }
+ },
+ {
+  "seq": "115",
+  "name": "TradetermConditionCode",
+  "basis": "UN/EDIFACT code list 4053",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 117
+  }
+ },
+ {
+  "seq": "116",
+  "name": "TransactionNatureTypeCode",
+  "basis": "WCO code list/TransactionNatureTypeCode (n1) + User code (n1)\nRemark:\n* First digit indicates WCO code table value;\n* Second digit can be used as additional user code to further define first digit",
+  "codes": [
+   {
+    "code": "1",
+    "description": "Transactions involving actual or intended transfer of ownership from residents to non-residents against financial or other compensation (except the transactions listed under 2, 7, 8)"
+   },
+   {
+    "code": "2",
+    "description": "Return and replacement of goods free of charge after registration of the original transaction"
+   },
+   {
+    "code": "3",
+    "description": "Transactions involving transfer of ownership without financial or in-kind compensation (e.g. aid shipments)"
+   },
+   {
+    "code": "4",
+    "description": "Operations with a view to processing (2) under contract (no transfer of ownership to the processor)"
+   },
+   {
+    "code": "5",
+    "description": "Operations following processing under contract (no transfer of ownership to the processor)"
+   },
+   {
+    "code": "6",
+    "description": "Particular transactions recorded for national purposes"
+   },
+   {
+    "code": "7",
+    "description": "Operations under joint defence projects or other joint intergovernmental production programmes"
+   },
+   {
+    "code": "8",
+    "description": "Transactions involving the supply of building materials and technical equipment under a general construction or civil engineering contract for which no separate invoicing of the goods is required and an invoice for the total contract is issued"
+   },
+   {
+    "code": "9",
+    "description": "Other transactions which cannot be classified under other codes"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 118
+  }
+ },
+ {
+  "seq": "117",
+  "name": "TransitPassengerIndicatorCode",
+  "basis": "WCO code list/TransitPassengerIndicatorCode",
+  "codes": [
+   {
+    "code": "0",
+    "description": "Off (Passenger leaves ship during visit)"
+   },
+   {
+    "code": "1",
+    "description": "Transit (Transit = Yes, meaning: passenger stays on board during the visit)"
+   },
+   {
+    "code": "2",
+    "description": "On (Passenger has left the vessel during the visit but is on board again)"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 119
+  }
+ },
+ {
+  "seq": "118",
+  "name": "TransportContractDocumentConditionCode",
+  "basis": "UN/EDIFACT code list 4065",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 120
+  }
+ },
+ {
+  "seq": "119",
+  "name": "TransportEquipmentCharacteristicCode",
+  "basis": "ISO, IATA, UN/EDIFACT code list 8053 or 8155 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 121
+  }
+ },
+ {
+  "seq": "120",
+  "name": "TransportEquipmentFullnessCode",
+  "basis": "UN/EDIFACT code list 8169",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 122
+  }
+ },
+ {
+  "seq": "121",
+  "name": "TransportEquipmentSupplierPartyTypeCode",
+  "basis": "UN/EDIFACT code list 8077",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 123
+  }
+ },
+ {
+  "seq": "122",
+  "name": "TransportMeansDirectionCode",
+  "basis": "WCO code list/TransportMeansDirectionCode",
+  "codes": [
+   {
+    "code": "I",
+    "description": "Inbound"
+   },
+   {
+    "code": "O",
+    "description": "Outbound"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 124
+  }
+ },
+ {
+  "seq": "123",
+  "name": "TransportMeansIdentificationTypeCode",
+  "basis": "E.g. IMO, MMSI, Call sign, External sign, ENI",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 125
+  }
+ },
+ {
+  "seq": "124",
+  "name": "TransportMeansModeCode",
+  "basis": "UN/Recommendation 19",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 126
+  }
+ },
+ {
+  "seq": "125",
+  "name": "TransportMeansMovementDescriptionCode",
+  "basis": "UN/EDIFACT code list 8335",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 127
+  }
+ },
+ {
+  "seq": "126",
+  "name": "TransportMeansOperationTypeCode",
+  "basis": "User code list (e.g. IATA code list)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 128
+  }
+ },
+ {
+  "seq": "127",
+  "name": "TransportMeansRegistrationNationalityCode",
+  "basis": "UN/EDIFACT code list 8453",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 129
+  }
+ },
+ {
+  "seq": "128",
+  "name": "TransportMeansTypeCode",
+  "basis": "UN/Recommendation 28",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 130
+  }
+ },
+ {
+  "seq": "129",
+  "name": "TransportMovementCode",
+  "basis": "UN/EDIFACT code list 8323",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 131
+  }
+ },
+ {
+  "seq": "130",
+  "name": "TransportStatusCode",
+  "basis": "UN/EDIFACT code list 4405 OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 132
+  }
+ },
+ {
+  "seq": "131",
+  "name": "TravelClassCode",
+  "basis": "WCO code list/TravelClassCode",
+  "codes": [
+   {
+    "code": "01",
+    "description": "First"
+   },
+   {
+    "code": "02",
+    "description": "Business"
+   },
+   {
+    "code": "03",
+    "description": "Premium Economy"
+   },
+   {
+    "code": "04",
+    "description": "Economy"
+   },
+   {
+    "code": "05",
+    "description": "Second"
+   },
+   {
+    "code": "06",
+    "description": ""
+   },
+   {
+    "code": "07",
+    "description": "Suite"
+   },
+   {
+    "code": "08",
+    "description": "Balcony"
+   },
+   {
+    "code": "09",
+    "description": "Inside"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 133
+  }
+ },
+ {
+  "seq": "132",
+  "name": "UserRiderActionCode",
+  "basis": "User code list",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 134
+  }
+ },
+ {
+  "seq": "133",
+  "name": "ValuationAdditionsQualifierCode",
+  "basis": "UN/EDIFACT code list 7365) subset (codes 145, 146, 147, 148 and 149) OR User codes",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 135
+  }
+ },
+ {
+  "seq": "134",
+  "name": "ValuationMethodCode",
+  "basis": "WCO code list/ValuationMethodCode",
+  "codes": [
+   {
+    "code": "138",
+    "description": "To be added"
+   },
+   {
+    "code": "139",
+    "description": "To be added"
+   },
+   {
+    "code": "140",
+    "description": "To be added"
+   },
+   {
+    "code": "141",
+    "description": "To be added"
+   },
+   {
+    "code": "142",
+    "description": "To be added"
+   },
+   {
+    "code": "143",
+    "description": "To be added"
+   },
+   {
+    "code": "144",
+    "description": "To be added"
+   }
+  ],
+  "external": false,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 136
+  }
+ },
+ {
+  "seq": "135",
+  "name": "WasteTypeCode",
+  "basis": "IMO codes\nSee IMO Compendium, Section 3 Code List for IMO0183 (Waste type, coded)",
+  "codes": [],
+  "external": true,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.6",
+   "row": 137
+  }
+ }
+]

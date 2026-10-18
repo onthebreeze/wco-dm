@@ -1,0 +1,995 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://vocabulary.wcoomd.org/schemas/bip-lpco-eata-4.0.0.json",
+ "title": "LPCO Base Information Package — eata",
+ "description": "Details related to Licenses, Permits, Certificates or Others.",
+ "x-wco-data-model-version": "4.0.0",
+ "type": "object",
+ "properties": {
+  "expiration": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate).",
+   "x-wco-id": "D051",
+   "x-wco-term": "https://vocabulary.wcoomd.org/expirationDateTime"
+  },
+  "identification": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific document.",
+   "x-wco-id": "D014",
+   "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+  },
+  "issue": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Date and time the document was issued and when appropriate, signed or otherwise authenticated.",
+   "x-wco-id": "D011",
+   "x-wco-term": "https://vocabulary.wcoomd.org/issueDateTime"
+  },
+  "rejection": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Date and time when the document/message was rejected.",
+   "x-wco-id": "D054",
+   "x-wco-term": "https://vocabulary.wcoomd.org/rejectionDateTime"
+  },
+  "type": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the name of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+   "x-wco-id": "D013",
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+  },
+  "DeclarationOffice": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "identification": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Identification of a location at which a declaration is lodged.",
+      "x-wco-code-list": "UN/LOCODE + User codes",
+      "x-wco-id": "G013",
+      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the government office at which a declaration is lodged.",
+    "x-wco-id": "10C"
+   }
+  },
+  "AdditionalDocument": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "identification": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Identification of a document providing additional information.",
+      "x-wco-id": "D005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "type": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of an additional document.",
+      "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+      "x-wco-id": "D006",
+      "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to additional documents as part of a declaration or as part of a response.",
+    "x-wco-id": "02A"
+   }
+  },
+  "AdditionalInformation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "statement": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Code specifying the form of an additional statement.",
+      "x-wco-code-list": "User codes",
+      "x-wco-id": "226",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementCode"
+     },
+     "statementDescription": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of an additional statement.",
+      "x-wco-id": "225",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementDescriptionText"
+     },
+     "statementType": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the subject of the additional statement.",
+      "x-wco-code-list": "UN/EDIFACT code list 4451",
+      "x-wco-id": "369",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementTypeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the special request from declarant to government to take or not to take action.",
+    "x-wco-id": "03A"
+   }
+  },
+  "AuthorizedPerson": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of a person designated under relevant legislation for the purpose of issuing official assurances.",
+      "x-wco-id": "R067",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of a person designated under relevant legislation for the purpose of issuing official assurances.",
+      "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+      "x-wco-id": "R068",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the role of a party.",
+      "x-wco-code-list": "UN/EDIFACT code list 3035",
+      "x-wco-id": "R005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to a person designated under relevant legislation for the purpose of issuing official assurances.",
+    "x-wco-id": "13A"
+   }
+  },
+  "Consignment": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "sequence": {
+      "type": "string",
+      "pattern": "^\\d{1,5}$",
+      "description": "Number indicating the position in a sequence.",
+      "x-wco-id": "006",
+      "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+     },
+     "AdditionalInformation": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "statement": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Code specifying the form of an additional statement.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "226",
+         "x-wco-term": "https://vocabulary.wcoomd.org/statementCode"
+        },
+        "statementDescription": {
+         "type": "string",
+         "maxLength": 512,
+         "description": "Description of an additional statement.",
+         "x-wco-id": "225",
+         "x-wco-term": "https://vocabulary.wcoomd.org/statementDescriptionText"
+        },
+        "statementType": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the subject of the additional statement.",
+         "x-wco-code-list": "UN/EDIFACT code list 4451",
+         "x-wco-id": "369",
+         "x-wco-term": "https://vocabulary.wcoomd.org/statementTypeCode"
+        },
+        "limit": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Date and time by when the event has to be completed.",
+         "x-wco-id": "264",
+         "x-wco-term": "https://vocabulary.wcoomd.org/limitDateTime"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the special request from declarant to government to take or not to take action.",
+       "x-wco-id": "03A"
+      }
+     },
+     "BorderTransportMeans": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name to identify the means of transport used for the carriage of the goods in crossing the border.",
+         "x-wco-id": "T005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of the means of transport used in crossing the border.",
+         "x-wco-code-list": "Sea: ITU Standard or Lloyd's number\nAir: IATA aircraft ID\nRoad: national license plate\nRail: locomotive number",
+         "x-wco-id": "T006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 4,
+         "description": "Code specifying type of means of transport used for the carriage of the goods in crossing the border.",
+         "x-wco-code-list": "UN/Recommendation 28",
+         "x-wco-id": "T010",
+         "x-wco-term": "https://vocabulary.wcoomd.org/transportMeansTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the means of transport crossing the border of the Customs territory.",
+       "x-wco-id": "15A"
+      }
+     },
+     "ConsignmentItem": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "AdditionalDocument": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 70,
+            "description": "Identification of a document providing additional information.",
+            "x-wco-id": "D005",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "BinaryFile": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "identification": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Identification of this binary file.",
+               "x-wco-id": "551",
+               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+              },
+              "title": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Title of this binary file.",
+               "x-wco-id": "552",
+               "x-wco-term": "https://vocabulary.wcoomd.org/titleText"
+              },
+              "authorName": {
+               "type": "string",
+               "maxLength": 70,
+               "description": "Name of the author for this binary file.",
+               "x-wco-id": "553",
+               "x-wco-term": "https://vocabulary.wcoomd.org/authorNameText"
+              },
+              "version": {
+               "type": "string",
+               "maxLength": 17,
+               "description": "Identification of the version for this binary file.",
+               "x-wco-id": "554",
+               "x-wco-term": "https://vocabulary.wcoomd.org/versionIdentifier"
+              },
+              "fileName": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Name of the file usually including the file type for this binary file.",
+               "x-wco-id": "555",
+               "x-wco-term": "https://vocabulary.wcoomd.org/fileNameText"
+              },
+              "URI": {
+               "type": "string",
+               "maxLength": 2048,
+               "description": "Identification of the Uniform Resource Identifier (URI) for this binary file.",
+               "x-wco-id": "556",
+               "x-wco-term": "https://vocabulary.wcoomd.org/uriIdentifier"
+              },
+              "MIME": {
+               "type": "string",
+               "maxLength": 70,
+               "description": "Code specifying the Multipurpose Internet Mail Extensions (MIME) type for this binary file.",
+               "x-wco-id": "557",
+               "x-wco-term": "https://vocabulary.wcoomd.org/mimeCode"
+              },
+              "encoding": {
+               "type": "string",
+               "maxLength": 17,
+               "description": "Code specifying the encoding of this binary file.",
+               "x-wco-id": "558",
+               "x-wco-term": "https://vocabulary.wcoomd.org/encodingCode"
+              },
+              "characterSet": {
+               "type": "string",
+               "pattern": "^\\d{1,17}$",
+               "description": "Code specifying the character set for this binary file.",
+               "x-wco-id": "559",
+               "x-wco-term": "https://vocabulary.wcoomd.org/characterSetCode"
+              },
+              "included": {
+               "type": "string",
+               "description": "Binary object included for this file.",
+               "x-wco-id": "560",
+               "x-wco-term": "https://vocabulary.wcoomd.org/includedBinaryObject"
+              },
+              "access": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Information on access for this binary file such as security and download parameters.",
+               "x-wco-id": "561",
+               "x-wco-term": "https://vocabulary.wcoomd.org/accessText"
+              },
+              "description": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Description of this binary file.",
+               "x-wco-id": "562",
+               "x-wco-term": "https://vocabulary.wcoomd.org/descriptionText"
+              },
+              "size": {
+               "type": "string",
+               "description": "Measure of the size of this binary file.",
+               "x-wco-id": "563",
+               "x-wco-term": "https://vocabulary.wcoomd.org/sizeMeasure"
+              },
+              "type": {
+               "type": "string",
+               "maxLength": 6,
+               "description": "Code specifying the type of binary file, such as photo, spreadsheet.",
+               "x-wco-id": "564",
+               "x-wco-term": "https://vocabulary.wcoomd.org/typeCode"
+              },
+              "hashCode": {
+               "type": "string",
+               "maxLength": 256,
+               "description": "Hash code of the binary file.",
+               "x-wco-id": "565",
+               "x-wco-term": "https://vocabulary.wcoomd.org/hashCodeText"
+              },
+              "hashCodeAlgorithmID": {
+               "type": "string",
+               "maxLength": 6,
+               "description": "Code specifying the algorithm used to calculate the hash code (e.g. MD5).",
+               "x-wco-id": "566",
+               "x-wco-term": "https://vocabulary.wcoomd.org/hashCodeAlgorithmIDCode"
+              }
+             },
+             "additionalProperties": false,
+             "description": "Details related to the computer file or program stored in a binary format.",
+             "x-wco-id": "72B"
+            }
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to additional documents as part of a declaration or as part of a response.",
+          "x-wco-id": "02A"
+         }
+        },
+        "Commodity": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "description": {
+            "type": "string",
+            "maxLength": 512,
+            "description": "Description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport.",
+            "x-wco-id": "137",
+            "x-wco-term": "https://vocabulary.wcoomd.org/descriptionText"
+           },
+           "value": {
+            "type": "string",
+            "description": "Amount indicating the value of the commodity (not to be used for customs valuation purposes).",
+            "x-wco-id": "306",
+            "x-wco-term": "https://vocabulary.wcoomd.org/valueAmount"
+           },
+           "count": {
+            "type": "string",
+            "pattern": "^\\d{1,16}$",
+            "description": "Quantity specifying the number of regulated items.",
+            "x-wco-id": "315",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countQuantity"
+           },
+           "intendedUseStatement": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Statement regarding the intended use of the commodity.",
+            "x-wco-id": "327",
+            "x-wco-term": "https://vocabulary.wcoomd.org/intendedUseStatementText"
+           },
+           "intendedUse": {
+            "type": "string",
+            "maxLength": 17,
+            "description": "Code specifying the intended use of the commodity.",
+            "x-wco-code-list": "WCO codes OR User codes",
+            "x-wco-id": "330",
+            "x-wco-term": "https://vocabulary.wcoomd.org/intendedUseCode"
+           },
+           "Classification": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "identification": {
+               "type": "string",
+               "maxLength": 18,
+               "description": "Identification of the non-commercial categorization of a commodity by a standard-setting organization.",
+               "x-wco-id": "145",
+               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+              },
+              "identificationType": {
+               "type": "string",
+               "maxLength": 3,
+               "description": "Code specifying the commodity classification  (e.g. Harmonized Tariff Schedule (HTS), Export Control Classification Code (ECCC), UNDG Code list, International Code of Zoological Nomenc).",
+               "x-wco-code-list": "UN/EDIFACT code list 7143",
+               "x-wco-id": "337",
+               "x-wco-term": "https://vocabulary.wcoomd.org/classificationIdentificationTypeCode"
+              }
+             },
+             "additionalProperties": false,
+             "description": "Details related to the non-commercial categorization of a commodity by a standard-setting organization.",
+             "x-wco-id": "21A"
+            }
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to the properties of the goods.",
+          "x-wco-id": "23A"
+         }
+        },
+        "GoodsMeasure": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "grossWeight": {
+            "type": "string",
+            "description": "Weight of goods including packing but excluding carrier's equipment.",
+            "x-wco-id": "131",
+            "x-wco-term": "https://vocabulary.wcoomd.org/grossWeightMeasure"
+           },
+           "netVolume": {
+            "type": "string",
+            "description": "Measure of the gross volume of the item, excluding unoccupied volume of the packaging.",
+            "x-wco-id": "474",
+            "x-wco-term": "https://vocabulary.wcoomd.org/netVolumeMeasure"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to goods weight, quantities, and amounts.",
+          "x-wco-id": "65A"
+         }
+        },
+        "Origin": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "country": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the country in which the goods have been produced or manufactured, according to criteria laid down for the application of the Customs tariff or quantitative restrictions, or any measure related to trade.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "063",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to the origin of the goods.",
+          "x-wco-id": "92A"
+         }
+        },
+        "Packaging": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "marksNumbers": {
+            "type": "string",
+            "maxLength": 512,
+            "description": "Marks and or numbers on a transport unit or package.",
+            "x-wco-code-list": "UN/ECE Recommendation 15",
+            "x-wco-id": "142",
+            "x-wco-term": "https://vocabulary.wcoomd.org/marksNumbersText"
+           },
+           "quantity": {
+            "type": "string",
+            "pattern": "^\\d{1,8}$",
+            "description": "Quantity specifying the number of individual items packaged in such a way that they cannot be divided without first undoing the packing.",
+            "x-wco-id": "144",
+            "x-wco-term": "https://vocabulary.wcoomd.org/packageQuantity"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 2,
+            "description": "Code specifying the type of package of an item.",
+            "x-wco-code-list": "UN/ECE Recommendation 21 Annex VI",
+            "x-wco-id": "141",
+            "x-wco-term": "https://vocabulary.wcoomd.org/packagingTypeCode"
+           },
+           "packingMaterialDescription": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Description of the type of material for packaging covered by UN/Recommendation 21.",
+            "x-wco-id": "344",
+            "x-wco-term": "https://vocabulary.wcoomd.org/packingMaterialDescriptionText"
+           },
+           "length": {
+            "type": "string",
+            "pattern": "^\\d{1,15}$",
+            "description": "Length of the package.",
+            "x-wco-id": "367",
+            "x-wco-term": "https://vocabulary.wcoomd.org/lengthMeasure"
+           },
+           "width": {
+            "type": "string",
+            "pattern": "^\\d{1,15}$",
+            "description": "Width of the package.",
+            "x-wco-id": "368",
+            "x-wco-term": "https://vocabulary.wcoomd.org/widthMeasure"
+           },
+           "height": {
+            "type": "string",
+            "pattern": "^\\d{1,15}$",
+            "description": "Height of the package.",
+            "x-wco-id": "402",
+            "x-wco-term": "https://vocabulary.wcoomd.org/heightMeasure"
+           },
+           "volume": {
+            "type": "string",
+            "description": "Volume of the package.",
+            "x-wco-id": "395",
+            "x-wco-term": "https://vocabulary.wcoomd.org/volumeMeasure"
+           },
+           "diameter": {
+            "type": "string",
+            "pattern": "^\\d{1,15}$",
+            "description": "Diameter of the package.",
+            "x-wco-id": "440",
+            "x-wco-term": "https://vocabulary.wcoomd.org/diameterMeasure"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to packaging.",
+          "x-wco-id": "93A"
+         }
+        },
+        "TransportEquipment": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "Seal": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "sequence": {
+               "type": "string",
+               "pattern": "^\\d{1,5}$",
+               "description": "Number indicating the position in a sequence.",
+               "x-wco-id": "006",
+               "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+              },
+              "identification": {
+               "type": "string",
+               "maxLength": 35,
+               "description": "Identification of a seal affixed to a piece of transport equipment by number.",
+               "x-wco-id": "165",
+               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+              }
+             },
+             "additionalProperties": false,
+             "description": "Details related to the seal affixed to a piece of transport equipment, used to secure an object and protect from unauthorized entry or tampering.",
+             "x-wco-id": "44B"
+            }
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to transport equipment used for the consignment.",
+          "x-wco-id": "31B"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an item in a consignment.",
+       "x-wco-id": "29A"
+      }
+     },
+     "GoodsLocation": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Name of the location where goods are located.",
+         "x-wco-id": "L016",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of  the location of goods.",
+         "x-wco-code-list": "UN/LOCODE + User codes",
+         "x-wco-id": "L017",
+         "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the location of the goods.",
+       "x-wco-id": "64A"
+      }
+     },
+     "GovernmentProcedure": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "current": {
+         "type": "string",
+         "maxLength": 7,
+         "description": "Code specifying a procedure.",
+         "x-wco-code-list": "UN/EDIFACT code list 7365\nFor Customs:  User codes, categorized based on the revised Kyoto Convention",
+         "x-wco-id": "166",
+         "x-wco-term": "https://vocabulary.wcoomd.org/currentCode"
+        },
+        "previous": {
+         "type": "string",
+         "maxLength": 7,
+         "description": "Code specifying the government procedure, if any, which has been applied to the goods prior to the application of a different government procedure.",
+         "x-wco-code-list": "UN/EDIFACT code list 7365\nFor Customs:  User codes, categorized based on the revised Kyoto Convention",
+         "x-wco-id": "161",
+         "x-wco-term": "https://vocabulary.wcoomd.org/previousCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the current and previous government procedure.",
+       "x-wco-id": "70A"
+      }
+     },
+     "TransportEquipment": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "Seal": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "sequence": {
+            "type": "string",
+            "pattern": "^\\d{1,5}$",
+            "description": "Number indicating the position in a sequence.",
+            "x-wco-id": "006",
+            "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+           },
+           "identification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Identification of a seal affixed to a piece of transport equipment by number.",
+            "x-wco-id": "165",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to the seal affixed to a piece of transport equipment, used to secure an object and protect from unauthorized entry or tampering.",
+          "x-wco-id": "44B"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to transport equipment used for the consignment.",
+       "x-wco-id": "31B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the transport between a consignor and a consignee as specified in the transport contract document.",
+    "x-wco-id": "28A"
+   }
+  },
+  "EntryOffice": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "identification": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Identification of the regulatory office at which the goods enter the customs territory of destination.",
+      "x-wco-code-list": "UN/LOCODE + User codes",
+      "x-wco-id": "G004",
+      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the office of entry.",
+    "x-wco-id": "51A"
+   }
+  },
+  "LPCOAuthorizedParty": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of the party to whom the license, permit, certificate, or other required document (LPCO) is issued.",
+      "x-wco-id": "R087",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of the party to whom the license, permit, certificate, or other required document (LPCO) is issued.",
+      "x-wco-code-list": "International codes (e.g. DUNS, EAN) OR User codes",
+      "x-wco-id": "R086",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the role of a party.",
+      "x-wco-code-list": "UN/EDIFACT code list 3035",
+      "x-wco-id": "R005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+     },
+     "Address": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "cityName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a city.",
+         "x-wco-id": "241",
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+        },
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "242",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "countryName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the country or other geographical entity.",
+         "x-wco-id": "412",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryNameText"
+        },
+        "countrySubDivision": {
+         "type": "string",
+         "maxLength": 9,
+         "description": "Code specifying the name of a country subdivision.",
+         "x-wco-code-list": "ISO 3166-2 OR User codes",
+         "x-wco-id": "244",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+        },
+        "countrySubDivisionName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a country subdivision.",
+         "x-wco-id": "243",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+        },
+        "line": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Specification of the postal delivery point such as street and number or post office box.",
+         "x-wco-id": "239",
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+        },
+        "postcode": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the postal zone or address.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "245",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an address.",
+       "x-wco-id": "04A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the party to whom the license, permit, certificate, or other required document (LPCO) is issued.",
+    "x-wco-id": "85A"
+   }
+  },
+  "PreviousDocument": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "identification": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Identification of the previous document by number.",
+      "x-wco-id": "D018",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "type": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of document used for declaration previously presented.",
+      "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+      "x-wco-id": "D019",
+      "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the previous document.",
+    "x-wco-id": "99A"
+   }
+  },
+  "RepresentativePerson": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of the representative of the party making the declaration.",
+      "x-wco-id": "R006",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the role of a party.",
+      "x-wco-code-list": "UN/EDIFACT code list 3035",
+      "x-wco-id": "R005",
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+     },
+     "Address": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3131",
+         "x-wco-id": "410",
+         "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
+        },
+        "cityName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a city.",
+         "x-wco-id": "241",
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+        },
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "242",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "countryName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the country or other geographical entity.",
+         "x-wco-id": "412",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryNameText"
+        },
+        "countrySubDivision": {
+         "type": "string",
+         "maxLength": 9,
+         "description": "Code specifying the name of a country subdivision.",
+         "x-wco-code-list": "ISO 3166-2 OR User codes",
+         "x-wco-id": "244",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
+        },
+        "countrySubDivisionName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a country subdivision.",
+         "x-wco-id": "243",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+        },
+        "line": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Specification of the postal delivery point such as street and number or post office box.",
+         "x-wco-id": "239",
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+        },
+        "postcode": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the postal zone or address.",
+         "x-wco-code-list": "User codes",
+         "x-wco-id": "245",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an address.",
+       "x-wco-id": "04A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the person acting as a representative.",
+    "x-wco-id": "06B"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "74B"
+}

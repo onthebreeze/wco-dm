@@ -1,0 +1,446 @@
+[
+ {
+  "seq": "1",
+  "name": "Amount. Type",
+  "attribute": "Amount. Content",
+  "code_list": null,
+  "remarks": "Based on guidance given by the UNTDED description the amount elements should contain at least 3 decimals:\nThe position of decimal marks in numeric values is not specified and may be between any of the figures in the amount as required.\nSystems sometimes require a more specific approach and, to assist designers who prefer to specify the decimal position, the following table may serve as guidance.  \nWeights  3 decimals\nCubes  4 decimals\nOther quantities  3 decimals\nUnit prices  4 decimals\nOther amounts  3 decimals\nCurrency rates  6 decimals\nPercentages  4 decimals\nTax rates  4 decimals",
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 3
+  }
+ },
+ {
+  "seq": "2",
+  "name": "Amount. Type",
+  "attribute": "Amount Currency. Identifier",
+  "code_list": "ISO 3 Alpha Currency Code",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 4
+  }
+ },
+ {
+  "seq": "3",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 5
+  }
+ },
+ {
+  "seq": "4",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Format. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 6
+  }
+ },
+ {
+  "seq": "5",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Mime. Code",
+  "code_list": "MIME Media Type",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 7
+  }
+ },
+ {
+  "seq": "6",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Encoding. Code",
+  "code_list": "Character Set Encoding Code",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 8
+  }
+ },
+ {
+  "seq": "7",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Character Set. Code",
+  "code_list": "Character Set Code",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 9
+  }
+ },
+ {
+  "seq": "8",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Uniform Resource. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 10
+  }
+ },
+ {
+  "seq": "9",
+  "name": "Binary Object. Type",
+  "attribute": "Binary Object. Filename. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 11
+  }
+ },
+ {
+  "seq": "10",
+  "name": "Code. Type",
+  "attribute": "Code. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 12
+  }
+ },
+ {
+  "seq": "11",
+  "name": "Code. Type",
+  "attribute": "Code List. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 13
+  }
+ },
+ {
+  "seq": "12",
+  "name": "Code. Type",
+  "attribute": "Code List. Agency. Identifier",
+  "code_list": "Agency Identification Code",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 14
+  }
+ },
+ {
+  "seq": "13",
+  "name": "Code. Type",
+  "attribute": "Code List. Agency Name. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 15
+  }
+ },
+ {
+  "seq": "14",
+  "name": "Code. Type",
+  "attribute": "Code List. Name. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 16
+  }
+ },
+ {
+  "seq": "15",
+  "name": "Code. Type",
+  "attribute": "Code List. Version. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 17
+  }
+ },
+ {
+  "seq": "16",
+  "name": "Code. Type",
+  "attribute": "Code. Name. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 18
+  }
+ },
+ {
+  "seq": "17",
+  "name": "Code. Type",
+  "attribute": "Language. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 19
+  }
+ },
+ {
+  "seq": "18",
+  "name": "Code. Type",
+  "attribute": "Code List. Uniform Resource. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 20
+  }
+ },
+ {
+  "seq": "19",
+  "name": "Code. Type",
+  "attribute": "Code List Scheme. Uniform Resource. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 21
+  }
+ },
+ {
+  "seq": "20",
+  "name": "Date Time. Type",
+  "attribute": "Date Time. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 22
+  }
+ },
+ {
+  "seq": "21",
+  "name": "Date Time. Type",
+  "attribute": "Date Time. Format. Code",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 23
+  }
+ },
+ {
+  "seq": "22",
+  "name": "Identifier. Type",
+  "attribute": "Identifier. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 24
+  }
+ },
+ {
+  "seq": "23",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 25
+  }
+ },
+ {
+  "seq": "24",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme. Name. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 26
+  }
+ },
+ {
+  "seq": "25",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme Agency. Identifier",
+  "code_list": "Agency Identification Code",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 27
+  }
+ },
+ {
+  "seq": "26",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme. Agency Name. Text",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 28
+  }
+ },
+ {
+  "seq": "27",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme. Version. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 29
+  }
+ },
+ {
+  "seq": "28",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme Data. Uniform Resource. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 30
+  }
+ },
+ {
+  "seq": "29",
+  "name": "Identifier. Type",
+  "attribute": "Identification Scheme. Uniform Resource. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 31
+  }
+ },
+ {
+  "seq": "30",
+  "name": "Indicator. Type",
+  "attribute": "Indicator. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 32
+  }
+ },
+ {
+  "seq": "31",
+  "name": "Measure. Type",
+  "attribute": "Measure. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 33
+  }
+ },
+ {
+  "seq": "32",
+  "name": "Measure. Type",
+  "attribute": "Measure Unit. Code",
+  "code_list": "Recommendation20",
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 34
+  }
+ },
+ {
+  "seq": "33",
+  "name": "Numeric. Type",
+  "attribute": "Numeric. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 35
+  }
+ },
+ {
+  "seq": "34",
+  "name": "Quantity. Type",
+  "attribute": "Quantity. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 36
+  }
+ },
+ {
+  "seq": "35",
+  "name": "Quantity. Type",
+  "attribute": "Quantity Unit. Code",
+  "code_list": "Recommendation20",
+  "remarks": "Status changed because of NL implementation!",
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 37
+  }
+ },
+ {
+  "seq": "36",
+  "name": "Text. Type",
+  "attribute": "Text. Content",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 38
+  }
+ },
+ {
+  "seq": "37",
+  "name": "Text. Type",
+  "attribute": "Language. Identifier",
+  "code_list": null,
+  "remarks": null,
+  "source": {
+   "file": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "sheet": "DataSet 1.5",
+   "row": 39
+  }
+ }
+]

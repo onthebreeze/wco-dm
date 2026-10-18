@@ -10,9 +10,14 @@ Each derived package - eTIR, Certificate of Origin, Maritime API and the rest - 
 down to the nodes it marks, with the ancestors those nodes need, so its schema is generated from the
 same source rather than maintained separately.
 
-    python3 scripts/build_schemas.py
+One schema and one context per message per release. The file name carries the release, so the
+4.3.0 artefacts keep the addresses they were published at and the older releases take their own.
+
+    python3 scripts/build_schemas.py            # every release
+    WCO_RELEASE=v4.1.0 python3 scripts/build_schemas.py
 """
 import json
+import os
 import pathlib
 import re
 import sys
@@ -24,14 +29,13 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _release  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PKG = ROOT / "intermediate" / "packages"
 ONT, OUT = ROOT / "ontology", ROOT / "schemas"
 # The schemas are a committed artefact and always carry the canonical namespace. Only the site
 # build rewrites it for whatever host is serving, exactly as the ontology does: honouring WCO_BASE
 # here would bake a test hostname into every $id and every x-wco-term the moment someone built the
 # site for a local preview.
 SOURCE_BASE = BASE = "https://vocabulary.wcoomd.org/"
-VERSION = _release.built_version()
+
 
 
 def clean_tag(tag):
@@ -162,8 +166,10 @@ def context_for(by_path, attr_iris, class_iris):
     return ctx, sorted(conflicts)
 
 
-def write(pkg_key, title, description, by_path, children, root, attr_iris, class_iris, suffix=""):
+def write(pkg_key, title, description, by_path, children, root, attr_iris, class_iris,
+          version, suffix=""):
     name = f"{pkg_key}{suffix}"
+    VERSION = version
     schema = node_schema(root, by_path, children, attr_iris, {})
     schema = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -180,11 +186,10 @@ def write(pkg_key, title, description, by_path, children, root, attr_iris, class
     return len(by_path), len(ctx) - 2, conflicts
 
 
-def main():
-    OUT.mkdir(exist_ok=True)
-    attr_iris, class_iris = property_iris()
+def build(version, attr_iris, class_iris):
+    pkg_dir = ROOT / "intermediate" / f"v{version}" / "packages"
     report = {}
-    for path in sorted(PKG.glob("*.json")):
+    for path in sorted(pkg_dir.glob("*.json")):
         if path.name == "summary.json":
             continue
         pkg = json.loads(path.read_text())
@@ -192,9 +197,7 @@ def main():
         by_path, children = build_tree(nodes)
         root = next(n["path"] for n in nodes if n["depth"] == 1)
         n, terms, conflicts = write(pkg["key"], pkg["title"], pkg["description"],
-                                    by_path, children, root, attr_iris, class_iris)
-        print(f"  {pkg['key']}: {n} nodes, {terms} terms in context"
-              + (f", {len(conflicts)} ambiguous tags left out" if conflicts else ""))
+                                    by_path, children, root, attr_iris, class_iris, version)
         report[pkg["key"]] = {"nodes": n, "context_terms": terms, "ambiguous_tags": conflicts,
                               "derived": {}}
         for dip in pkg["derived_packages"]:
@@ -203,11 +206,27 @@ def main():
                 continue
             slug = re.sub(r"[^a-z0-9]+", "-", dip).strip("-")
             dn, dterms, _ = write(pkg["key"], f"{pkg['title']} — {dip}",
-                                  f"The {dip} derived information package: the subset of {pkg['title']} it uses.",
-                                  d_by_path, d_children, root, attr_iris, class_iris, suffix=f"-{slug}")
+                                  f"The {dip} derived information package: the subset of "
+                                  f"{pkg['title']} it uses.",
+                                  d_by_path, d_children, root, attr_iris, class_iris, version,
+                                  suffix=f"-{slug}")
             report[pkg["key"]]["derived"][slug] = dn
-            print(f"      {slug}: {dn} nodes")
-    (OUT / "build-report.json").write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n")
+    total = sum(1 + len(r["derived"]) for r in report.values())
+    print(f"  {version}: {total} schemas and contexts "
+          f"({sum(r['nodes'] for r in report.values())} positions)")
+    return report
+
+
+def main():
+    OUT.mkdir(exist_ok=True)
+    attr_iris, class_iris = property_iris()
+    versions = ([_release.version(_release.release_dir())] if os.environ.get("WCO_RELEASE")
+                else [_release.version(r) for r in _release.releases()])
+    reports = {v: build(v, attr_iris, class_iris) for v in versions}
+    path = OUT / "build-report.json"
+    existing = json.loads(path.read_text()) if path.exists() and "releases" in path.read_text() else {}
+    (OUT / "build-report.json").write_text(
+        json.dumps({"releases": reports}, indent=1, ensure_ascii=False) + "\n")
     return 0
 
 

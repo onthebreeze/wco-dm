@@ -1,0 +1,290 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://vocabulary.wcoomd.org/schemas/bip-lpco-customs-bond-4.2.0.json",
+ "title": "LPCO Base Information Package — customs bond",
+ "description": "Details related to Licenses, Permits, Certificates or Others.",
+ "x-wco-data-model-version": "4.2.0",
+ "type": "object",
+ "properties": {
+  "function": {
+   "type": "string",
+   "pattern": "^\\d{1,2}$",
+   "description": "Code specifying the function of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1225",
+   "x-wco-id": "D046",
+   "x-wco-term": "https://vocabulary.wcoomd.org/documentFunctionCode"
+  },
+  "functionName": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Purpose of the document.",
+   "x-wco-id": "D039",
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionNameText"
+  },
+  "functionalReference": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific information exchange.",
+   "x-wco-id": "D026",
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
+  },
+  "type": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the name of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
+   "x-wco-id": "D013",
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+  },
+  "usage": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying whether the document (e.g. permit, bond, license) is for single use or multiple use.",
+   "x-wco-code-list": "User code list",
+   "x-wco-id": "541",
+   "x-wco-term": "https://vocabulary.wcoomd.org/usageCode"
+  },
+  "ObligationGuarantee": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "effective": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time of effectiveness of the document (e.g. license, visa, permit, certificate, bond).",
+      "x-wco-id": "D052",
+      "x-wco-term": "https://vocabulary.wcoomd.org/effectiveDateTime"
+     },
+     "expiration": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate, bond).",
+      "x-wco-id": "D051",
+      "x-wco-term": "https://vocabulary.wcoomd.org/expirationDateTime"
+     },
+     "issue": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time the document was issued and when appropriate, signed or otherwise authenticated.",
+      "x-wco-id": "D011",
+      "x-wco-term": "https://vocabulary.wcoomd.org/issueDateTime"
+     },
+     "value": {
+      "type": "string",
+      "description": "Amount indicating the total value of the guarantee.",
+      "x-wco-id": "620",
+      "x-wco-term": "https://vocabulary.wcoomd.org/valueAmount"
+     },
+     "activityType": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of activity being guaranteed.",
+      "x-wco-code-list": "User code list",
+      "x-wco-id": "621",
+      "x-wco-term": "https://vocabulary.wcoomd.org/activityTypeCode"
+     },
+     "reference": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of the undertaking given as a written guarantee in cash, bond, or by other such means in order to ensure that an obligation will be fulfilled by reference number.",
+      "x-wco-id": "100",
+      "x-wco-term": "https://vocabulary.wcoomd.org/referenceIdentifier"
+     },
+     "AdditionalInformation": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "statement": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Code specifying the form of an additional statement.",
+         "x-wco-code-list": "User code list",
+         "x-wco-id": "226",
+         "x-wco-term": "https://vocabulary.wcoomd.org/statementCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the special request from declarant to government to take or not to take action.",
+       "x-wco-id": "03A"
+      }
+     },
+     "AdditionalDocument": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "category": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the category of a document.",
+         "x-wco-code-list": "User code list",
+         "x-wco-id": "D031",
+         "x-wco-term": "https://vocabulary.wcoomd.org/authorizationholderCategoryCode"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Identification of a document providing additional information.",
+         "x-wco-id": "D005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of an additional document.",
+         "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
+         "x-wco-id": "D006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to additional documents as part of a declaration or as part of a response.",
+       "x-wco-id": "02A"
+      }
+     },
+     "Principal": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.",
+         "x-wco-id": "R165",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of the party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.",
+         "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+         "x-wco-id": "R166",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "role": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the role of a party.",
+         "x-wco-code-list": "UN/EDIFACT code list 3035",
+         "x-wco-id": "R005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+        },
+        "riderAction": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the bond user rider action.",
+         "x-wco-code-list": "User code list",
+         "x-wco-id": "616",
+         "x-wco-term": "https://vocabulary.wcoomd.org/riderActionCode"
+        },
+        "add": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Date and time the bond user is added to the bond.",
+         "x-wco-id": "617",
+         "x-wco-term": "https://vocabulary.wcoomd.org/addDateTime"
+        },
+        "delete": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Date and time the bond user is removed from the bond.",
+         "x-wco-id": "618",
+         "x-wco-term": "https://vocabulary.wcoomd.org/deleteDateTime"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to a party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.",
+       "x-wco-id": "68C"
+      }
+     },
+     "NotifyParty": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of a party to be notified.",
+         "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+         "x-wco-id": "R046",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the party to be notified.",
+       "x-wco-id": "89A"
+      }
+     },
+     "Surety": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the party who agrees to be responsible for the debt or obligation of another.",
+         "x-wco-id": "R054",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of the party who agrees to be responsible for the debt or obligation of another.",
+         "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+         "x-wco-id": "R055",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "role": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the role of a party.",
+         "x-wco-code-list": "UN/EDIFACT code list 3035",
+         "x-wco-id": "R005",
+         "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
+        },
+        "liability": {
+         "type": "string",
+         "description": "Amount indicating the Surety's liability on the Customs bond.",
+         "x-wco-id": "619",
+         "x-wco-term": "https://vocabulary.wcoomd.org/amount"
+        },
+        "Agent": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Identification of a party authorized to act on behalf of another party.",
+            "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+            "x-wco-id": "R004",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to the party authorized to act on behalf of another party.",
+          "x-wco-id": "05A"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the natural or legal person who accepts responsibility in due legal form for the financial consequences of non-fulfillment of another's obligations to the Customs (CCC).",
+       "x-wco-id": "19B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the undertaking given in cash, bond or as a written guarantee to ensure that an obligation will be fulfilled (e.g. under a transit procedure).",
+    "x-wco-id": "90A"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "74B"
+}

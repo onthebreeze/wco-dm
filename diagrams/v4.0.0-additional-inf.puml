@@ -1,0 +1,174 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title INF 4.0.0
+class "AIP" as C0 <<root>> {
+  8 elements
+}
+class "Authenticator" as C1 {
+  4 elements
+}
+class "InsuranceCompany" as C2 {
+  4 elements
+}
+class "Submitter" as C3 {
+  4 elements
+}
+class "AdditionalDocument" as C4 {
+  4 elements
+}
+class "AdditionalInformation" as C5 {
+  3 elements
+}
+class "Amendment" as C6 {
+  1 element
+}
+class "AppealOffice" as C7 {
+  1 element
+}
+class "Bank" as C8 {
+  2 elements
+}
+class "ContactOffice" as C9 {
+  1 element
+}
+class "PaymentOffice" as C10 {
+  1 element
+}
+class "Status" as C11 {
+  3 elements
+}
+class "Declaration" as C12
+class "LPCO" as C13
+class "Address" as C14 {
+  12 elements
+}
+class "Contact" as C15 <<more>> {
+  2 elements
+  1 class below
+}
+class "Communication" as C16 {
+  2 elements
+}
+class "AdditionalIdentifier" as C17 {
+  3 elements
+}
+class "Address" as C18 {
+  12 elements
+}
+class "Contact" as C19 <<more>> {
+  2 elements
+  1 class below
+}
+class "Communication" as C20 {
+  2 elements
+}
+class "AdditionalIdentifier" as C21 {
+  3 elements
+}
+class "Address" as C22 {
+  12 elements
+}
+class "Contact" as C23 <<more>> {
+  2 elements
+  1 class below
+}
+class "Communication" as C24 {
+  2 elements
+}
+class "AdditionalIdentifier" as C25 {
+  3 elements
+}
+class "Authenticator" as C26 <<more>> {
+  4 elements
+  5 classes below
+}
+class "BinaryFile" as C27 {
+  16 elements
+}
+class "InsuranceCompany" as C28 <<more>> {
+  4 elements
+  5 classes below
+}
+class "Submitter" as C29 <<more>> {
+  4 elements
+  5 classes below
+}
+class "Pointer" as C30 {
+  4 elements
+}
+class "Pointer" as C31 {
+  4 elements
+}
+class "Contact" as C32 <<more>> {
+  2 elements
+  1 class below
+}
+class "Communication" as C33 {
+  2 elements
+}
+class "Pointer" as C34 {
+  3 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C0 *-- "0..*" C4
+C0 *-- "0..*" C5
+C0 *-- "0..*" C6
+C0 *-- "0..*" C7
+C0 *-- "0..*" C8
+C0 *-- "0..*" C9
+C0 *-- "0..*" C10
+C0 *-- "0..*" C11
+C0 *-- "0..*" C12
+C0 *-- "0..*" C13
+C1 *-- "0..*" C14
+C1 *-- "0..*" C15
+C1 *-- "0..*" C16
+C1 *-- "0..*" C17
+C2 *-- "0..*" C18
+C2 *-- "0..*" C19
+C2 *-- "0..*" C20
+C2 *-- "0..*" C21
+C3 *-- "0..*" C22
+C3 *-- "0..*" C23
+C3 *-- "0..*" C24
+C3 *-- "0..*" C25
+C4 *-- "0..*" C26
+C4 *-- "0..*" C27
+C4 *-- "0..*" C28
+C4 *-- "0..*" C29
+C5 *-- "0..*" C30
+C6 *-- "0..*" C31
+C9 *-- "0..*" C32
+C9 *-- "0..*" C33
+C11 *-- "0..*" C34
+note as N
+  Classes only, to the depth that stays readable.
+  A shaded box has further classes inside it.
+end note
+@enduml

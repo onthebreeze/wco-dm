@@ -1,0 +1,59 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title Customs Bond 4.2.0
+class "LPCO" as C0 <<root>> {
+  5 elements
+}
+class "ObligationGuarantee" as C1 {
+  6 elements
+}
+class "AdditionalInformation" as C2 {
+  1 element
+}
+class "AdditionalDocument" as C3 {
+  3 elements
+}
+class "Principal" as C4 {
+  6 elements
+}
+class "NotifyParty" as C5 {
+  1 element
+}
+class "Surety" as C6 {
+  4 elements
+}
+class "Agent" as C7 {
+  1 element
+}
+C0 *-- "0..*" C1
+C1 *-- "0..*" C2
+C1 *-- "0..*" C3
+C1 *-- "0..*" C4
+C1 *-- "0..*" C5
+C1 *-- "0..*" C6
+C6 *-- "0..*" C7
+@enduml

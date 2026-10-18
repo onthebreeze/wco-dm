@@ -1,0 +1,106 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://vocabulary.wcoomd.org/schemas/aip-upu-4.0.0.json",
+ "title": "Additional Information Package — upu",
+ "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
+ "x-wco-data-model-version": "4.0.0",
+ "type": "object",
+ "properties": {
+  "functionalReference": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific information exchange.",
+   "x-wco-id": "D026",
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
+  },
+  "identification": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific document.",
+   "x-wco-id": "D014",
+   "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+  },
+  "type": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the name of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1001 OR User codes",
+   "x-wco-id": "D013",
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
+  },
+  "AdditionalInformation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "statement": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Code specifying the form of an additional statement.",
+      "x-wco-code-list": "User codes",
+      "x-wco-id": "226",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementCode"
+     },
+     "statementDescription": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of an additional statement.",
+      "x-wco-id": "225",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementDescriptionText"
+     },
+     "statementType": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the subject of the additional statement.",
+      "x-wco-code-list": "UN/EDIFACT code list 4451",
+      "x-wco-id": "369",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementTypeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the special request from declarant to government to take or not to take action.",
+    "x-wco-id": "03A"
+   }
+  },
+  "Status": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "release": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time the goods have been released from government custody.",
+      "x-wco-id": "277",
+      "x-wco-term": "https://vocabulary.wcoomd.org/releaseDateTime"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to status.",
+    "x-wco-id": "12B"
+   }
+  },
+  "Declaration": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.",
+    "x-wco-id": "42A"
+   }
+  },
+  "LPCO": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false,
+    "description": "Details related to Licenses, Permits, Certificates or Others.",
+    "x-wco-id": "74B"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "58C"
+}

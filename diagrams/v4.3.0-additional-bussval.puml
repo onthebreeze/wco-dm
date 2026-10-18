@@ -1,0 +1,147 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title BUSSVAL 4.3.0
+class "AIP" as C0 <<root>> {
+  8 elements
+}
+class "Authenticator" as C1 {
+  4 elements
+}
+class "InsuranceCompany" as C2 {
+  4 elements
+}
+class "Submitter" as C3 {
+  4 elements
+}
+class "AdditionalInformation" as C4 {
+  3 elements
+}
+class "ContactOffice" as C5 {
+  1 element
+}
+class "Error" as C6 {
+  2 elements
+}
+class "Status" as C7 {
+  3 elements
+}
+class "Declaration" as C8
+class "LPCO" as C9
+class "Address" as C10 {
+  12 elements
+}
+class "Contact" as C11 {
+  2 elements
+}
+class "Communication" as C12 {
+  2 elements
+}
+class "AdditionalIdentifier" as C13 {
+  3 elements
+}
+class "Address" as C14 {
+  12 elements
+}
+class "Contact" as C15 {
+  2 elements
+}
+class "Communication" as C16 {
+  2 elements
+}
+class "AdditionalIdentifier" as C17 {
+  3 elements
+}
+class "Address" as C18 {
+  12 elements
+}
+class "Contact" as C19 {
+  2 elements
+}
+class "Communication" as C20 {
+  2 elements
+}
+class "AdditionalIdentifier" as C21 {
+  3 elements
+}
+class "Pointer" as C22 {
+  4 elements
+}
+class "Contact" as C23 {
+  2 elements
+}
+class "Communication" as C24 {
+  2 elements
+}
+class "Pointer" as C25 {
+  4 elements
+}
+class "Pointer" as C26 {
+  3 elements
+}
+class "Communication" as C27 {
+  2 elements
+}
+class "Communication" as C28 {
+  2 elements
+}
+class "Communication" as C29 {
+  2 elements
+}
+class "Communication" as C30 {
+  2 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C0 *-- "0..*" C4
+C0 *-- "0..*" C5
+C0 *-- "0..*" C6
+C0 *-- "0..*" C7
+C0 *-- "0..*" C8
+C0 *-- "0..*" C9
+C1 *-- "0..*" C10
+C1 *-- "0..*" C11
+C1 *-- "0..*" C12
+C1 *-- "0..*" C13
+C2 *-- "0..*" C14
+C2 *-- "0..*" C15
+C2 *-- "0..*" C16
+C2 *-- "0..*" C17
+C3 *-- "0..*" C18
+C3 *-- "0..*" C19
+C3 *-- "0..*" C20
+C3 *-- "0..*" C21
+C4 *-- "0..*" C22
+C5 *-- "0..*" C23
+C5 *-- "0..*" C24
+C6 *-- "0..*" C25
+C7 *-- "0..*" C26
+C11 *-- "0..*" C27
+C15 *-- "0..*" C28
+C19 *-- "0..*" C29
+C23 *-- "0..*" C30
+@enduml

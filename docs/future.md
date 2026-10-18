@@ -8,18 +8,36 @@ architecture would still produce the artefacts that implementers depend on today
 Nothing here has been applied. The vocabulary on this site renders WCO Data Model 4.3.0 as the
 workbooks give it, and the counts below can be reproduced from them.
 
-## Roles are modelled as classes, and the role is also carried as data
+## Roles are modelled as classes, and the model says so itself
 
-The Library flags every class with a SuperClass Usage of NONE, DOC, GOV, LOC, PAR or TRA. 171 of
-the 273 classes carry one. It is a flag and not a parent: there is no Party class, no Location
-class and no Document class in the Library, so there is nothing to inherit from and nothing to
-point at. What the flag marks is that a class uses the superclass's standard attributes, which it
-then restates under its own name - `Agent identifier`, `Applicant identifier`, `Assembler
-identifier`.
+The Library states a generalization and then does not use it. Every class carries a SuperClass
+identifier - SC1 RootDocument, SC2 GovernmentAgency, SC3 Location, SC4 Party, SC5 TransportMeans -
+and every attribute carries the superclass element it realises, so the model already records that a
+Carrier is a Party and that Agent identifier and Carrier identifier are both the superclass element
+S009, identification.
 
-Ninety classes are flagged PAR. Taken as named they have 90 distinct attribute signatures. Remove
-the class name from the front of each attribute and they collapse to 28, and one signature covers
-43 of them:
+What it does not do is take the consequence. There is no Party row in the class list, nothing
+inherits, and each subclass restates the superclass elements under its own name: `Agent identifier`,
+`Applicant identifier`, `Assembler identifier`. The relationship is recorded in two columns and
+discarded in every published artefact.
+
+| | 4.0.0 | 4.1.0 | 4.2.0 | 4.3.0 |
+|---|---|---|---|---|
+| Classes with a superclass | 163 | 167 | 170 | 170 |
+| Attributes realising a superclass element | 540 | 557 | 558 | 559 |
+
+In 4.3.0 that is 90 classes marked Party, 33 Location, 23 GovernmentAgency, 16 RootDocument and 8
+TransportMeans, and 45 distinct superclass elements. S009, identification, is realised by 81
+differently-named attributes; S008, name, by 75.
+
+This site now publishes what those columns say. The five superclasses are minted as classes, the
+170 classes that carry one are declared `rdfs:subClassOf` it, and each property records the
+superclass element it realises. Nothing is merged on that basis yet, so no term changed its
+address; the statement is simply no longer thrown away.
+
+The duplication is what remains. Ninety classes are flagged PAR, and taken as named they have 90
+distinct attribute signatures; remove the class name from the front of each attribute and they
+collapse to 28, with one signature covering 43 of them:
 
 | | |
 |---|---|
@@ -34,7 +52,7 @@ another in nothing but what they are called: Applicant, Assembler, Authenticator
 Carrier, Consolidator, ConsortiumCarrier, Deconsolidator, Distiller, Stevedore and the rest.
 
 **83 of those 90 classes already carry a Role code attribute.** The role is therefore expressed
-twice, once as the class and once as a value inside it, and two statements that can disagree.
+three times over: as the class, as the superclass relationship, and as a value inside the class.
 
 The pattern repeats more mildly elsewhere. Fourteen of the 23 classes flagged GOV have exactly one
 attribute, an identifier: AppealOffice, BorderingOffice, ContactOffice, ExitOffice, ExportOffice,
@@ -53,8 +71,8 @@ attribute, a relationship or a lifecycle of its own. A distinction carried entir
 property points at it is a role, and a role belongs in the data, or in the property name at the
 point of use, rather than in a new class.
 
-The test is mechanical. Strip the class name from the front of each of its attributes. If what
-remains is a subset of the general class's attributes, it is a role.
+The test is mechanical, and the model already has the data for it. Take the attributes that realise
+a superclass element, and those that do not. If a class has none of its own, it is a role.
 
 ### What the present design buys
 
@@ -66,7 +84,8 @@ conditional rule. A constraint can attach to one role without attaching to parti
 All three survive the change, because they are properties of the message rather than of the
 dictionary. A message can still have an `exporter` and a `carrier` element, each constrained
 differently, both ranging at Party. What is given up is 90 class definitions that say almost
-nothing, and what is gained is the ability to state that all of them are parties.
+nothing, and what is gained is the ability to state - rather than merely record in a column - that
+all of them are parties.
 
 ## Attributes are named inside their class
 

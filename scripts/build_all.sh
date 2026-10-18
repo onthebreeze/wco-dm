@@ -2,17 +2,21 @@
 # The whole site, in order, with the gates in between. One command, so a rebuild from a new WCO
 # release is the same operation every time.
 #
+# Every stage runs over every release in raw-data/. The vocabulary is built from all of them at
+# once, because it is unversioned and its terms carry their own lifecycle; the messages are built
+# per release, because a message format has to be pinned.
+#
 #   scripts/build_all.sh                                   # the WCO namespace
 #   WCO_BASE=https://test-wcodm.trade-commons.org/ scripts/build_all.sh
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "== extract =="            && python3 scripts/extract.py
-echo "== fidelity =="           && python3 scripts/fidelity_check.py
+echo "== extract =="            && python3 scripts/extract.py --all
+echo "== fidelity =="           && python3 scripts/fidelity_check.py --all
 echo "== vocabulary =="         && python3 scripts/build_vocabulary.py
 echo "== validate =="           && python3 scripts/validate_vocab.py
 echo "== mappings =="           && python3 scripts/map_to_unece.py
-echo "== packages =="           && python3 scripts/extract_packages.py
+echo "== packages =="           && python3 scripts/extract_packages.py --all
 echo "== schemas =="            && python3 scripts/build_schemas.py
 echo "== message views =="      && python3 scripts/build_package_views.py
 # The schema gate needs jsonschema, which the rest of the pipeline does not. It skips rather than

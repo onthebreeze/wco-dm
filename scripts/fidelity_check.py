@@ -2,7 +2,13 @@
 """Reads the two workbooks again, independently of extract.py, and checks that nothing was lost on
 the way to the intermediate. A pipeline that only compares its own output to itself proves nothing.
 
-    python3 scripts/fidelity_check.py
+    python3 scripts/fidelity_check.py           # the newest release
+    python3 scripts/fidelity_check.py --all     # every release
+
+The column positions below are written out rather than resolved by heading, which is deliberate:
+this check exists to disagree with the extractor, and sharing its column resolution would remove
+the independence that makes it worth running. The first twenty columns of the Library sheet have
+been in the same places in all four releases, and a release that moves them will fail here loudly.
 """
 import json
 import pathlib
@@ -14,14 +20,15 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _release  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-INT = ROOT / "intermediate"
-RELEASE = _release.release_dir()
 
 
-def main():
+def check_release(release):
+    version = _release.version(release)
+    INT = ROOT / "intermediate" / f"v{version}"
     failures = []
+    print(f"  {version}")
 
-    wb = openpyxl.load_workbook(_release.workbook("library", RELEASE), read_only=True, data_only=True)
+    wb = openpyxl.load_workbook(_release.workbook("library", release), read_only=True, data_only=True)
     ws = wb["DataSet 1.2, 1.3, 1.4"]
     raw_rows = [r for r in ws.iter_rows(min_row=3, values_only=True) if r[8]]
     raw_classes = {str(r[8]).strip() for r in raw_rows}
@@ -30,7 +37,7 @@ def main():
     raw_codelists = len([r for r in wb["DataSet 1.6"].iter_rows(min_row=3, values_only=True) if r[1]])
     wb.close()
 
-    wb = openpyxl.load_workbook(_release.workbook("ois", RELEASE), read_only=True, data_only=True)
+    wb = openpyxl.load_workbook(_release.workbook("ois", release), read_only=True, data_only=True)
     raw_ois = len([r for r in wb["OIS"].iter_rows(min_row=4, values_only=True) if r[1]])
     wb.close()
 
@@ -40,7 +47,7 @@ def main():
     ois = json.loads((INT / "ois-occurrences.json").read_text())
 
     def check(label, got, want):
-        print(f"  {label}: {got} against {want}" + ("" if got == want else "   MISMATCH"))
+        print(f"    {label}: {got} against {want}" + ("" if got == want else "   MISMATCH"))
         if got != want:
             failures.append(label)
 
@@ -58,7 +65,7 @@ def main():
     class_names = {squash(c.get("class_name")) for c in classes}
     lost = {d for d in raw_dens
             if squash(d) not in kept and squash(d.split(".")[0]) not in class_names}
-    print(f"  dictionary entry names carried through: {len(raw_dens) - len(lost)} of {len(raw_dens)}")
+    print(f"    dictionary entry names carried through: {len(raw_dens) - len(lost)} of {len(raw_dens)}")
     if lost:
         failures.append("dictionary entry names")
         for d in sorted(lost)[:5]:
@@ -66,12 +73,23 @@ def main():
 
     # Every attribute still names its source row.
     untraceable = [a for a in attributes if not a.get("source", {}).get("row")]
-    print(f"  attributes carrying a source row: {len(attributes) - len(untraceable)} of {len(attributes)}")
+    print(f"    attributes carrying a source row: {len(attributes) - len(untraceable)} of {len(attributes)}")
     if untraceable:
         failures.append("source rows")
 
-    if failures:
-        print(f"\nfidelity check failed: {', '.join(failures)}")
+    return failures
+
+
+def main():
+    releases = _release.releases() if "--all" in sys.argv else [_release.release_dir()]
+    failed = {}
+    for release in releases:
+        bad = check_release(release)
+        if bad:
+            failed[_release.version(release)] = bad
+    if failed:
+        for version, bad in failed.items():
+            print(f"\nfidelity check failed for {version}: {', '.join(bad)}")
         return 1
     print("\nfidelity check passed")
     return 0

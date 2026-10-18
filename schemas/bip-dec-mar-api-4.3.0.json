@@ -592,7 +592,7 @@
                "description": "Code specifying the type of person (e.g. Crew member, Passenger, Stowaway).",
                "x-wco-code-list": "UN/EDIFACT code list 3035",
                "x-wco-id": "458",
-               "x-wco-term": "https://vocabulary.wcoomd.org/persondataTypeCode"
+               "x-wco-term": "https://vocabulary.wcoomd.org/totalpersonsTypeCode"
               },
               "additionalInformation": {
                "type": "array",

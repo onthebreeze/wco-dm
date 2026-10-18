@@ -1,0 +1,159 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title Maritime BRI 4.3.0
+class "Declaration" as C0 <<root>> {
+  4 elements
+}
+class "Submitter" as C1 {
+  2 elements
+}
+class "BorderTransportMeans" as C2 {
+  4 elements
+}
+class "Carrier" as C3 {
+  1 element
+}
+class "Contact" as C4 {
+  1 element
+}
+class "ArrivalLocation" as C5 {
+  4 elements
+}
+class "DepartureLocation" as C6 {
+  4 elements
+}
+class "Itinerary" as C7 {
+  6 elements
+}
+class "Reservation" as C8 {
+  4 elements
+}
+class "Communication" as C9 {
+  2 elements
+}
+class "Cabin" as C10 {
+  3 elements
+}
+class "DisembarkationLocation" as C11 {
+  3 elements
+}
+class "EmbarkationLocation" as C12 {
+  3 elements
+}
+class "Itinerary" as C13 {
+  6 elements
+}
+class "Payment" as C14 {
+  3 elements
+}
+class "PersonOnBoard" as C15 {
+  2 elements
+}
+class "TotalPersons" as C16 {
+  1 element
+}
+class "TravelAgency" as C17 {
+  3 elements
+}
+class "Address" as C18 {
+  4 elements
+}
+class "FinancialCard" as C19 {
+  3 elements
+}
+class "AdditionalInformation" as C20 {
+  3 elements
+}
+class "Address" as C21 {
+  4 elements
+}
+class "Communication" as C22 {
+  2 elements
+}
+class "ConnectionTransportMeans" as C23 {
+  6 elements
+}
+class "LoyaltyProgram" as C24 {
+  4 elements
+}
+class "PersonData" as C25 {
+  6 elements
+}
+class "Ticket" as C26 {
+  2 elements
+}
+class "TravelDocument" as C27 {
+  8 elements
+}
+class "Address" as C28 {
+  4 elements
+}
+class "Contact" as C29 {
+  1 element
+}
+class "ArrivalLocation" as C30 {
+  3 elements
+}
+class "DepartureLocation" as C31 {
+  3 elements
+}
+class "Communication" as C32 {
+  2 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C1 *-- "0..*" C4
+C2 *-- "0..*" C5
+C2 *-- "0..*" C6
+C2 *-- "0..*" C7
+C2 *-- "0..*" C8
+C4 *-- "0..*" C9
+C8 *-- "0..*" C10
+C8 *-- "0..*" C11
+C8 *-- "0..*" C12
+C8 *-- "0..*" C13
+C8 *-- "0..*" C14
+C8 *-- "0..*" C15
+C8 *-- "0..*" C16
+C8 *-- "0..*" C17
+C14 *-- "0..*" C18
+C14 *-- "0..*" C19
+C15 *-- "0..*" C20
+C15 *-- "0..*" C21
+C15 *-- "0..*" C22
+C15 *-- "0..*" C23
+C15 *-- "0..1" C24
+C15 *-- "0..*" C25
+C15 *-- "0..1" C26
+C15 *-- "0..*" C27
+C17 *-- "0..*" C28
+C17 *-- "0..*" C29
+C23 *-- "0..*" C30
+C23 *-- "0..*" C31
+C29 *-- "0..*" C32
+@enduml

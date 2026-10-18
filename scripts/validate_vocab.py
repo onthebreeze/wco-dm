@@ -12,6 +12,9 @@ from collections import Counter
 import rdflib
 from rdflib.namespace import OWL, RDF, RDFS, SKOS
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _lifecycle  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ONT = ROOT / "ontology"
 INT = ROOT / "intermediate"
@@ -74,18 +77,29 @@ def main():
     dupes = [t for t, n in Counter(list(g.subjects(RDF.type, OWL.Class))).items() if n > 1]
     gate("no class is declared twice", dupes, "a duplicate declaration means two modules claim it")
 
-    # 8. Every class extracted from the library is in the vocabulary, and nothing else is except
-    #    the core data types, which come from Data Set 1.5 rather than the class library.
-    report = json.loads((INT / "extraction-report.json").read_text())
-    library = {c["class_name"].replace(" ", "") for c in json.loads((INT / "classes.json").read_text())}
+    # 8. Every class the library has ever carried is in the vocabulary, and nothing else is except
+    #    the core data types, which come from Data Set 1.5, and the five superclasses, which the
+    #    library names in its SuperClass column rather than as rows of their own.
+    #
+    #    The comparison is against every release rather than the newest, because a class dropped
+    #    after 4.1.0 is still published here, deprecated, so that a document that used it resolves.
+    union = _lifecycle.union()
+    library = {c["class_name"].replace(" ", "") for c in union["classes"]}
+    library |= {n.replace(" ", "") for c in union["classes"] for n in c.get("formerNames") or []}
+    superclasses = {c["superclass"] for c in union["classes"] if c.get("superclass")}
+    library |= superclasses
     data_type_classes = {str(c).rsplit("/", 1)[-1] for c in classes
                          if (rdflib.URIRef(str(BASE) + "module/data-types"),) and
                          rdflib.URIRef(str(BASE) + "module/data-types") in set(g.objects(c, RDFS.isDefinedBy))}
     from_library = {str(c).rsplit("/", 1)[-1] for c in classes} - data_type_classes
     missing = library - from_library
     unexpected = from_library - library
-    gate("every library class is published", sorted(missing),
-         f"{len(from_library)} published against {report['counts']['classes']} extracted")
+    # A former name is published as an altLabel on the class that kept the identifier, not as a
+    # class of its own, so it is allowed to be absent.
+    former = {n.replace(" ", "") for c in union["classes"] for n in c.get("formerNames") or []}
+    gate("every library class is published", sorted(missing - former),
+         f"{len(from_library)} published against {len(union['classes'])} merged across "
+         f"{len(union['versions'])} releases, plus {len(superclasses)} superclasses")
     gate("no class appears that the library does not have", sorted(unexpected),
          "an invented class would not trace back to a source row")
 

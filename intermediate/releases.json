@@ -1,0 +1,72 @@
+{
+ "releases": [
+  {
+   "version": "4.0.0",
+   "date": null,
+   "library": "WCO DM LIB_V4.0.0-final.xlsx",
+   "ois": "WCO DM OIS_V4.0.0-final.xlsx",
+   "counts": {
+    "classes": 260,
+    "attributes": 1092,
+    "data_types": 37,
+    "code_lists": 127,
+    "code_lists_with_values": 8,
+    "code_lists_external": 119,
+    "ois_occurrences": 9600,
+    "classes_with_a_superclass": 163,
+    "attributes_with_a_superclass_element": 540
+   }
+  },
+  {
+   "version": "4.1.0",
+   "date": null,
+   "library": "240621 Section 1. WCO DM LIB_V4.1.0-final.xlsx",
+   "ois": "240624 Section 2. WCO DM OIS_V4.1.0-final.xlsx",
+   "counts": {
+    "classes": 266,
+    "attributes": 1146,
+    "data_types": 37,
+    "code_lists": 127,
+    "code_lists_with_values": 8,
+    "code_lists_external": 119,
+    "ois_occurrences": 9707,
+    "classes_with_a_superclass": 167,
+    "attributes_with_a_superclass_element": 557
+   }
+  },
+  {
+   "version": "4.2.0",
+   "date": null,
+   "library": "1.1 WCO DM LIB_V4.2.0.xlsx",
+   "ois": "WCO DM OIS_V4.2.0.xlsx",
+   "counts": {
+    "classes": 273,
+    "attributes": 1152,
+    "data_types": 37,
+    "code_lists": 135,
+    "code_lists_with_values": 11,
+    "code_lists_external": 124,
+    "ois_occurrences": 9987,
+    "classes_with_a_superclass": 170,
+    "attributes_with_a_superclass_element": 558
+   }
+  },
+  {
+   "version": "4.3.0",
+   "date": null,
+   "library": "1.1 WCO DM LIB V4.3.0.xlsx",
+   "ois": "WCO DM OIS_V4.3.0.xlsx",
+   "counts": {
+    "classes": 273,
+    "attributes": 1156,
+    "data_types": 37,
+    "code_lists": 135,
+    "code_lists_with_values": 12,
+    "code_lists_external": 123,
+    "ois_occurrences": 9802,
+    "classes_with_a_superclass": 170,
+    "attributes_with_a_superclass_element": 559
+   }
+  }
+ ]
+}

@@ -1,0 +1,497 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://vocabulary.wcoomd.org/schemas/aip-upu-4.2.0.json",
+ "title": "Additional Information Package — upu",
+ "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
+ "x-wco-data-model-version": "4.2.0",
+ "type": "object",
+ "properties": {
+  "functionalReference": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific information exchange.",
+   "x-wco-id": "D026",
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
+  },
+  "packageType": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the type of additional information package (Response, InterGov).",
+   "x-wco-code-list": "WCO code list/AIPTypeCode",
+   "x-wco-id": "593",
+   "x-wco-term": "https://vocabulary.wcoomd.org/packageTypeCode"
+  },
+  "AdditionalInformation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "statement": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Code specifying the form of an additional statement.",
+      "x-wco-code-list": "User code list",
+      "x-wco-id": "226",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementCode"
+     },
+     "statementDescription": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of an additional statement.",
+      "x-wco-id": "225",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementDescriptionText"
+     },
+     "statementType": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the subject of the additional statement.",
+      "x-wco-code-list": "UN/EDIFACT code list 4451",
+      "x-wco-id": "369",
+      "x-wco-term": "https://vocabulary.wcoomd.org/statementTypeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the special request from declarant to government to take or not to take action.",
+    "x-wco-id": "03A"
+   }
+  },
+  "AEOProgramProfile": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+      "x-wco-code-list": "ISO 3166-1",
+      "x-wco-id": "624",
+      "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+     },
+     "agencyName": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Name of the agency responsible for the country’s Authorized Economic Operator (AEO) program.",
+      "x-wco-id": "625",
+      "x-wco-term": "https://vocabulary.wcoomd.org/countryAgencyNameText"
+     },
+     "programName": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Name of the country’s Authorized Economic Operator (AEO) program.",
+      "x-wco-id": "626",
+      "x-wco-term": "https://vocabulary.wcoomd.org/programNameText"
+     },
+     "members": {
+      "type": "string",
+      "pattern": "^\\d{1,6}$",
+      "description": "Quantity specifying the number of members in a country’s Authorized Economic Operator (AEO) program.",
+      "x-wco-id": "627",
+      "x-wco-term": "https://vocabulary.wcoomd.org/membersQuantity"
+     },
+     "year": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Year of establishment of the Authorized Economic Operator (AEO) program.",
+      "x-wco-id": "628",
+      "x-wco-term": "https://vocabulary.wcoomd.org/establishedYearDateTime"
+     },
+     "typeCode": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code of the Authorized Economic Operator (AEO) program basis type (e.g. Security, Compliance)",
+      "x-wco-code-list": "WCO Code List 0011",
+      "x-wco-id": "629",
+      "x-wco-term": "https://vocabulary.wcoomd.org/aeoProgramTypeCode"
+     },
+     "Communication": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Identification of the communication address.",
+         "x-wco-id": "240",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of communication address.",
+         "x-wco-code-list": "UN/EDIFACT code list 3155",
+         "x-wco-id": "253",
+         "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+        },
+        "qualifier": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying qualifier for the communication address.",
+         "x-wco-code-list": "WCO code list/CommunicationSubTypeCode",
+         "x-wco-id": "636",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to communication including number and number type.",
+       "x-wco-id": "25A"
+      }
+     },
+     "TradeRole": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "role": {
+         "type": "string",
+         "x-wco-code-list": "UN/EDIFACT code list 3035",
+         "x-wco-id": "635"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the trade roles.",
+       "x-wco-id": "73C"
+      }
+     },
+     "Contact": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of a department or employee.",
+         "x-wco-id": "246",
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+        },
+        "Communication": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "identification": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "Identification of the communication address.",
+            "x-wco-id": "240",
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+           },
+           "type": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Code specifying the type of communication address.",
+            "x-wco-code-list": "UN/EDIFACT code list 3155",
+            "x-wco-id": "253",
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to communication including number and number type.",
+          "x-wco-id": "25A"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to contact information of a department or employee.",
+       "x-wco-id": "34A"
+      }
+     },
+     "ProfilePartner": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "630",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "agencyName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the agency responsible for the profile.",
+         "x-wco-id": "631",
+         "x-wco-term": "https://vocabulary.wcoomd.org/agencyNameText"
+        },
+        "profileName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of the profile",
+         "x-wco-id": "632",
+         "x-wco-term": "https://vocabulary.wcoomd.org/programNameText"
+        },
+        "signedDateTime": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Date and time the that the profile was signed",
+         "x-wco-id": "633",
+         "x-wco-term": "https://vocabulary.wcoomd.org/signedDateTime"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the type of partner profile",
+         "x-wco-code-list": "WCO Code List 0010",
+         "x-wco-id": "634",
+         "x-wco-term": "https://vocabulary.wcoomd.org/programPartnerProfileTypeCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the profile of a partner.",
+       "x-wco-id": "72C"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the Authorized Economic Operator (AEO) program.",
+    "x-wco-id": "71C"
+   }
+  },
+  "Control": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of governmental examination.",
+      "x-wco-code-list": "User code list",
+      "x-wco-id": "449",
+      "x-wco-term": "https://vocabulary.wcoomd.org/authenticationTypeCode"
+     },
+     "ControlResult": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "identification": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the results of a control.",
+         "x-wco-code-list": "User code list",
+         "x-wco-id": "444",
+         "x-wco-term": "https://vocabulary.wcoomd.org/controlresultIdentificationCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the outcome of (governmental) examination.",
+       "x-wco-id": "83B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to (governmental) examination.",
+    "x-wco-id": "38A"
+   }
+  },
+  "TransitPrincipal": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Name of the party accepting liability for goods held or moving under a customs authorization and, when applicable, a guarantee.",
+      "x-wco-id": "R001",
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+     },
+     "identification": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Identification of the party accepting liability for goods held or moving under a customs authorization and - when applicable - a guarantee.",
+      "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+      "x-wco-id": "R002",
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+     },
+     "Address": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "cityName": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Name of a city.",
+         "x-wco-id": "241",
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+        },
+        "country": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "242",
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+        },
+        "line": {
+         "type": "string",
+         "maxLength": 256,
+         "description": "Specification of the postal delivery point such as street and number or post office box.",
+         "x-wco-id": "239",
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+        },
+        "postcode": {
+         "type": "string",
+         "maxLength": 17,
+         "description": "Identification of the postal zone or address.",
+         "x-wco-code-list": "User code list",
+         "x-wco-id": "245",
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an address.",
+       "x-wco-id": "04A"
+      }
+     },
+     "AdditionalIdentifier": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequence": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+        },
+        "identification": {
+         "type": "string",
+         "maxLength": 35,
+         "description": "Identification of an additional party (e.g. VAT number).",
+         "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
+         "x-wco-id": "511",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+        },
+        "identificationIssuingCountry": {
+         "type": "string",
+         "minLength": 2,
+         "maxLength": 2,
+         "description": "Code specifying the issuing country of the identification.",
+         "x-wco-code-list": "ISO 3166-1",
+         "x-wco-id": "550",
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to an additional identification of a party.",
+       "x-wco-id": "23C"
+      }
+     },
+     "Authorization": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "status": {
+         "type": "string",
+         "maxLength": 3,
+         "description": "Code specifying the status of a document.",
+         "x-wco-code-list": "UN/EDIFACT code list 1373",
+         "x-wco-id": "D047",
+         "x-wco-term": "https://vocabulary.wcoomd.org/documentStatusCode"
+        },
+        "AuthorizationWithdrawal": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "effective": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Date and time the document (e.g. license, visa, permit, certificate) is effective.",
+            "x-wco-id": "276",
+            "x-wco-term": "https://vocabulary.wcoomd.org/effectiveDateTime"
+           },
+           "expiration": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate).",
+            "x-wco-id": "275",
+            "x-wco-term": "https://vocabulary.wcoomd.org/expirationDateTime"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to the withdrawal of an authorization.",
+          "x-wco-id": "90B"
+         }
+        },
+        "Exclusion": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "effective": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Date and time the document (e.g. license, visa, permit, certificate) is effective.",
+            "x-wco-id": "276",
+            "x-wco-term": "https://vocabulary.wcoomd.org/effectiveDateTime"
+           },
+           "expiration": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate).",
+            "x-wco-id": "275",
+            "x-wco-term": "https://vocabulary.wcoomd.org/expirationDateTime"
+           },
+           "country": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the country of exclusion.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "447",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to an exclusion.",
+          "x-wco-id": "89B"
+         }
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to authorizations.",
+       "x-wco-id": "88B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the party accepting liability for goods held or moving under a customs authorization and - when applicable - a guarantee.",
+    "x-wco-id": "28B"
+   }
+  },
+  "Status": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "release": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time the goods have been released from government custody.",
+      "x-wco-id": "277",
+      "x-wco-term": "https://vocabulary.wcoomd.org/releaseDateTime"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to status.",
+    "x-wco-id": "12B"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "58C"
+}

@@ -24,6 +24,7 @@ import rdflib
 from rdflib.namespace import DCTERMS, OWL, RDF, RDFS, SKOS
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _lifecycle  # noqa: E402
 import _release  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -141,6 +142,9 @@ SECTIONS = [
         ("classes", "Classes", "classes/"),
         ("properties", "Properties", "properties/"),
         ("code-lists", "Code lists", "code-lists/"),
+    ]),
+    ("releases", "Releases", [
+        ("releases", "Overview", "releases/"),
     ]),
     ("packages", "Information packages", [
         ("packages", "Overview", "packages/"),
@@ -288,6 +292,33 @@ def term_body(g, s, kind, idx):
         row("Status", f'<span class="status status-{html.escape(status)}">{html.escape(status)}</span>')
     if module:
         row("Module", f'<a href="{BASE}module/{module}">{html.escape(module)}</a>')
+    # The vocabulary carries no version, so the term carries its own history instead.
+    introduced = one(g, s, WCO.introducedIn)
+    deprecated = one(g, s, WCO.deprecatedIn)
+    present = many(g, s, WCO.presentIn)
+    if introduced:
+        row("Introduced in", f'<a href="{BASE}releases/{introduced}/">{html.escape(introduced)}</a>'
+                             + ("" if deprecated else ", and in every release since"))
+    if deprecated:
+        row("Dropped in", f'<a href="{BASE}releases/{deprecated}/">{html.escape(deprecated)}</a>. '
+                          'The term stays published so that documents which used it still '
+                          'resolve.')
+    if present:
+        row("Releases", ", ".join(
+            f'<a href="{BASE}releases/{v}/">{html.escape(v)}</a>' for v in present))
+    former = many(g, s, SKOS.altLabel)
+    if former and kind in ("class", "property"):
+        row("Also known as", ", ".join(html.escape(f) for f in former))
+    superclass = next(iter(g.objects(s, RDFS.subClassOf)), None)
+    if superclass is not None:
+        row("Superclass", link(superclass) + ' <span class="muted">(the Library\'s own '
+            'SuperClass column)</span>')
+    el = one(g, s, WCO.superclassElement)
+    if el:
+        row("Superclass element", f'{html.escape(el)} '
+            f'<code>{html.escape(one(g, s, WCO.superclassElementId) or "")}</code>'
+            ' <span class="muted">the Library states that every attribute carrying this element '
+            'is the same thing</span>')
     if kind == "property":
         row("Value", ", ".join(split_range(g, s)[0]) or "<code>string</code>")
     for prop, name in ((WCO.xmlTag, "XML tag"), (WCO.jsonTag, "JSON tag"),
@@ -309,6 +340,15 @@ def term_body(g, s, kind, idx):
     row("Source", html.escape(one(g, s, DCTERMS.source) or ""))
 
     sections = [f'<table class="facts">{"".join(rows)}</table>']
+    subclasses = sorted(g.subjects(RDFS.subClassOf, s), key=lambda t: display_label(g, t).lower())
+    if subclasses:
+        sections.append(
+            f'<section><h2>Subclasses ({len(subclasses)})</h2>'
+            '<p class="muted">Classes the Library marks as this superclass. Each restates the '
+            'superclass elements under its own name.</p>'
+            + table(["Class", "Definition"],
+                    [(term_link(g, c), short(one(g, c, SKOS.definition))) for c in subclasses],
+                    col_classes=["name", "prose"]) + '</section>')
 
     if kind == "class":
         props = sorted(idx["class_props"].get(s, []), key=lambda t: display_label(g, t).lower())
@@ -723,15 +763,19 @@ def main():
                 url, title, "The WCO Data Model published as linked data.")[0])
         counts["page"] += 1
 
-    # The schemas and the message views, served beside the vocabulary. A package gets a landing page
-    # that says what the message is and shows its shape, and a page per release that carries the
-    # machine artefacts and the structure browser. The landing page is unversioned on purpose: it is
-    # the stable place to link to a message, while each release has its own citable address.
+    # The schemas and the message views, served beside the vocabulary.
+    #
+    # A message has one address and several releases. The landing page is unversioned on purpose -
+    # it is the stable place to link to the Declaration, or to the Maritime API - and each release
+    # it ever had has its own page beneath it, carrying that release's schema, context and
+    # structure. A message that the current release no longer has keeps every page it had.
     schemas_dir, views_dir = ROOT / "schemas", ROOT / "views"
     if (views_dir / "manifest.json").exists():
-        manifest = json.loads((views_dir / "manifest.json").read_text())
+        manifest = json.loads((views_dir / "manifest.json").read_text())["releases"]
         meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
         pkg_meta, dip_meta = meta["packages"], meta["derived"]
+        RELEASES = sorted(manifest, key=lambda v: tuple(int(n) for n in v.split(".")))
+        CURRENT = RELEASES[-1]
 
         def rewrite(text):
             return text.replace(SOURCE_BASE, BASE) if BASE != SOURCE_BASE else text
@@ -747,6 +791,37 @@ def main():
                 (flat / f.name).write_text(rewrite(f.read_text()))
                 counts["schema file"] += 1
 
+        # A message whose column heading changed between releases is one message, not two. The
+        # workbook gives a derived package no identifier, so the join is editorial and is declared
+        # in docs/derived-packages.json rather than inferred.
+        canonical = {}
+        for slug, info in dip_meta.items():
+            for alias in info.get("aliases") or []:
+                key_part, _, alias_slug = alias.rpartition(":")
+                canon = slug.rpartition(":")[2]
+                canonical[(key_part or None, alias_slug)] = canon
+
+        def canon_slug(key, mslug):
+            return (canonical.get((key, mslug)) or canonical.get((None, mslug)) or mslug)
+
+        # One row per message, gathering every release it appears in.
+        messages = {}
+        for version in RELEASES:
+            for key, pkg in manifest[version].items():
+                for raw_slug, entry in pkg["messages"].items():
+                    mslug = canon_slug(key, raw_slug)
+                    m = messages.setdefault((key, mslug), {
+                        "key": key, "pslug": pkg["slug"], "mslug": mslug,
+                        "derived": entry["derived"], "versions": {},
+                    })
+                    m["versions"][version] = entry
+                    m.setdefault("headings", {})[version] = raw_slug
+        for m in messages.values():
+            m["releases"] = [v for v in RELEASES if v in m["versions"]]
+            m["latest"] = m["releases"][-1]
+            m["entry"] = m["versions"][m["latest"]]
+            m["current"] = m["latest"] == CURRENT
+
         def message_url(pslug, mslug, version=None):
             tail = "" if mslug == "base" else f"{mslug}/"
             return f"{BASE}packages/{pslug}/{tail}" + (f"{version}/" if version else "")
@@ -759,6 +834,20 @@ def main():
             out.mkdir(parents=True, exist_ok=True)
             return out
 
+        def dip_info(key, mslug):
+            """MSW is a Declaration subset and also a Response subset, and they are not the same
+            message, so metadata may be qualified by the package it belongs to."""
+            return dip_meta.get(f"{key}:{mslug}") or dip_meta.get(mslug, {})
+
+        def display_name(key, mslug, entry):
+            if mslug == "base":
+                return pkg_meta.get(key, {}).get("title", entry["title"])
+            return dip_info(key, mslug).get("name", entry["title"])
+
+        def gloss_mark(key, mslug):
+            return (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
+                    if dip_info(key, mslug).get("source") == "editorial" else "")
+
         def stat_rows(st):
             return [
                 ("Positions", f'{st["nodes"]:,}'),
@@ -770,15 +859,14 @@ def main():
             ]
 
         def facts_table(rows):
-            body = "".join(
-                f'<tr><th>{html.escape(k)}</th><td>{v}</td></tr>' for k, v in rows if v)
+            body = "".join(f'<tr><th>{html.escape(k)}</th><td>{v}</td></tr>' for k, v in rows if v)
             return f'<table class="facts">{body}</table>'
 
-        def top_level_table(entry, pslug, mslug):
+        def top_level_table(entry, pslug, mslug, version):
             """Classes and elements are tabulated apart. The classes are the structure of the
             message; the elements at the top level are its header, and mixing the two buries the
             structure in a list of dates."""
-            rel = message_url(pslug, mslug, VERSION)
+            rel = message_url(pslug, mslug, version)
 
             def rows_for(kind):
                 return [(
@@ -789,18 +877,18 @@ def main():
                 ) for t in entry["top_level"] if t["type"] == kind]
 
             out = []
-            classes, elements = rows_for("C"), rows_for("E")
-            if classes:
-                out.append(f'<h3>Classes ({len(classes)})</h3>'
-                           + table(["Name", "Occurs", "Positions inside", "Definition"], classes,
+            classes_, elements_ = rows_for("C"), rows_for("E")
+            if classes_:
+                out.append(f'<h3>Classes ({len(classes_)})</h3>'
+                           + table(["Name", "Occurs", "Positions inside", "Definition"], classes_,
                                    col_classes=["name", "code", "num", "prose"]))
-            if elements:
-                out.append(f'<h3>Elements ({len(elements)})</h3>'
-                           + table(["Name", "Occurs", "", "Definition"], elements,
+            if elements_:
+                out.append(f'<h3>Elements ({len(elements_)})</h3>'
+                           + table(["Name", "Occurs", "", "Definition"], elements_,
                                    col_classes=["name", "code", "num", "prose"]))
             return "".join(out)
 
-        def diagram_figure(entry, pslug, mslug, out):
+        def diagram_figure(entry, pslug, mslug, out, version):
             if not entry.get("diagram"):
                 return ""
             src = ROOT / "diagrams" / entry["diagram"]
@@ -808,11 +896,12 @@ def main():
                 return ""
             (out / "diagram.svg").write_text(src.read_text())
             counts["message file"] += 1
-            url = message_url(pslug, mslug) + "diagram.svg"
+            url = message_url(pslug, mslug, version) + "diagram.svg"
             if entry["diagram_boxes"] <= 12 and entry.get("diagram_cut"):
-                note = ("Each box is one vocabulary module, listing the classes of this message that "
-                        "belong to it. The top level is too wide to draw class by class, and the "
-                        "module is the model's own grouping rather than a convenience of this page.")
+                note = ("Each box is one vocabulary module, listing the classes of this message "
+                        "that belong to it. The top level is too wide to draw class by class, and "
+                        "the module is the model's own grouping rather than a convenience of this "
+                        "page.")
             elif entry.get("diagram_cut"):
                 note = ("Classes only, to the depth that stays readable. A shaded box has further "
                         "classes inside it.")
@@ -822,26 +911,41 @@ def main():
                     f'<figure class="diagram"><a href="{url}">'
                     f'<img src="{url}" alt="Classes of {html.escape(entry["title"])}"></a>'
                     f'<figcaption>{note} Elements are left out; the structure browser has them. '
-                    f'<a href="{url}">Open the diagram</a>.</figcaption></figure></section>')
+                    f'This is release {version}. <a href="{url}">Open the diagram</a>.'
+                    f'</figcaption></figure></section>')
 
-        def versions_table(pslug, mslug, st):
-            rel = message_url(pslug, mslug, VERSION)
-            rows = [(
-                f'<a href="{rel}"><b>{VERSION}</b></a>',
-                "current",
-                f'{st["nodes"]:,}',
-                f'<a href="{rel}schema.json">schema.json</a>',
-                f'<a href="{rel}context.jsonld">context.jsonld</a>',
-            )]
-            return table(["Version", "Status", "Positions", "JSON Schema", "JSON-LD context"], rows,
-                         col_classes=["code", "mod", "num", "name", "name"])
+        def versions_table(m):
+            rows = []
+            previous = None
+            for version in m["releases"]:
+                e = m["versions"][version]
+                rel = message_url(m["pslug"], m["mslug"], version)
+                n = e["stats"]["nodes"]
+                change = ""
+                if previous is not None:
+                    delta = n - previous
+                    change = ("no change in size" if delta == 0 else
+                              f'{"+" if delta > 0 else ""}{delta:,} positions')
+                rows.append((
+                    f'<a href="{rel}"><b>{version}</b></a>',
+                    "current" if version == CURRENT else
+                    ("last release with it" if version == m["latest"] else ""),
+                    f'{n:,}',
+                    change,
+                    f'<a href="{rel}schema.json">schema.json</a>',
+                    f'<a href="{rel}context.jsonld">context.jsonld</a>',
+                ))
+                previous = n
+            return table(["Release", "", "Positions", "Change", "JSON Schema", "JSON-LD context"],
+                         rows, col_classes=["code", "mod", "num", "mod", "name", "name"])
 
-        def publish_artefacts(out, entry, pslug):
-            """The machine files beside the release page, each with the digest of what was published."""
+        def publish_artefacts(out, entry, pslug, version):
+            """The machine files beside the release page, each with the digest of what was
+            published."""
             digests = {}
             sources = [("schema.json", schemas_dir / entry["schema"]),
                        ("context.jsonld", schemas_dir / entry["context"]),
-                       ("tree.json", views_dir / pslug / entry["slug"] / "tree.json")]
+                       ("tree.json", views_dir / f"v{version}" / pslug / entry["slug"] / "tree.json")]
             for name, src in sources:
                 if not src.exists():
                     continue
@@ -851,103 +955,117 @@ def main():
                 counts["message file"] += 1
             return digests
 
-        for key, pkg in manifest.items():
-            pslug = pkg["slug"]
+        for (key, mslug), m in sorted(messages.items()):
+            pslug, entry = m["pslug"], m["entry"]
+            is_derived = m["derived"]
             pm = pkg_meta.get(key, {})
-            base = pkg["messages"]["base"]
-            derived = [m for s, m in sorted(pkg["messages"].items()) if s != "base"]
+            dm = dip_info(key, mslug) if is_derived else {}
+            name = display_name(key, mslug, entry)
+            title = f'{name} {"derived package" if is_derived else "Information Package"}'
+            st = entry["stats"]
+            out = message_dir(pslug, mslug)
+            latest_url = message_url(pslug, mslug, m["latest"])
 
-            for entry in [base] + derived:
-                mslug = entry["slug"]
-                is_derived = entry["derived"]
-                dm = dip_meta.get(mslug, {}) if is_derived else {}
-                name = dm.get("name", entry["title"]) if is_derived else pm.get("title", entry["title"])
-                title = f'{name} {"derived package" if is_derived else "Information Package"}'
-                st = entry["stats"]
-                out = message_dir(pslug, mslug)
-                rel = message_url(pslug, mslug, VERSION)
-
-                editorial = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
-                             if dm.get("source") == "editorial" else "")
-                lead = (html.escape(dm.get("gloss", "")) + editorial if is_derived
-                        else html.escape(pm.get("description", entry["title"])))
-                rows = [("Derived from" if is_derived else "Kind",
-                         f'<a href="{message_url(pslug, "base")}">'
-                         f'{html.escape(pm.get("title", key))}</a>' if is_derived else
-                         html.escape(pm.get("subtitle", "Information Package")))]
-                if is_derived:
-                    rows.append(("Group in the workbook",
-                                 html.escape(dm.get("group") or entry.get("group", ""))))
-                    share = st["nodes"] * 100.0 / max(base["stats"]["nodes"], 1)
+            lead = (html.escape(dm.get("gloss", "")) + gloss_mark(key, mslug) if is_derived
+                    else html.escape(pm.get("description", entry["title"])))
+            base_message = messages.get((key, "base"))
+            rows = [("Derived from" if is_derived else "Kind",
+                     f'<a href="{message_url(pslug, "base")}">'
+                     f'{html.escape(pm.get("title", key))}</a>' if is_derived else
+                     html.escape(pm.get("subtitle", "Information Package")))]
+            if is_derived:
+                rows.append(("Group in the workbook",
+                             html.escape(dm.get("group") or entry.get("group", ""))))
+                if base_message and m["latest"] in base_message["versions"]:
+                    parent = base_message["versions"][m["latest"]]["stats"]["nodes"]
+                    share = st["nodes"] * 100.0 / max(parent, 1)
                     rows.append(("Share of the package",
-                                 f'{st["nodes"]:,} of {base["stats"]["nodes"]:,} positions '
-                                 f'({share:.1f}%)'))
-                rows += stat_rows(st)
-                rows.append(("Current version", f'<a href="{rel}">{VERSION}</a>, '
-                                                f'from WCO Data Model {VERSION}'))
-                rows.append(("Source", html.escape(pkg["source"]["file"])))
+                                 f'{st["nodes"]:,} of {parent:,} positions ({share:.1f}%)'))
+            rows.append(("Releases", ", ".join(m["releases"])))
+            if dm.get("alias_note"):
+                rows.append(("Renamed", html.escape(dm["alias_note"])
+                             + ' <span class="editorial">our join</span>'))
+            if not m["current"]:
+                rows.append(("Status", f'<b>Discontinued.</b> Last published in '
+                                       f'{m["latest"]}; the {CURRENT} workbooks do not carry it. '
+                                       f'Its pages and schemas stay here.'))
+            rows += stat_rows(st)
+            rows.append(("Figures from", f'<a href="{latest_url}">{m["latest"]}</a>'))
+            rows.append(("Source", html.escape(entry.get("source", {}).get("file", "")
+                                               if isinstance(entry.get("source"), dict) else "")))
 
-                body = [f'<h1>{html.escape(title)}</h1>',
-                        f'<p class="definition">{lead}</p>',
-                        facts_table(rows),
-                        diagram_figure(entry, pslug, mslug, out)]
-                if st["required"] == 0:
-                    body.append(
-                        '<p class="aside">Nothing in this message is mandatory: every position is '
-                        'optional in the model. Obligation is set by the regulation or the national '
-                        'profile that uses the message, which is what a derived package begins to '
-                        'do.</p>')
-                body.append(f'<section><h2>Versions</h2>'
-                            '<p class="muted">The message is versioned even though the vocabulary is '
-                            'not, because a format has to be pinned before anyone can validate '
-                            'against it. Each release keeps its own address.</p>'
-                            + versions_table(pslug, mslug, st) + '</section>')
-                body.append(f'<section><h2>Top level</h2>'
-                            f'<p class="muted">What sits directly inside '
-                            f'<code>{html.escape(entry["top_level"][0]["path"].split("/")[0])}</code>. '
-                            f'Follow a name to that point in the structure browser.</p>'
-                            + top_level_table(entry, pslug, mslug) + '</section>')
-                if not is_derived and derived:
+            body = [f'<h1>{html.escape(title)}</h1>',
+                    f'<p class="definition">{lead}</p>',
+                    facts_table(rows),
+                    diagram_figure(entry, pslug, mslug, out, m["latest"])]
+            if st["required"] == 0:
+                body.append(
+                    '<p class="aside">Nothing in this message is mandatory: every position is '
+                    'optional in the model. Obligation is set by the regulation or the national '
+                    'profile that uses the message, which is what a derived package begins to '
+                    'do.</p>')
+            body.append(f'<section><h2>Releases ({len(m["releases"])})</h2>'
+                        '<p class="muted">The message is versioned even though the vocabulary is '
+                        'not, because a format has to be pinned before anyone can validate against '
+                        'it. Each release keeps its own address, its own schema and its own '
+                        'structure.</p>'
+                        + versions_table(m) + '</section>')
+            body.append(f'<section><h2>Top level in {m["latest"]}</h2>'
+                        f'<p class="muted">What sits directly inside '
+                        f'<code>{html.escape(entry["top_level"][0]["path"].split("/")[0])}</code>. '
+                        f'Follow a name to that point in the structure browser.</p>'
+                        + top_level_table(entry, pslug, mslug, m["latest"]) + '</section>')
+
+            if not is_derived:
+                derived_here = [d for d in messages.values()
+                                if d["key"] == key and d["derived"]]
+                if derived_here:
                     drows = []
-                    for d in derived:
-                        d_meta = dip_meta.get(d["slug"], {})
-                        mark = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
-                                if d_meta.get("source") == "editorial" else "")
+                    for d in sorted(derived_here, key=lambda d: d["mslug"]):
+                        d_meta = dip_info(key, d["mslug"])
                         drows.append((
-                            f'<a href="{message_url(pslug, d["slug"])}">'
-                            f'<b>{html.escape(d_meta.get("name", d["title"]))}</b></a>{mark}',
-                            html.escape(d_meta.get("group") or d.get("group", "")),
+                            f'<a href="{message_url(pslug, d["mslug"])}">'
+                            f'<b>{html.escape(display_name(key, d["mslug"], d["entry"]))}</b></a>'
+                            + gloss_mark(key, d["mslug"]),
+                            html.escape(d_meta.get("group") or d["entry"].get("group", "")),
                             html.escape(d_meta.get("gloss", "")),
-                            f'{d["stats"]["nodes"]:,}',
+                            f'{d["entry"]["stats"]["nodes"]:,}',
+                            ", ".join(d["releases"]) if d["current"] else
+                            f'<span class="muted">{d["releases"][0]} to {d["latest"]}</span>',
                         ))
                     body.append(
-                        f'<section><h2>Derived packages ({len(derived)})</h2>'
-                        '<p class="muted">The same tree cut down to the positions one message marks, '
-                        'with the ancestors those positions need. Each is generated from this package '
-                        'rather than maintained separately, so it cannot drift from it.</p>'
-                        + table(["Message", "Group", "What it is", "Positions"], drows,
-                                col_classes=["name", "mod", "prose", "num"])
+                        f'<section><h2>Derived packages ({len(derived_here)})</h2>'
+                        '<p class="muted">The same tree cut down to the positions one message '
+                        'marks, with the ancestors those positions need. Each is generated from '
+                        'this package rather than maintained separately, so it cannot drift from '
+                        'it. The releases column shows which releases carried it.</p>'
+                        + table(["Message", "Group", "What it is", "Positions", "Releases"], drows,
+                                col_classes=["name", "mod", "prose", "num", "mod"])
                         + '<p class="muted">Where an entry is marked '
                         '<span class="editorial">gloss</span> the explanation is ours: the workbook '
                         'names the package but never spells the abbreviation out.</p></section>')
-                crumbs = [("Vocabulary", BASE), ("Information packages", f"{BASE}packages/")]
-                if is_derived:
-                    crumbs.append((pm.get("title", key), message_url(pslug, "base")))
-                crumbs.append((name, None))
-                (out / "index.html").write_text(page(title, lead, "".join(body), crumbs, current=key))
-                msg_url = f'{SOURCE_BASE}{message_url(pslug, mslug)[len(BASE):]}'
-                msub, mme = describe_page(msg_url, title, lead, kind=DCAT.Dataset)
-                msub.add((mme, DCTERMS.hasVersion, rdflib.Literal(VERSION)))
-                msub.add((mme, DCAT.landingPage, mme))
-                if is_derived:
-                    msub.add((mme, DCTERMS.isPartOf,
-                              rdflib.URIRef(f'{SOURCE_BASE}packages/{pslug}/')))
-                write_rdf(out, msub)
-                counts["page"] += 1
 
-                # The release page: machine artefacts, their digests, and the browser.
-                rout = message_dir(pslug, mslug, VERSION)
-                digests = publish_artefacts(rout, entry, pslug)
+            crumbs = [("Vocabulary", BASE), ("Information packages", f"{BASE}packages/")]
+            if is_derived:
+                crumbs.append((pm.get("title", key), message_url(pslug, "base")))
+            crumbs.append((name, None))
+            (out / "index.html").write_text(page(title, lead, "".join(body), crumbs, current=key))
+            msg_url = f'{SOURCE_BASE}{message_url(pslug, mslug)[len(BASE):]}'
+            msub, mme = describe_page(msg_url, title, lead, kind=DCAT.Dataset)
+            for version in m["releases"]:
+                msub.add((mme, DCTERMS.hasVersion, rdflib.Literal(version)))
+            if is_derived:
+                msub.add((mme, DCTERMS.isPartOf,
+                          rdflib.URIRef(f'{SOURCE_BASE}packages/{pslug}/')))
+            write_rdf(out, msub)
+            counts["page"] += 1
+
+            # One page per release of this message.
+            for version in m["releases"]:
+                e = m["versions"][version]
+                rel = message_url(pslug, mslug, version)
+                rout = message_dir(pslug, mslug, version)
+                digests = publish_artefacts(rout, e, pslug, version)
                 files = [
                     ("JSON Schema", "schema.json", "Validates an instance of this message."),
                     ("JSON-LD context", "context.jsonld",
@@ -964,25 +1082,31 @@ def main():
                         f'<a href="{rel}{fname}"><code>{rel}{fname}</code></a>',
                         f'<code class="digest">{digests[fname][:16]}…</code>',
                     ))
+                est = e["stats"]
+                others = " · ".join(
+                    f'<a href="{message_url(pslug, mslug, v)}">{v}</a>' if v != version else
+                    f'<b>{v}</b>' for v in m["releases"])
                 rbody = [
-                    f'<h1>{html.escape(name)} {VERSION}</h1>',
-                    f'<p class="definition">Release {VERSION} of the '
-                    f'<a href="{message_url(pslug, mslug)}">{html.escape(title)}</a>, generated from '
-                    f'WCO Data Model {VERSION}.</p>',
+                    f'<h1>{html.escape(name)} {version}</h1>',
+                    f'<p class="definition">Release {version} of the '
+                    f'<a href="{message_url(pslug, mslug)}">{html.escape(title)}</a>, generated '
+                    f'from WCO Data Model {version}.</p>',
+                    f'<p class="jump">Releases: {others}</p>',
+                    facts_table(stat_rows(est)),
                     '<section><h2>Machine artefacts</h2>'
                     '<p class="muted">These addresses are permanent. A later WCO release publishes '
                     'under its own version rather than replacing these files, so a document '
                     'validated today can be validated the same way later.</p>'
                     + table(["File", "Address", "SHA-256"], frows,
                             col_classes=["name", "prose", "code"])
-                    + '<p class="muted">The digest is of the file as published. Recording it with a '
-                    'document fixes which schema and which context that document was written '
+                    + '<p class="muted">The digest is of the file as published. Recording it with '
+                    'a document fixes which schema and which context that document was written '
                     'against.</p></section>',
                     f'<section><h2>Structure</h2>'
                     '<p class="muted">Every position in the message. Classes are shown in bold, '
                     'elements plain; the number on the right is how many classes and elements sit '
-                    'inside. Select a position for its definition, its tags, and the vocabulary term '
-                    'that defines it.</p>'
+                    'inside. Select a position for its definition, its tags, and the vocabulary '
+                    'term that defines it.</p>'
                     f'<div class="browser" data-tree="{rel}tree.json" data-pagefind-ignore>'
                     '<div class="browser-bar">'
                     '<input class="browser-filter" type="search" '
@@ -993,38 +1117,37 @@ def main():
                     '<span class="browser-count"></span></div>'
                     '<div class="browser-panes"><div class="browser-tree" role="tree" '
                     'aria-label="Message structure">Loading the structure…</div>'
-                    '<aside class="browser-detail"><p class="muted">Select a position to see what it '
-                    'is.</p></aside></div></div>'
-                    '<noscript><p class="aside">The structure browser needs JavaScript. Without it, '
-                    f'<a href="{rel}tree.json">tree.json</a> carries the same content, and the top '
-                    f'level is tabulated on the <a href="{message_url(pslug, mslug)}">package '
+                    '<aside class="browser-detail"><p class="muted">Select a position to see what '
+                    'it is.</p></aside></div></div>'
+                    '<noscript><p class="aside">The structure browser needs JavaScript. Without '
+                    f'it, <a href="{rel}tree.json">tree.json</a> carries the same content, and the '
+                    f'top level is tabulated on the <a href="{message_url(pslug, mslug)}">message '
                     'page</a>.</p></noscript></section>',
-                    '<section><h2>How the schema was derived</h2><p class="muted">A class becomes an '
-                    'object, an element becomes a typed property, an unbounded maximum becomes an '
-                    'array, and a minimum of one becomes required. The cardinality is the model\'s '
-                    'own: it comes from the Number of Occurrences column of the package workbook, '
-                    'which neither the library nor the overall information structure carries.</p>'
+                    '<section><h2>How the schema was derived</h2><p class="muted">A class becomes '
+                    'an object, an element becomes a typed property, an unbounded maximum becomes '
+                    'an array, and a minimum of one becomes required. The cardinality is the '
+                    'model\'s own: it comes from the Number of Occurrences column of the package '
+                    'workbook, which neither the library nor the overall information structure '
+                    'carries.</p>'
                     + facts_table([
                         ("Positions bound to a vocabulary term",
-                         f'{st["bound"]:,} of {st["nodes"]:,}'),
-                        ("Positions with a code list", f'{st["coded"]:,}'),
+                         f'{est["bound"]:,} of {est["nodes"]:,}'),
+                        ("Positions with a code list", f'{est["coded"]:,}'),
                         ("Mandatory positions",
-                         "none in the model" if not st["required"] else f'{st["required"]:,}'),
+                         "none in the model" if not est["required"] else f'{est["required"]:,}'),
                     ]) + '</section>',
                 ]
                 (rout / "index.html").write_text(page(
-                    f"{name} {VERSION}", f"Release {VERSION} of the {name} message.",
+                    f"{name} {version}", f"Release {version} of the {name} message.",
                     "".join(rbody),
-                    crumbs[:-1] + [(name, message_url(pslug, mslug)), (VERSION, None)],
-                    current=key, extra_scripts=f'<script src="{BASE}message-browser.js"></script>'))
-                # The release is a dataset with distributions, which is what DCAT is for. A client
-                # that negotiates this address gets the addresses of the schema, the context and the
-                # structure, with the digest of each, rather than having to read the page.
+                    crumbs[:-1] + [(name, message_url(pslug, mslug)), (version, None)],
+                    current=key,
+                    extra_scripts=f'<script src="{BASE}message-browser.js"></script>'))
                 rel_url = f'{SOURCE_BASE}{rel[len(BASE):]}'
                 rsub, rme = describe_page(
-                    rel_url, f"{name} {VERSION}", f"Release {VERSION} of the {name} message.",
+                    rel_url, f"{name} {version}", f"Release {version} of the {name} message.",
                     kind=DCAT.Dataset)
-                rsub.add((rme, DCTERMS.hasVersion, rdflib.Literal(VERSION)))
+                rsub.add((rme, DCTERMS.hasVersion, rdflib.Literal(version)))
                 rsub.add((rme, DCTERMS.isPartOf, rdflib.URIRef(msg_url)))
                 for fname, media in (("schema.json", "application/schema+json"),
                                      ("context.jsonld", "application/ld+json"),
@@ -1043,49 +1166,48 @@ def main():
         # The overview.
         rows_over = []
         for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
-            pkg = manifest.get(key)
-            if not pkg:
+            m = messages.get((key, "base"))
+            if not m:
                 continue
-            pm, st = pkg_meta.get(key, {}), pkg["messages"]["base"]["stats"]
-            n_derived = len(pkg["messages"]) - 1
+            pm, st = pkg_meta.get(key, {}), m["entry"]["stats"]
+            n_derived = sum(1 for d in messages.values() if d["key"] == key and d["derived"])
             rows_over.append((
-                f'<a href="{message_url(pkg["slug"], "base")}">'
+                f'<a href="{message_url(m["pslug"], "base")}">'
                 f'<b>{html.escape(pm.get("title", key))}</b></a>',
                 html.escape(pm.get("description", "")),
                 f'{st["nodes"]:,}',
                 f'{st["classes"]:,}',
                 str(n_derived) if n_derived else "",
+                str(len(m["releases"])),
             ))
         all_derived = []
         for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
-            pkg = manifest.get(key)
-            if not pkg:
-                continue
-            for slug, m in sorted(pkg["messages"].items()):
-                if slug == "base":
-                    continue
-                d_meta = dip_meta.get(slug, {})
-                mark = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
-                        if d_meta.get("source") == "editorial" else "")
+            for m in sorted((d for d in messages.values() if d["key"] == key and d["derived"]),
+                            key=lambda d: d["mslug"]):
+                d_meta = dip_info(key, m["mslug"])
                 all_derived.append((
-                    f'<a href="{message_url(pkg["slug"], slug)}">'
-                    f'<b>{html.escape(d_meta.get("name", m["title"]))}</b></a>{mark}',
-                    f'<a class="quiet" href="{message_url(pkg["slug"], "base")}">'
+                    f'<a href="{message_url(m["pslug"], m["mslug"])}">'
+                    f'<b>{html.escape(display_name(key, m["mslug"], m["entry"]))}</b></a>'
+                    + gloss_mark(key, m["mslug"]),
+                    f'<a class="quiet" href="{message_url(m["pslug"], "base")}">'
                     f'{html.escape(pkg_meta.get(key, {}).get("title", key))}</a>',
                     html.escape(d_meta.get("gloss", "")),
-                    f'{m["stats"]["nodes"]:,}',
+                    f'{m["entry"]["stats"]["nodes"]:,}',
+                    (", ".join(m["releases"]) if m["current"]
+                     else f'<span class="gone">{m["releases"][0]} to {m["latest"]}</span>'),
                 ))
+        discontinued = [m for m in messages.values() if not m["current"]]
         body = (
             "<h1>Information packages</h1>"
             '<p class="definition">The vocabulary says what a term means. An Information Package '
             'says how terms are assembled into a message, and how many times each piece may occur. '
-            'A JSON Schema, a JSON-LD context and a browsable structure are generated for each, and '
-            'for every derived package that subsets it.</p>'
-            + table(["Package", "Covers", "Positions", "Classes", "Derived"], rows_over,
-                    col_classes=["name", "prose", "num", "num", "num"])
+            'A JSON Schema, a JSON-LD context and a browsable structure are generated for each, '
+            'for every derived package that subsets it, and for every release it appeared in.</p>'
+            + table(["Package", "Covers", "Positions", "Classes", "Derived", "Releases"],
+                    rows_over, col_classes=["name", "prose", "num", "num", "num", "num"])
             + '<section><h2>Base, derived, and what that means in practice</h2>'
-            '<p class="muted">A Base Information Package is a catalogue: everything a declaration or '
-            'a licence could carry, with every position optional. Nothing in any of the four '
+            '<p class="muted">A Base Information Package is a catalogue: everything a declaration '
+            'or a licence could carry, with every position optional. Nothing in any of the four '
             'packages is mandatory, so a schema generated straight from one will accept an almost '
             'empty document. Obligation arrives with the regulation or the national profile that '
             'uses the message.</p>'
@@ -1094,8 +1216,11 @@ def main():
             'the Declaration\'s 9,064. That is the number worth knowing before implementing.</p>'
             '</section>'
             f'<section><h2>Derived packages ({len(all_derived)})</h2>'
-            + table(["Message", "From", "What it is", "Positions"], all_derived,
-                    col_classes=["name", "mod", "prose", "num"])
+            f'<p class="muted">Across all {len(RELEASES)} releases. '
+            f'{len(discontinued)} of them are no longer in {CURRENT}; they keep their pages and '
+            f'their schemas, because a message that was published once stays resolvable.</p>'
+            + table(["Message", "From", "What it is", "Positions", "Releases"], all_derived,
+                    col_classes=["name", "mod", "prose", "num", "mod"])
             + '<p class="muted">Where an entry is marked <span class="editorial">gloss</span> the '
             'explanation is ours: the workbook names the package but never spells the abbreviation '
             'out.</p></section>')
@@ -1107,14 +1232,192 @@ def main():
         osub, ome = describe_page(
             f"{SOURCE_BASE}packages/", "Information packages",
             "How the WCO Data Model assembles terms into messages.", kind=RDFS.Container)
-        for pkey, pk in manifest.items():
-            for mslug_ in pk["messages"]:
-                tail = "" if mslug_ == "base" else f"{mslug_}/"
-                osub.add((ome, RDFS.member,
-                          rdflib.URIRef(f'{SOURCE_BASE}packages/{pk["slug"]}/{tail}')))
+        for (key, mslug), m in messages.items():
+            tail = "" if mslug == "base" else f"{mslug}/"
+            osub.add((ome, RDFS.member,
+                      rdflib.URIRef(f'{SOURCE_BASE}packages/{m["pslug"]}/{tail}')))
         write_rdf(out, osub)
         counts["page"] += 1
         (DIST / "message-browser.js").write_text((ROOT / "assets" / "message-browser.js").read_text())
+
+    # Releases: what changed, computed rather than transcribed. The WCO Data Model does not publish
+    # a change log, and one falls out of holding four releases at once.
+    rel_index = ROOT / "intermediate" / "releases.json"
+    if rel_index.exists() and (views_dir / "manifest.json").exists():
+        rel_meta = json.loads(rel_index.read_text())["releases"]
+        by_version = {r["version"]: r for r in rel_meta}
+        union = _lifecycle.union(RELEASES)
+
+        def terms_in(version):
+            return {
+                "classes": {c["class_name"] for c in union["classes"]
+                            if version in (c.get("presentIn") or [])},
+                "attributes": {(a.get("class_name"), a.get("attr_id")) for a in union["attributes"]
+                               if version in (a.get("presentIn") or [])},
+                "code lists": {c["name"] for c in union["code-lists"]
+                               if version in (c.get("presentIn") or [])},
+            }
+
+        snapshots = {v: terms_in(v) for v in RELEASES}
+        renames = {}
+        for kind, records, name_of in (
+                ("classes", union["classes"], lambda r: r.get("class_name")),
+                ("attributes", union["attributes"], lambda r: r.get("attr_name"))):
+            for r in records:
+                for former in r.get("formerNames") or []:
+                    renames.setdefault(r.get("lastSeenIn"), []).append(
+                        (kind, former, name_of(r)))
+
+        rows_rel = []
+        for i, version in enumerate(RELEASES):
+            counts_here = {k: len(v) for k, v in snapshots[version].items()}
+            msgs = sum(1 for m in messages.values() if version in m["versions"])
+            if i:
+                prev = snapshots[RELEASES[i - 1]]
+                added = sum(len(snapshots[version][k] - prev[k]) for k in prev)
+                gone = sum(len(prev[k] - snapshots[version][k]) for k in prev)
+                change = f'+{added:,} / −{gone:,}'
+            else:
+                change = "first release held here"
+            rows_rel.append((
+                f'<a href="{BASE}releases/{version}/"><b>{version}</b></a>',
+                "current" if version == CURRENT else "",
+                f'{counts_here["classes"]:,}',
+                f'{counts_here["attributes"]:,}',
+                str(msgs),
+                change,
+            ))
+
+        body = (
+            "<h1>Releases</h1>"
+            '<p class="definition">Four releases of the WCO Data Model are published here. The '
+            'vocabulary is one unversioned set of terms across all of them, each term saying which '
+            'release introduced it and, where it has gone, which release dropped it. The messages '
+            'are versioned, so each release has its own schemas, contexts and structures.</p>'
+            + table(["Release", "", "Classes", "Attributes", "Messages", "Terms added / dropped"],
+                    rows_rel, col_classes=["code", "mod", "num", "num", "num", "mod"])
+            + '<section><h2>Why the vocabulary is not versioned and the messages are</h2>'
+            '<p class="muted">A version in an identifier forces every consumer to choose one and '
+            'every reference to be rewritten when it moves. A message format has the opposite '
+            'need: it has to be pinned before anyone can validate against it. So a term is '
+            'published once at one address and carries its own lifecycle, and a message is '
+            'published once per release.</p>'
+            '<p class="muted">Identity across releases is the WCO identifier, not the name. '
+            'Attribute 429 is Traveller status code in 4.1.0 and Traveler status code in 4.2.0; '
+            'by name that is a removal and an addition, by identifier it is the rename it '
+            'was.</p></section>')
+        out = DIST / "releases"
+        out.mkdir(parents=True, exist_ok=True)
+        (out / "index.html").write_text(page(
+            "Releases", "The four WCO Data Model releases published here.",
+            body, [("Vocabulary", BASE), ("Releases", None)], current="releases"))
+        rsub, rme = describe_page(f"{SOURCE_BASE}releases/", "Releases",
+                                  "The WCO Data Model releases published here.",
+                                  kind=RDFS.Container)
+        for v in RELEASES:
+            rsub.add((rme, RDFS.member, rdflib.URIRef(f"{SOURCE_BASE}releases/{v}/")))
+        write_rdf(out, rsub)
+        counts["page"] += 1
+
+        # One page per release.
+        for i, version in enumerate(RELEASES):
+            prev = RELEASES[i - 1] if i else None
+            here, before = snapshots[version], snapshots[prev] if prev else None
+            out = DIST / "releases" / version
+            out.mkdir(parents=True, exist_ok=True)
+            meta_here = by_version.get(version, {})
+
+            facts = [("Release", version),
+                     ("Status", "current" if version == CURRENT else
+                      f'superseded by {RELEASES[i + 1]}'),
+                     ("Date", meta_here.get("date") or
+                      '<span class="muted">not recorded here; the workbooks carry the version but '
+                      'no publication date</span>'),
+                     ("Library workbook", html.escape(meta_here.get("library", ""))),
+                     ("Structure workbook", html.escape(meta_here.get("ois", ""))),
+                     ("Classes", f'{len(here["classes"]):,}'),
+                     ("Attributes", f'{len(here["attributes"]):,}'),
+                     ("Code lists", f'{len(here["code lists"]):,}')]
+            body = [f"<h1>WCO Data Model {version}</h1>",
+                    f'<p class="definition">What this release holds, and what changed in it. '
+                    f'Everything below is computed from the workbooks rather than transcribed '
+                    f'from a change log, because the model does not publish one.</p>',
+                    f'<table class="facts">' + "".join(
+                        f'<tr><th>{html.escape(k)}</th><td>{v}</td></tr>' for k, v in facts if v)
+                    + '</table>']
+
+            if before:
+                for kind in ("classes", "attributes", "code lists"):
+                    added, gone = sorted(here[kind] - before[kind]), sorted(before[kind] - here[kind])
+                    if not added and not gone:
+                        continue
+                    def describe_term(t):
+                        if kind != "attributes":
+                            return html.escape(str(t))
+                        cls, attr_id = t
+                        rec = next((a for a in union["attributes"]
+                                    if a.get("class_name") == cls and a.get("attr_id") == attr_id),
+                                   None)
+                        name = rec.get("attr_name") if rec else attr_id
+                        return (f'{html.escape(name or "")} '
+                                f'<span class="muted">{html.escape(cls or "")} '
+                                f'<code>{html.escape(attr_id or "")}</code></span>')
+                    rows_k = []
+                    for t in added[:400]:
+                        rows_k.append(("added", describe_term(t)))
+                    for t in gone[:400]:
+                        rows_k.append(("dropped", describe_term(t)))
+                    body.append(
+                        f'<section><h2>{kind.capitalize()}: {len(added)} added, '
+                        f'{len(gone)} dropped</h2>'
+                        + table(["", "Term"], rows_k, col_classes=["mod", "prose"])
+                        + ('<p class="muted">A dropped term is still published, marked deprecated '
+                           'in this release.</p>' if gone else "") + '</section>')
+
+                renamed = renames.get(version) or []
+                if renamed:
+                    body.append(
+                        f'<section><h2>Renamed ({len(renamed)})</h2>'
+                        '<p class="muted">The identifier stayed, the name changed. These are '
+                        'renames rather than a removal and an addition only because identity here '
+                        'is the WCO identifier.</p>'
+                        + table(["Kind", "Was", "Is now"],
+                                [(k, html.escape(a or ""), html.escape(b or ""))
+                                 for k, a, b in sorted(renamed)],
+                                col_classes=["mod", "prose", "prose"]) + '</section>')
+
+            here_msgs = sorted((m for m in messages.values() if version in m["versions"]),
+                               key=lambda m: (m["pslug"], m["mslug"]))
+            mrows = []
+            for m in here_msgs:
+                e = m["versions"][version]
+                first = m["releases"][0] == version
+                last = m["latest"] == version and version != CURRENT
+                mrows.append((
+                    f'<a href="{message_url(m["pslug"], m["mslug"], version)}">'
+                    f'<b>{html.escape(display_name(m["key"], m["mslug"], e))}</b></a>',
+                    "base" if not m["derived"] else "derived",
+                    f'{e["stats"]["nodes"]:,}',
+                    "new in this release" if first else ("last release with it" if last else ""),
+                ))
+            body.append(
+                f'<section><h2>Messages ({len(here_msgs)})</h2>'
+                '<p class="muted">Every package and derived package this release carries, each '
+                'with its own schema, context and structure.</p>'
+                + table(["Message", "Kind", "Positions", ""], mrows,
+                        col_classes=["name", "mod", "num", "mod"]) + '</section>')
+
+            (out / "index.html").write_text(page(
+                f"WCO Data Model {version}", f"What release {version} holds and what changed in it.",
+                "".join(body),
+                [("Vocabulary", BASE), ("Releases", f"{BASE}releases/"), (version, None)],
+                current="releases"))
+            vsub, vme = describe_page(
+                f"{SOURCE_BASE}releases/{version}/", f"WCO Data Model {version}",
+                f"What release {version} holds and what changed in it.", kind=DCAT.Dataset)
+            vsub.add((vme, DCTERMS.hasVersion, rdflib.Literal(version)))
+            write_rdf(out, vsub)
+            counts["page"] += 1
 
     # Every directory holding a page must hold its machine representations too. The edge function
     # is one rule with no list of exceptions, so a page without them would 404 for a client that

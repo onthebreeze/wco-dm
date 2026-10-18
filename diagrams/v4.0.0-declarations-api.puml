@@ -1,0 +1,91 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title api 4.0.0
+class "Declaration" as C0 <<root>> {
+  3 elements
+}
+class "BorderTransportMeans" as C1 {
+  1 element
+}
+class "Carrier" as C2 {
+  1 element
+}
+class "Declarant" as C3 {
+  2 elements
+}
+class "Itinerary" as C4 {
+  5 elements
+}
+class "PersonOnBoard" as C5 {
+  1 element
+}
+class "TotalPersons" as C6 {
+  2 elements
+}
+class "Communication" as C7 {
+  2 elements
+}
+class "AdditionalDocument" as C8 {
+  4 elements
+}
+class "Address" as C9 {
+  6 elements
+}
+class "DisembarkationLocation" as C10 {
+  1 element
+}
+class "Effects" as C11 {
+  4 elements
+}
+class "EmbarkationLocation" as C12 {
+  1 element
+}
+class "PersonData" as C13 {
+  10 elements
+}
+class "Reservation" as C14 {
+  2 elements
+}
+class "TravelDocument" as C15 {
+  4 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C1 *-- "0..*" C4
+C1 *-- "0..*" C5
+C1 *-- "0..*" C6
+C3 *-- "0..*" C7
+C5 *-- "0..*" C8
+C5 *-- "0..*" C9
+C5 *-- "0..*" C10
+C5 *-- "0..*" C11
+C5 *-- "0..*" C12
+C5 *-- "0..*" C13
+C5 *-- "0..*" C14
+C5 *-- "0..*" C15
+@enduml
