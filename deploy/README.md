@@ -6,8 +6,8 @@ account exists.
 ## What the site needs
 
 A bucket, a CloudFront distribution, and a viewer-request function that appends `/index.html`,
-`/index.ttl` or `/index.jsonld` according to the `Accept` header. That is the whole architecture:
-the origin is private, the function is a few lines, and nothing runs at request time.
+`/index.ttl`, `/index.jsonld` or `/index.rdf` according to the `Accept` header. That is the whole
+architecture: the origin is private, the function is a few lines, and nothing runs at request time.
 
 The UN/CEFACT standards sites already run exactly this. The infrastructure definition is at
 `governance/technical-architecture/aws-test/cdk/` in the UN working repository, and `sites.ts` is a
@@ -20,15 +20,26 @@ account.
   project: 'wco-dm',
   hostname: 'test-wcodm.trade-commons.org',
   production: 'vocabulary.wcoomd.org',
-  negotiated: true,     // the point of the site: one IRI, three representations
+  negotiated: true,                        // one address, four representations
+  formats: ['ttl', 'jsonld', 'rdf'],       // this generator emits RDF/XML as well
   deployed: false,
 }
 ```
 
 `negotiated: true` is what switches the edge function from documentation routing to content
-negotiation. The vocabulary tree and the narrative pages share one prefix, which the function
-handles without a reserved-prefix list because every page is a directory holding its own
-`index.*` files.
+negotiation. `formats` says which machine representations this generator actually emits: a format
+left out of it falls through to HTML rather than rewriting to a key that is not there, which is why
+adding RDF/XML is a change in the generator first and in that line second.
+
+The vocabulary tree, the message pages and the narrative pages share one prefix, and the function
+handles all three without a reserved-prefix list because every page is a directory holding its own
+`index.html`, `index.ttl`, `index.jsonld` and `index.rdf`. The build fails if any page is missing
+one, so the invariant the edge depends on is checked where it is created rather than assumed.
+
+One thing the router had to learn for this site: a version is a path segment, not a file
+extension. A release is published at `/packages/<package>/<message>/4.3.0/`, and the old rule
+treated anything after a dot as a file, which would have sent every release page to a key that does
+not exist. An extension now has to begin with a letter.
 
 ## The account
 
@@ -58,10 +69,18 @@ changed. It is the uploader the UN sites use, unmodified.
 5. Verify negotiation before announcing the address:
 
 ```bash
-curl -sI https://test-wcodm.trade-commons.org/Consignment
-curl -s -H "Accept: text/turtle"         https://test-wcodm.trade-commons.org/Consignment | head -5
-curl -s -H "Accept: application/ld+json" https://test-wcodm.trade-commons.org/Consignment | head -5
+host=https://test-wcodm.trade-commons.org
+for path in / /Consignment /module/party /classes/ /docs/architecture \
+            /packages/declarations/mar-api/4.3.0; do
+  for accept in text/html text/turtle application/ld+json application/rdf+xml; do
+    printf '%-44s %-22s %s\n' "$path" "$accept" \
+      "$(curl -s -o /dev/null -w '%{http_code} %{content_type}' -H "Accept: $accept" "$host$path")"
+  done
+done
 ```
+
+`python3 scripts/serve.py 8099` applies the same rule locally, so the matrix above can be run
+against a build before anything is deployed.
 
 A test deployment is excluded from search engines at the edge, so nothing here competes with WCO's
 own publications.

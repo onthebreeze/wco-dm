@@ -30,7 +30,7 @@ below is the one this publication holds itself to.
 | Requirement | What it means | How this publication meets it |
 |---|---|---|
 | Owner and namespace | A named owner and a stable namespace | The World Customs Organization, under `vocabulary.wcoomd.org` |
-| Human and machine readable | Published as RDF and as pages, not one or the other | One address per term, negotiated to HTML, Turtle or JSON-LD |
+| Human and machine readable | Published as RDF and as pages, not one or the other | Every address negotiates to HTML, Turtle, JSON-LD or RDF/XML |
 | Persistent identifiers | A published address resolves indefinitely and never changes meaning | Flat, version-free identifiers; the vocabulary evolves in place |
 | Lifecycle, not deletion | A term that falls out of use is marked, not removed | `wco:termStatus`, with retired terms still resolving |
 | Versioning where it belongs | Messages are pinned; terms are not | Unversioned vocabulary, versioned message schemas |

@@ -21,7 +21,7 @@ ontology/*.ttl           the vocabulary     intermediate/packages/*.json
       |                                      |  build_package_views.py -> views/, diagrams/
       |  build_site.py  <--------------------+
       v
-dist/<Term>/index.{html,ttl,jsonld}    one directory per term
+dist/<Term>/index.{html,ttl,jsonld,rdf}          one directory per term
 dist/packages/<package>/[<message>/]<version>/   one directory per release
 ```
 

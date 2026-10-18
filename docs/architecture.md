@@ -63,8 +63,10 @@ follow it.
 **Every term has an address.** `https://vocabulary.wcoomd.org/Consignment` is the class, not a row
 in a sheet. A system meeting an unfamiliar identifier can resolve it and find out what it means.
 
-**One address, three representations.** The same URI answers a reader with a page and a machine with
-Turtle or JSON-LD, selected by the `Accept` header. Nothing is duplicated to achieve it.
+**One address, four representations.** The same URI answers a reader with a page and a machine with
+Turtle, JSON-LD or RDF/XML, selected by the `Accept` header. Nothing is duplicated to achieve it,
+and it holds for every address on the site: a term, a module, an index, a message, and the
+narrative pages too, so a client never has to know in advance which addresses are negotiable.
 
 **Messages carry their cardinality.** A JSON Schema per Information Package, and per derived
 package, generated from the Number of Occurrences the workbooks record. That is what lets a schema

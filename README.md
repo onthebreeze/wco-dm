@@ -2,7 +2,7 @@
 
 The World Customs Organization (WCO) Data Model version 4.3.0, published as a navigable, resolvable,
 content-negotiable linked data vocabulary. Every class, property and code has an address that
-answers a reader with a page and a machine with Turtle or JSON-LD.
+answers a reader with a page and a machine with Turtle, JSON-LD or RDF/XML.
 
 ## Layout
 

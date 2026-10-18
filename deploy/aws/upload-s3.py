@@ -34,6 +34,7 @@ CT = {
     "html": "text/html; charset=utf-8",
     "ttl": "text/turtle; charset=utf-8",
     "jsonld": "application/ld+json",
+    "rdf": "application/rdf+xml",
     "csv": "text/csv; charset=utf-8",
     "css": "text/css; charset=utf-8",
     "js": "application/javascript; charset=utf-8",

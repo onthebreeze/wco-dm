@@ -5,7 +5,8 @@ administrations and the parties that deal with them exchange. Version 4.3.0 defi
 1,156 attributes, published as spreadsheets.
 
 This site publishes the same model as a linked data vocabulary: every class, property and code has
-its own address, and that address answers a reader with a page and a machine with Turtle or JSON-LD.
+its own address, and that address answers a reader with a page and a machine with Turtle, JSON-LD or
+RDF/XML.
 
 ## Three kinds of term
 
@@ -24,15 +25,19 @@ Mappings to vocab.unece.org are carried on the term pages, where a corresponding
 Every term carries the file, sheet and row of the WCO workbook it came from, so any statement here
 can be traced back to a cell in the published model.
 
-## One address, three representations
+## One address, four representations
 
 Ask for a term as a person and you get a page. Ask as a machine and you get the data.
 
 ```
 curl https://vocabulary.wcoomd.org/Consignment
-curl -H "Accept: text/turtle"         https://vocabulary.wcoomd.org/Consignment
-curl -H "Accept: application/ld+json" https://vocabulary.wcoomd.org/Consignment
+curl -H "Accept: text/turtle"          https://vocabulary.wcoomd.org/Consignment
+curl -H "Accept: application/ld+json"  https://vocabulary.wcoomd.org/Consignment
+curl -H "Accept: application/rdf+xml"  https://vocabulary.wcoomd.org/Consignment
 ```
+
+Every address on this site answers that way, not only the terms: a module, an index, a message
+release, and these pages. A client never has to know in advance which addresses are negotiable.
 
 This is what makes the model usable by software that has never been told about it: a system meeting
 an unfamiliar identifier can resolve it and find out what it means.

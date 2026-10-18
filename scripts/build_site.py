@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Stage E: the vocabulary to a resolvable, content-negotiable tree.
 
-Every term becomes a directory holding index.html, index.ttl and index.jsonld, so one IRI serves a
-reader and a machine. The edge function appends /index.<ext> according to Accept, which is why the
-three files are siblings rather than separate routes.
+Every page becomes a directory holding index.html, index.ttl, index.jsonld and index.rdf, so one
+address serves a reader and a machine. The edge function appends /index.<ext> according to Accept,
+which is why the four files are siblings rather than separate routes.
 
-The narrative pages are a Nextra site built separately; the two trees merge into one prefix at
-deploy, which is how vocab.unece.org does the same job.
+Every page, not only the terms. A module, an index of classes, a message and the narrative pages
+all answer a machine with something true about themselves, which is what lets the edge stay one
+rule with no list of which addresses negotiate and which do not.
 
     WCO_BASE=https://test-wcodm.trade-commons.org/ python3 scripts/build_site.py
 """
@@ -30,6 +31,49 @@ SCHEMA = rdflib.Namespace("https://schema.org/")
 WCO = rdflib.Namespace(SOURCE_BASE)
 
 KIND_LABEL = {"class": "Class", "property": "Property", "code-list": "Code list", "concept": "Code"}
+
+# The machine representations every address answers in. Keeping the set the same everywhere is what
+# lets the edge function stay one rule - a directory holds its own index.* - instead of a list of
+# which paths are negotiable and which are not.
+MACHINE = (("ttl", "turtle", "Turtle"),
+           ("jsonld", "json-ld", "JSON-LD"),
+           ("rdf", "xml", "RDF/XML"))
+DCAT = rdflib.Namespace("http://www.w3.org/ns/dcat#")
+MOD = rdflib.Namespace(SOURCE_BASE + "module/")
+
+
+def new_graph():
+    g = rdflib.Graph()
+    for prefix, ns in (("wco", SOURCE_BASE), ("wco-mod", str(MOD)),
+                       ("wco-cl", SOURCE_BASE + "code-list/"), ("rdfs", str(RDFS)),
+                       ("owl", str(OWL)), ("skos", str(SKOS)), ("dcterms", str(DCTERMS)),
+                       ("schema", str(SCHEMA)), ("dcat", str(DCAT))):
+        g.bind(prefix, ns)
+    return g
+
+
+def write_rdf(out, sub):
+    """Serialise one resource three ways into its own directory."""
+    for ext, fmt, _label in MACHINE:
+        text = (sub.serialize(format=fmt, indent=1) if fmt == "json-ld"
+                else sub.serialize(format=fmt))
+        if BASE != SOURCE_BASE:
+            text = text.replace(SOURCE_BASE, BASE)
+        (out / f"index.{ext}").write_text(text)
+
+
+def describe_page(url, name, description, kind=SCHEMA.WebPage):
+    """A page that is not itself a vocabulary term still answers a machine, with a short description
+    of what it is. Without this a reader asking for Turtle anywhere outside the vocabulary would get
+    a 404 for a page that plainly exists."""
+    sub = new_graph()
+    me = rdflib.URIRef(url)
+    sub.add((me, RDF.type, kind))
+    sub.add((me, SCHEMA.name, rdflib.Literal(name, lang="en")))
+    if description:
+        sub.add((me, SCHEMA.description, rdflib.Literal(description, lang="en")))
+    sub.add((me, SCHEMA.isPartOf, rdflib.URIRef(SOURCE_BASE)))
+    return sub, me
 
 
 def local(iri):
@@ -95,6 +139,9 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
 <meta name="description" content="{html.escape(subtitle)}">
 <link rel="stylesheet" href="/vocab.css">
 <link rel="stylesheet" href="/_pagefind/pagefind-ui.css">
+<link rel="alternate" type="text/turtle" href="index.ttl">
+<link rel="alternate" type="application/ld+json" href="index.jsonld">
+<link rel="alternate" type="application/rdf+xml" href="index.rdf">
 </head><body>
 <header class="masthead"><div class="wrap">
   <a class="brand" href="{BASE}"><span class="brand-mark">WCO</span> Data Model vocabulary</a>
@@ -103,9 +150,11 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
 </div>{nav_html(current)}</header>
 <main class="wrap">{body}</main>
 <footer class="wrap foot">
-  <p>Generated from the WCO Data Model version 4.3.0. Every vocabulary term is served as HTML,
-     Turtle and JSON-LD at the same address; ask for <code>text/turtle</code> or
-     <code>application/ld+json</code>.</p>
+  <p>Generated from the WCO Data Model version 4.3.0. This address also answers as
+     <a href="index.ttl">Turtle</a>, <a href="index.jsonld">JSON-LD</a> and
+     <a href="index.rdf">RDF/XML</a>: ask for <code>text/turtle</code>,
+     <code>application/ld+json</code> or <code>application/rdf+xml</code> and the same address
+     serves the machine representation.</p>
 </footer>
 <script src="/_pagefind/pagefind-ui.js" onerror="document.getElementById('search').remove()"></script>
 <script>
@@ -331,19 +380,10 @@ def write_term(g, s, kind, counts, idx):
     out = DIST / rel
     out.mkdir(parents=True, exist_ok=True)
 
-    sub = rdflib.Graph()
+    sub = new_graph()
     for p, o in g.predicate_objects(s):
         sub.add((s, p, o))
-    for prefix, ns in (("wco", SOURCE_BASE), ("rdfs", str(RDFS)), ("owl", str(OWL)),
-                       ("skos", str(SKOS)), ("dcterms", str(DCTERMS)), ("schema", str(SCHEMA))):
-        sub.bind(prefix, ns)
-    ttl = sub.serialize(format="turtle")
-    jsonld = sub.serialize(format="json-ld", indent=1)
-    if BASE != SOURCE_BASE:
-        ttl, jsonld = ttl.replace(SOURCE_BASE, BASE), jsonld.replace(SOURCE_BASE, BASE)
-
-    (out / "index.ttl").write_text(ttl)
-    (out / "index.jsonld").write_text(jsonld)
+    write_rdf(out, sub)
     label = display_label(g, s)
     crumbs = [("Vocabulary", BASE)]
     if kind == "concept":
@@ -415,6 +455,16 @@ def main():
     for module, terms in modules.items():
         out = DIST / "module" / module
         out.mkdir(parents=True, exist_ok=True)
+        # A module is a resource of the vocabulary, so it answers like one. The subgraph is both
+        # directions: what the graph says about the module, and every term that says it belongs
+        # to it, which is the enumeration a machine wants from this address.
+        sub = new_graph()
+        me = MOD[module]
+        for pr, ob in g.predicate_objects(me):
+            sub.add((me, pr, ob))
+        for subj in sorted(t for kind, t in terms):
+            sub.add((subj, RDFS.isDefinedBy, me))
+        write_rdf(out, sub)
         groups = defaultdict(list)
         for kind, t in terms:
             groups[kind].append(t)
@@ -474,6 +524,15 @@ def main():
         "governance": "The vocabulary's own machinery: the annotations and the lifecycle scheme.",
     }
 
+    def collection_rdf(url, title, lead, members):
+        """An index page answers with what it indexes. rdfs:Container is plain RDF Schema, so a
+        client can enumerate every class, property or code list from one address without this site
+        inventing a vocabulary to say so."""
+        sub, me = describe_page(url, title, lead, kind=RDFS.Container)
+        for m in sorted(members):
+            sub.add((me, RDFS.member, m))
+        return sub
+
     def grouped_index(kind, title, lead, headers, row, col_classes, folder):
         terms = [t for t in kinds if kinds[t] == kind]
         by_module = defaultdict(list)
@@ -495,6 +554,7 @@ def main():
         (DIST / folder / "index.html").write_text(page(
             title, lead, "".join(body),
             [("Vocabulary", BASE), (title, None)], current=folder))
+        write_rdf(DIST / folder, collection_rdf(f"{SOURCE_BASE}{folder}/", title, lead, terms))
         counts["page"] += 1
 
     grouped_index(
@@ -552,6 +612,10 @@ def main():
     (out / "index.html").write_text(page(
         "Code lists", "Every code list the WCO Data Model names, and what is known about each.",
         "".join(body), [("Vocabulary", BASE), ("Code lists", None)], current="code-lists"))
+    write_rdf(out, collection_rdf(
+        f"{SOURCE_BASE}code-lists/", "Code lists",
+        "Every code list the WCO Data Model names, and what is known about each.",
+        [t for t in kinds if kinds[t] == "code-list"]))
     counts["page"] += 1
 
     # An index of the modules, so the per-module pages are reachable from the masthead rather than
@@ -583,16 +647,14 @@ def main():
         + table(["Module", "Holds", "Classes", "Properties", "Code lists"], rows_mod,
                 col_classes=["name", "prose", "num", "num", "num"]),
         [("Vocabulary", BASE), ("Modules", None)], current="modules"))
+    write_rdf(DIST / "modules", collection_rdf(
+        f"{SOURCE_BASE}modules/", "Modules", "How the WCO Data Model vocabulary is divided.",
+        [MOD[m] for m in order]))
     counts["page"] += 1
 
     # The whole graph, for a machine asking at the root. The root HTML page comes from the Nextra
     # site, which is merged over this tree at deploy.
-    whole = g.serialize(format="turtle")
-    whole_json = g.serialize(format="json-ld", indent=1)
-    if BASE != SOURCE_BASE:
-        whole, whole_json = whole.replace(SOURCE_BASE, BASE), whole_json.replace(SOURCE_BASE, BASE)
-    (DIST / "index.ttl").write_text(whole)
-    (DIST / "index.jsonld").write_text(whole_json)
+    write_rdf(DIST, g)
 
     # Narrative pages, rendered from docs/*.md through the same shell.
     import markdown as md
@@ -611,6 +673,10 @@ def main():
         (out / "index.html").write_text(
             page(title, "The WCO Data Model published as linked data.",
                  f'<article class="prose">{body}</article>', crumbs, current=item["slug"]))
+        url = SOURCE_BASE if item["slug"] == "index" else f'{SOURCE_BASE}docs/{item["slug"]}/'
+        if item["slug"] != "index":
+            write_rdf(out, describe_page(
+                url, title, "The WCO Data Model published as linked data.")[0])
         counts["page"] += 1
 
     # The schemas and the message views, served beside the vocabulary. A package gets a landing page
@@ -826,6 +892,14 @@ def main():
                     crumbs.append((pm.get("title", key), message_url(pslug, "base")))
                 crumbs.append((name, None))
                 (out / "index.html").write_text(page(title, lead, "".join(body), crumbs, current=key))
+                msg_url = f'{SOURCE_BASE}{message_url(pslug, mslug)[len(BASE):]}'
+                msub, mme = describe_page(msg_url, title, lead, kind=DCAT.Dataset)
+                msub.add((mme, DCTERMS.hasVersion, rdflib.Literal(VERSION)))
+                msub.add((mme, DCAT.landingPage, mme))
+                if is_derived:
+                    msub.add((mme, DCTERMS.isPartOf,
+                              rdflib.URIRef(f'{SOURCE_BASE}packages/{pslug}/')))
+                write_rdf(out, msub)
                 counts["page"] += 1
 
                 # The release page: machine artefacts, their digests, and the browser.
@@ -900,6 +974,27 @@ def main():
                     "".join(rbody),
                     crumbs[:-1] + [(name, message_url(pslug, mslug)), (VERSION, None)],
                     current=key, extra_scripts=f'<script src="{BASE}message-browser.js"></script>'))
+                # The release is a dataset with distributions, which is what DCAT is for. A client
+                # that negotiates this address gets the addresses of the schema, the context and the
+                # structure, with the digest of each, rather than having to read the page.
+                rel_url = f'{SOURCE_BASE}{rel[len(BASE):]}'
+                rsub, rme = describe_page(
+                    rel_url, f"{name} {VERSION}", f"Release {VERSION} of the {name} message.",
+                    kind=DCAT.Dataset)
+                rsub.add((rme, DCTERMS.hasVersion, rdflib.Literal(VERSION)))
+                rsub.add((rme, DCTERMS.isPartOf, rdflib.URIRef(msg_url)))
+                for fname, media in (("schema.json", "application/schema+json"),
+                                     ("context.jsonld", "application/ld+json"),
+                                     ("tree.json", "application/json")):
+                    if fname not in digests:
+                        continue
+                    dist = rdflib.URIRef(rel_url + fname)
+                    rsub.add((rme, DCAT.distribution, dist))
+                    rsub.add((dist, RDF.type, DCAT.Distribution))
+                    rsub.add((dist, DCAT.downloadURL, dist))
+                    rsub.add((dist, DCAT.mediaType, rdflib.Literal(media)))
+                    rsub.add((dist, SCHEMA.sha256, rdflib.Literal(digests[fname])))
+                write_rdf(rout, rsub)
                 counts["page"] += 1
 
         # The overview.
@@ -966,8 +1061,38 @@ def main():
         (out / "index.html").write_text(page(
             "Information packages", "How the WCO Data Model assembles terms into messages.",
             body, [("Vocabulary", BASE), ("Information packages", None)], current="packages"))
+        osub, ome = describe_page(
+            f"{SOURCE_BASE}packages/", "Information packages",
+            "How the WCO Data Model assembles terms into messages.", kind=RDFS.Container)
+        for pkey, pk in manifest.items():
+            for mslug_ in pk["messages"]:
+                tail = "" if mslug_ == "base" else f"{mslug_}/"
+                osub.add((ome, RDFS.member,
+                          rdflib.URIRef(f'{SOURCE_BASE}packages/{pk["slug"]}/{tail}')))
+        write_rdf(out, osub)
         counts["page"] += 1
         (DIST / "message-browser.js").write_text((ROOT / "assets" / "message-browser.js").read_text())
+
+    # Every directory holding a page must hold its machine representations too. The edge function
+    # is one rule with no list of exceptions, so a page without them would 404 for a client that
+    # asked for Turtle, and nothing else in the build would notice.
+    incomplete = []
+    for d in sorted(p for p in DIST.rglob("*") if p.is_dir()):
+        if "_pagefind" in d.parts or "schemas" in d.parts:
+            continue
+        if not (d / "index.html").exists():
+            continue
+        missing = [e for e, _f, _l in MACHINE if not (d / f"index.{e}").exists()]
+        if missing:
+            incomplete.append((d.relative_to(DIST), missing))
+    counts["negotiable page"] = sum(
+        1 for d in [DIST] + [p for p in DIST.rglob("*") if p.is_dir()]
+        if (d / "index.html").exists() and all((d / f"index.{e}").exists() for e, _f, _l in MACHINE))
+    if incomplete:
+        print(f"  {len(incomplete)} pages answer only as HTML:")
+        for rel, missing in incomplete[:10]:
+            print(f"    /{rel}/  missing {', '.join(missing)}")
+        return 1
 
     (DIST / "vocab.css").write_text(CSS)
     print(f"base: {BASE}")
