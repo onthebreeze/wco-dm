@@ -178,21 +178,40 @@ def nav_html(current=None):
     return f'<nav class="sitenav">{top}</nav><nav class="subnav">{sub}</nav>'
 
 
+# What a reader can narrow a search to. Five buckets, not the eleven kinds of page the site has:
+# a person looking for a term wants to know whether it is a class, a property or a code, and the
+# rest of the distinctions are ours rather than theirs. Documentation covers the narrative pages
+# and the indexes, and is never excluded, because a search that hides the explanation of a thing
+# while showing the thing is worse than one that shows both.
+SEARCH_BUCKET = {
+    "Class": "Classes",
+    "Property": "Properties",
+    "Code list": "Codes",
+    "Code": "Codes",
+    "Message": "BIPs",
+    "Message release": "BIPs",
+}
+SEARCH_BUCKETS = ["Classes", "Properties", "Codes", "BIPs"]
+
+
 def search_tags(filters):
     """Pagefind filters and metadata, declared on the indexed body.
 
-    One index, narrowed by facet, rather than one index per release. The facets are what make a
-    search for "origin" separable into the class, the properties, the code lists and the messages,
-    and they are also how a reader excludes the three superseded releases without a second index to
-    build and keep in step.
+    Two filters only. `show` is the bucket, and `versions` separates what the current release has
+    from what an earlier one had, so that a reader is not given four copies of the same message by
+    default. Everything else a page knows about itself - its module, its status, its release - is
+    metadata rather than a facet: useful on a result, not worth a row of checkboxes.
     """
     if not filters:
         return ""
-    pairs = [(k, v) for k, v in filters.items() if v]
-    attr = ", ".join(f"{k}:{v}" for k, v in pairs)
-    meta = ", ".join(f"{k}:{v}" for k, v in pairs if k in ("kind", "release", "status"))
-    return (f' data-pagefind-filter="{html.escape(attr, quote=True)}"'
-            f' data-pagefind-meta="{html.escape(meta, quote=True)}"')
+    kind = filters.get("kind") or ""
+    bucket = SEARCH_BUCKET.get(kind, "Documentation")
+    versions = "superseded" if filters.get("current") == "no" else "current"
+    facets = f"show:{bucket}, versions:{versions}"
+    meta = [(k, v) for k, v in filters.items() if k in ("kind", "release", "status") and v]
+    meta_attr = ", ".join(f"{k}:{v}" for k, v in meta)
+    return (f' data-pagefind-filter="{html.escape(facets, quote=True)}"'
+            + (f' data-pagefind-meta="{html.escape(meta_attr, quote=True)}"' if meta_attr else ""))
 
 
 # Any host other than the WCO namespace is an unofficial copy, and says so on every page. Deriving
@@ -252,7 +271,16 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
 <header class="masthead"><div class="wrap">
   <a class="brand" href="{BASE}"><span class="brand-mark">WCO</span> Data Model vocabulary</a>
   <nav class="crumbs">{nav}</nav>
-  <div id="search" class="search"></div>
+  <div class="search">
+    <div id="search"></div>
+    <div class="search-filters" id="search-filters" hidden>
+      <label><input type="checkbox" value="Classes" checked> Classes</label>
+      <label><input type="checkbox" value="Properties" checked> Properties</label>
+      <label><input type="checkbox" value="Codes" checked> Codes</label>
+      <label><input type="checkbox" value="BIPs" checked> BIPs</label>
+      <label class="sep"><input type="checkbox" id="all-versions"> All versions</label>
+    </div>
+  </div>
 </div>{nav_html(current)}</header>
 <main class="wrap" data-pagefind-body{search_tags(filters)}>{with_negotiate(body)}</main>
 <footer class="wrap foot">
@@ -265,28 +293,62 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
   // finished tree rather than over one framework's output. If it is missing - a local build that
   // skipped the index step - the box removes itself rather than sitting there broken.
   window.addEventListener('DOMContentLoaded', function () {{
-    if (window.PagefindUI) {{
-      new PagefindUI({{
-        element: '#search', showImages: false, pageSize: 8,
-        showEmptyFilters: false, openFilters: ['kind'],
-        translations: {{ placeholder: 'Search the vocabulary', filters_label: 'Narrow by' }},
-        // The kind of thing a result is matters more than its excerpt when one word names a
-        // class, two properties, a code list and a message, so it is shown as a badge.
-        processResult: function (result) {{
-          var kind = result.meta && result.meta.kind;
-          if (kind) {{
-            var tag = '<span class="pf-kind pf-' +
-              kind.toLowerCase().replace(/[^a-z]+/g, '-') + '">' + kind + '</span>';
-            if (result.meta.release) {{
-              tag += '<span class="pf-kind pf-rel">' + result.meta.release + '</span>';
-            }}
-            result.excerpt = tag + ' ' + (result.excerpt || '');
-          }}
-          return result;
-        }}
-      }});
-    }} else {{
+    if (!window.PagefindUI) {{
       var el = document.getElementById('search'); if (el) el.remove();
+      var f = document.getElementById('search-filters'); if (f) f.remove();
+      return;
+    }}
+
+    var ui = new PagefindUI({{
+      element: '#search', showImages: false, pageSize: 8,
+      showEmptyFilters: false,
+      translations: {{ placeholder: 'Search the vocabulary' }},
+      // The kind of thing a result is matters more than its excerpt when one word names a class,
+      // two properties, a code list and a message, so it is shown as a badge.
+      processResult: function (result) {{
+        var kind = result.meta && result.meta.kind;
+        if (kind) {{
+          var tag = '<span class="pf-kind pf-' +
+            kind.toLowerCase().replace(/[^a-z]+/g, '-') + '">' + kind + '</span>';
+          if (result.meta.release) {{
+            tag += '<span class="pf-kind pf-rel">' + result.meta.release + '</span>';
+          }}
+          result.excerpt = tag + ' ' + (result.excerpt || '');
+        }}
+        return result;
+      }}
+    }});
+
+    // Pagefind's own filter panel cannot start with a box ticked, and everything here should be
+    // searched unless a reader says otherwise. So the panel is hidden and these five checkboxes
+    // drive it instead, through the UI's triggerFilters. Documentation is always included and has
+    // no checkbox: a search that hides the explanation of a thing while showing the thing is
+    // worse than one that shows both.
+    var panel = document.getElementById('search-filters');
+    var boxes = panel ? panel.querySelectorAll('input[type=checkbox]') : [];
+    var allVersions = document.getElementById('all-versions');
+
+    function applyFilters() {{
+      var show = ['Documentation'];
+      boxes.forEach(function (b) {{
+        if (b !== allVersions && b.checked) show.push(b.value);
+      }});
+      var filters = {{ show: show }};
+      if (!allVersions.checked) filters.versions = ['current'];
+      ui.triggerFilters(filters);
+    }}
+
+    boxes.forEach(function (b) {{ b.addEventListener('change', applyFilters); }});
+    applyFilters();
+
+    // The checkboxes appear with the results and not before: an empty search box has nothing to
+    // narrow, and five controls above every page would be chrome for a feature most visits to a
+    // term page never use.
+    var input = document.querySelector('#search .pagefind-ui__search-input');
+    if (input && panel) {{
+      var toggle = function () {{ panel.hidden = !input.value.trim(); }};
+      input.addEventListener('input', toggle);
+      input.addEventListener('focus', toggle);
     }}
   }});
 </script>
@@ -1268,9 +1330,11 @@ def main():
             crumbs.append((name, None))
             (out / "index.html").write_text(page(
                 title, lead, "".join(body), crumbs, current=key,
+                # The message's own page is current whether or not the current release still
+                # carries the message: it is the page that says so. Only its release pages belong
+                # to a release.
                 filters={"kind": "Message", "package": pm.get("title", key),
-                         "release": m["latest"],
-                         "current": "yes" if m["current"] else "no"}))
+                         "release": m["latest"], "current": "yes"}))
             msg_url = f'{SOURCE_BASE}{message_url(pslug, mslug)[len(BASE):]}'
             msub, mme = describe_page(msg_url, title, lead, kind=DCAT.Dataset)
             for version in m["releases"]:
@@ -1855,6 +1919,13 @@ ul.terms li,ul.notes li{margin:4px 0}
 .search .pagefind-ui__search-input{font-size:14px;padding:7px 10px;border-radius:6px;border:0;width:100%}
 .search .pagefind-ui__drawer{position:absolute;z-index:40;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;margin-top:6px;max-width:420px;max-height:60vh;overflow:auto;padding:6px 12px;box-shadow:0 10px 28px rgba(10,30,60,.18)}
 .search .pagefind-ui__result-title a{color:var(--brand)}
+/* Pagefind's own filter panel is hidden: it cannot start with a box ticked, and these can. */
+.pagefind-ui__filter-panel{display:none}
+.search-filters{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:13.5px;color:#dce9f8}
+.search-filters label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.search-filters input{accent-color:#fff;margin:0}
+.search-filters .sep{margin-left:auto;opacity:.85}
+@media (max-width:620px){.search-filters{gap:4px 10px;font-size:13px}.search-filters .sep{margin-left:0}}
 .sitenav{background:var(--brand-dark,#083a7a)}
 .sitenav a{display:inline-block;color:#dce9f8;text-decoration:none;padding:10px 16px;font-size:14.5px}
 .sitenav a:hover{background:rgba(255,255,255,.1);color:#fff}
