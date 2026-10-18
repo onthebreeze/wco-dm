@@ -26,6 +26,9 @@ TYPES = {
     ".jsonld": "application/ld+json",
     ".rdf": "application/rdf+xml",
     ".json": "application/json",
+    # An XML schema is XML. Without this the fallback is application/octet-stream, which a browser
+    # downloads instead of showing, and the uploader has the same table for the same reason.
+    ".xsd": "application/xml; charset=utf-8",
 }
 
 
@@ -64,8 +67,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 def main():
     port = int(next((a for a in sys.argv[1:] if a.isdigit()), 8099))
     handler = functools.partial(Handler, directory=str(ROOT))
+    # Set before the socket is bound, not after: assigning it to the instance has no effect, and
+    # a restart within the previous socket's TIME_WAIT then fails with "address already in use".
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
     with socketserver.ThreadingTCPServer(("", port), handler) as httpd:
-        httpd.allow_reuse_address = True
         print(f"serving {ROOT} on http://localhost:{port}")
         httpd.serve_forever()
 
