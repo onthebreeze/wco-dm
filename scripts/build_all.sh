@@ -18,6 +18,15 @@ echo "== message views =="      && python3 scripts/build_package_views.py
 # The schema gate needs jsonschema, which the rest of the pipeline does not. It skips rather than
 # fails when the library is absent, so a plain checkout still builds.
 echo "== schema check =="       && python3 scripts/validate_schemas.py
+# Nothing committed may carry a build-time hostname. The ontology, the schemas and the message
+# views always hold the canonical namespace; WCO_BASE is a property of the published copy alone.
+echo "== namespace gate =="
+if grep -rlF -e 'localhost' -e 'trade-commons.org' ontology schemas views mappings >/dev/null 2>&1; then
+  echo "a committed artefact carries a build-time hostname:" >&2
+  grep -rlF -e 'localhost' -e 'trade-commons.org' ontology schemas views mappings >&2
+  exit 1
+fi
+
 echo "== site =="               && python3 scripts/build_site.py
 
 echo "== search index =="

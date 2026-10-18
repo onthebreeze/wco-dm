@@ -1,12 +1,12 @@
 {
  "@context": {
   "@version": 1.1,
-  "wco": "http://localhost:8099/",
-  "aIP": "http://localhost:8099/AIP",
-  "control": "http://localhost:8099/Control",
-  "controlResult": "http://localhost:8099/ControlResult",
-  "functionCode": "http://localhost:8099/documentFunctionCode",
-  "functionalReferenceId": "http://localhost:8099/functionalReferenceIdentifier",
-  "identificationCode": "http://localhost:8099/controlresultIdentificationCode"
+  "wco": "https://vocabulary.wcoomd.org/",
+  "aIP": "https://vocabulary.wcoomd.org/AIP",
+  "control": "https://vocabulary.wcoomd.org/Control",
+  "controlResult": "https://vocabulary.wcoomd.org/ControlResult",
+  "functionCode": "https://vocabulary.wcoomd.org/documentFunctionCode",
+  "functionalReferenceId": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier",
+  "identificationCode": "https://vocabulary.wcoomd.org/controlresultIdentificationCode"
  }
 }

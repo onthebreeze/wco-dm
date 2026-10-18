@@ -23,7 +23,11 @@ from collections import defaultdict
 import rdflib
 from rdflib.namespace import DCTERMS, OWL, RDF, RDFS, SKOS
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _release  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+VERSION = _release.built_version()
 ONT, DIST = ROOT / "ontology", ROOT / "dist"
 SOURCE_BASE = "https://vocabulary.wcoomd.org/"
 BASE = os.environ.get("WCO_BASE", SOURCE_BASE).rstrip("/") + "/"
@@ -50,6 +54,36 @@ def new_graph():
                        ("schema", str(SCHEMA)), ("dcat", str(DCAT))):
         g.bind(prefix, ns)
     return g
+
+
+def describe(g, subjects):
+    """Every triple whose subject is in `subjects`."""
+    sub = new_graph()
+    for s in subjects:
+        for p, o in g.predicate_objects(s):
+            sub.add((s, p, o))
+    return sub
+
+
+def closure(g, subject, kind, idx):
+    """What an address answers with.
+
+    A bare set of triples about one subject is rarely useful on its own: resolve a class and you
+    want the properties that apply to it, resolve a code list and you want its values. So each kind
+    of address answers with itself plus one step of what its page shows, and every borrowed term
+    keeps its own rdfs:isDefinedBy, so a reader can see which module it really belongs to.
+
+    Nothing is duplicated in the source. ontology/<module>.ttl still defines each term exactly once;
+    the overlap exists only in what is generated from it.
+    """
+    subjects = [subject]
+    if kind == "class":
+        subjects += idx["class_props"].get(subject, [])
+    elif kind == "property":
+        subjects += [r for r in g.objects(subject, SCHEMA.rangeIncludes) if (r, RDF.type, SKOS.ConceptScheme) in g]
+    elif kind == "code-list":
+        subjects += idx["scheme_concepts"].get(subject, [])
+    return describe(g, subjects)
 
 
 def write_rdf(out, sub):
@@ -100,6 +134,7 @@ SECTIONS = [
         ("architecture", "Architecture", "docs/architecture"),
         ("governance", "Governance", "docs/governance"),
         ("maintenance", "How it is maintained", "docs/maintenance"),
+        ("future", "Future improvements", "docs/future"),
     ]),
     ("vocabulary", "Vocabulary", [
         ("modules", "Modules", "modules/"),
@@ -150,7 +185,7 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
 </div>{nav_html(current)}</header>
 <main class="wrap">{body}</main>
 <footer class="wrap foot">
-  <p>Generated from the WCO Data Model version 4.3.0. This address also answers as
+  <p>Generated from the WCO Data Model version {VERSION}. This address also answers as
      <a href="index.ttl">Turtle</a>, <a href="index.jsonld">JSON-LD</a> and
      <a href="index.rdf">RDF/XML</a>: ask for <code>text/turtle</code>,
      <code>application/ld+json</code> or <code>application/rdf+xml</code> and the same address
@@ -380,10 +415,7 @@ def write_term(g, s, kind, counts, idx):
     out = DIST / rel
     out.mkdir(parents=True, exist_ok=True)
 
-    sub = new_graph()
-    for p, o in g.predicate_objects(s):
-        sub.add((s, p, o))
-    write_rdf(out, sub)
+    write_rdf(out, closure(g, s, kind, idx))
     label = display_label(g, s)
     crumbs = [("Vocabulary", BASE)]
     if kind == "concept":
@@ -455,15 +487,25 @@ def main():
     for module, terms in modules.items():
         out = DIST / "module" / module
         out.mkdir(parents=True, exist_ok=True)
-        # A module is a resource of the vocabulary, so it answers like one. The subgraph is both
-        # directions: what the graph says about the module, and every term that says it belongs
-        # to it, which is the enumeration a machine wants from this address.
-        sub = new_graph()
+        # A module answers with the whole module: every term it defines, in full, plus the terms
+        # from elsewhere that its own classes depend on. Those overlaps are the reason: 318 of the
+        # properties used by classes in the party module are defined in core, because a property
+        # whose classes span modules is homed once rather than copied, and a graph that stopped at
+        # the module boundary would leave most of party's properties undefined. Each borrowed term
+        # still carries its own rdfs:isDefinedBy.
         me = MOD[module]
-        for pr, ob in g.predicate_objects(me):
-            sub.add((me, pr, ob))
-        for subj in sorted(t for kind, t in terms):
-            sub.add((subj, RDFS.isDefinedBy, me))
+        own = [t for _kind, t in terms]
+        borrowed = []
+        for kind_, t in terms:
+            if kind_ == "class":
+                borrowed += idx["class_props"].get(t, [])
+        # Close over value domains as well, whether the range is a code list or one of the value
+        # object classes the core data types produce (wco:Amount and the rest live in data-types).
+        # A module file with a dangling range is a module file someone has to chase.
+        for prop in own + borrowed:
+            borrowed += [r for r in g.objects(prop, SCHEMA.rangeIncludes)
+                         if next(g.predicate_objects(r), None)]
+        sub = describe(g, dict.fromkeys([me] + own + borrowed))
         write_rdf(out, sub)
         groups = defaultdict(list)
         for kind, t in terms:
@@ -531,6 +573,8 @@ def main():
         sub, me = describe_page(url, title, lead, kind=RDFS.Container)
         for m in sorted(members):
             sub.add((me, RDFS.member, m))
+            for p_, o_ in g.predicate_objects(m):
+                sub.add((m, p_, o_))
         return sub
 
     def grouped_index(kind, title, lead, headers, row, col_classes, folder):
@@ -688,7 +732,6 @@ def main():
         manifest = json.loads((views_dir / "manifest.json").read_text())
         meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
         pkg_meta, dip_meta = meta["packages"], meta["derived"]
-        VERSION = "4.3.0"
 
         def rewrite(text):
             return text.replace(SOURCE_BASE, BASE) if BASE != SOURCE_BASE else text
@@ -841,7 +884,7 @@ def main():
                                  f'({share:.1f}%)'))
                 rows += stat_rows(st)
                 rows.append(("Current version", f'<a href="{rel}">{VERSION}</a>, '
-                                                'from WCO Data Model 4.3.0'))
+                                                f'from WCO Data Model {VERSION}'))
                 rows.append(("Source", html.escape(pkg["source"]["file"])))
 
                 body = [f'<h1>{html.escape(title)}</h1>',
@@ -925,7 +968,7 @@ def main():
                     f'<h1>{html.escape(name)} {VERSION}</h1>',
                     f'<p class="definition">Release {VERSION} of the '
                     f'<a href="{message_url(pslug, mslug)}">{html.escape(title)}</a>, generated from '
-                    f'WCO Data Model 4.3.0.</p>',
+                    f'WCO Data Model {VERSION}.</p>',
                     '<section><h2>Machine artefacts</h2>'
                     '<p class="muted">These addresses are permanent. A later WCO release publishes '
                     'under its own version rather than replacing these files, so a document '

@@ -10,14 +10,18 @@ import sys
 
 import openpyxl
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _release  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-RAW, INT = ROOT / "raw-data", ROOT / "intermediate"
+INT = ROOT / "intermediate"
+RELEASE = _release.release_dir()
 
 
 def main():
     failures = []
 
-    wb = openpyxl.load_workbook(RAW / "1.1 WCO DM LIB V4.3.0.xlsx", read_only=True, data_only=True)
+    wb = openpyxl.load_workbook(_release.workbook("library", RELEASE), read_only=True, data_only=True)
     ws = wb["DataSet 1.2, 1.3, 1.4"]
     raw_rows = [r for r in ws.iter_rows(min_row=3, values_only=True) if r[8]]
     raw_classes = {str(r[8]).strip() for r in raw_rows}
@@ -26,7 +30,7 @@ def main():
     raw_codelists = len([r for r in wb["DataSet 1.6"].iter_rows(min_row=3, values_only=True) if r[1]])
     wb.close()
 
-    wb = openpyxl.load_workbook(RAW / "WCO DM OIS_V4.3.0.xlsx", read_only=True, data_only=True)
+    wb = openpyxl.load_workbook(_release.workbook("ois", RELEASE), read_only=True, data_only=True)
     raw_ois = len([r for r in wb["OIS"].iter_rows(min_row=4, values_only=True) if r[1]])
     wb.close()
 

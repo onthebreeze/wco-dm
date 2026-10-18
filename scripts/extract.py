@@ -14,12 +14,17 @@ import sys
 
 import openpyxl
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _release  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-RAW = ROOT / "raw-data"
 OUT = ROOT / "intermediate"
 
-LIB = "1.1 WCO DM LIB V4.3.0.xlsx"
-OIS = "WCO DM OIS_V4.3.0.xlsx"
+RELEASE = _release.release_dir()
+VERSION = _release.version(RELEASE)
+LIB = _release.workbook("library", RELEASE).name
+OIS = _release.workbook("ois", RELEASE).name
+RAW = RELEASE
 
 # The six superclass-usage flags, in the order the sheet lays them out. Every library row carries
 # exactly one (a single row carries two, which is reported rather than hidden).

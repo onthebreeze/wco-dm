@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "$id": "http://localhost:8099/schemas/aip-aeo-master-data-4.3.0.json",
+ "$id": "https://vocabulary.wcoomd.org/schemas/aip-aeo-master-data-4.3.0.json",
  "title": "Additional Information Package — aeo master data",
  "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
  "x-wco-data-model-version": "4.3.0",
@@ -12,14 +12,14 @@
    "description": "Code specifying the function of a document.",
    "x-wco-code-list": "UN/EDIFACT code list 1225",
    "x-wco-id": "D046",
-   "x-wco-term": "http://localhost:8099/documentFunctionCode"
+   "x-wco-term": "https://vocabulary.wcoomd.org/documentFunctionCode"
   },
   "functionalReferenceId": {
    "type": "string",
    "maxLength": 70,
    "description": "Identification of a specific information exchange.",
    "x-wco-id": "D026",
-   "x-wco-term": "http://localhost:8099/functionalReferenceIdentifier"
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
   },
   "typeCode": {
    "type": "string",
@@ -27,7 +27,7 @@
    "description": "Code specifying the name of a document.",
    "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
    "x-wco-id": "D013",
-   "x-wco-term": "http://localhost:8099/aipTypeCode"
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
   },
   "packageTypeCode": {
    "type": "string",
@@ -35,7 +35,7 @@
    "description": "Code specifying the type of additional information package (Response, InterGov).",
    "x-wco-code-list": "WCO code list/AIPTypeCode",
    "x-wco-id": "593",
-   "x-wco-term": "http://localhost:8099/packageTypeCode"
+   "x-wco-term": "https://vocabulary.wcoomd.org/packageTypeCode"
   },
   "masterDataRecipient": {
    "type": "array",
@@ -47,7 +47,7 @@
       "description": "Code specifying the type of regulatory office that receives the master data.",
       "x-wco-code-list": "UN/EDIFACT code list 9415",
       "x-wco-id": "G016",
-      "x-wco-term": "http://localhost:8099/governmentAgencyTypeCode"
+      "x-wco-term": "https://vocabulary.wcoomd.org/governmentAgencyTypeCode"
      },
      "id": {
       "type": "string",
@@ -55,7 +55,7 @@
       "description": "Identification of the regulatory office that receives the master data.",
       "x-wco-code-list": "UN/LOCODE + User codes",
       "x-wco-id": "G017",
-      "x-wco-term": "http://localhost:8099/appealofficeIdentificationIdentifier"
+      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
      }
     },
     "additionalProperties": false,
@@ -73,7 +73,7 @@
       "description": "Code specifying the type of regulatory office that sends the master data.",
       "x-wco-code-list": "UN/EDIFACT code list 9415",
       "x-wco-id": "G018",
-      "x-wco-term": "http://localhost:8099/governmentAgencyTypeCode"
+      "x-wco-term": "https://vocabulary.wcoomd.org/governmentAgencyTypeCode"
      },
      "id": {
       "type": "string",
@@ -81,7 +81,7 @@
       "description": "Identification of the regulatory office that sends the master data.",
       "x-wco-code-list": "UN/LOCODE + User codes",
       "x-wco-id": "G019",
-      "x-wco-term": "http://localhost:8099/appealofficeIdentificationIdentifier"
+      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
      }
     },
     "additionalProperties": false,
@@ -99,7 +99,7 @@
       "maxLength": 70,
       "description": "Name of the party in the context of master data.",
       "x-wco-id": "R148",
-      "x-wco-term": "http://localhost:8099/nameText"
+      "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
      },
      "id": {
       "type": "string",
@@ -107,7 +107,7 @@
       "description": "Identification of the party in the context of master data.",
       "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
       "x-wco-id": "R149",
-      "x-wco-term": "http://localhost:8099/identificationIdentifier"
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
      },
      "roleCode": {
       "type": "string",
@@ -115,7 +115,7 @@
       "description": "Code specifying the role of a party.",
       "x-wco-code-list": "UN/EDIFACT code list 3035",
       "x-wco-id": "R005",
-      "x-wco-term": "http://localhost:8099/responsiblegovernmentagencyRoleCode"
+      "x-wco-term": "https://vocabulary.wcoomd.org/responsiblegovernmentagencyRoleCode"
      },
      "identificationIssuingCountryCode": {
       "type": "string",
@@ -124,14 +124,14 @@
       "description": "Code specifying the issuing country of the identification.",
       "x-wco-code-list": "ISO 3166-1",
       "x-wco-id": "R147",
-      "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
+      "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
      },
      "shortName": {
       "type": "string",
       "maxLength": 70,
       "description": "Short name of the party in the context of master data.",
       "x-wco-id": "516",
-      "x-wco-term": "http://localhost:8099/shortNameText"
+      "x-wco-term": "https://vocabulary.wcoomd.org/shortNameText"
      },
      "businessType": {
       "type": "string",
@@ -139,7 +139,7 @@
       "description": "Code specifying the business type of a party.",
       "x-wco-code-list": "ISIC code list OR User code list",
       "x-wco-id": "517",
-      "x-wco-term": "http://localhost:8099/businessTypeCode"
+      "x-wco-term": "https://vocabulary.wcoomd.org/businessTypeCode"
      },
      "address": {
       "type": "array",
@@ -152,14 +152,14 @@
          "description": "Code specifying the type of address.",
          "x-wco-code-list": "UN/EDIFACT code list 3131",
          "x-wco-id": "410",
-         "x-wco-term": "http://localhost:8099/addressTypeCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/addressTypeCode"
         },
         "cityName": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of a city.",
          "x-wco-id": "241",
-         "x-wco-term": "http://localhost:8099/cityNameText"
+         "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
         },
         "countryCode": {
          "type": "string",
@@ -168,14 +168,14 @@
          "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "242",
-         "x-wco-term": "http://localhost:8099/countryCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
         },
         "countryName": {
          "type": "string",
          "maxLength": 35,
          "description": "Name of the country or other geographical entity.",
          "x-wco-id": "412",
-         "x-wco-term": "http://localhost:8099/countryNameText"
+         "x-wco-term": "https://vocabulary.wcoomd.org/countryNameText"
         },
         "countrySubDivisionCode": {
          "type": "string",
@@ -183,14 +183,14 @@
          "description": "Code specifying the name of a country subdivision.",
          "x-wco-code-list": "ISO 3166-2 OR User code list",
          "x-wco-id": "244",
-         "x-wco-term": "http://localhost:8099/countrySubDivisionCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionCode"
         },
         "line": {
          "type": "string",
          "maxLength": 256,
          "description": "Specification of the postal delivery point such as street and number or post office box.",
          "x-wco-id": "239",
-         "x-wco-term": "http://localhost:8099/lineText"
+         "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
         },
         "postcodeId": {
          "type": "string",
@@ -198,7 +198,7 @@
          "description": "Identification of the postal zone or address.",
          "x-wco-code-list": "User code list",
          "x-wco-id": "245",
-         "x-wco-term": "http://localhost:8099/postcodeIdentifier"
+         "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
         }
        },
        "additionalProperties": false,
@@ -216,7 +216,7 @@
          "maxLength": 70,
          "description": "Name of a department or employee.",
          "x-wco-id": "246",
-         "x-wco-term": "http://localhost:8099/nameText"
+         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
         },
         "functionCode": {
          "type": "string",
@@ -224,7 +224,7 @@
          "description": "Code specifying the function of a contact (e.g. department or person).",
          "x-wco-code-list": "UN/EDIFACT code list 3139",
          "x-wco-id": "487",
-         "x-wco-term": "http://localhost:8099/contactFunctionCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/contactFunctionCode"
         },
         "communication": {
          "type": "array",
@@ -236,7 +236,7 @@
             "maxLength": 256,
             "description": "Identification of the communication address.",
             "x-wco-id": "240",
-            "x-wco-term": "http://localhost:8099/identificationIdentifier"
+            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
            },
            "typeCode": {
             "type": "string",
@@ -244,7 +244,7 @@
             "description": "Code specifying the type of communication address.",
             "x-wco-code-list": "UN/EDIFACT code list 3155",
             "x-wco-id": "253",
-            "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
+            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
            }
           },
           "additionalProperties": false,
@@ -268,7 +268,7 @@
          "maxLength": 256,
          "description": "Identification of the communication address.",
          "x-wco-id": "240",
-         "x-wco-term": "http://localhost:8099/identificationIdentifier"
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
         },
         "typeCode": {
          "type": "string",
@@ -276,7 +276,7 @@
          "description": "Code specifying the type of communication address.",
          "x-wco-code-list": "UN/EDIFACT code list 3155",
          "x-wco-id": "253",
-         "x-wco-term": "http://localhost:8099/communicationMeansTypeCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
         }
        },
        "additionalProperties": false,
@@ -294,7 +294,7 @@
          "pattern": "^\\d{1,5}$",
          "description": "Number indicating the position in a sequence.",
          "x-wco-id": "006",
-         "x-wco-term": "http://localhost:8099/sequenceNumeric"
+         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
         },
         "id": {
          "type": "string",
@@ -302,7 +302,7 @@
          "description": "Identification of an additional party (e.g. VAT number).",
          "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list.\nTo be used with CDT attributes \"Identification Scheme. Identifier\" and\n\"Identification Scheme Agency. Identifier\" to make the information unique",
          "x-wco-id": "511",
-         "x-wco-term": "http://localhost:8099/identificationIdentifier"
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
         },
         "identificationIssuingCountryCode": {
          "type": "string",
@@ -311,7 +311,7 @@
          "description": "Code specifying the issuing country of the identification.",
          "x-wco-code-list": "ISO 3166-1",
          "x-wco-id": "550",
-         "x-wco-term": "http://localhost:8099/identificationIssuingCountryCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIssuingCountryCode"
         }
        },
        "additionalProperties": false,
@@ -330,28 +330,28 @@
          "description": "Code specifying the category of a document.",
          "x-wco-code-list": "User code list",
          "x-wco-id": "D031",
-         "x-wco-term": "http://localhost:8099/authorizationholderCategoryCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/authorizationholderCategoryCode"
         },
         "effectiveDateTime": {
          "type": "string",
          "maxLength": 35,
          "description": "Date and time of effectiveness of the document (e.g. license, visa, permit, certificate, bond).",
          "x-wco-id": "D052",
-         "x-wco-term": "http://localhost:8099/effectiveDateTime"
+         "x-wco-term": "https://vocabulary.wcoomd.org/effectiveDateTime"
         },
         "expirationDateTime": {
          "type": "string",
          "maxLength": 35,
          "description": "Date and time of expiration of the document (e.g. license, visa, permit, certificate, bond).",
          "x-wco-id": "D051",
-         "x-wco-term": "http://localhost:8099/expirationDateTime"
+         "x-wco-term": "https://vocabulary.wcoomd.org/expirationDateTime"
         },
         "id": {
          "type": "string",
          "maxLength": 70,
          "description": "Identification of a document providing additional information.",
          "x-wco-id": "D005",
-         "x-wco-term": "http://localhost:8099/identificationIdentifier"
+         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
         },
         "statusCode": {
          "type": "string",
@@ -359,7 +359,7 @@
          "description": "Code specifying the status of a document.",
          "x-wco-code-list": "UN/EDIFACT code list 1373",
          "x-wco-id": "D047",
-         "x-wco-term": "http://localhost:8099/documentStatusCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/documentStatusCode"
         },
         "typeCode": {
          "type": "string",
@@ -367,7 +367,7 @@
          "description": "Code specifying the type of an additional document.",
          "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
          "x-wco-id": "D006",
-         "x-wco-term": "http://localhost:8099/aipTypeCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
         }
        },
        "additionalProperties": false,

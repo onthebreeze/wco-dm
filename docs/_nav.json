@@ -1,6 +1,22 @@
 [
-  { "slug": "index", "title": "Overview" },
-  { "slug": "architecture", "title": "Architecture" },
-  { "slug": "governance", "title": "Governance" },
-  { "slug": "maintenance", "title": "How it is maintained" }
+  {
+    "slug": "index",
+    "title": "Overview"
+  },
+  {
+    "slug": "architecture",
+    "title": "Architecture"
+  },
+  {
+    "slug": "governance",
+    "title": "Governance"
+  },
+  {
+    "slug": "maintenance",
+    "title": "How it is maintained"
+  },
+  {
+    "slug": "future",
+    "title": "Future improvements"
+  }
 ]

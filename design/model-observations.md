@@ -1,5 +1,9 @@
 # Observations on the model
 
+The working notes behind the published page at `/docs/future/`, which is the version intended for a
+reader. This file keeps the counts and the method; the page states the case. If they disagree, this
+file is the one to check first.
+
 Things that publishing the WCO Data Model as linked data made visible. None of them is a defect in
 the publication, and nothing here has been acted on: the site renders the model as the workbooks
 give it. They are recorded because each is a question for the model itself, and the evidence is

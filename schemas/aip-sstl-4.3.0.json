@@ -1,6 +1,6 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
- "$id": "http://localhost:8099/schemas/aip-sstl-4.3.0.json",
+ "$id": "https://vocabulary.wcoomd.org/schemas/aip-sstl-4.3.0.json",
  "title": "Additional Information Package — sstl",
  "description": "Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.",
  "x-wco-data-model-version": "4.3.0",
@@ -12,14 +12,14 @@
    "description": "Code specifying the function of a document.",
    "x-wco-code-list": "UN/EDIFACT code list 1225",
    "x-wco-id": "D046",
-   "x-wco-term": "http://localhost:8099/documentFunctionCode"
+   "x-wco-term": "https://vocabulary.wcoomd.org/documentFunctionCode"
   },
   "functionalReferenceId": {
    "type": "string",
    "maxLength": 70,
    "description": "Identification of a specific information exchange.",
    "x-wco-id": "D026",
-   "x-wco-term": "http://localhost:8099/functionalReferenceIdentifier"
+   "x-wco-term": "https://vocabulary.wcoomd.org/functionalReferenceIdentifier"
   },
   "typeCode": {
    "type": "string",
@@ -27,7 +27,7 @@
    "description": "Code specifying the name of a document.",
    "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
    "x-wco-id": "D013",
-   "x-wco-term": "http://localhost:8099/aipTypeCode"
+   "x-wco-term": "https://vocabulary.wcoomd.org/aipTypeCode"
   },
   "control": {
    "type": "array",
@@ -40,7 +40,7 @@
       "description": "Code specifying the type of governmental examination.",
       "x-wco-code-list": "User code list",
       "x-wco-id": "449",
-      "x-wco-term": "http://localhost:8099/authenticationTypeCode"
+      "x-wco-term": "https://vocabulary.wcoomd.org/authenticationTypeCode"
      },
      "controlResult": {
       "type": "array",
@@ -53,7 +53,7 @@
          "description": "Code specifying the results of a control.",
          "x-wco-code-list": "User code list",
          "x-wco-id": "444",
-         "x-wco-term": "http://localhost:8099/controlresultIdentificationCode"
+         "x-wco-term": "https://vocabulary.wcoomd.org/controlresultIdentificationCode"
         }
        },
        "additionalProperties": false,

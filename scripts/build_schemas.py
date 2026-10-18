@@ -13,7 +13,6 @@ same source rather than maintained separately.
     python3 scripts/build_schemas.py
 """
 import json
-import os
 import pathlib
 import re
 import sys
@@ -21,12 +20,18 @@ import sys
 import rdflib
 from rdflib.namespace import OWL, RDF, RDFS
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _release  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PKG = ROOT / "intermediate" / "packages"
 ONT, OUT = ROOT / "ontology", ROOT / "schemas"
-SOURCE_BASE = "https://vocabulary.wcoomd.org/"
-BASE = os.environ.get("WCO_BASE", SOURCE_BASE).rstrip("/") + "/"
-VERSION = "4.3.0"
+# The schemas are a committed artefact and always carry the canonical namespace. Only the site
+# build rewrites it for whatever host is serving, exactly as the ontology does: honouring WCO_BASE
+# here would bake a test hostname into every $id and every x-wco-term the moment someone built the
+# site for a local preview.
+SOURCE_BASE = BASE = "https://vocabulary.wcoomd.org/"
+VERSION = _release.built_version()
 
 
 def clean_tag(tag):

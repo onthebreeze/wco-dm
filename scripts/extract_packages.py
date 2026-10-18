@@ -16,18 +16,25 @@ import sys
 
 import openpyxl
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-RAW, OUT = ROOT / "raw-data", ROOT / "intermediate" / "packages"
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _release  # noqa: E402
 
-# key -> (file, sheet, human name, what it is)
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT = ROOT / "intermediate" / "packages"
+RELEASE = _release.release_dir()
+VERSION = _release.version(RELEASE)
+RAW = RELEASE
+
+# key -> (sheet, human name, what it is). The file is whichever workbook of the release is that
+# package; releases have renamed them before.
 PACKAGES = {
-    "mdip": ("3.1. WCO DM MDIP_V4.3.0.xlsx", "MDIP (MetaData)", "Meta Data Information Package",
+    "mdip": ("MDIP (MetaData)", "Meta Data Information Package",
              "The technical aspect of a data exchange, kept apart so the other packages carry only business content."),
-    "aip": ("3.2. WCO DM AIP_V4.3.0.xlsx", "AIP (RES and InterGov)", "Additional Information Package",
+    "aip": ("AIP (RES and InterGov)", "Additional Information Package",
             "A wrapper around business information: Response for government to business, Intergov for government to government."),
-    "bip-dec": ("3.3. WCO DM BIP DEC_V4.3.0.xlsx", "BIP DEC", "Declaration Base Information Package",
+    "bip-dec": ("BIP DEC", "Declaration Base Information Package",
                 "Business to government submissions: import and export declarations, cargo reports, transit declarations."),
-    "bip-lpco": ("3.4. WCO DM BIP LPCO_V4.3.0.xlsx", "BIP LPCO", "LPCO Base Information Package",
+    "bip-lpco": ("BIP LPCO", "LPCO Base Information Package",
                  "Licences, permits, certificates and other documents."),
 }
 
@@ -61,7 +68,8 @@ def norm(text):
 
 
 def read_package(key):
-    filename, sheet, title, description = PACKAGES[key]
+    sheet, title, description = PACKAGES[key]
+    filename = _release.workbook(key, RELEASE).name
     wb = openpyxl.load_workbook(RAW / filename, read_only=True, data_only=True)
     ws = wb[sheet]
     rows = list(ws.iter_rows(values_only=True))
@@ -114,7 +122,7 @@ def read_package(key):
     wb.close()
     return {
         "key": key, "title": title, "description": description,
-        "source": {"file": filename, "sheet": sheet, "version": "4.3.0"},
+        "source": {"file": filename, "sheet": sheet, "version": VERSION},
         "derived_packages": dips,
         "derived_package_groups": dip_group,
         "nodes": nodes,
