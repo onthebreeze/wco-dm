@@ -58,4 +58,4 @@ library does not record.
 
 A JSON Schema and a JSON-LD context are generated for each, and for each of the sixteen derived
 packages that subset them, among them the Certificate of Origin, eTIR, Maritime API and the UPU
-messages. See [Schemas](schemas/).
+messages. See [Information packages](packages/).

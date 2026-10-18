@@ -47,23 +47,42 @@ def many(g, s, p):
     return sorted(str(o) for o in g.objects(s, p))
 
 
-def nav_html(current=None):
-    try:
-        items = json.loads((ROOT / "docs" / "_nav.json").read_text())
-    except FileNotFoundError:
-        return ""
-    out = []
-    for item in items:
-        href = BASE if item["slug"] == "index" else f'{BASE}docs/{item["slug"]}'
-        cls = ' class="here"' if item["slug"] == current else ""
-        out.append(f'<a{cls} href="{href}">{html.escape(item["title"])}</a>')
-    out.append(f'<a href="{BASE}classes/">Classes</a>')
-    out.append(f'<a href="{BASE}properties/">Properties</a>')
-    out.append(f'<a href="{BASE}code-lists/">Code lists</a>')
-    out.append(f'<a href="{BASE}modules/">Modules</a>')
-    out.append(f'<a href="{BASE}schemas/">Schemas</a>')
+# The site has three parts, and the navigation says so: what the thing is, the vocabulary it
+# publishes, and the messages assembled from that vocabulary. Every page belongs to exactly one.
+SECTIONS = [
+    ("documentation", "Documentation", [
+        ("index", "Overview", ""),
+        ("architecture", "Architecture", "docs/architecture"),
+        ("governance", "Governance", "docs/governance"),
+        ("maintenance", "How it is maintained", "docs/maintenance"),
+    ]),
+    ("vocabulary", "Vocabulary", [
+        ("modules", "Modules", "modules/"),
+        ("classes", "Classes", "classes/"),
+        ("properties", "Properties", "properties/"),
+        ("code-lists", "Code lists", "code-lists/"),
+    ]),
+    ("packages", "Information packages", [
+        ("packages", "Overview", "packages/"),
+        ("bip-dec", "Declarations", "packages/declarations/"),
+        ("bip-lpco", "Licences and permits", "packages/licences-and-permits/"),
+        ("aip", "Additional", "packages/additional/"),
+        ("mdip", "Meta data", "packages/meta-data/"),
+    ]),
+]
+SECTION_OF = {item: sec for sec, _, items in SECTIONS for item, _, _ in items}
 
-    return '<nav class="sitenav">' + "".join(out) + "</nav>"
+
+def nav_html(current=None):
+    section = SECTION_OF.get(current, "vocabulary")
+    top = "".join(
+        f'<a class="{"here" if sec == section else ""}" href="{BASE}{items[0][2]}">{html.escape(title)}</a>'
+        for sec, title, items in SECTIONS)
+    items = next(i for sec, _, i in SECTIONS if sec == section)
+    sub = "".join(
+        f'<a class="{"here" if slug == current else ""}" href="{BASE}{href}">{html.escape(label)}</a>'
+        for slug, label, href in items)
+    return f'<nav class="sitenav">{top}</nav><nav class="subnav">{sub}</nav>'
 
 
 def page(title, subtitle, body, crumbs, current=None):
@@ -612,57 +631,102 @@ def main():
 
         meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
         pkg_meta, dip_meta = meta["packages"], meta["derived"]
+        PKG_SLUG = {"bip-dec": "declarations", "bip-lpco": "licences-and-permits",
+                    "aip": "additional", "mdip": "meta-data"}
 
-        sections = []
-        for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
+        def dip_rows(key, info):
+            rows = []
+            for slug, n in sorted((info.get("derived") or {}).items()):
+                d = dip_meta.get(slug, {})
+                ds = f"{BASE}schemas/{key}-{slug}-4.3.0.json"
+                dc = f"{BASE}schemas/{key}-{slug}-4.3.0-context.jsonld"
+                editorial = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
+                             if d.get("source") == "editorial" else "")
+                rows.append((
+                    f'<a href="{ds}"><b>{html.escape(d.get("name", slug))}</b></a>{editorial}',
+                    html.escape(d.get("group", "")),
+                    html.escape(d.get("gloss", "")),
+                    str(n),
+                    f'<a class="quiet" href="{dc}">context</a>'))
+            return rows
+
+        # One page per package.
+        for key, slug in PKG_SLUG.items():
             info = report.get(key, {})
             m = pkg_meta.get(key, {})
             schema = f"{BASE}schemas/{key}-4.3.0.json"
             ctx = f"{BASE}schemas/{key}-4.3.0-context.jsonld"
-            rows = [
+            facts = [
                 f'<tr><th>Covers</th><td>{html.escape(m.get("description", ""))}</td></tr>',
                 f'<tr><th>Size</th><td>{info.get("nodes", "")} nodes in the information tree</td></tr>',
+                f'<tr><th>Terms in context</th><td>{info.get("context_terms", "")}</td></tr>',
                 f'<tr><th>Files</th><td><a href="{schema}">JSON Schema</a> · '
                 f'<a href="{ctx}">JSON-LD context</a></td></tr>',
             ]
-            derived = sorted((info.get("derived") or {}).items())
-            if derived:
-                items = []
-                for slug, n in derived:
-                    d = dip_meta.get(slug, {})
-                    ds = f"{BASE}schemas/{key}-{slug}-4.3.0.json"
-                    dc = f"{BASE}schemas/{key}-{slug}-4.3.0-context.jsonld"
-                    editorial = ' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>' if d.get("source") == "editorial" else ""
-                    items.append(
-                        f'<li><a href="{ds}"><b>{html.escape(d.get("name", slug))}</b></a> '
-                        f'<span class="muted">· {n} nodes · {html.escape(d.get("group", ""))}</span>{editorial}'
-                        f'<br><span class="muted">{html.escape(d.get("gloss", ""))}</span> '
-                        f'<a class="quiet" href="{dc}">context</a></li>')
-                rows.append(
-                    f'<tr><th>Derived packages</th><td><ul class="dips">{"".join(items)}</ul></td></tr>')
-            sections.append(
-                f'<section><h2>{html.escape(m.get("title", key))} '
-                f'<span class="muted">— {html.escape(m.get("subtitle", ""))}</span></h2>'
-                f'<table class="facts">{"".join(rows)}</table></section>')
+            if info.get("ambiguous_tags"):
+                facts.append(
+                    f'<tr><th>Left out of the context</th><td>'
+                    f'{html.escape(", ".join(info["ambiguous_tags"]))}'
+                    f'<br><span class="muted">A tag that means different things in different places '
+                    f'is not bound to one of them.</span></td></tr>')
+            rows = dip_rows(key, info)
+            body = [
+                f'<h1>{html.escape(m.get("title", key))}</h1>',
+                f'<p class="definition">{html.escape(m.get("subtitle", ""))}. '
+                f'{html.escape(m.get("description", ""))}</p>',
+                f'<table class="facts">{"".join(facts)}</table>',
+            ]
+            if rows:
+                body.append(
+                    f'<section><h2>Derived packages ({len(rows)})</h2>'
+                    '<p class="muted">The same tree cut down to the nodes a particular message '
+                    'marks, with the ancestors those nodes need. Each is generated from this '
+                    'package rather than maintained separately.</p>'
+                    + table(["Message", "Group", "What it is", "Nodes", ""], rows,
+                            col_classes=["name", "mod", "prose", "num", "value"])
+                    + '<p class="muted">Where an entry is marked <span class="editorial">gloss</span> '
+                    'the explanation is ours: the workbook names the package but never spells the '
+                    'abbreviation out.</p></section>')
+            else:
+                body.append('<section><h2>Derived packages</h2><p class="muted">None. This package '
+                            'is used as it stands.</p></section>')
+            out = DIST / "packages" / slug
+            out.mkdir(parents=True, exist_ok=True)
+            (out / "index.html").write_text(page(
+                m.get("title", key), m.get("description", ""), "".join(body),
+                [("Vocabulary", BASE), ("Information packages", f"{BASE}packages/"),
+                 (m.get("title", key), None)], current=key))
+            counts["page"] += 1
 
+        # The overview.
+        rows_over = []
+        for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
+            info, m = report.get(key, {}), pkg_meta.get(key, {})
+            rows_over.append((
+                f'<a href="{BASE}packages/{PKG_SLUG[key]}/"><b>{html.escape(m.get("title", key))}</b></a>',
+                html.escape(m.get("description", "")),
+                str(info.get("nodes", "")),
+                str(len(info.get("derived") or {}))))
         body = (
-            "<h1>Schemas</h1>"
-            "<p class=\"definition\">A JSON Schema and a JSON-LD context for each of the four "
-            "Information Packages, and for each derived package that subsets it. Generated from the "
-            "package workbooks, so the cardinality is the model\'s own rather than an assumption.</p>"
-            + "".join(sections)
-            + "<section><h2>How to read them</h2><p class=\"muted\">A class becomes an object, an "
-            "element becomes a typed property, an unbounded maximum becomes an array, and a minimum "
-            "of one becomes required. Each property carries the WCO identifier it came from and, "
-            "where the vocabulary has the term, a link to it.</p>"
-            "<p class=\"muted\">A derived package is the same tree cut down to the nodes it marks, "
-            "with the ancestors those nodes need. Where an entry is marked <span class=\"editorial\">"
-            "gloss</span> the explanation is ours: the workbook names the package but never spells "
-            "the abbreviation out.</p></section>")
-        out = DIST / "schemas"
+            "<h1>Information packages</h1>"
+            '<p class="definition">The vocabulary says what a term means. An Information Package '
+            'says how terms are assembled into a message, and how many times each piece may occur. '
+            'A JSON Schema and a JSON-LD context are generated for each, and for every derived '
+            'package that subsets it.</p>'
+            + table(["Package", "Covers", "Nodes", "Derived"], rows_over,
+                    col_classes=["name", "prose", "num", "num"])
+            + '<section><h2>How to read the schemas</h2><p class="muted">A class becomes an object, '
+            'an element becomes a typed property, an unbounded maximum becomes an array, and a '
+            'minimum of one becomes required. Each property carries the WCO identifier it came from '
+            'and, where the vocabulary has the term, a link to it.</p>'
+            '<p class="muted">The cardinality is the model\'s own: it comes from the Number of '
+            'Occurrences column of the package workbooks, which the library and the overall '
+            'information structure do not carry.</p></section>')
+        out = DIST / "packages"
+        out.mkdir(parents=True, exist_ok=True)
         (out / "index.html").write_text(page(
-            "Schemas", "JSON Schema and JSON-LD context for each WCO Information Package.",
-            body, [("Vocabulary", BASE), ("Schemas", None)], current="schemas"))
+            "Information packages", "How the WCO Data Model assembles terms into messages.",
+            body, [("Vocabulary", BASE), ("Information packages", None)], current="packages"))
         counts["page"] += 1
 
     (DIST / "vocab.css").write_text(CSS)
@@ -708,6 +772,10 @@ ul.terms li,ul.notes li{margin:4px 0}
 .sitenav a{display:inline-block;color:#dce9f8;text-decoration:none;padding:10px 16px;font-size:14.5px}
 .sitenav a:hover{background:rgba(255,255,255,.1);color:#fff}
 .sitenav a.here{background:#fff;color:var(--brand);font-weight:600}
+.subnav{background:#fff;border-bottom:1px solid var(--line)}
+.subnav a{display:inline-block;color:var(--muted);text-decoration:none;padding:9px 16px;font-size:14px}
+.subnav a:hover{color:var(--brand)}
+.subnav a.here{color:var(--brand);font-weight:600;box-shadow:inset 0 -3px 0 var(--brand)}
 .prose h2{border-top:1px solid var(--line);padding-top:20px}
 .prose table{border-collapse:collapse;margin:14px 0;width:100%}
 .prose th,.prose td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
