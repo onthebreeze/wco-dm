@@ -12,13 +12,15 @@ set -euo pipefail
 SITE_PROFILE="${SITE_PROFILE:-wco-test}"
 MGMT_PROFILE="${MGMT_PROFILE:-default}"
 ZONE_ID="${ZONE_ID:-Z0512956MDZ08WHZBJGA}"
-HOSTNAME="${HOSTNAME:-test-wcodm.trade-commons.org}"
+# Not HOSTNAME: the shell already defines that as the name of this machine, and a
+# default of "${HOSTNAME:-...}" then silently resolves to it.
+SITE_HOSTNAME="${SITE_HOSTNAME:-test-wcodm.trade-commons.org}"
 # The fixed hosted zone id every CloudFront distribution aliases to. Not a per-account value.
 CLOUDFRONT_ZONE="Z2FDTNDATAQYW2"
 
 changes=$(aws cloudfront list-distributions --profile "$SITE_PROFILE" \
   --query 'DistributionList.Items[].{alias: Aliases.Items[0], domain: DomainName}' \
-  --output json | CF_ZONE="$CLOUDFRONT_ZONE" WANT="$HOSTNAME" python3 -c '
+  --output json | CF_ZONE="$CLOUDFRONT_ZONE" WANT="$SITE_HOSTNAME" python3 -c '
 import json, os, sys
 zone, want = os.environ["CF_ZONE"], os.environ["WANT"]
 changes = []

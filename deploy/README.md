@@ -2,10 +2,27 @@
 
 The site runs on AWS: a private S3 bucket, a CloudFront distribution in front of it, and one
 viewer-request function that chooses a representation by `Accept`. Nothing else runs at request
-time. GitHub Actions builds on a push to `main`, assumes a role through OpenID Connect, uploads
-what changed and invalidates the distribution. No access key exists anywhere in this pipeline.
+time. GitHub Actions builds on a push to `test`, assumes a role through OpenID Connect, uploads what
+changed and invalidates the distribution. No access key exists anywhere in this pipeline.
 
-Nothing below has been run yet. The account does not exist.
+Work lands on `main` continuously; merging `main` into `test` is the deliberate act that publishes
+it, which is the arrangement the UN/CEFACT standards sites use. The role trusts that one branch of
+this one repository and nothing else, so push access to `test` is write access to the bucket.
+
+Deployed. The record of what exists:
+
+| Thing | Value |
+|---|---|
+| Account | `wco-test`, `335048986725`, in `ou-1o1i-x8n7vhbe` under the standards-test guardrail |
+| Budget | `wco-test-monthly`, 20 USD, in the management account where charges consolidate |
+| Access | The existing Identity Center user with `AdministratorAccess`; CLI profile `wco-test` |
+| Certificate | `arn:aws:acm:us-east-1:335048986725:certificate/5fac64ed-483d-42d5-9bc4-64235735e9bb` |
+| Bucket | `wco-test-vocabulary` |
+| Distribution | `ENAHS02EQNK12`, `d132ub2gavkkcu.cloudfront.net` |
+| Deploy role | `arn:aws:iam::335048986725:role/github-deploy-wcodm` |
+| DNS | A and AAAA alias records for `test-wcodm.trade-commons.org` in `Z0512956MDZ08WHZBJGA` |
+
+None of those is a credential.
 
 ## What was decided, and why
 
@@ -107,8 +124,8 @@ distribution id into `.github/workflows/deploy.yml`, which is disabled until the
 
 ### 4. The content
 
-Push to `main`, or run the workflow by hand. The workflow refuses to upload a build made at the
-wrong host, and refuses one that has lost the unofficial-rendering banner.
+Merge `main` into `test`, or run the workflow by hand. The workflow refuses to upload a build made
+at the wrong host, and refuses one that has lost the unofficial-rendering banner.
 
 ## Verifying
 

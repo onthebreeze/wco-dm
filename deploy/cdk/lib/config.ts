@@ -37,6 +37,13 @@ export const EXCLUDE_FROM_SEARCH = true;
 /** GitHub's OpenID Connect issuer, the trust anchor for the deploy role. */
 export const GITHUB_ISSUER = 'https://token.actions.githubusercontent.com';
 
-/** The repository and branch allowed to assume that role. Nothing else can. */
+/**
+ * The repository and branch allowed to assume that role. Nothing else can: the sub claim pins
+ * both, so a workflow in another repository, or on another branch of this one, is refused.
+ *
+ * `test` rather than `main`, which is the same arrangement the UN/CEFACT standards sites use. Work
+ * lands on main continuously; a merge to test is the deliberate act that publishes it. Protect the
+ * branch, because push access to it is write access to the bucket.
+ */
 export const REPOSITORY = 'onthebreeze/wco-dm';
-export const BRANCH = 'main';
+export const BRANCH = 'test';

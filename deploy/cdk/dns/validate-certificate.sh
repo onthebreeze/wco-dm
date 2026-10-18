@@ -14,12 +14,14 @@ set -euo pipefail
 SITE_PROFILE="${SITE_PROFILE:-wco-test}"
 MGMT_PROFILE="${MGMT_PROFILE:-default}"
 ZONE_ID="${ZONE_ID:-Z0512956MDZ08WHZBJGA}"
-HOSTNAME="${HOSTNAME:-test-wcodm.trade-commons.org}"
+# Not HOSTNAME: the shell already defines that as the name of this machine, and a
+# default of "${HOSTNAME:-...}" then silently resolves to it.
+SITE_HOSTNAME="${SITE_HOSTNAME:-test-wcodm.trade-commons.org}"
 
 arn=$(aws acm list-certificates --profile "$SITE_PROFILE" --region us-east-1 \
-  --query "CertificateSummaryList[?DomainName=='$HOSTNAME'].CertificateArn | [0]" \
+  --query "CertificateSummaryList[?DomainName=='$SITE_HOSTNAME'].CertificateArn | [0]" \
   --output text)
-[ "$arn" != "None" ] || { echo "no certificate for $HOSTNAME in $SITE_PROFILE/us-east-1" >&2; exit 1; }
+[ "$arn" != "None" ] || { echo "no certificate for $SITE_HOSTNAME in $SITE_PROFILE/us-east-1" >&2; exit 1; }
 echo "certificate: $arn"
 
 records=$(aws acm describe-certificate --profile "$SITE_PROFILE" --region us-east-1 \

@@ -1,16 +1,17 @@
 # Build the site and publish it to the test deployment.
 #
 # No access key is stored. The role below trusts GitHub's own OpenID Connect token, for this
-# repository and this branch only, which is why the branch matters: push access to main is write
-# access to the bucket.
+# repository and the test branch only, which is why that branch matters: push access to it is write
+# access to the bucket. Work lands on main continuously; merging main into test publishes it.
 #
-# The account, bucket and distribution are filled in once the infrastructure exists; until then
-# this workflow is disabled by the `if` on the job, so a push does not fail.
+# The account, bucket and distribution below are the deployed ones. They are identifiers, not
+# credentials: the bucket is private, and the role can only be assumed by a workflow on this
+# branch of this repository.
 name: deploy
 
 on:
   push:
-    branches: [main]
+    branches: [test]
   workflow_dispatch:
 
 permissions:
@@ -25,13 +26,12 @@ env:
   WCO_BASE: https://test-wcodm.trade-commons.org/
   S3_BUCKET: wco-test-vocabulary
   AWS_REGION: ap-southeast-2
-  AWS_ACCOUNT: REPLACE_WHEN_THE_ACCOUNT_EXISTS
-  CLOUDFRONT_DISTRIBUTION_ID: REPLACE_WHEN_THE_DISTRIBUTION_EXISTS
+  AWS_ACCOUNT: '335048986725'
+  CLOUDFRONT_DISTRIBUTION_ID: ENAHS02EQNK12
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: ${{ !startsWith(vars.AWS_ACCOUNT || 'REPLACE', 'REPLACE') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
