@@ -54,10 +54,27 @@ guesses do not, so thresholds can be changed without losing review work.
 
 ## Two things to know before changing the generator
 
-**Properties are shared, not duplicated.** WCO names a property inside its class, so `id` occurs 174
-times. Attributes that share a name and a core data type become one property with many
-`schema:domainIncludes`, which is how vocab.unece.org models the same ground. Each class-specific
-definition survives as a scope note naming its class, so nothing is lost.
+**Properties are shared, except where their values disagree.** WCO names a property inside its
+class, so `id` occurs 174 times. Attributes that share a name and a core data type become one
+property with many `schema:domainIncludes`, which is how vocab.unece.org models the same ground, and
+each class-specific definition survives as a scope note.
+
+Where that merge produced a property whose classes code against different lists, it is undone:
+`Seal.typeCode` and `Package.typeCode` are different value domains, so they are different
+properties. Twelve properties were affected and the split is recorded in
+`mappings/split-properties.csv`.
+
+`WCO_SPLIT` chooses how:
+
+| Value | Properties | What it does |
+|---|---|---|
+| `class` (default) | 737 | One property per class, as the WCO Data Model itself is organised |
+| `domain` | 442 | One property per distinct value domain, so classes that genuinely share a domain keep sharing a term |
+| `none` | 409 | Leave them merged, carrying every domain |
+
+`class` is unambiguous but duplicative: `identificationIdentifier` has six value domains across 173
+classes and becomes 173 properties. `domain` reaches the same end - no property with more than one
+value domain - with 167 fewer of them.
 
 **Identifiers do not move.** The source carries a WCO-owned namespace and the build rewrites it for
 whatever host is serving. Changing the base in the source would re-home every published term.

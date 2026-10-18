@@ -864,20 +864,6 @@ wco:accessText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:accountIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Account identification identifier"@en ;
-    skos:definition "Identification of the bank account."@en ;
-    skos:scopeNote "DeferredPayment: Identification of an account related to deferred payment."@en ;
-    schema:domainIncludes wco:Bank, wco:DeferredPayment ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/iban-swift-bic-codes-list>, xsd:string ;
-    wco:codeListBasis "IBAN /SWIFT /BIC Codes"@en ;
-    wco:xmlTag "AccountID" ;
-    wco:jsonTag "accountId" ;
-    wco:attributeId "372", "578" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1123, 963" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
 wco:acknowledgementRequestIndicator a owl:DatatypeProperty ;
     rdfs:label "Acknowledgement request indicator"@en ;
     skos:definition "Indicator requesting acknowledgement of the interchange."@en ;
@@ -912,6 +898,19 @@ wco:actionCode a owl:ObjectProperty ;
     wco:jsonTag "actionCode" ;
     wco:attributeId "460" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1058, 1072, 1410" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:actionTypeCode a owl:ObjectProperty ;
+    rdfs:label "Action type code"@en ;
+    skos:definition "Code specifying the type of action to be taken."@en ;
+    schema:domainIncludes wco:Action ;
+    schema:rangeIncludes wco-cl:action-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1229 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "514" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 906" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1012,6 +1011,70 @@ wco:additionCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:additionalidentifierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Additionalidentifier identification identifier"@en ;
+    skos:definition "Identification of an additional party (e.g. VAT number)."@en ;
+    schema:domainIncludes wco:AdditionalIdentifier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International codes (e.g. DUNS, EAN) or user codes. To be used with CDT attributes \"Identification Scheme. Identifier\" and \"Identification Scheme Agency. Identifier\" to make the information unique."@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "511" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 909" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:additionalprocedureCurrentCode a owl:ObjectProperty ;
+    rdfs:label "Additionalprocedure current code"@en ;
+    skos:definition "Code specifying an additional procedure."@en ;
+    schema:domainIncludes wco:AdditionalProcedure ;
+    schema:rangeIncludes wco-cl:additional-procedure-code-list ;
+    wco:codeListBasis "User code list (see EU CDM code list for DE 11 10 001 000)"@en ;
+    wco:xmlTag "CurrentCode", "ProcedureCode" ;
+    wco:jsonTag "currentCode", "procedureCode" ;
+    wco:attributeId "572" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 925" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:additionalreferenceIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Additionalreference identification identifier"@en ;
+    skos:definition "Identification of the reference providing additional information."@en ;
+    schema:domainIncludes wco:AdditionalReference ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "579" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 927" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:additionalreferenceTypeCode a owl:ObjectProperty ;
+    rdfs:label "Additionalreference type code"@en ;
+    skos:definition "Code specifying the name of an additional reference."@en ;
+    schema:domainIncludes wco:AdditionalReference ;
+    schema:rangeIncludes wco-cl:reference-type-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1153. For EU CDM usage: Additional references must be entered in the form of a code defined in Title I. The list of additional references and their respective codes can be found in the TARIC database, their format is a1an3. Member States may define national codes, national codes must have the format n1an3"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "580" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 928" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:addressTypeCode a owl:ObjectProperty ;
+    rdfs:label "Address type code"@en ;
+    skos:definition "Code specifying the type of address."@en ;
+    schema:domainIncludes wco:Address ;
+    schema:rangeIncludes wco-cl:address-type-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 3131"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "410" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 930" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:advaloremTaxBaseAmount a owl:ObjectProperty ;
     rdfs:label "Advalorem tax base amount"@en ;
     skos:definition "Amount on which a duty, tax, or fee will be assessed."@en ;
@@ -1021,6 +1084,19 @@ wco:advaloremTaxBaseAmount a owl:ObjectProperty ;
     wco:jsonTag "adValoremTaxBaseAmount" ;
     wco:attributeId "116" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1139, 1364" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:aeoprogramprofileTypeCode a owl:ObjectProperty ;
+    rdfs:label "Aeoprogramprofile type code"@en ;
+    skos:definition "Code specifying whether the country’s Authorized Economic Operator (AEO) program is a security based program, compliance based, or both."@en ;
+    schema:domainIncludes wco:AEOProgramProfile ;
+    schema:rangeIncludes wco-cl:aeo-program-type-code-list ;
+    wco:codeListBasis "WCO code list/AEOProgramTypeCode"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "629" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 948" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1170,6 +1246,18 @@ wco:attachedTypeCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:authenticationIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Authentication identification identifier"@en ;
+    skos:definition "Identification of the authentication."@en ;
+    schema:domainIncludes wco:Authentication ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "452" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 953" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:authenticationText a owl:DatatypeProperty ;
     rdfs:label "Authentication text"@en ;
     skos:definition "Statement providing proof that the document has been authenticated."@en ;
@@ -1179,6 +1267,19 @@ wco:authenticationText a owl:DatatypeProperty ;
     wco:jsonTag "authentication" ;
     wco:attributeId "104" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 956" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:authenticationTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Authentication type code"@en ;
+    skos:definition "Code specifying the type of authentication."@en ;
+    schema:domainIncludes wco:Authentication ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "453" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 952" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1194,6 +1295,19 @@ wco:authorNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:bankAccountIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Bank account identification identifier"@en ;
+    skos:definition "Identification of the bank account."@en ;
+    schema:domainIncludes wco:Bank ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/iban-swift-bic-codes-list> ;
+    wco:codeListBasis "IBAN /SWIFT /BIC Codes"@en ;
+    wco:xmlTag "AccountID" ;
+    wco:jsonTag "accountId" ;
+    wco:attributeId "372" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 963" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:bestBeforeDateTime a owl:DatatypeProperty ;
     rdfs:label "Best before date time"@en ;
     skos:definition "Date and time specifying when a product will be of best flavor or quality."@en ;
@@ -1203,6 +1317,30 @@ wco:bestBeforeDateTime a owl:DatatypeProperty ;
     wco:jsonTag "bestBeforeDateTime" ;
     wco:attributeId "266" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1301" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:binaryfileIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Binaryfile identification identifier"@en ;
+    skos:definition "Identification of this binary file."@en ;
+    schema:domainIncludes wco:BinaryFile ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "551" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 965" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:binaryfileTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Binaryfile type code"@en ;
+    skos:definition "Code specifying the type of binary file, such as photo, spreadsheet."@en ;
+    schema:domainIncludes wco:BinaryFile ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "564" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 978" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1305,6 +1443,18 @@ wco:businessProcessRoleIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:cabinIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Cabin identification identifier"@en ;
+    skos:definition "Identification of the specific cabin or room on board."@en ;
+    schema:domainIncludes wco:Cabin ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "605" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 985" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:cargoDescriptionText a owl:DatatypeProperty ;
     rdfs:label "Cargo description text"@en ;
     skos:definition "Description of the cargo in general terms only."@en ;
@@ -1317,6 +1467,19 @@ wco:cargoDescriptionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:carriedtransportequipmentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Carriedtransportequipment identification identifier"@en ;
+    skos:definition "Identification of the equipment (e.g. unit load device by marks, letters, and/or numbers)."@en ;
+    schema:domainIncludes wco:CarriedTransportEquipment ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/iso-6346-iata-list> ;
+    wco:codeListBasis "ISO 6346, IATA"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "159" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 992" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:carrierAssignedIdentifier a owl:DatatypeProperty ;
     rdfs:label "Carrier assigned identifier"@en ;
     skos:definition "Identification of the carrier or its agent to identify a specific consignment by reference number."@en ;
@@ -1326,24 +1489,6 @@ wco:carrierAssignedIdentifier a owl:DatatypeProperty ;
     wco:jsonTag "carrierAssignedId" ;
     wco:attributeId "004" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1049" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
-wco:categoryCode a owl:ObjectProperty ;
-    rdfs:label "Category code"@en ;
-    skos:definition "Code specifying the category of a document."@en ;
-    skos:scopeNote "AuthorizationHolder: Code specifying the type of person being the holder of the authorization."@en ;
-    skos:scopeNote "Commodity: Code specifying the grouping of similar products into non-commercial categories that are assigned by and useful to regulatory authorities.  More specific than the Goods group name (WCO ID 331) and Goods group name, coded (WCO ID 332)."@en ;
-    skos:scopeNote "Temperature: Code specifying the storage condition of a commodity."@en ;
-    schema:domainIncludes wco:AdditionalDocument, wco:AuthorizationHolder, wco:Commodity, wco:LPCO, wco:PreviousDocument, wco:Temperature, wco:TravelDocument ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list>, wco-cl:commodity-category-code-list, wco-cl:temperature-category-code-list ;
-    wco:codeListBasis "UN/EDIFACT code list 6155"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 7009"@en ;
-    wco:codeListBasis "User code list"@en ;
-    wco:xmlTag "CategoryCode" ;
-    wco:jsonTag "categoryCode" ;
-    wco:attributeId "319", "328", "549", "D031" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1023, 1372, 267, 701, 722, 787, 807" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1410,6 +1555,19 @@ wco:characteristicCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:characteristicTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Characteristic type code"@en ;
+    skos:definition "Code specifying the subject of the characteristic."@en ;
+    schema:domainIncludes wco:Characteristic ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "454" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 994" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:chargesTypeCode a owl:DatatypeProperty ;
     rdfs:label "Charges type code"@en ;
     skos:definition "Code specifying the type of charge or deduction."@en ;
@@ -1432,6 +1590,31 @@ wco:cityNameText a owl:DatatypeProperty ;
     wco:jsonTag "cityName" ;
     wco:attributeId "241" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 931" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:classificationIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Classification identification identifier"@en ;
+    skos:definition "Identification of the non-commercial categorization of a commodity by a standard-setting organization."@en ;
+    schema:domainIncludes wco:Classification ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "145" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1000" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:classificationIdentificationTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Classification identification type code"@en ;
+    skos:definition "Code specifying the commodity classification (e.g. Harmonized Tariff Schedule (HTS), Export Control Classification Code (ECCC), UNDG Code list, International Code of Zoological Nomenclature)."@en ;
+    schema:domainIncludes wco:Classification ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-7143-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
+    wco:xmlTag "IdentificationTypeCode" ;
+    wco:jsonTag "identificationTypeCode" ;
+    wco:attributeId "337" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1002" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1472,6 +1655,44 @@ wco:commercialDescriptionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:commodityCategoryCode a owl:ObjectProperty ;
+    rdfs:label "Commodity category code"@en ;
+    skos:definition "Code specifying the grouping of similar products into non-commercial categories that are assigned by and useful to regulatory authorities.  More specific than the Goods group name (WCO ID 331) and Goods group name, coded (WCO ID 332)."@en ;
+    schema:domainIncludes wco:Commodity ;
+    schema:rangeIncludes wco-cl:commodity-category-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 7009"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "328" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1023" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:communicationIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Communication identification identifier"@en ;
+    skos:definition "Identification of the communication address."@en ;
+    schema:domainIncludes wco:Communication ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "240" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1044" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:communicationTypeCode a owl:ObjectProperty ;
+    rdfs:label "Communication type code"@en ;
+    skos:definition "Code specifying the type of communication address."@en ;
+    schema:domainIncludes wco:Communication ;
+    schema:rangeIncludes wco-cl:communication-means-type-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 3155"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "253" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1045" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:communicationsAgreementIdentifier a owl:DatatypeProperty ;
     rdfs:label "Communications agreement identifier"@en ;
     skos:definition "Identification of the type of agreement under which the interchange takes place by name or code."@en ;
@@ -1484,20 +1705,15 @@ wco:communicationsAgreementIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:conditionCode a owl:ObjectProperty ;
-    rdfs:label "Condition code"@en ;
-    skos:definition "Code specifying the conditions of contract and carriage."@en ;
-    skos:scopeNote "Seal: Code specifying the condition of a seal."@en ;
-    skos:scopeNote "TradeTerms: Code specifying the delivery or transport terms."@en ;
-    schema:domainIncludes wco:Seal, wco:TradeTerms, wco:TransportContractDocument, wco:TransportEquipment ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list>, wco-cl:tradeterm-condition-code-list, wco-cl:transport-contract-document-condition-code-list ;
-    wco:codeListBasis "UN/EDIFACT code list 4053"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 4065"@en ;
-    wco:codeListBasis "User code list"@en ;
-    wco:xmlTag "ConditionCode" ;
-    wco:jsonTag "conditionCode" ;
-    wco:attributeId "090", "091", "408" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1328, 1383, 1411, 804" ;
+wco:consignmentitemIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Consignmentitem identification identifier"@en ;
+    skos:definition "Identification of the consignment item (e.g. for CITES codes A, B, C, D)."@en ;
+    schema:domainIncludes wco:ConsignmentItem ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "414" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1071" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1513,6 +1729,19 @@ wco:consolidationIndicator a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:contactFunctionCode a owl:ObjectProperty ;
+    rdfs:label "Contact function code"@en ;
+    skos:definition "Code specifying the function of a contact (e.g. department or person)."@en ;
+    schema:domainIncludes wco:Contact ;
+    schema:rangeIncludes wco-cl:contact-function-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 3139"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "487" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1085" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:containerCode a owl:ObjectProperty ;
     rdfs:label "Container code"@en ;
     skos:definition "Code specifying whether or not goods are transported in a container."@en ;
@@ -1523,6 +1752,32 @@ wco:containerCode a owl:ObjectProperty ;
     wco:jsonTag "containerCode" ;
     wco:attributeId "096" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1050, 208" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:controlTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Control type code"@en ;
+    skos:definition "Code specifying the type of governmental examination."@en ;
+    schema:domainIncludes wco:Control ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "449" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1093" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:controlresultIdentificationCode a owl:DatatypeProperty ;
+    rdfs:label "Controlresult identification code"@en ;
+    skos:definition "Code specifying the results of a control."@en ;
+    schema:domainIncludes wco:ControlResult ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "IdentificationCode" ;
+    wco:jsonTag "identificationCode" ;
+    wco:attributeId "444" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1096" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1654,21 +1909,6 @@ wco:currencyTypeCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:currentCode a owl:ObjectProperty ;
-    rdfs:label "Current code"@en ;
-    skos:definition "Code specifying an additional procedure."@en ;
-    skos:scopeNote "GovernmentProcedure: Code specifying a procedure."@en ;
-    schema:domainIncludes wco:AdditionalProcedure, wco:GovernmentProcedure ;
-    schema:rangeIncludes wco-cl:additional-procedure-code-list, xsd:string ;
-    wco:codeListBasis "UN/EDIFACT code list 7365 For Customs: User code list, categorized based on the revised Kyoto Convention"@en ;
-    wco:codeListBasis "User code list (see EU CDM code list for DE 11 10 001 000)"@en ;
-    wco:xmlTag "CurrentCode", "ProcedureCode" ;
-    wco:jsonTag "currentCode", "procedureCode" ;
-    wco:attributeId "166", "572" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1201, 925" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
 wco:customsValueAmount a owl:ObjectProperty ;
     rdfs:label "Customs value amount"@en ;
     skos:definition "Amount declared for customs purposes of those goods in a consignment which are subject to the same customs procedure, and have the same tariff/statistical heading, country information and duty regime."@en ;
@@ -1678,6 +1918,19 @@ wco:customsValueAmount a owl:ObjectProperty ;
     wco:jsonTag "customsValueAmount" ;
     wco:attributeId "108" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1073, 1176" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:customsvaluationMethodCode a owl:ObjectProperty ;
+    rdfs:label "Customsvaluation method code"@en ;
+    skos:definition "Code specifying the method on which the customs value is determined."@en ;
+    schema:domainIncludes wco:CustomsValuation ;
+    schema:rangeIncludes wco-cl:valuation-method-code-list ;
+    wco:codeListBasis "WCO code list/ValuationMethodCode"@en ;
+    wco:xmlTag "MethodCode" ;
+    wco:jsonTag "methodCode" ;
+    wco:attributeId "122" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1107" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1727,6 +1980,18 @@ wco:deductionQuantity a owl:ObjectProperty ;
     wco:jsonTag "deductionQuantity" ;
     wco:attributeId "127" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1128" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:deferredpaymentAccountIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Deferredpayment account identification identifier"@en ;
+    skos:definition "Identification of an account related to deferred payment."@en ;
+    schema:domainIncludes wco:DeferredPayment ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "AccountID" ;
+    wco:jsonTag "accountId" ;
+    wco:attributeId "578" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1123" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -1919,6 +2184,19 @@ wco:dutyRegimeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:dutytaxfeeTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Dutytaxfee type code"@en ;
+    skos:definition "Code specifying a type of duty or tax applicable to commodities or a type of tax or fee applicable to services."@en ;
+    schema:domainIncludes wco:DutyTaxFee ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-5153-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 5153 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "113" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1132" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:effectiveDateTime a owl:DatatypeProperty ;
     rdfs:label "Effective date time"@en ;
     skos:definition "Date and time of effectiveness of the document (e.g. license, visa, permit, certificate, bond)."@en ;
@@ -1931,6 +2209,18 @@ wco:effectiveDateTime a owl:DatatypeProperty ;
     wco:jsonTag "effectiveDateTime" ;
     wco:attributeId "276", "380", "D052" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1156, 1348, 674, 702, 723, 759, 772, 959" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:effectsIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Effects identification identifier"@en ;
+    skos:definition "Identification of the personal effects."@en ;
+    schema:domainIncludes wco:Effects ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "418" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1143" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -2105,6 +2395,19 @@ wco:eventStatusCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:eventTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Event type code"@en ;
+    skos:definition "Code specifying the type of an exhibition event."@en ;
+    schema:domainIncludes wco:Event ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "623" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1066, 1154" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:examinationImageBinaryObject a owl:DatatypeProperty ;
     rdfs:label "Examination image binary object"@en ;
     skos:definition "Digital information resulting from an inspection or examination (e.g. x-ray scan of a container)."@en ;
@@ -2240,6 +2543,18 @@ wco:fillerDescriptionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:financialcardIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Financialcard identification identifier"@en ;
+    skos:definition "Identification of the financial card."@en ;
+    schema:domainIncludes wco:FinancialCard ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "608" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1166" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:firstBestBeforeDateTime a owl:DatatypeProperty ;
     rdfs:label "First best before date time"@en ;
     skos:definition "Date and time best before of the first product in a range."@en ;
@@ -2336,29 +2651,6 @@ wco:fullnessCode a owl:ObjectProperty ;
     wco:jsonTag "fullnessCode" ;
     wco:attributeId "154" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1401" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
-wco:functionCode a owl:ObjectProperty ;
-    rdfs:label "Function code"@en ;
-    skos:definition "Code specifying the function of a document."@en ;
-    skos:scopeNote "Agent: Code specifying the capacity in which the agent is acting."@en ;
-    skos:scopeNote "Contact: Code specifying the function of a contact (e.g. department or person)."@en ;
-    skos:scopeNote "Declarant: Code specifying the capacity in which the declarant is acting."@en ;
-    skos:scopeNote "GoodsMeasure: Code specifying the purpose of the measurement."@en ;
-    skos:scopeNote "Itinerary: Code specifying the type of the itinerary location."@en ;
-    schema:domainIncludes wco:AIP, wco:Agent, wco:Contact, wco:Declarant, wco:Declaration, wco:GoodsMeasure, wco:Itinerary, wco:LPCO ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list>, <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-4405-list>, wco-cl:contact-function-code-list, wco-cl:document-function-code-list, wco-cl:goods-measure-function-code-list, xsd:string ;
-    wco:codeListBasis "UN/EDIFACT code list 1225"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3139"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 4405 For use with the EU CDM: - code 2 (Representative (direct representation within the meaning of Article 18(1) of the code)) - code 3 (Representative (indirect representation within the meaning of Article 18(1) of the code))"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 6311"@en ;
-    wco:xmlTag "FunctionCode" ;
-    wco:jsonTag "functionCode" ;
-    wco:attributeId "102", "251", "479", "487", "548", "D046" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1085, 1182, 176, 243, 345, 662, 676, 704" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -2460,6 +2752,32 @@ wco:goodsStatusCode a owl:DatatypeProperty ;
     wco:jsonTag "goodsStatusCode" ;
     wco:attributeId "094" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1052, 1070, 1177, 1196" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:goodsmeasureFunctionCode a owl:ObjectProperty ;
+    rdfs:label "Goodsmeasure function code"@en ;
+    skos:definition "Code specifying the purpose of the measurement."@en ;
+    schema:domainIncludes wco:GoodsMeasure ;
+    schema:rangeIncludes wco-cl:goods-measure-function-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 6311"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "479" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1182" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:governmentprocedureCurrentCode a owl:DatatypeProperty ;
+    rdfs:label "Governmentprocedure current code"@en ;
+    skos:definition "Code specifying a procedure."@en ;
+    schema:domainIncludes wco:GovernmentProcedure ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 For Customs: User code list, categorized based on the revised Kyoto Convention"@en ;
+    wco:xmlTag "CurrentCode", "ProcedureCode" ;
+    wco:jsonTag "currentCode", "procedureCode" ;
+    wco:attributeId "166" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1201" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -2597,214 +2915,6 @@ wco:houseNumberIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:identificationCode a owl:DatatypeProperty ;
-    rdfs:label "Identification code"@en ;
-    skos:definition "Code specifying the results of a control."@en ;
-    skos:scopeNote "ShipToShipActivity: Code specifying the ship-to-ship activity."@en ;
-    skos:scopeNote "SubsidiaryRisk: Code specifying any risk to the class of the referenced dangerous goods (e.g. according to the IMO IMDG Code)."@en ;
-    schema:domainIncludes wco:ControlResult, wco:ShipToShipActivity, wco:SubsidiaryRisk ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/to-be-defined-by-imo-list>, <https://vocabulary.wcoomd.org/code-list/external/to-be-defined-list>, <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
-    wco:codeListBasis "To be defined"@en ;
-    wco:codeListBasis "To be defined by IMO"@en ;
-    wco:codeListBasis "User code list"@en ;
-    wco:xmlTag "IdentificationCode" ;
-    wco:jsonTag "identificationCode" ;
-    wco:attributeId "444", "526", "529" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1096, 1333, 1360" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
-wco:identificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Identification identifier"@en ;
-    skos:definition "Identification of a specific document."@en ;
-    skos:scopeNote "AEOMutualRecognitionParty: Identification of the AEO mutual recognition party."@en ;
-    skos:scopeNote "AcceptanceLocation: Identification of the location where the goods are taken over by the carrier from the consignor."@en ;
-    skos:scopeNote "AdditionalDocument: Identification of a document providing additional information."@en ;
-    skos:scopeNote "AdditionalIdentifier: Identification of an additional party (e.g. VAT number)."@en ;
-    skos:scopeNote "AdditionalReference: Identification of the reference providing additional information."@en ;
-    skos:scopeNote "Agent: Identification of a party authorized to act on behalf of another party."@en ;
-    skos:scopeNote "AppealOffice: Identification of the location of a government office at which an appeal can be lodged."@en ;
-    skos:scopeNote "Applicant: Identification of a party who applies for something."@en ;
-    skos:scopeNote "ApprovedEstablishmentLocation: Identification of a facility approved for a specific purpose by a government authority."@en ;
-    skos:scopeNote "ArrivalConveyanceFacility: Identification of a terminal, warehouse or yard where a means of transport arrives."@en ;
-    skos:scopeNote "ArrivalLocation: Identification of the arrival location. This would be a port for sea, airport for air and border post for land crossing."@en ;
-    skos:scopeNote "ArrivalTransportMeans: Identification of the means of transport at the time of arrival."@en ;
-    skos:scopeNote "Assembler: Identification of the party responsible for putting together various components or parts into a product or commodity in its form or condition as imported."@en ;
-    skos:scopeNote "AssigningParty: Identification of the party who assigns any identifier to a shipment."@en ;
-    skos:scopeNote "AssociatedTransportDocument: Identification of a previous transport document number or other assigned reference number associated with the shipment. Applies to secondary cargo document report only."@en ;
-    skos:scopeNote "Authentication: Identification of the authentication."@en ;
-    skos:scopeNote "Authenticator: Identification of a party which certifies that a document is authentic."@en ;
-    skos:scopeNote "Authorization: Identification of an authorization necessary for the declaration or notification."@en ;
-    skos:scopeNote "AuthorizationHolder: Identification of the person being the holder of the authorization."@en ;
-    skos:scopeNote "AuthorizedPerson: Identification of a person designated under relevant legislation for the purpose of issuing official assurances."@en ;
-    skos:scopeNote "BerthLocation: Identification of the location in port where the means of transport will berth."@en ;
-    skos:scopeNote "BinaryFile: Identification of this binary file."@en ;
-    skos:scopeNote "BorderTransportMeans: Identification of the means of transport used in crossing the border."@en ;
-    skos:scopeNote "BorderingOffice: Identification of the government agency office across the border, facing the current object."@en ;
-    skos:scopeNote "Buyer: Identification of a party to which merchandise or services are sold."@en ;
-    skos:scopeNote "Cabin: Identification of the specific cabin or room on board."@en ;
-    skos:scopeNote "CarriedTransportEquipment: Identification of the equipment (e.g. unit load device by marks, letters, and/or numbers)."@en ;
-    skos:scopeNote "Carrier: Identification of a party providing the transport of goods between named points."@en ;
-    skos:scopeNote "CertificateOfResponsibilityHolder: Identification of the party holding the Certificate of Financial Responsibility (COFR)."@en ;
-    skos:scopeNote "Certifier: Identification of a party which certifies something."@en ;
-    skos:scopeNote "Classification: Identification of the non-commercial categorization of a commodity by a standard-setting organization."@en ;
-    skos:scopeNote "Communication: Identification of the communication address."@en ;
-    skos:scopeNote "Consignee: Identification of a party to which goods are consigned."@en ;
-    skos:scopeNote "ConsignmentItem: Identification of the consignment item (e.g. for CITES codes A, B, C, D)."@en ;
-    skos:scopeNote "Consignor: Identification of the party consigning goods as stipulated in the transport contract by the party ordering the transport."@en ;
-    skos:scopeNote "Consolidator: Identification of the freight forwarder combining individual smaller consignments into a single larger consignment (in a consolidation process) that is sent to a counterpart who mirrors the consolidator's activity by dividing the consolidated consignment into its original components."@en ;
-    skos:scopeNote "ConsortiumCarrier: Identification of a consortium carrier."@en ;
-    skos:scopeNote "ContactOffice: Identification of the location of a government office where contact can be made."@en ;
-    skos:scopeNote "ContainerOperator: Identification of the party owning, operating or controlling the transport equipment (e.g. container)."@en ;
-    skos:scopeNote "ContainerTerminalOperator: Identification of the party operating a container terminal or similar facility."@en ;
-    skos:scopeNote "ControlOffice: Identification of the location of a relevant governmental office where goods are available for further governmental control."@en ;
-    skos:scopeNote "CrewMember: Identification of conveyance crew member."@en ;
-    skos:scopeNote "DangerousGoodsContactParty: Identification of the dangerous goods contact person/party who can provide detailed information regarding dangerous goods."@en ;
-    skos:scopeNote "Declarant: Identification of a party who makes a declaration to an official body or - where legally permitted - in whose name, or on whose behalf, a declaration to an official body is made."@en ;
-    skos:scopeNote "DeclarationOffice: Identification of a location at which a declaration is lodged."@en ;
-    skos:scopeNote "Deconsolidator: Identification of the receiving party of a consolidated shipment, who divides the latter into its original single consignments and undertakes to make them available to be delivered."@en ;
-    skos:scopeNote "DeliveryDestinationParty: Identification of the party to whom goods are to be delivered as required by national legislation or according to national requirements."@en ;
-    skos:scopeNote "DepartureConveyanceFacility: Identification of a terminal, warehouse or yard where a means of transport departs."@en ;
-    skos:scopeNote "DepartureLocation: Identification of the place of departure of the goods."@en ;
-    skos:scopeNote "DepartureTransportMeans: Identification of the means of transport at the time of departure."@en ;
-    skos:scopeNote "DestinationLocation: Identification of the location of goods destination."@en ;
-    skos:scopeNote "DisembarkationLocation: Identification of a port or location of disembarkation."@en ;
-    skos:scopeNote "Distiller: Identification of the person or company whose business it is to extract alcoholic liquors by distillation."@en ;
-    skos:scopeNote "Distributor: Identification of the party distributing goods."@en ;
-    skos:scopeNote "DomesticDutyTaxParty: Identification of a party responsible for the national VAT or Goods & Services Tax."@en ;
-    skos:scopeNote "DraymanOrLighterman: Identification of the bonded party that moves goods within port limits on either land or water."@en ;
-    skos:scopeNote "EconomicOperator: Identification of an economic operator in whose premises the goods can be controlled."@en ;
-    skos:scopeNote "Effects: Identification of the personal effects."@en ;
-    skos:scopeNote "EmbarkationLocation: Identification of a port or location of embarkation."@en ;
-    skos:scopeNote "EntryOffice: Identification of the regulatory office at which the goods enter the customs territory of destination."@en ;
-    skos:scopeNote "EquipmentOwner: Identification of the owner of the transport equipment."@en ;
-    skos:scopeNote "ExaminationLocation: Identification of a location where goods are to be examined if different from the specified goods item location."@en ;
-    skos:scopeNote "Exhibitor: Identification of the party who offers items for exhibit or show."@en ;
-    skos:scopeNote "ExitOffice: Identification of the location of the regulatory office at which the goods leave or are intended to leave the customs territory of dispatch."@en ;
-    skos:scopeNote "ExportOffice: Identification of the office where the export formalities are completed."@en ;
-    skos:scopeNote "Exporter: Identification of the party who makes, or on whose behalf the export declaration is made, and who is the owner of the goods or has similar rights of disposal over them at the time when the declaration is accepted."@en ;
-    skos:scopeNote "FacilityLocation: Identification of a building or location that provides a particular service or is used for a particular industry."@en ;
-    skos:scopeNote "FeedlotParty: Identification of a commercial establishment that feeds livestock."@en ;
-    skos:scopeNote "FinalTransportMeansLoadingLocation: Identification of a location where a consignment is placed aboard the final means of transport for the journey to a customs territory of a country or union of countries."@en ;
-    skos:scopeNote "FinancialCard: Identification of the financial card."@en ;
-    skos:scopeNote "FreeTradeZone: Identification of Free Trade Zone (or Foreign Free Zone) where a particular consignment is to be or has been located."@en ;
-    skos:scopeNote "GoodsConsignedLocation: Identification of the location in country or country from which the goods were initially dispatched to the importing country."@en ;
-    skos:scopeNote "GoodsLocation: Identification of the location of goods."@en ;
-    skos:scopeNote "GoodsReceiptLocation: Identification of the location at which the goods have been or are to be received by the consignee."@en ;
-    skos:scopeNote "GovernmentOfficer: Identification of a person appointed to some position of responsibility or authority in the government."@en ;
-    skos:scopeNote "GovernmentServiceRequestor: Identification of the person or party requesting inspection, grading, or other government service."@en ;
-    skos:scopeNote "Grower: Identification of the person or organization who grows commercial crops."@en ;
-    skos:scopeNote "GuaranteeOffice: Identification of the location of a guarantee office."@en ;
-    skos:scopeNote "HarvestingTransportMeans: Identification of the harvesting transport means."@en ;
-    skos:scopeNote "IMOCompany: Identification of the company shown in the Continuous Synopsis Record (CSR)."@en ;
-    skos:scopeNote "IPR: Identification of the Intellectual Property Rights, for example the unique number affixed by the authentication agency to a IPR for identification purposes."@en ;
-    skos:scopeNote "ISPSResponsibleParty: Identification of the International Ship and Port Facility Security Code (ISPS) responsible party."@en ;
-    skos:scopeNote "Importer: Identification of a party who makes, or on whose behalf a customs clearing agent or other authorized person makes, an import declaration. This may include a person who has possession of the goods or to whom the goods are consigned."@en ;
-    skos:scopeNote "InsuranceCompany: Identification of a company engaged in the business of insurance."@en ;
-    skos:scopeNote "IntermediateCarrier: Identification of the carrier who transports the goods from consignor to exporting carrier and/or from importing carrier to consignee or between other named points, for a transit (in-bond) movement."@en ;
-    skos:scopeNote "IntermediateConsignee: Identification of the intermediate consignees who may take possession of the goods from consignor to exporting carrier and/or from importing carrier to consignee, for a transit (in-bond) movement."@en ;
-    skos:scopeNote "Invoice: Identification of an invoice by reference number."@en ;
-    skos:scopeNote "Issuer: Identification of the party having issued the document."@en ;
-    skos:scopeNote "Itinerary: Identification of a single port of call or other location of the itinerary of a means of transport."@en ;
-    skos:scopeNote "ItineraryOffice: Identification of the location of the government agency office related to the itinerary."@en ;
-    skos:scopeNote "LPCOAuthorizedParty: Identification of the party to whom the license, permit, certificate, or other required document (LPCO) is issued."@en ;
-    skos:scopeNote "LandingLocation: Identification of a landing location, wharf, or quay where ships may tie up and load, unload, or lie at rest."@en ;
-    skos:scopeNote "LoadingLocation: Identification of a seaport, airport, freight terminal, rail station or other location at which goods are loaded onto the means of transport being used for their carriage."@en ;
-    skos:scopeNote "LoyaltyProgram: Identification of the loyalty program."@en ;
-    skos:scopeNote "Manufacturer: Identification of a party which manufactures goods."@en ;
-    skos:scopeNote "MasterDataOffice: Identification of the master data government agency office."@en ;
-    skos:scopeNote "MasterDataParty: Identification of the party in the context of master data."@en ;
-    skos:scopeNote "MasterDataRecipient: Identification of the regulatory office that receives the master data."@en ;
-    skos:scopeNote "MasterDataSender: Identification of the regulatory office that sends the master data."@en ;
-    skos:scopeNote "NationalReference: Identification of the government registration."@en ;
-    skos:scopeNote "NonVesselOperatingCarrier: Identification of a common carrier that does not operate the vessels."@en ;
-    skos:scopeNote "NotifyParty: Identification of a party to be notified."@en ;
-    skos:scopeNote "Operator: Identification of the operator of a mode of transport (e.g. pilot, driver, master of vessel)."@en ;
-    skos:scopeNote "OrganicCertifyingOrganization: Identification of an accredited organization whose business it is to certify organic growth processes."@en ;
-    skos:scopeNote "Packer: Identification of the party packing goods."@en ;
-    skos:scopeNote "PassiveTransportMeans: Identification of the passive transport means."@en ;
-    skos:scopeNote "Payer: Identification of a third person paying an amount of duty."@en ;
-    skos:scopeNote "PaymentOffice: Identification of the location of a government office where payment can be or has been made."@en ;
-    skos:scopeNote "PermittedPort: Identification of the authorized office through which the authorized party is allowed to bring the goods identified on the LPCO."@en ;
-    skos:scopeNote "PersonOnBoard: Identification of the person on board."@en ;
-    skos:scopeNote "PortReceptionFacilityProvider: Identification of the port reception facility provider."@en ;
-    skos:scopeNote "PresentationOffice: Identification of the location of a government office of presentation."@en ;
-    skos:scopeNote "PreviousDocument: Identification of the previous document by number."@en ;
-    skos:scopeNote "Principal: Identification of the party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond."@en ;
-    skos:scopeNote "Processor: Identification of a party or person who has or will apply a process."@en ;
-    skos:scopeNote "Producer: Identification of the party or person who has produced the product."@en ;
-    skos:scopeNote "Product: Identification of an object, for example the unique number affixed by the manufacturer to a product for identification purposes."@en ;
-    skos:scopeNote "PropertyOperator: Identification of the registered operator of a property."@en ;
-    skos:scopeNote "PropertyOwner: Identification of the owner of the property."@en ;
-    skos:scopeNote "Recipient: Identification of the (message) recipient."@en ;
-    skos:scopeNote "RefundRecipientParty: Identification of the party to receive refund."@en ;
-    skos:scopeNote "RegisteredFacility: Identification of a facility that has been formally documented as compliant with regulations or statutes by a regulatory authority."@en ;
-    skos:scopeNote "ReleaseOffice: Identification of a requested office where the decision to release the goods declaration from customs custody is to be made."@en ;
-    skos:scopeNote "RepairParty: Identification of  the party responsible for substantial repair of transport equipment."@en ;
-    skos:scopeNote "RightHolder: Identification of a right holder which refers to a legal entity or person with exclusive rights to an intellectual property."@en ;
-    skos:scopeNote "Seal: Identification of a seal affixed to a piece of transport equipment by number."@en ;
-    skos:scopeNote "Seller: Identification of the party selling merchandise or services to a buyer."@en ;
-    skos:scopeNote "Sender: Identification of the (message) sender."@en ;
-    skos:scopeNote "ShipChandler: Identification of a retail dealer who specializes in supplies or equipment for ships, known as ship's stores."@en ;
-    skos:scopeNote "ShipToShipActivityLocation: Identification of a seaport, airport, freight terminal, rail station or other place at which a ship-to-ship activity takes place."@en ;
-    skos:scopeNote "Stevedore: Identification of the stevedoring company."@en ;
-    skos:scopeNote "StowPosition: Identification of the equipment location on the conveyance."@en ;
-    skos:scopeNote "StuffingEstablishment: Identification of the party at whose physical location the goods are loaded into the transport equipment (stuffing establishment)."@en ;
-    skos:scopeNote "Submitter: Identification of the party who presents a document or data for the approval, consideration, or decision of another."@en ;
-    skos:scopeNote "SubsequentDeclarationOffice: Identification of a customs office location of duty/tax payment at which a subsequent declaration is lodged."@en ;
-    skos:scopeNote "SupervisingOffice: Identification of the office responsible for supervising the discharge of a government procedure. It may be different from office of declaration or office of entry."@en ;
-    skos:scopeNote "SupplementaryDeclarant: Identification of the supplementary declarant."@en ;
-    skos:scopeNote "Supplier: Identification of the party who supplies goods and/or services."@en ;
-    skos:scopeNote "SupportingDocument: Identification of the reference number of documents or certificates produced in support of the declaration."@en ;
-    skos:scopeNote "Surety: Identification of the party who agrees to be responsible for the debt or obligation of another."@en ;
-    skos:scopeNote "Terminal: Identification of the location of a terminal."@en ;
-    skos:scopeNote "Ticket: Identification of the ticket."@en ;
-    skos:scopeNote "TradingParty: Identification of the party responsible for the trade of commercial products."@en ;
-    skos:scopeNote "TranshipmentLocation: Identification of the location where goods are to be transferred from one means of transport to another during the course of one transport operation."@en ;
-    skos:scopeNote "TranshipmentTransportMeans: Identification of the means of transport used at the time of transhipment."@en ;
-    skos:scopeNote "TransitDepartureLocation: Identification of the location at which the goods depart under customs control of the transit procedure."@en ;
-    skos:scopeNote "TransitDestinationLocation: Identification of the location at which the goods are destined under customs control of transit procedure."@en ;
-    skos:scopeNote "TransitOffice: Identification of the government office which is responsible for transit formalities enroute."@en ;
-    skos:scopeNote "TransitOperationDischargeOffice: Identification of the location of the government agency office related to the transit operation."@en ;
-    skos:scopeNote "TransitOperationStartOffice: Identification of the customs office starting a transit operation."@en ;
-    skos:scopeNote "TransitOperationTerminationOffice: Identification of the termination office."@en ;
-    skos:scopeNote "TransitPrincipal: Identification of the party accepting liability for goods held or moving under a customs authorization and - when applicable - a guarantee."@en ;
-    skos:scopeNote "TransitTransportMeans: Identification of the means of transport used for transit."@en ;
-    skos:scopeNote "TransportContractDocument: Identification of the document evidencing a transport contract by reference number."@en ;
-    skos:scopeNote "TransportEquipment: Identification of the equipment (e.g. unit load device by marks, letters, and/or numbers)."@en ;
-    skos:scopeNote "TransportEquipmentLocation: Identification of the location of the transport equipment for which the position and status of a transport equipment is being reported."@en ;
-    skos:scopeNote "TransportMeansOperator: Identification of the registered operator of the means of transport."@en ;
-    skos:scopeNote "TransportMeansOwner: Identification of the registered owner of means the of transport."@en ;
-    skos:scopeNote "TravelAgency: Identification of the travel agency."@en ;
-    skos:scopeNote "TravelDocument: Identification of the travel document by number."@en ;
-    skos:scopeNote "TreatmentFacilityProvider: Identification of the treatment facility provider."@en ;
-    skos:scopeNote "UCR: Identification of the unique number assigned to goods being subject to cross border transactions."@en ;
-    skos:scopeNote "UltimateConsignee: Identification of the party who has been designated on the invoice or packing list as the final recipient of the stated merchandise."@en ;
-    skos:scopeNote "UnloadingLocation: Identification of a seaport, airport, freight terminal, rail station or other location at which goods are unloaded from the means of transport having been used for their carriage."@en ;
-    skos:scopeNote "UnloadingParty: Identification of the party responsible for unloading of goods."@en ;
-    skos:scopeNote "VehicleOwner: Identification of the owner of the vehicle."@en ;
-    skos:scopeNote "Verifier: Identification of a person recognized under relevant legislation to undertake official assurance verification."@en ;
-    skos:scopeNote "Veterinarian: Identification of the person who practices veterinary medicine."@en ;
-    skos:scopeNote "Warehouse: Identification of a warehouse where a particular goods shipment will be / is / has been stored."@en ;
-    schema:domainIncludes wco:AEOMutualRecognitionParty, wco:AIP, wco:AcceptanceLocation, wco:AdditionalDocument, wco:AdditionalIdentifier, wco:AdditionalReference, wco:Agent, wco:AppealOffice, wco:Applicant, wco:ApprovedEstablishmentLocation, wco:ArrivalConveyanceFacility, wco:ArrivalLocation, wco:ArrivalTransportMeans, wco:Assembler, wco:AssigningParty, wco:AssociatedTransportDocument, wco:Authentication, wco:Authenticator, wco:Authorization, wco:AuthorizationHolder, wco:AuthorizedPerson, wco:BerthLocation, wco:BinaryFile, wco:BorderTransportMeans, wco:BorderingOffice, wco:Buyer, wco:Cabin, wco:CarriedTransportEquipment, wco:Carrier, wco:CertificateOfResponsibilityHolder, wco:Certifier, wco:Classification, wco:Communication, wco:Consignee, wco:ConsignmentItem, wco:Consignor, wco:Consolidator, wco:ConsortiumCarrier, wco:ContactOffice, wco:ContainerOperator, wco:ContainerTerminalOperator, wco:ControlOffice, wco:CrewMember, wco:DangerousGoodsContactParty, wco:Declarant, wco:Declaration, wco:DeclarationOffice, wco:Deconsolidator, wco:DeliveryDestinationParty, wco:DepartureConveyanceFacility, wco:DepartureLocation, wco:DepartureTransportMeans, wco:DestinationLocation, wco:DisembarkationLocation, wco:Distiller, wco:Distributor, wco:DomesticDutyTaxParty, wco:DraymanOrLighterman, wco:EconomicOperator, wco:Effects, wco:EmbarkationLocation, wco:EntryOffice, wco:EquipmentOwner, wco:ExaminationLocation, wco:Exhibitor, wco:ExitOffice, wco:ExportOffice, wco:Exporter, wco:FacilityLocation, wco:FeedlotParty, wco:FinalTransportMeansLoadingLocation, wco:FinancialCard, wco:FreeTradeZone, wco:GoodsConsignedLocation, wco:GoodsLocation, wco:GoodsReceiptLocation, wco:GovernmentOfficer, wco:GovernmentServiceRequestor, wco:Grower, wco:GuaranteeOffice, wco:HarvestingTransportMeans, wco:IMOCompany, wco:IPR, wco:ISPSResponsibleParty, wco:Importer, wco:InsuranceCompany, wco:IntermediateCarrier, wco:IntermediateConsignee, wco:Invoice, wco:Issuer, wco:Itinerary, wco:ItineraryOffice, wco:LPCO, wco:LPCOAuthorizedParty, wco:LandingLocation, wco:LoadingLocation, wco:LoyaltyProgram, wco:Manufacturer, wco:MasterDataOffice, wco:MasterDataParty, wco:MasterDataRecipient, wco:MasterDataSender, wco:NationalReference, wco:NonVesselOperatingCarrier, wco:NotifyParty, wco:ObligationGuarantee, wco:Operator, wco:OrganicCertifyingOrganization, wco:Packer, wco:PassiveTransportMeans, wco:Payer, wco:PaymentOffice, wco:PermittedPort, wco:PersonOnBoard, wco:PortReceptionFacilityProvider, wco:PresentationOffice, wco:PreviousDocument, wco:Principal, wco:Processor, wco:Producer, wco:Product, wco:PropertyOperator, wco:PropertyOwner, wco:Recipient, wco:RefundRecipientParty, wco:RegisteredFacility, wco:ReleaseOffice, wco:RepairParty, wco:RightHolder, wco:Seal, wco:Seller, wco:Sender, wco:ShipChandler, wco:ShipToShipActivityLocation, wco:Stevedore, wco:StowPosition, wco:StuffingEstablishment, wco:Submitter, wco:SubsequentDeclarationOffice, wco:SupervisingOffice, wco:SupplementaryDeclarant, wco:Supplier, wco:SupportingDocument, wco:Surety, wco:Terminal, wco:Ticket, wco:TradingParty, wco:TranshipmentLocation, wco:TranshipmentTransportMeans, wco:TransitDepartureLocation, wco:TransitDestinationLocation, wco:TransitOffice, wco:TransitOperationDischargeOffice, wco:TransitOperationStartOffice, wco:TransitOperationTerminationOffice, wco:TransitPrincipal, wco:TransitTransportMeans, wco:TransportContractDocument, wco:TransportEquipment, wco:TransportEquipmentLocation, wco:TransportMeansOperator, wco:TransportMeansOwner, wco:TravelAgency, wco:TravelDocument, wco:TreatmentFacilityProvider, wco:UCR, wco:UltimateConsignee, wco:UnloadingLocation, wco:UnloadingParty, wco:VehicleOwner, wco:Verifier, wco:Veterinarian, wco:Warehouse ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/iso-15459-or-equivalent-list>, <https://vocabulary.wcoomd.org/code-list/external/iso-6346-iata-list>, <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list>, <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-iso-3166-1-list>, <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list>, xsd:string ;
-    wco:codeListBasis "ISO 15459 OR equivalent"@en ;
-    wco:codeListBasis "ISO 6346, IATA"@en ;
-    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
-    wco:codeListBasis "International codes (e.g. DUNS, EAN) or user codes. To be used with CDT attributes \"Identification Scheme. Identifier\" and \"Identification Scheme Agency. Identifier\" to make the information unique."@en ;
-    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
-    wco:codeListBasis "UN/LOCODE (an..5) + user codes (an..30) Or user codes"@en ;
-    wco:codeListBasis "UN/LOCODE + User codes"@en ;
-    wco:codeListBasis "UN/LOCODE + User codes OR BayRowTier OR User code list (based on IMO FAL Convention)"@en ;
-    wco:codeListBasis "UN/LOCODE + User codes OR ISO 3166-1"@en ;
-    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
-    wco:xmlTag "ID" ;
-    wco:jsonTag "id" ;
-    wco:attributeId "016", "145", "147", "159", "165", "240", "414", "418", "446", "452", "511", "551", "579", "605", "608", "614", "D005", "D008", "D014", "D016", "D018", "D023", "D035", "D060", "D062", "D063", "D065", "D067", "G001", "G002", "G003", "G004", "G005", "G006", "G008", "G009", "G010", "G011", "G012", "G013", "G014", "G015", "G017", "G019", "G020", "G021", "G022", "G023", "G025", "G027", "L004", "L006", "L008", "L010", "L013", "L015", "L017", "L019", "L024", "L029", "L041", "L049", "L051", "L053", "L054", "L058", "L066", "L073", "L075", "L084", "L086", "L087", "L091", "L093", "L095", "L099", "L101", "L103", "L104", "L109", "L121", "R002", "R004", "R008", "R010", "R012", "R013", "R015", "R017", "R019", "R021", "R023", "R025", "R026", "R028", "R030", "R032", "R033", "R035", "R036", "R038", "R040", "R043", "R044", "R046", "R049", "R051", "R053", "R055", "R056", "R059", "R061", "R066", "R068", "R072", "R074", "R076", "R078", "R080", "R081", "R084", "R086", "R088", "R089", "R090", "R092", "R094", "R096", "R098", "R100", "R104", "R106", "R108", "R110", "R112", "R114", "R119", "R121", "R123", "R128", "R130", "R131", "R133", "R135", "R137", "R139", "R141", "R142", "R143", "R144", "R146", "R149", "R151", "R153", "R155", "R157", "R160", "R161", "R162", "R164", "R166", "R168", "T002", "T004", "T006", "T007", "T016", "T026", "T031" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1000, 1044, 107, 1071, 113, 1143, 1166, 118, 1215, 125, 1266, 1283, 1326, 133, 139, 1408, 1415, 143, 147, 151, 154, 157, 160, 163, 169, 172, 184, 187, 192, 195, 198, 200, 203, 206, 210, 214, 217, 220, 224, 234, 239, 246, 251, 255, 260, 264, 270, 275, 281, 285, 290, 299, 305, 311, 316, 32, 320, 324, 330, 337, 34, 342, 348, 353, 358, 36, 363, 368, 373, 377, 381, 386, 39, 391, 396, 401, 405, 41, 410, 415, 418, 423, 428, 432, 437, 44, 442, 449, 454, 459, 465, 470, 476, 48, 481, 486, 491, 50, 500, 503, 510, 515, 52, 520, 525, 529, 538, 54, 543, 553, 56, 561, 566, 571, 579, 584, 590, 594, 600, 605, 611, 616, 621, 626, 63, 631, 635, 638, 643, 648, 653, 658, 66, 664, 678, 68, 70, 707, 72, 726, 741, 744, 753, 761, 765, 774, 788, 79, 793, 796, 799, 809, 81, 818, 826, 83, 85, 87, 878, 884, 888, 89, 894, 899, 909, 92, 927, 953, 96, 965, 985, 99, 992" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
 wco:identificationIssuingCountryCode a owl:ObjectProperty ;
     rdfs:label "Identification issuing country code"@en ;
     skos:definition "Code specifying the issuing country of the identification."@en ;
@@ -2815,27 +2925,6 @@ wco:identificationIssuingCountryCode a owl:ObjectProperty ;
     wco:jsonTag "identificationIssuingCountryCode" ;
     wco:attributeId "550", "R147" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 236, 241, 248, 253, 257, 262, 266, 272, 277, 283, 287, 292, 296, 301, 307, 313, 318, 322, 326, 332, 339, 344, 350, 355, 360, 365, 370, 375, 383, 388, 393, 398, 407, 412, 420, 425, 430, 434, 439, 446, 451, 456, 461, 467, 472, 478, 483, 488, 493, 497, 512, 517, 522, 527, 531, 535, 540, 545, 549, 555, 563, 568, 573, 577, 581, 586, 592, 596, 602, 607, 613, 618, 623, 628, 640, 645, 650, 655, 660, 77, 910" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
-wco:identificationTypeCode a owl:ObjectProperty ;
-    rdfs:label "Identification type code"@en ;
-    skos:definition "Code specifying the type of identification used to identify a location."@en ;
-    skos:scopeNote "ArrivalTransportMeans: Code specifying type of identifier of the means of transport used for the carriage of the goods at arrival."@en ;
-    skos:scopeNote "BorderTransportMeans: Code specifying type of identifier of the means of transport used for the carriage of the goods in crossing the border."@en ;
-    skos:scopeNote "Classification: Code specifying the commodity classification (e.g. Harmonized Tariff Schedule (HTS), Export Control Classification Code (ECCC), UNDG Code list, International Code of Zoological Nomenclature)."@en ;
-    skos:scopeNote "DepartureTransportMeans: Code specifying the type of identifier of the means of transport at departure."@en ;
-    skos:scopeNote "PassiveTransportMeans: Code specifying type of identification of passive transport means."@en ;
-    skos:scopeNote "TranshipmentTransportMeans: Code specifying the type of identification of transhipment transport means."@en ;
-    schema:domainIncludes wco:ArrivalTransportMeans, wco:BorderTransportMeans, wco:Classification, wco:DepartureTransportMeans, wco:GoodsLocation, wco:PassiveTransportMeans, wco:TranshipmentTransportMeans ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-7143-list>, wco-cl:goods-location-identification-type-code-list, wco-cl:transport-means-identification-type-code-list ;
-    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
-    wco:codeListBasis "User code list (see EU CDM code list for DE 16 15 046 000)"@en ;
-    wco:xmlTag "IdentificationTypeCode" ;
-    wco:jsonTag "identificationTypeCode" ;
-    wco:attributeId "337", "571", "T018", "T027", "T029", "T032", "T034" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1002, 165, 819, 827, 879, 889, 895" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -3308,21 +3397,6 @@ wco:membersQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:methodCode a owl:ObjectProperty ;
-    rdfs:label "Method code"@en ;
-    skos:definition "Code specifying the method on which the customs value is determined."@en ;
-    skos:scopeNote "Payment: Code specifying a method of payment."@en ;
-    schema:domainIncludes wco:CustomsValuation, wco:Payment ;
-    schema:rangeIncludes wco-cl:payment-method-code-list, wco-cl:valuation-method-code-list ;
-    wco:codeListBasis "WCO code list/PaymentMethodCode"@en ;
-    wco:codeListBasis "WCO code list/ValuationMethodCode"@en ;
-    wco:xmlTag "MethodCode" ;
-    wco:jsonTag "methodCode" ;
-    wco:attributeId "107", "122" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1107, 1246" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
 wco:mimeCode a owl:DatatypeProperty ;
     rdfs:label "MIME code"@en ;
     skos:definition "Code specifying the Multipurpose Internet Mail Extensions (MIME) type for this binary file."@en ;
@@ -3487,6 +3561,18 @@ wco:nationalityCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:nationalreferenceIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Nationalreference identification identifier"@en ;
+    skos:definition "Identification of the government registration."@en ;
+    schema:domainIncludes wco:NationalReference ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "446" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1215" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:netNetWeightMeasure a owl:ObjectProperty ;
     rdfs:label "Net net weight measure"@en ;
     skos:definition "Weight of the goods themselves without any packing."@en ;
@@ -3537,6 +3623,32 @@ wco:officialConstraintsIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:operationterminationTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Operationtermination type code"@en ;
+    skos:definition "Code specifying the type of Transit operation termination."@en ;
+    schema:domainIncludes wco:OperationTermination ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "515" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1225" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:originTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Origin type code"@en ;
+    skos:definition "Code specifying the differentiation between different types of origin (e.g. preferential and non-preferential country of origin codes)."@en ;
+    schema:domainIncludes wco:Origin ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "501" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1231" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:otherChargeDeductionAmount a owl:ObjectProperty ;
     rdfs:label "Other charge deduction amount"@en ;
     skos:definition "Amount added or subtracted from the total invoice price (depending on the trade terms) not previously taken into account when determining the customs value."@en ;
@@ -3558,6 +3670,19 @@ wco:packageQuantity a owl:ObjectProperty ;
     wco:jsonTag "packageQuantity" ;
     wco:attributeId "144" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1224" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:packagingTypeCode a owl:ObjectProperty ;
+    rdfs:label "Packaging type code"@en ;
+    skos:definition "Code specifying the type of package of an item."@en ;
+    schema:domainIncludes wco:Packaging ;
+    schema:rangeIncludes wco-cl:package-type-code-list ;
+    wco:codeListBasis "UN/ECE Recommendation 21 Annex VI"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "141" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1236" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -3612,14 +3737,14 @@ wco:paymentAmount a owl:ObjectProperty ;
 
 wco:paymentMethodCode a owl:ObjectProperty ;
     rdfs:label "Payment method code"@en ;
-    skos:definition "Code specifying the payment method for transport charges."@en ;
-    schema:domainIncludes wco:Freight ;
-    schema:rangeIncludes wco-cl:freight-charge-payment-method-code-list ;
-    wco:codeListBasis "UN/EDIFACT code list 4215"@en ;
-    wco:xmlTag "PaymentMethodCode" ;
-    wco:jsonTag "paymentMethodCode" ;
-    wco:attributeId "098" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1168" ;
+    skos:definition "Code specifying a method of payment."@en ;
+    schema:domainIncludes wco:Payment ;
+    schema:rangeIncludes wco-cl:payment-method-code-list ;
+    wco:codeListBasis "WCO code list/PaymentMethodCode"@en ;
+    wco:xmlTag "MethodCode" ;
+    wco:jsonTag "methodCode" ;
+    wco:attributeId "107" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1246" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -3636,6 +3761,19 @@ wco:paymentTermsCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:paymentTypeCode a owl:ObjectProperty ;
+    rdfs:label "Payment type code"@en ;
+    skos:definition "Code specifying the type of payment."@en ;
+    schema:domainIncludes wco:Payment ;
+    schema:rangeIncludes wco-cl:payment-type-code-list ;
+    wco:codeListBasis "WCO code list/PaymentTypeCode"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "610" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1245" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:percentageNumeric a owl:DatatypeProperty ;
     rdfs:label "Percentage numeric"@en ;
     skos:definition "Percentage adjustment made to the valuation."@en ;
@@ -3645,6 +3783,44 @@ wco:percentageNumeric a owl:DatatypeProperty ;
     wco:jsonTag "percentageNumeric" ;
     wco:attributeId "123" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1419" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:persondataStatusCode a owl:ObjectProperty ;
+    rdfs:label "Persondata status code"@en ;
+    skos:definition "Code specifying the status of a person on board."@en ;
+    schema:domainIncludes wco:PersonData ;
+    schema:rangeIncludes wco-cl:person-status-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 3035 UN/EDIFACT code list 7365"@en ;
+    wco:xmlTag "StatusCode" ;
+    wco:jsonTag "statusCode" ;
+    wco:attributeId "429" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1262" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:persondataTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Persondata type code"@en ;
+    skos:definition "Code specifying the type of person (e.g. Crew member, Passenger, Stowaway)."@en ;
+    schema:domainIncludes wco:PersonData ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "458" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1264" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:persononboardIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Persononboard identification identifier"@en ;
+    skos:definition "Identification of the person on board."@en ;
+    schema:domainIncludes wco:PersonOnBoard ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "614" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1266" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -3835,6 +4011,44 @@ wco:productExpiryDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:productIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Product identification identifier"@en ;
+    skos:definition "Identification of an object, for example the unique number affixed by the manufacturer to a product for identification purposes."@en ;
+    schema:domainIncludes wco:Product ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "147" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1283" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:productcharacteristicsTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Productcharacteristics type code"@en ;
+    skos:definition "Code specifying the commodity characteristics such as goods grading, genetic modification, quality, etc. that distinguishes the commodity from similar commodities."@en ;
+    schema:domainIncludes wco:ProductCharacteristics ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "260" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1287" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:productcriteriaconformanceTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Productcriteriaconformance type code"@en ;
+    skos:definition "Code specifying conformance with statutory and regulatory requirements."@en ;
+    schema:domainIncludes wco:ProductCriteriaConformance ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "305" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1292" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:programNameText a owl:DatatypeProperty ;
     rdfs:label "Program name text"@en ;
     skos:definition "Name of the country’s Authorized Economic Operator (AEO) program."@en ;
@@ -3845,6 +4059,19 @@ wco:programNameText a owl:DatatypeProperty ;
     wco:jsonTag "programName" ;
     wco:attributeId "626", "632" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1308, 945" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:programpartnerprofileTypeCode a owl:ObjectProperty ;
+    rdfs:label "Programpartnerprofile type code"@en ;
+    skos:definition "Code specifying the type of program or partner profile (e.g. MRA (Mutual Recognition Arrangement/Agreement), JWP (the Joint Work Plan), PGA (Participating Government Agency))."@en ;
+    schema:domainIncludes wco:ProgramPartnerProfile ;
+    schema:rangeIncludes wco-cl:program-partner-profile-type-code-list ;
+    wco:codeListBasis "WCO code list/ProgramPartnerProfileTypeCode"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "634" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1305" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -4184,22 +4411,6 @@ wco:reviewPlaceNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:roleCode a owl:DatatypeProperty ;
-    rdfs:label "Role code"@en ;
-    skos:definition "Code specifying the role of a party."@en ;
-    skos:scopeNote "Warehouse: Code specifying the role of a warehouse."@en ;
-    schema:domainIncludes wco:AEOMutualRecognitionParty, wco:Agent, wco:Applicant, wco:Assembler, wco:AssigningParty, wco:Authenticator, wco:AuthorisationHolder, wco:AuthorizedPerson, wco:Buyer, wco:Carrier, wco:CertificateOfResponsibilityHolder, wco:Certifier, wco:CompanySecurityOfficer, wco:Consignee, wco:Consignor, wco:Consolidator, wco:ConsortiumCarrier, wco:ContainerOperator, wco:ContainerTerminalOperator, wco:CrewMember, wco:DangerousGoodsContactParty, wco:Declarant, wco:Deconsolidator, wco:DeliveryDestinationParty, wco:Distiller, wco:Distributor, wco:DomesticDutyTaxParty, wco:DraymanOrLighterman, wco:EconomicOperator, wco:EquipmentOwner, wco:Exhibitor, wco:Exporter, wco:FeedlotParty, wco:GovernmentOfficer, wco:GovernmentServiceRequestor, wco:Grower, wco:ISPSResponsibleParty, wco:Importer, wco:InsuranceCompany, wco:IntermediateCarrier, wco:IntermediateConsignee, wco:LPCOAuthorizedParty, wco:LoadingProofParty, wco:Manufacturer, wco:MasterDataParty, wco:NonVesselOperatingCarrier, wco:NotifyParty, wco:Operator, wco:OrganicCertifyingOrganization, wco:Packer, wco:Payer, wco:PortFacilitySecurityOfficer, wco:Principal, wco:Processor, wco:Producer, wco:PropertyOperator, wco:PropertyOwner, wco:Recipient, wco:RecognizedSecurityOrganization, wco:RefundRecipientParty, wco:RepairParty, wco:RepresentativePerson, wco:ResponsibleGovernmentAgency, wco:RightHolder, wco:Seller, wco:Sender, wco:ShipChandler, wco:ShipSecurityOfficer, wco:Stevedore, wco:StuffingEstablishment, wco:Submitter, wco:SupplementaryDeclarant, wco:Supplier, wco:Surety, wco:TradeRole, wco:TradingParty, wco:TransitPrincipal, wco:TransportMeansOperator, wco:TransportMeansOwner, wco:TravelAgency, wco:UltimateConsignee, wco:UnloadingParty, wco:VehicleOwner, wco:Verifier, wco:Veterinarian, wco:Warehouse ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list>, <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-user-code-list>, xsd:string ;
-    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3035 For use with the EU CDM: - Code FR1 Importer - Code FR2 Customer - Code FR3 Tax representative - Code FR4 Holder of the deferred payment authorisation - Code FR5 Vendor (IOSS) - Code FR7 Taxable person or of the person liable for payment of VAT"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3035 User code list"@en ;
-    wco:xmlTag "RoleCode" ;
-    wco:jsonTag "roleCode" ;
-    wco:attributeId "594", "L119", "R005" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1381, 226, 235, 240, 247, 252, 256, 261, 265, 271, 276, 282, 286, 291, 295, 300, 306, 312, 317, 321, 325, 331, 338, 343, 349, 354, 359, 364, 369, 374, 378, 382, 387, 392, 397, 402, 406, 411, 419, 424, 429, 433, 438, 445, 450, 455, 460, 466, 471, 477, 482, 487, 492, 496, 504, 511, 516, 521, 526, 530, 534, 539, 544, 548, 554, 562, 567, 572, 576, 580, 585, 591, 595, 601, 606, 612, 617, 622, 627, 632, 639, 644, 649, 654, 659, 76" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
 wco:ruleCode a owl:DatatypeProperty ;
     rdfs:label "Rule code"@en ;
     skos:definition "Code specifying the criterion of determination as to whether a good qualifies as an originating good in accordance with the rules."@en ;
@@ -4210,6 +4421,44 @@ wco:ruleCode a owl:DatatypeProperty ;
     wco:jsonTag "ruleCode" ;
     wco:attributeId "436" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1227" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:sealConditionCode a owl:DatatypeProperty ;
+    rdfs:label "Seal condition code"@en ;
+    skos:definition "Code specifying the condition of a seal."@en ;
+    schema:domainIncludes wco:Seal ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "ConditionCode" ;
+    wco:jsonTag "conditionCode" ;
+    wco:attributeId "408" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1328" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:sealIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Seal identification identifier"@en ;
+    skos:definition "Identification of a seal affixed to a piece of transport equipment by number."@en ;
+    schema:domainIncludes wco:Seal ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "165" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1326" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:sealTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Seal type code"@en ;
+    skos:definition "Code specifying the type of seal applied on a unit of transport equipment."@en ;
+    schema:domainIncludes wco:Seal ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "407" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1327" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -4275,6 +4524,19 @@ wco:sequenceNumeric a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:shiptoshipactivityIdentificationCode a owl:DatatypeProperty ;
+    rdfs:label "Shiptoshipactivity identification code"@en ;
+    skos:definition "Code specifying the ship-to-ship activity."@en ;
+    schema:domainIncludes wco:ShipToShipActivity ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/to-be-defined-by-imo-list> ;
+    wco:codeListBasis "To be defined by IMO"@en ;
+    wco:xmlTag "IdentificationCode" ;
+    wco:jsonTag "identificationCode" ;
+    wco:attributeId "526" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1333" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:signedDateTime a owl:DatatypeProperty ;
     rdfs:label "Signed date time"@en ;
     skos:definition "Date and time the country’s program or partner profile was signed."@en ;
@@ -4297,6 +4559,19 @@ wco:sizeMeasure a owl:ObjectProperty ;
     wco:jsonTag "sizeMeasure" ;
     wco:attributeId "322", "563" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1019, 977" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:sourceTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Source type code"@en ;
+    skos:definition "Code specifying the type of source location."@en ;
+    schema:domainIncludes wco:Source ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "397" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1340" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -4423,21 +4698,6 @@ wco:statisticalValueAmount a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:statusCode a owl:ObjectProperty ;
-    rdfs:label "Status code"@en ;
-    skos:definition "Code specifying the status of a document."@en ;
-    skos:scopeNote "PersonData: Code specifying the status of a person on board."@en ;
-    schema:domainIncludes wco:AdditionalDocument, wco:Authorization, wco:Declaration, wco:ObligationGuarantee, wco:PersonData ;
-    schema:rangeIncludes wco-cl:document-status-code-list, wco-cl:person-status-code-list ;
-    wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3035 UN/EDIFACT code list 7365"@en ;
-    wco:xmlTag "StatusCode" ;
-    wco:jsonTag "statusCode" ;
-    wco:attributeId "429", "D047" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1262, 683, 733, 745, 776" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
 wco:statusNameCode a owl:DatatypeProperty ;
     rdfs:label "Name code"@en ;
     skos:definition "Code specifying the processing status of a document."@en ;
@@ -4472,6 +4732,19 @@ wco:streetNameText a owl:DatatypeProperty ;
     wco:jsonTag "streetName" ;
     wco:attributeId "519" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 938" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:subsidiaryriskIdentificationCode a owl:DatatypeProperty ;
+    rdfs:label "Subsidiaryrisk identification code"@en ;
+    skos:definition "Code specifying any risk to the class of the referenced dangerous goods (e.g. according to the IMO IMDG Code)."@en ;
+    schema:domainIncludes wco:SubsidiaryRisk ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/to-be-defined-list> ;
+    wco:codeListBasis "To be defined"@en ;
+    wco:xmlTag "IdentificationCode" ;
+    wco:jsonTag "identificationCode" ;
+    wco:attributeId "529" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1360" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -4661,6 +4934,19 @@ wco:technicalNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:temperatureCategoryCode a owl:ObjectProperty ;
+    rdfs:label "Temperature category code"@en ;
+    skos:definition "Code specifying the storage condition of a commodity."@en ;
+    schema:domainIncludes wco:Temperature ;
+    schema:rangeIncludes wco-cl:temperature-category-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 6155"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "319" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1372" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:testIndicator a owl:DatatypeProperty ;
     rdfs:label "Test indicator"@en ;
     skos:definition "Indicator that the interchange is a test."@en ;
@@ -4722,6 +5008,19 @@ wco:totalPackageQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:totalpersonsTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Totalpersons type code"@en ;
+    skos:definition "Code specifying the type of person (e.g. Crew member, Passenger, Stowaway)."@en ;
+    schema:domainIncludes wco:TotalPersons ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "458" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1378" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:traderAssignedReferenceIdentifier a owl:DatatypeProperty ;
     rdfs:label "Trader assigned reference identifier"@en ;
     skos:definition "Identification of the number assigned by a declarant such as a trader reference or a carrier reference."@en ;
@@ -4731,6 +5030,32 @@ wco:traderAssignedReferenceIdentifier a owl:DatatypeProperty ;
     wco:jsonTag "traderAssignedReferenceId" ;
     wco:attributeId "009" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1416" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:traderoleRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Traderole role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:TradeRole ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1381" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:tradetermsConditionCode a owl:ObjectProperty ;
+    rdfs:label "Tradeterms condition code"@en ;
+    skos:definition "Code specifying the delivery or transport terms."@en ;
+    schema:domainIncludes wco:TradeTerms ;
+    schema:rangeIncludes wco-cl:tradeterm-condition-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 4053"@en ;
+    wco:xmlTag "ConditionCode" ;
+    wco:jsonTag "conditionCode" ;
+    wco:attributeId "090" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1383" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -4773,6 +5098,32 @@ wco:transportSplitCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
+wco:transportequipmentConditionCode a owl:ObjectProperty ;
+    rdfs:label "Transportequipment condition code"@en ;
+    skos:definition "Code specifying the conditions of contract and carriage."@en ;
+    schema:domainIncludes wco:TransportEquipment ;
+    schema:rangeIncludes wco-cl:transport-contract-document-condition-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 4065"@en ;
+    wco:xmlTag "ConditionCode" ;
+    wco:jsonTag "conditionCode" ;
+    wco:attributeId "091" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1411" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:transportequipmentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Transportequipment identification identifier"@en ;
+    skos:definition "Identification of the equipment (e.g. unit load device by marks, letters, and/or numbers)."@en ;
+    schema:domainIncludes wco:TransportEquipment ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/iso-6346-iata-list> ;
+    wco:codeListBasis "ISO 6346, IATA"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "159" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1408" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
 wco:travelGroupNameText a owl:DatatypeProperty ;
     rdfs:label "Travel group name text"@en ;
     skos:definition "Name of the travelling group."@en ;
@@ -4782,84 +5133,6 @@ wco:travelGroupNameText a owl:DatatypeProperty ;
     wco:jsonTag "travelGroupName" ;
     wco:attributeId "613" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1320" ;
-    rdfs:isDefinedBy wco-mod:core ;
-    wco:termStatus ts:active .
-
-wco:typeCode a owl:ObjectProperty ;
-    rdfs:label "Type code"@en ;
-    skos:definition "Code specifying the name of a document."@en ;
-    skos:scopeNote "AEOProgramProfile: Code specifying whether the country’s Authorized Economic Operator (AEO) program is a security based program, compliance based, or both."@en ;
-    skos:scopeNote "Action: Code specifying the type of action to be taken."@en ;
-    skos:scopeNote "AdditionalDocument: Code specifying the type of an additional document."@en ;
-    skos:scopeNote "AdditionalReference: Code specifying the name of an additional reference."@en ;
-    skos:scopeNote "Address: Code specifying the type of address."@en ;
-    skos:scopeNote "ArrivalTransportMeans: Code specifying means of transport used for the carriage of the goods at arrival."@en ;
-    skos:scopeNote "AssociatedTransportDocument: Code specifying the type of associated transport document in a secondary cargo report."@en ;
-    skos:scopeNote "Authentication: Code specifying the type of authentication."@en ;
-    skos:scopeNote "Authorization: Code specifying the type of authorization necessary for the declaration or notification."@en ;
-    skos:scopeNote "BinaryFile: Code specifying the type of binary file, such as photo, spreadsheet."@en ;
-    skos:scopeNote "BorderTransportMeans: Code specifying type of means of transport used for the carriage of the goods in crossing the border."@en ;
-    skos:scopeNote "Characteristic: Code specifying the subject of the characteristic."@en ;
-    skos:scopeNote "Communication: Code specifying the type of communication address."@en ;
-    skos:scopeNote "Control: Code specifying the type of governmental examination."@en ;
-    skos:scopeNote "ControlOffice: Code specifying the type of control office (e.g. 5 - Customs)."@en ;
-    skos:scopeNote "DepartureTransportMeans: Code specifying the type of means of transport used for the carriage of the goods at departure."@en ;
-    skos:scopeNote "DutyTaxFee: Code specifying a type of duty or tax applicable to commodities or a type of tax or fee applicable to services."@en ;
-    skos:scopeNote "Event: Code specifying the type of an exhibition event."@en ;
-    skos:scopeNote "Event: Code specifying the type of an exhibition event."@en ;
-    skos:scopeNote "ExaminationLocation: Code specifying the type of examination place."@en ;
-    skos:scopeNote "FacilityLocation: Code specifying the facility type."@en ;
-    skos:scopeNote "GoodsLocation: Code specifying the type of goods location."@en ;
-    skos:scopeNote "HarvestingTransportMeans: Code specifying the type of means of transport used for harvesting."@en ;
-    skos:scopeNote "IPR: Code specifying the type of IPR according to WTO TRIPS (e.g. copyright, trademarks, geographical indication, industrial designs, patents, integrated circuits layout designs, undisclosed information and trade secrets, curbing anti-competitive licensing contracts, enforcement: tough but fair, technology transfer, etc.)."@en ;
-    skos:scopeNote "Invoice: Code specifying the type of an invoice."@en ;
-    skos:scopeNote "MasterDataRecipient: Code specifying the type of regulatory office that receives the master data."@en ;
-    skos:scopeNote "MasterDataSender: Code specifying the type of regulatory office that sends the master data."@en ;
-    skos:scopeNote "OperationTermination: Code specifying the type of Transit operation termination."@en ;
-    skos:scopeNote "Origin: Code specifying the differentiation between different types of origin (e.g. preferential and non-preferential country of origin codes)."@en ;
-    skos:scopeNote "Packaging: Code specifying the type of package of an item."@en ;
-    skos:scopeNote "PassiveTransportMeans: Code specifying the type of passive means of transport that is being transported by the active means of transport."@en ;
-    skos:scopeNote "Payment: Code specifying the type of payment."@en ;
-    skos:scopeNote "PersonData: Code specifying the type of person (e.g. Crew member, Passenger, Stowaway)."@en ;
-    skos:scopeNote "PreviousDocument: Code specifying the type of document used for declaration previously presented."@en ;
-    skos:scopeNote "ProductCharacteristics: Code specifying the commodity characteristics such as goods grading, genetic modification, quality, etc. that distinguishes the commodity from similar commodities."@en ;
-    skos:scopeNote "ProductCriteriaConformance: Code specifying conformance with statutory and regulatory requirements."@en ;
-    skos:scopeNote "ProgramPartnerProfile: Code specifying the type of program or partner profile (e.g. MRA (Mutual Recognition Arrangement/Agreement), JWP (the Joint Work Plan), PGA (Participating Government Agency))."@en ;
-    skos:scopeNote "Seal: Code specifying the type of seal applied on a unit of transport equipment."@en ;
-    skos:scopeNote "SealingParty: Code specifying the party affixing or activating the seal for regulatory purposes."@en ;
-    skos:scopeNote "Source: Code specifying the type of source location."@en ;
-    skos:scopeNote "SupportingDocument: Code specifying the details required by any specific rules applicable together with reference data of the documents produced in support of the declaration."@en ;
-    skos:scopeNote "TotalPersons: Code specifying the type of person (e.g. Crew member, Passenger, Stowaway)."@en ;
-    skos:scopeNote "TranshipmentLocation: Code specifying the type of location of transhipment."@en ;
-    skos:scopeNote "TransitTransportMeans: Code specifying the type of means of transport used for transit."@en ;
-    skos:scopeNote "TransportContractDocument: Code specifying the type of a document evidencing a transport contract."@en ;
-    skos:scopeNote "TravelDocument: Code specifying the name of a travel document."@en ;
-    skos:scopeNote "Warehouse: Code specifying the type of warehouse."@en ;
-    skos:scopeNote "WasteDeliveryLocation: Code specifying the type of place/port where waste of any type was or will be delivered (e.g. last or next port)."@en ;
-    schema:domainIncludes wco:AEOProgramProfile, wco:AIP, wco:Action, wco:AdditionalDocument, wco:AdditionalReference, wco:Address, wco:ArrivalTransportMeans, wco:AssociatedTransportDocument, wco:Authentication, wco:Authorization, wco:BinaryFile, wco:BorderTransportMeans, wco:Characteristic, wco:Communication, wco:Control, wco:ControlOffice, wco:Declaration, wco:DepartureTransportMeans, wco:DutyTaxFee, wco:Event, wco:ExaminationLocation, wco:FacilityLocation, wco:GoodsLocation, wco:HarvestingTransportMeans, wco:IPR, wco:Invoice, wco:LPCO, wco:MasterDataRecipient, wco:MasterDataSender, wco:OperationTermination, wco:Origin, wco:Packaging, wco:PassiveTransportMeans, wco:Payment, wco:PersonData, wco:PreviousDocument, wco:ProductCharacteristics, wco:ProductCriteriaConformance, wco:ProgramPartnerProfile, wco:Seal, wco:SealingParty, wco:Source, wco:SupportingDocument, wco:TotalPersons, wco:TranshipmentLocation, wco:TransitTransportMeans, wco:TransportContractDocument, wco:TravelDocument, wco:Warehouse, wco:WasteDeliveryLocation ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list>, <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list>, <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-list>, <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-or-user-code-list>, <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-5153-or-user-code-list>, <https://vocabulary.wcoomd.org/code-list/external/user-code-list>, wco-cl:action-code-list, wco-cl:address-type-code-list, wco-cl:aeo-program-type-code-list, wco-cl:communication-means-type-code-list, wco-cl:government-agency-type-code-list, wco-cl:package-type-code-list, wco-cl:payment-type-code-list, wco-cl:program-partner-profile-type-code-list, wco-cl:reference-type-code-list, wco-cl:sealing-party-type-code-list, wco-cl:transport-means-type-code-list, xsd:string ;
-    wco:codeListBasis "UN/ECE Recommendation 21 Annex VI"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 1153. For EU CDM usage: Additional references must be entered in the form of a code defined in Title I. The list of additional references and their respective codes can be found in the TARIC database, their format is a1an3. Member States may define national codes, national codes must have the format n1an3"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 1229 OR User code list"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3131"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3155"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3227 For use with the EU CDM: - Code A Designated location - Code B Authorised place - Code C Approved place - Code D Other"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 3227 OR User code list"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 5153 OR User code list"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 9303"@en ;
-    wco:codeListBasis "UN/EDIFACT code list 9415"@en ;
-    wco:codeListBasis "UN/Recommendation 28"@en ;
-    wco:codeListBasis "User code list"@en ;
-    wco:codeListBasis "WCO code list/AEOProgramTypeCode"@en ;
-    wco:codeListBasis "WCO code list/PaymentTypeCode"@en ;
-    wco:codeListBasis "WCO code list/ProgramPartnerProfileTypeCode"@en ;
-    wco:xmlTag "Type", "TypeCode" ;
-    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
-    wco:attributeId "113", "141", "253", "260", "305", "397", "407", "410", "449", "453", "454", "458", "501", "514", "515", "547", "564", "580", "610", "623", "629", "634", "D006", "D009", "D013", "D019", "D024", "D025", "D037", "D059", "D061", "D064", "G016", "G018", "G024", "L047", "L110", "L111", "L112", "L113", "L118", "T008", "T009", "T010", "T011", "T017", "T036" ;
-    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1045, 1066, 1093, 1132, 1154, 1225, 1231, 1236, 1245, 1264, 1287, 1292, 1305, 1327, 1340, 1378, 148, 152, 164, 207, 225, 232, 38, 558, 62, 65, 667, 684, 715, 734, 742, 746, 755, 762, 790, 794, 803, 814, 820, 828, 880, 885, 890, 900, 906, 928, 930, 948, 952, 978, 994" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
@@ -4897,6 +5170,19 @@ wco:typeIdentifier a owl:DatatypeProperty ;
     wco:jsonTag "typeId" ;
     wco:attributeId "606" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 986" ;
+    rdfs:isDefinedBy wco-mod:core ;
+    wco:termStatus ts:active .
+
+wco:ucrIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Ucr identification identifier"@en ;
+    skos:definition "Identification of the unique number assigned to goods being subject to cross border transactions."@en ;
+    schema:domainIncludes wco:UCR ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/iso-15459-or-equivalent-list> ;
+    wco:codeListBasis "ISO 15459 OR equivalent"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "016" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 1415" ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 

@@ -22,7 +22,7 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _names import camel, class_name, label_from_den, local_name, split_den
+from _names import camel, class_name, label_from_den, label_from_local, local_name, split_den
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INT = ROOT / "intermediate"
@@ -35,6 +35,17 @@ MAP = ROOT / "mappings"
 # environment variable, and a test build would rewrite every published identifier.
 BASE = "https://vocabulary.wcoomd.org/"
 MODULES = ["core", "document", "government", "location", "party", "transport"]
+
+# What to do when attributes that merged into one property turn out to disagree about their value
+# domain: Seal.typeCode and Package.typeCode code against different lists, so one property cannot
+# state what its values are.
+#
+#   "class"  - split per class, so every class gets its own property. Unambiguous, and the way the
+#              WCO Data Model itself is organised.
+#   "domain" - split per distinct value domain, so classes that genuinely share a domain keep
+#              sharing a term. Fewer properties for the same result.
+#   "none"   - leave them merged, carrying every domain.
+SPLIT_DISAGREEING = os.environ.get("WCO_SPLIT", "class")
 
 # WCO core data types to a range. Code and Identifier carry a code list or scheme rather than a
 # literal type, so they are resolved per attribute below.
@@ -178,13 +189,19 @@ def main():
             "definition": "",
             "core_data_type": cdt, "glosses": [],
             "domains": [], "ranges": set(), "module": a["module"], "attr_ids": [],
-            "code_list_refs": set(),
+            "code_list_refs": set(), "occurrences": [],
             "xml_tags": set(), "json_tags": set(), "dens": [], "sources": [],
         })
         if definition:
             p["glosses"].append((class_name(a["class_name"]), definition))
+        rng = resolve_range(a, cl_slugs, by_basis)
         p["domains"].append(class_name(a["class_name"]))
-        p["ranges"].add(resolve_range(a, cl_slugs, by_basis))
+        p["ranges"].add(rng)
+        p["occurrences"].append({
+            "class": class_name(a["class_name"]), "range": rng, "attr_id": a["attr_id"],
+            "definition": definition, "code_list": " ".join((a.get("code_list") or "").split()),
+            "source": f"{a['source']['sheet']}:{a['source']['row']}",
+        })
         if a.get("code_list"):
             p["code_list_refs"].add(" ".join(a["code_list"].split()))
         p["attr_ids"].append(a["attr_id"])
@@ -203,6 +220,51 @@ def main():
         counts = collections.Counter(text for _, text in p["glosses"])
         p["definition"] = counts.most_common(1)[0][0]
         p["scope_notes"] = [(cls, text) for cls, text in p["glosses"] if text != p["definition"]]
+
+    # Where a merged property ended up with more than one value domain, the attributes did not mean
+    # the same thing after all, so the merge is undone for those.
+    if SPLIT_DISAGREEING != "none":
+        split_report = []
+        for key in [k for k, v in props.items() if len({r for r in v["ranges"]}) > 1]:
+            victim = props.pop(key)
+            occurrences = victim.pop("occurrences")
+            groups = collections.OrderedDict()
+            for occ in occurrences:
+                bucket = occ["class"] if SPLIT_DISAGREEING == "class" else occ["range"]
+                groups.setdefault(bucket, []).append(occ)
+            for bucket, occs in groups.items():
+                first = occs[0]
+                if SPLIT_DISAGREEING == "class":
+                    new_key = camel(f"{first['class']} {victim['local']}")
+                else:
+                    tail = first["range"].rsplit("/", 1)[-1].rsplit(":", 1)[-1]
+                    new_key = camel(f"{tail} {victim['local']}") if len(groups) > 1 else victim["local"]
+                p2 = dict(victim)
+                p2.update({
+                    "local": new_key,
+                    "label": label_from_local(new_key),
+                    "ranges": {o["range"] for o in occs},
+                    "domains": [o["class"] for o in occs],
+                    "attr_ids": [o["attr_id"] for o in occs],
+                    "sources": [o["source"] for o in occs],
+                    "glosses": [(o["class"], o["definition"]) for o in occs if o["definition"]],
+                    "code_list_refs": {o["code_list"] for o in occs if o["code_list"]},
+                    "split_from": victim["local"],
+                })
+                counts2 = collections.Counter(t for _, t in p2["glosses"])
+                p2["definition"] = counts2.most_common(1)[0][0] if counts2 else victim["definition"]
+                p2["scope_notes"] = [(c, t) for c, t in p2["glosses"] if t != p2["definition"]]
+                props[new_key] = p2
+            split_report.append({"property": victim["local"], "parts": len(groups),
+                                 "ranges": len(victim["ranges"]), "rule": SPLIT_DISAGREEING})
+        if split_report:
+            with (MAP / "split-properties.csv").open("w", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=list(split_report[0].keys()))
+                w.writeheader()
+                w.writerows(split_report)
+
+    for p in props.values():
+        p.pop("occurrences", None)
 
     # A property belongs to the module of the class that uses it; where several modules use it, it
     # is cross-cutting and belongs in core.

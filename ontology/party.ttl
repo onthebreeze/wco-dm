@@ -759,6 +759,70 @@ wco:addDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:aeomutualrecognitionpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Aeomutualrecognitionparty identification identifier"@en ;
+    skos:definition "Identification of the AEO mutual recognition party."@en ;
+    schema:domainIncludes wco:AEOMutualRecognitionParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R143" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 234" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:aeomutualrecognitionpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Aeomutualrecognitionparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:AEOMutualRecognitionParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 235" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:agentFunctionCode a owl:DatatypeProperty ;
+    rdfs:label "Agent function code"@en ;
+    skos:definition "Code specifying the capacity in which the agent is acting."@en ;
+    schema:domainIncludes wco:Agent ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 4405 For use with the EU CDM: - code 2 (Representative (direct representation within the meaning of Article 18(1) of the code)) - code 3 (Representative (indirect representation within the meaning of Article 18(1) of the code))"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "102" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 243" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:agentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Agent identification identifier"@en ;
+    skos:definition "Identification of a party authorized to act on behalf of another party."@en ;
+    schema:domainIncludes wco:Agent ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R004" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 239" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:agentRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Agent role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Agent ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 240" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:amount a owl:ObjectProperty ;
     rdfs:label "Amount"@en ;
     skos:definition "Amount indicating the Surety's liability on the Customs bond."@en ;
@@ -771,6 +835,32 @@ wco:amount a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:applicantIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Applicant identification identifier"@en ;
+    skos:definition "Identification of a party who applies for something."@en ;
+    schema:domainIncludes wco:Applicant ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R151" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 246" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:applicantRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Applicant role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Applicant ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 247" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:arrivalInCountryLocationNameText a owl:DatatypeProperty ;
     rdfs:label "Arrival in country location name text"@en ;
     skos:definition "Name of the location of a crew member during stay in the destination country."@en ;
@@ -780,6 +870,147 @@ wco:arrivalInCountryLocationNameText a owl:DatatypeProperty ;
     wco:jsonTag "arrivalInCountryLocationName" ;
     wco:attributeId "361" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 333" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:assemblerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Assembler identification identifier"@en ;
+    skos:definition "Identification of the party responsible for putting together various components or parts into a product or commodity in its form or condition as imported."@en ;
+    schema:domainIncludes wco:Assembler ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R110" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 251" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:assemblerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Assembler role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Assembler ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 252" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:assigningpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Assigningparty identification identifier"@en ;
+    skos:definition "Identification of the party who assigns any identifier to a shipment."@en ;
+    schema:domainIncludes wco:AssigningParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R135" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 255" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:assigningpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Assigningparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:AssigningParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 256" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authenticatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Authenticator identification identifier"@en ;
+    skos:definition "Identification of a party which certifies that a document is authentic."@en ;
+    schema:domainIncludes wco:Authenticator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R008" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 260" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authenticatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Authenticator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Authenticator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 261" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authorisationholderRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Authorisationholder role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:AuthorisationHolder ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 265" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authorizationholderCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "Authorizationholder category code"@en ;
+    skos:definition "Code specifying the type of person being the holder of the authorization."@en ;
+    schema:domainIncludes wco:AuthorizationHolder ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "549" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 267" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authorizationholderIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Authorizationholder identification identifier"@en ;
+    skos:definition "Identification of the person being the holder of the authorization."@en ;
+    schema:domainIncludes wco:AuthorizationHolder ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R144" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 264" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authorizedpersonIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Authorizedperson identification identifier"@en ;
+    skos:definition "Identification of a person designated under relevant legislation for the purpose of issuing official assurances."@en ;
+    schema:domainIncludes wco:AuthorizedPerson ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R068" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 270" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:authorizedpersonRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Authorizedperson role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:AuthorizedPerson ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 271" ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
@@ -796,6 +1027,227 @@ wco:businessTypeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:buyerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Buyer identification identifier"@en ;
+    skos:definition "Identification of a party to which merchandise or services are sold."@en ;
+    schema:domainIncludes wco:Buyer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R010" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 275" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:buyerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Buyer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Buyer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 276" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:carrierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Carrier identification identifier"@en ;
+    skos:definition "Identification of a party providing the transport of goods between named points."@en ;
+    schema:domainIncludes wco:Carrier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R012" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 281" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:carrierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Carrier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Carrier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 282" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:certificateofresponsibilityholderIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Certificateofresponsibilityholder identification identifier"@en ;
+    skos:definition "Identification of the party holding the Certificate of Financial Responsibility (COFR)."@en ;
+    schema:domainIncludes wco:CertificateOfResponsibilityHolder ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R096" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 285" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:certificateofresponsibilityholderRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Certificateofresponsibilityholder role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:CertificateOfResponsibilityHolder ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 286" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:certifierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Certifier identification identifier"@en ;
+    skos:definition "Identification of a party which certifies something."@en ;
+    schema:domainIncludes wco:Certifier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R049" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 290" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:certifierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Certifier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Certifier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 291" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:companysecurityofficerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Companysecurityofficer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:CompanySecurityOfficer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 295" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consigneeIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Consignee identification identifier"@en ;
+    skos:definition "Identification of a party to which goods are consigned."@en ;
+    schema:domainIncludes wco:Consignee ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R015" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 299" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consigneeRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Consignee role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Consignee ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 300" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consignorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Consignor identification identifier"@en ;
+    skos:definition "Identification of the party consigning goods as stipulated in the transport contract by the party ordering the transport."@en ;
+    schema:domainIncludes wco:Consignor ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R021" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 305" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consignorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Consignor role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Consignor ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 306" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consolidatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Consolidator identification identifier"@en ;
+    skos:definition "Identification of the freight forwarder combining individual smaller consignments into a single larger consignment (in a consolidation process) that is sent to a counterpart who mirrors the consolidator's activity by dividing the consolidated consignment into its original components."@en ;
+    schema:domainIncludes wco:Consolidator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R019" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 311" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consolidatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Consolidator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Consolidator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 312" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consortiumcarrierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Consortiumcarrier identification identifier"@en ;
+    skos:definition "Identification of a consortium carrier."@en ;
+    schema:domainIncludes wco:ConsortiumCarrier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R108" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 316" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:consortiumcarrierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Consortiumcarrier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:ConsortiumCarrier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 317" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:contactFunctionText a owl:DatatypeProperty ;
     rdfs:label "Contact function text"@en ;
     skos:definition "Specification of the capacity in which the representative person acts on behalf of the party responsible for the declaration."@en ;
@@ -808,6 +1260,175 @@ wco:contactFunctionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:containeroperatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Containeroperator identification identifier"@en ;
+    skos:definition "Identification of the party owning, operating or controlling the transport equipment (e.g. container)."@en ;
+    schema:domainIncludes wco:ContainerOperator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R044" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 320" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:containeroperatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Containeroperator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:ContainerOperator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 321" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:containerterminaloperatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Containerterminaloperator identification identifier"@en ;
+    skos:definition "Identification of the party operating a container terminal or similar facility."@en ;
+    schema:domainIncludes wco:ContainerTerminalOperator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R089" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 324" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:containerterminaloperatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Containerterminaloperator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:ContainerTerminalOperator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 325" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:crewmemberIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Crewmember identification identifier"@en ;
+    skos:definition "Identification of conveyance crew member."@en ;
+    schema:domainIncludes wco:CrewMember ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R033" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 330" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:crewmemberRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Crewmember role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:CrewMember ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 331" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:dangerousgoodscontactpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Dangerousgoodscontactparty identification identifier"@en ;
+    skos:definition "Identification of the dangerous goods contact person/party who can provide detailed information regarding dangerous goods."@en ;
+    schema:domainIncludes wco:DangerousGoodsContactParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R142" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 337" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:dangerousgoodscontactpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Dangerousgoodscontactparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:DangerousGoodsContactParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 338" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:declarantFunctionCode a owl:DatatypeProperty ;
+    rdfs:label "Declarant function code"@en ;
+    skos:definition "Code specifying the capacity in which the declarant is acting."@en ;
+    schema:domainIncludes wco:Declarant ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-4405-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "548" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 345" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:declarantIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Declarant identification identifier"@en ;
+    skos:definition "Identification of a party who makes a declaration to an official body or - where legally permitted - in whose name, or on whose behalf, a declaration to an official body is made."@en ;
+    schema:domainIncludes wco:Declarant ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R123" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 342" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:declarantRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Declarant role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Declarant ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 343" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:deconsolidatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Deconsolidator identification identifier"@en ;
+    skos:definition "Identification of the receiving party of a consolidated shipment, who divides the latter into its original single consignments and undertakes to make them available to be delivered."@en ;
+    schema:domainIncludes wco:Deconsolidator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R023" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 348" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:deconsolidatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Deconsolidator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Deconsolidator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 349" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:deleteDateTime a owl:DatatypeProperty ;
     rdfs:label "Delete date time"@en ;
     skos:definition "Date and time the bond user is removed from the bond."@en ;
@@ -817,6 +1438,162 @@ wco:deleteDateTime a owl:DatatypeProperty ;
     wco:jsonTag "userDeleteDateTime" ;
     wco:attributeId "618" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 507" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:deliverydestinationpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Deliverydestinationparty identification identifier"@en ;
+    skos:definition "Identification of the party to whom goods are to be delivered as required by national legislation or according to national requirements."@en ;
+    schema:domainIncludes wco:DeliveryDestinationParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R028" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 353" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:deliverydestinationpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Deliverydestinationparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:DeliveryDestinationParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 354" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:distillerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Distiller identification identifier"@en ;
+    skos:definition "Identification of the person or company whose business it is to extract alcoholic liquors by distillation."@en ;
+    schema:domainIncludes wco:Distiller ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R072" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 358" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:distillerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Distiller role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Distiller ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 359" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:distributorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Distributor identification identifier"@en ;
+    skos:definition "Identification of the party distributing goods."@en ;
+    schema:domainIncludes wco:Distributor ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R030" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 363" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:distributorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Distributor role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Distributor ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 364" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:domesticdutytaxpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Domesticdutytaxparty identification identifier"@en ;
+    skos:definition "Identification of a party responsible for the national VAT or Goods & Services Tax."@en ;
+    schema:domainIncludes wco:DomesticDutyTaxParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R119" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 368" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:domesticdutytaxpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Domesticdutytaxparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:DomesticDutyTaxParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 3035 For use with the EU CDM: - Code FR1 Importer - Code FR2 Customer - Code FR3 Tax representative - Code FR4 Holder of the deferred payment authorisation - Code FR5 Vendor (IOSS) - Code FR7 Taxable person or of the person liable for payment of VAT"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 369" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:draymanorlightermanIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Draymanorlighterman identification identifier"@en ;
+    skos:definition "Identification of the bonded party that moves goods within port limits on either land or water."@en ;
+    schema:domainIncludes wco:DraymanOrLighterman ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R074" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 373" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:draymanorlightermanRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Draymanorlighterman role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:DraymanOrLighterman ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 374" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:economicoperatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Economicoperator identification identifier"@en ;
+    skos:definition "Identification of an economic operator in whose premises the goods can be controlled."@en ;
+    schema:domainIncludes wco:EconomicOperator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R160" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 377" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:economicoperatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Economicoperator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:EconomicOperator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 378" ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
@@ -833,6 +1610,588 @@ wco:endorsementTypeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:equipmentownerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Equipmentowner identification identifier"@en ;
+    skos:definition "Identification of the owner of the transport equipment."@en ;
+    schema:domainIncludes wco:EquipmentOwner ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R094" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 381" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:equipmentownerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Equipmentowner role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:EquipmentOwner ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 382" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:exhibitorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Exhibitor identification identifier"@en ;
+    skos:definition "Identification of the party who offers items for exhibit or show."@en ;
+    schema:domainIncludes wco:Exhibitor ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R076" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 386" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:exhibitorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Exhibitor role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Exhibitor ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 387" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:exporterIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Exporter identification identifier"@en ;
+    skos:definition "Identification of the party who makes, or on whose behalf the export declaration is made, and who is the owner of the goods or has similar rights of disposal over them at the time when the declaration is accepted."@en ;
+    schema:domainIncludes wco:Exporter ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R032" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 391" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:exporterRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Exporter role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Exporter ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 392" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:feedlotpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Feedlotparty identification identifier"@en ;
+    skos:definition "Identification of a commercial establishment that feeds livestock."@en ;
+    schema:domainIncludes wco:FeedlotParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R078" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 396" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:feedlotpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Feedlotparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:FeedlotParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 397" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:governmentofficerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Governmentofficer identification identifier"@en ;
+    skos:definition "Identification of a person appointed to some position of responsibility or authority in the government."@en ;
+    schema:domainIncludes wco:GovernmentOfficer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R080" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 401" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:governmentofficerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Governmentofficer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:GovernmentOfficer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 402" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:governmentservicerequestorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Governmentservicerequestor identification identifier"@en ;
+    skos:definition "Identification of the person or party requesting inspection, grading, or other government service."@en ;
+    schema:domainIncludes wco:GovernmentServiceRequestor ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R081" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 405" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:governmentservicerequestorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Governmentservicerequestor role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:GovernmentServiceRequestor ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 406" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:growerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Grower identification identifier"@en ;
+    skos:definition "Identification of the person or organization who grows commercial crops."@en ;
+    schema:domainIncludes wco:Grower ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R084" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 410" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:growerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Grower role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Grower ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 411" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:imocompanyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Imocompany identification identifier"@en ;
+    skos:definition "Identification of the company shown in the Continuous Synopsis Record (CSR)."@en ;
+    schema:domainIncludes wco:IMOCompany ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R153" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 415" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:importerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Importer identification identifier"@en ;
+    skos:definition "Identification of a party who makes, or on whose behalf a customs clearing agent or other authorized person makes, an import declaration. This may include a person who has possession of the goods or to whom the goods are consigned."@en ;
+    schema:domainIncludes wco:Importer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R038" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 418" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:importerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Importer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Importer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 419" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:insurancecompanyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Insurancecompany identification identifier"@en ;
+    skos:definition "Identification of a company engaged in the business of insurance."@en ;
+    schema:domainIncludes wco:InsuranceCompany ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R040" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 423" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:insurancecompanyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Insurancecompany role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:InsuranceCompany ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 424" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:intermediatecarrierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Intermediatecarrier identification identifier"@en ;
+    skos:definition "Identification of the carrier who transports the goods from consignor to exporting carrier and/or from importing carrier to consignee or between other named points, for a transit (in-bond) movement."@en ;
+    schema:domainIncludes wco:IntermediateCarrier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R106" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 428" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:intermediatecarrierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Intermediatecarrier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:IntermediateCarrier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 429" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:intermediateconsigneeIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Intermediateconsignee identification identifier"@en ;
+    skos:definition "Identification of the intermediate consignees who may take possession of the goods from consignor to exporting carrier and/or from importing carrier to consignee, for a transit (in-bond) movement."@en ;
+    schema:domainIncludes wco:IntermediateConsignee ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R036" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 432" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:intermediateconsigneeRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Intermediateconsignee role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:IntermediateConsignee ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 433" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:ispsresponsiblepartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Ispsresponsibleparty identification identifier"@en ;
+    skos:definition "Identification of the International Ship and Port Facility Security Code (ISPS) responsible party."@en ;
+    schema:domainIncludes wco:ISPSResponsibleParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R130" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 437" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:ispsresponsiblepartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Ispsresponsibleparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:ISPSResponsibleParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 438" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:issuerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Issuer identification identifier"@en ;
+    skos:definition "Identification of the party having issued the document."@en ;
+    schema:domainIncludes wco:Issuer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R168" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 442" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:loadingproofpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Loadingproofparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:LoadingProofParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 445" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:lpcoauthorizedpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Lpcoauthorizedparty identification identifier"@en ;
+    skos:definition "Identification of the party to whom the license, permit, certificate, or other required document (LPCO) is issued."@en ;
+    schema:domainIncludes wco:LPCOAuthorizedParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R086" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 449" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:lpcoauthorizedpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Lpcoauthorizedparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:LPCOAuthorizedParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 450" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:manufacturerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Manufacturer identification identifier"@en ;
+    skos:definition "Identification of a party which manufactures goods."@en ;
+    schema:domainIncludes wco:Manufacturer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R043" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 454" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:manufacturerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Manufacturer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Manufacturer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 455" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:masterdatapartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Masterdataparty identification identifier"@en ;
+    skos:definition "Identification of the party in the context of master data."@en ;
+    schema:domainIncludes wco:MasterDataParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R149" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 459" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:masterdatapartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Masterdataparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:MasterDataParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 460" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:nonvesseloperatingcarrierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Nonvesseloperatingcarrier identification identifier"@en ;
+    skos:definition "Identification of a common carrier that does not operate the vessels."@en ;
+    schema:domainIncludes wco:NonVesselOperatingCarrier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R013" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 465" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:nonvesseloperatingcarrierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Nonvesseloperatingcarrier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:NonVesselOperatingCarrier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 466" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:notifypartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Notifyparty identification identifier"@en ;
+    skos:definition "Identification of a party to be notified."@en ;
+    schema:domainIncludes wco:NotifyParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R046" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 470" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:notifypartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Notifyparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:NotifyParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 471" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:operatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Operator identification identifier"@en ;
+    skos:definition "Identification of the operator of a mode of transport (e.g. pilot, driver, master of vessel)."@en ;
+    schema:domainIncludes wco:Operator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R017" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 476" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:operatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Operator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Operator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 477" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:organiccertifyingorganizationIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Organiccertifyingorganization identification identifier"@en ;
+    skos:definition "Identification of an accredited organization whose business it is to certify organic growth processes."@en ;
+    schema:domainIncludes wco:OrganicCertifyingOrganization ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R092" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 481" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:organiccertifyingorganizationRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Organiccertifyingorganization role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:OrganicCertifyingOrganization ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 482" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:packerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Packer identification identifier"@en ;
+    skos:definition "Identification of the party packing goods."@en ;
+    schema:domainIncludes wco:Packer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R137" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 486" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:packerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Packer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Packer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 487" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:payerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Payer identification identifier"@en ;
+    skos:definition "Identification of a third person paying an amount of duty."@en ;
+    schema:domainIncludes wco:Payer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R121" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 491" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:payerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Payer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Payer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 492" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:personCategoryCode a owl:DatatypeProperty ;
     rdfs:label "Person category code"@en ;
     skos:definition "Code specifying the category of person (e.g. natural person, legal person)."@en ;
@@ -843,6 +2202,162 @@ wco:personCategoryCode a owl:DatatypeProperty ;
     wco:jsonTag "personCategoryCode" ;
     wco:attributeId "R159" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 278, 302, 308, 473, 564" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:portfacilitysecurityofficerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Portfacilitysecurityofficer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:PortFacilitySecurityOfficer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 496" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:portreceptionfacilityproviderIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Portreceptionfacilityprovider identification identifier"@en ;
+    skos:definition "Identification of the port reception facility provider."@en ;
+    schema:domainIncludes wco:PortReceptionFacilityProvider ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R155" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 500" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:principalIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Principal identification identifier"@en ;
+    skos:definition "Identification of the party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond."@en ;
+    schema:domainIncludes wco:Principal ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R166" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 503" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:principalRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Principal role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Principal ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 504" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:processorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Processor identification identifier"@en ;
+    skos:definition "Identification of a party or person who has or will apply a process."@en ;
+    schema:domainIncludes wco:Processor ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R133" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 510" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:processorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Processor role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Processor ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 511" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:producerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Producer identification identifier"@en ;
+    skos:definition "Identification of the party or person who has produced the product."@en ;
+    schema:domainIncludes wco:Producer ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R035" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 515" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:producerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Producer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Producer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 516" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:propertyoperatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Propertyoperator identification identifier"@en ;
+    skos:definition "Identification of the registered operator of a property."@en ;
+    schema:domainIncludes wco:PropertyOperator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R088" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 520" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:propertyoperatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Propertyoperator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:PropertyOperator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 521" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:propertyownerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Propertyowner identification identifier"@en ;
+    skos:definition "Identification of the owner of the property."@en ;
+    schema:domainIncludes wco:PropertyOwner ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R098" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 525" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:propertyownerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Propertyowner role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:PropertyOwner ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 526" ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
@@ -859,6 +2374,107 @@ wco:qualityAssuranceCode a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:recipientIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Recipient identification identifier"@en ;
+    skos:definition "Identification of the (message) recipient."@en ;
+    schema:domainIncludes wco:Recipient ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R161" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 529" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:recipientRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Recipient role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Recipient ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 530" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:recognizedsecurityorganizationRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Recognizedsecurityorganization role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:RecognizedSecurityOrganization ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 534" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:refundrecipientpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Refundrecipientparty identification identifier"@en ;
+    skos:definition "Identification of the party to receive refund."@en ;
+    schema:domainIncludes wco:RefundRecipientParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R128" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 538" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:refundrecipientpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Refundrecipientparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:RefundRecipientParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 539" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:repairpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Repairparty identification identifier"@en ;
+    skos:definition "Identification of  the party responsible for substantial repair of transport equipment."@en ;
+    schema:domainIncludes wco:RepairParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R114" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 543" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:repairpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Repairparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:RepairParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 544" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:representativepersonRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Representativeperson role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:RepresentativePerson ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 548" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:riderActionCode a owl:DatatypeProperty ;
     rdfs:label "Rider action code"@en ;
     skos:definition "Code specifying the bond user rider action."@en ;
@@ -869,6 +2485,135 @@ wco:riderActionCode a owl:DatatypeProperty ;
     wco:jsonTag "riderActionCode" ;
     wco:attributeId "616" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 505" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:rightholderIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Rightholder identification identifier"@en ;
+    skos:definition "Identification of a right holder which refers to a legal entity or person with exclusive rights to an intellectual property."@en ;
+    schema:domainIncludes wco:RightHolder ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R131" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 553" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:rightholderRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Rightholder role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:RightHolder ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 554" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:sealingpartyTypeCode a owl:ObjectProperty ;
+    rdfs:label "Sealingparty type code"@en ;
+    skos:definition "Code specifying the party affixing or activating the seal for regulatory purposes."@en ;
+    schema:domainIncludes wco:SealingParty ;
+    schema:rangeIncludes wco-cl:sealing-party-type-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 9303"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "547" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 558" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:sellerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Seller identification identifier"@en ;
+    skos:definition "Identification of the party selling merchandise or services to a buyer."@en ;
+    schema:domainIncludes wco:Seller ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R051" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 561" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:sellerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Seller role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Seller ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 562" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:senderIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Sender identification identifier"@en ;
+    skos:definition "Identification of the (message) sender."@en ;
+    schema:domainIncludes wco:Sender ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R162" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 566" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:senderRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Sender role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Sender ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 567" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:shipchandlerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Shipchandler identification identifier"@en ;
+    skos:definition "Identification of a retail dealer who specializes in supplies or equipment for ships, known as ship's stores."@en ;
+    schema:domainIncludes wco:ShipChandler ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R141" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 571" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:shipchandlerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Shipchandler role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:ShipChandler ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 572" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:shipsecurityofficerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Shipsecurityofficer role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:ShipSecurityOfficer ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 576" ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
@@ -884,6 +2629,32 @@ wco:shortNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
+wco:stevedoreIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Stevedore identification identifier"@en ;
+    skos:definition "Identification of the stevedoring company."@en ;
+    schema:domainIncludes wco:Stevedore ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R026" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 579" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:stevedoreRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Stevedore role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Stevedore ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 580" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
 wco:stuffingDateTime a owl:DatatypeProperty ;
     rdfs:label "Stuffing date time"@en ;
     skos:definition "Date and time of loading cargo into a container."@en ;
@@ -893,6 +2664,58 @@ wco:stuffingDateTime a owl:DatatypeProperty ;
     wco:jsonTag "stuffingDateTime" ;
     wco:attributeId "025" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 587" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:stuffingestablishmentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Stuffingestablishment identification identifier"@en ;
+    skos:definition "Identification of the party at whose physical location the goods are loaded into the transport equipment (stuffing establishment)."@en ;
+    schema:domainIncludes wco:StuffingEstablishment ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R025" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 584" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:stuffingestablishmentRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Stuffingestablishment role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:StuffingEstablishment ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 585" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:submitterIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Submitter identification identifier"@en ;
+    skos:definition "Identification of the party who presents a document or data for the approval, consideration, or decision of another."@en ;
+    schema:domainIncludes wco:Submitter ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R059" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 590" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:submitterRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Submitter role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Submitter ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 591" ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
@@ -906,5 +2729,355 @@ wco:supplementaryFilingTypeCode a owl:DatatypeProperty ;
     wco:jsonTag "supplementaryFilingTypeCode" ;
     wco:attributeId "590" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 597" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:supplementarydeclarantIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Supplementarydeclarant identification identifier"@en ;
+    skos:definition "Identification of the supplementary declarant."@en ;
+    schema:domainIncludes wco:SupplementaryDeclarant ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R146" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 594" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:supplementarydeclarantRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Supplementarydeclarant role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:SupplementaryDeclarant ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 595" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:supplierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Supplier identification identifier"@en ;
+    skos:definition "Identification of the party who supplies goods and/or services."@en ;
+    schema:domainIncludes wco:Supplier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R053" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 600" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:supplierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Supplier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Supplier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 601" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:suretyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Surety identification identifier"@en ;
+    skos:definition "Identification of the party who agrees to be responsible for the debt or obligation of another."@en ;
+    schema:domainIncludes wco:Surety ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R055" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 605" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:suretyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Surety role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Surety ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 606" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:tradingpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Tradingparty identification identifier"@en ;
+    skos:definition "Identification of the party responsible for the trade of commercial products."@en ;
+    schema:domainIncludes wco:TradingParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R139" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 611" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:tradingpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Tradingparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:TradingParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 612" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:transitprincipalIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Transitprincipal identification identifier"@en ;
+    skos:definition "Identification of the party accepting liability for goods held or moving under a customs authorization and - when applicable - a guarantee."@en ;
+    schema:domainIncludes wco:TransitPrincipal ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R002" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 616" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:transitprincipalRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Transitprincipal role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:TransitPrincipal ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 617" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:transportmeansoperatorIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Transportmeansoperator identification identifier"@en ;
+    skos:definition "Identification of the registered operator of the means of transport."@en ;
+    schema:domainIncludes wco:TransportMeansOperator ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R056" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 621" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:transportmeansoperatorRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Transportmeansoperator role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:TransportMeansOperator ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 622" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:transportmeansownerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Transportmeansowner identification identifier"@en ;
+    skos:definition "Identification of the registered owner of means the of transport."@en ;
+    schema:domainIncludes wco:TransportMeansOwner ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R090" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 626" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:transportmeansownerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Transportmeansowner role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:TransportMeansOwner ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 627" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:travelagencyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Travelagency identification identifier"@en ;
+    skos:definition "Identification of the travel agency."@en ;
+    schema:domainIncludes wco:TravelAgency ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R164" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 631" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:travelagencyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Travelagency role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:TravelAgency ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 632" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:treatmentfacilityproviderIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Treatmentfacilityprovider identification identifier"@en ;
+    skos:definition "Identification of the treatment facility provider."@en ;
+    schema:domainIncludes wco:TreatmentFacilityProvider ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R157" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 635" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:ultimateconsigneeIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Ultimateconsignee identification identifier"@en ;
+    skos:definition "Identification of the party who has been designated on the invoice or packing list as the final recipient of the stated merchandise."@en ;
+    schema:domainIncludes wco:UltimateConsignee ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R061" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 638" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:ultimateconsigneeRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Ultimateconsignee role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:UltimateConsignee ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 639" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:unloadingpartyIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Unloadingparty identification identifier"@en ;
+    skos:definition "Identification of the party responsible for unloading of goods."@en ;
+    schema:domainIncludes wco:UnloadingParty ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R112" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 643" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:unloadingpartyRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Unloadingparty role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:UnloadingParty ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 644" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:vehicleownerIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Vehicleowner identification identifier"@en ;
+    skos:definition "Identification of the owner of the vehicle."@en ;
+    schema:domainIncludes wco:VehicleOwner ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R100" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 648" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:vehicleownerRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Vehicleowner role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:VehicleOwner ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 649" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:verifierIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Verifier identification identifier"@en ;
+    skos:definition "Identification of a person recognized under relevant legislation to undertake official assurance verification."@en ;
+    schema:domainIncludes wco:Verifier ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R066" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 653" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:verifierRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Verifier role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Verifier ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 654" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:veterinarianIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Veterinarian identification identifier"@en ;
+    skos:definition "Identification of the person who practices veterinary medicine."@en ;
+    schema:domainIncludes wco:Veterinarian ;
+    schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "R104" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 658" ;
+    rdfs:isDefinedBy wco-mod:party ;
+    wco:termStatus ts:active .
+
+wco:veterinarianRoleCode a owl:DatatypeProperty ;
+    rdfs:label "Veterinarian role code"@en ;
+    skos:definition "Code specifying the role of a party."@en ;
+    schema:domainIncludes wco:Veterinarian ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:xmlTag "RoleCode" ;
+    wco:jsonTag "roleCode" ;
+    wco:attributeId "R005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 659" ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .

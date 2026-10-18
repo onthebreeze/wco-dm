@@ -194,6 +194,158 @@ wco:activityTypeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
+wco:additionaldocumentCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "Additionaldocument category code"@en ;
+    skos:definition "Code specifying the category of a document."@en ;
+    schema:domainIncludes wco:AdditionalDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "D031" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 722" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:additionaldocumentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Additionaldocument identification identifier"@en ;
+    skos:definition "Identification of a document providing additional information."@en ;
+    schema:domainIncludes wco:AdditionalDocument ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D005" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 726" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:additionaldocumentStatusCode a owl:ObjectProperty ;
+    rdfs:label "Additionaldocument status code"@en ;
+    skos:definition "Code specifying the status of a document."@en ;
+    schema:domainIncludes wco:AdditionalDocument ;
+    schema:rangeIncludes wco-cl:document-status-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
+    wco:xmlTag "StatusCode" ;
+    wco:jsonTag "statusCode" ;
+    wco:attributeId "D047" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 733" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:additionaldocumentTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Additionaldocument type code"@en ;
+    skos:definition "Code specifying the type of an additional document."@en ;
+    schema:domainIncludes wco:AdditionalDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D006" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 734" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:aipFunctionCode a owl:ObjectProperty ;
+    rdfs:label "Aip function code"@en ;
+    skos:definition "Code specifying the function of a document."@en ;
+    schema:domainIncludes wco:AIP ;
+    schema:rangeIncludes wco-cl:document-function-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1225"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "D046" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 662" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:aipIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Aip identification identifier"@en ;
+    skos:definition "Identification of a specific document."@en ;
+    schema:domainIncludes wco:AIP ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D014" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 664" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:aipTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Aip type code"@en ;
+    skos:definition "Code specifying the name of a document."@en ;
+    schema:domainIncludes wco:AIP ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D013" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 667" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:associatedtransportdocumentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Associatedtransportdocument identification identifier"@en ;
+    skos:definition "Identification of a previous transport document number or other assigned reference number associated with the shipment. Applies to secondary cargo document report only."@en ;
+    schema:domainIncludes wco:AssociatedTransportDocument ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D008" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 741" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:associatedtransportdocumentTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Associatedtransportdocument type code"@en ;
+    skos:definition "Code specifying the type of associated transport document in a secondary cargo report."@en ;
+    schema:domainIncludes wco:AssociatedTransportDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D009" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 742" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:authorizationIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Authorization identification identifier"@en ;
+    skos:definition "Identification of an authorization necessary for the declaration or notification."@en ;
+    schema:domainIncludes wco:Authorization ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D062" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 744" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:authorizationStatusCode a owl:ObjectProperty ;
+    rdfs:label "Authorization status code"@en ;
+    skos:definition "Code specifying the status of a document."@en ;
+    schema:domainIncludes wco:Authorization ;
+    schema:rangeIncludes wco-cl:document-status-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
+    wco:xmlTag "StatusCode" ;
+    wco:jsonTag "statusCode" ;
+    wco:attributeId "D047" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 745" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:authorizationTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Authorization type code"@en ;
+    skos:definition "Code specifying the type of authorization necessary for the declaration or notification."@en ;
+    schema:domainIncludes wco:Authorization ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D059" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 746" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
 wco:cancellationDateTime a owl:DatatypeProperty ;
     rdfs:label "Cancellation date time"@en ;
     skos:definition "Date and time when the document/message was cancelled."@en ;
@@ -203,6 +355,57 @@ wco:cancellationDateTime a owl:DatatypeProperty ;
     wco:jsonTag "cancellationDateTime" ;
     wco:attributeId "D053" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 673, 771" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:declarationFunctionCode a owl:ObjectProperty ;
+    rdfs:label "Declaration function code"@en ;
+    skos:definition "Code specifying the function of a document."@en ;
+    schema:domainIncludes wco:Declaration ;
+    schema:rangeIncludes wco-cl:document-function-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1225"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "D046" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 676" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:declarationIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Declaration identification identifier"@en ;
+    skos:definition "Identification of a specific document."@en ;
+    schema:domainIncludes wco:Declaration ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D014" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 678" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:declarationStatusCode a owl:ObjectProperty ;
+    rdfs:label "Declaration status code"@en ;
+    skos:definition "Code specifying the status of a document."@en ;
+    schema:domainIncludes wco:Declaration ;
+    schema:rangeIncludes wco-cl:document-status-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
+    wco:xmlTag "StatusCode" ;
+    wco:jsonTag "statusCode" ;
+    wco:attributeId "D047" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 683" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:declarationTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Declaration type code"@en ;
+    skos:definition "Code specifying the name of a document."@en ;
+    schema:domainIncludes wco:Declaration ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D013" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 684" ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
@@ -288,6 +491,56 @@ wco:invoiceAmount a owl:ObjectProperty ;
     wco:jsonTag "invoiceAmount" ;
     wco:attributeId "109" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 689" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:invoiceIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Invoice identification identifier"@en ;
+    skos:definition "Identification of an invoice by reference number."@en ;
+    schema:domainIncludes wco:Invoice ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D016" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 753" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:invoiceTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Invoice type code"@en ;
+    skos:definition "Code specifying the type of an invoice."@en ;
+    schema:domainIncludes wco:Invoice ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D025" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 755" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:iprIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Ipr identification identifier"@en ;
+    skos:definition "Identification of the Intellectual Property Rights, for example the unique number affixed by the authentication agency to a IPR for identification purposes."@en ;
+    schema:domainIncludes wco:IPR ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D063" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 761" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:iprTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Ipr type code"@en ;
+    skos:definition "Code specifying the type of IPR according to WTO TRIPS (e.g. copyright, trademarks, geographical indication, industrial designs, patents, integrated circuits layout designs, undisclosed information and trade secrets, curbing anti-competitive licensing contracts, enforcement: tough but fair, technology transfer, etc.)."@en ;
+    schema:domainIncludes wco:IPR ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D064" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 762" ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
@@ -424,6 +677,31 @@ wco:loadingListQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
+wco:loyaltyprogramIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Loyaltyprogram identification identifier"@en ;
+    skos:definition "Identification of the loyalty program."@en ;
+    schema:domainIncludes wco:LoyaltyProgram ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D065" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 765" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:lpcoCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "Lpco category code"@en ;
+    skos:definition "Code specifying the category of a document."@en ;
+    schema:domainIncludes wco:LPCO ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "D031" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 701" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
 wco:lpcoExemptionCode a owl:DatatypeProperty ;
     rdfs:label "LPCO exemption code"@en ;
     skos:definition "Code specifying the type of exemption from a license, permit, certificate, or other document (LPCO) or indication that no LPCO is required."@en ;
@@ -434,6 +712,69 @@ wco:lpcoExemptionCode a owl:DatatypeProperty ;
     wco:jsonTag "lpcoExemptionCode" ;
     wco:attributeId "360" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 738" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:lpcoFunctionCode a owl:ObjectProperty ;
+    rdfs:label "Lpco function code"@en ;
+    skos:definition "Code specifying the function of a document."@en ;
+    schema:domainIncludes wco:LPCO ;
+    schema:rangeIncludes wco-cl:document-function-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1225"@en ;
+    wco:xmlTag "FunctionCode" ;
+    wco:jsonTag "functionCode" ;
+    wco:attributeId "D046" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 704" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:lpcoIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Lpco identification identifier"@en ;
+    skos:definition "Identification of a specific document."@en ;
+    schema:domainIncludes wco:LPCO ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D014" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 707" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:lpcoTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Lpco type code"@en ;
+    skos:definition "Code specifying the name of a document."@en ;
+    schema:domainIncludes wco:LPCO ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D013" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 715" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:obligationguaranteeIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Obligationguarantee identification identifier"@en ;
+    skos:definition "Identification of a specific document."@en ;
+    schema:domainIncludes wco:ObligationGuarantee ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D014" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 774" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:obligationguaranteeStatusCode a owl:ObjectProperty ;
+    rdfs:label "Obligationguarantee status code"@en ;
+    skos:definition "Code specifying the status of a document."@en ;
+    schema:domainIncludes wco:ObligationGuarantee ;
+    schema:rangeIncludes wco-cl:document-status-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
+    wco:xmlTag "StatusCode" ;
+    wco:jsonTag "statusCode" ;
+    wco:attributeId "D047" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 776" ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
@@ -459,6 +800,44 @@ wco:packageTypeCode a owl:ObjectProperty ;
     wco:jsonTag "packageTypeCode" ;
     wco:attributeId "593" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 670" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:previousdocumentCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "Previousdocument category code"@en ;
+    skos:definition "Code specifying the category of a document."@en ;
+    schema:domainIncludes wco:PreviousDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "D031" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 787" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:previousdocumentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Previousdocument identification identifier"@en ;
+    skos:definition "Identification of the previous document by number."@en ;
+    schema:domainIncludes wco:PreviousDocument ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D018" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 788" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:previousdocumentTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Previousdocument type code"@en ;
+    skos:definition "Code specifying the type of document used for declaration previously presented."@en ;
+    schema:domainIncludes wco:PreviousDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D019" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 790" ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
@@ -586,6 +965,43 @@ wco:statusDescriptionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 
+wco:supportingdocumentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Supportingdocument identification identifier"@en ;
+    skos:definition "Identification of the reference number of documents or certificates produced in support of the declaration."@en ;
+    schema:domainIncludes wco:SupportingDocument ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D060" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 793" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:supportingdocumentTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Supportingdocument type code"@en ;
+    skos:definition "Code specifying the details required by any specific rules applicable together with reference data of the documents produced in support of the declaration."@en ;
+    schema:domainIncludes wco:SupportingDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D061" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 794" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:ticketIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Ticket identification identifier"@en ;
+    skos:definition "Identification of the ticket."@en ;
+    schema:domainIncludes wco:Ticket ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D067" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 796" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
 wco:transportMovementCode a owl:ObjectProperty ;
     rdfs:label "Transport movement code"@en ;
     skos:definition "Code specifying a particular transport movement."@en ;
@@ -596,6 +1012,82 @@ wco:transportMovementCode a owl:ObjectProperty ;
     wco:jsonTag "transportMovementCode" ;
     wco:attributeId "493" ;
     dcterms:source "DataSet 1.2, 1.3, 1.4 rows 694" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:transportcontractdocumentConditionCode a owl:ObjectProperty ;
+    rdfs:label "Transportcontractdocument condition code"@en ;
+    skos:definition "Code specifying the conditions of contract and carriage."@en ;
+    schema:domainIncludes wco:TransportContractDocument ;
+    schema:rangeIncludes wco-cl:transport-contract-document-condition-code-list ;
+    wco:codeListBasis "UN/EDIFACT code list 4065"@en ;
+    wco:xmlTag "ConditionCode" ;
+    wco:jsonTag "conditionCode" ;
+    wco:attributeId "091" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 804" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:transportcontractdocumentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Transportcontractdocument identification identifier"@en ;
+    skos:definition "Identification of the document evidencing a transport contract by reference number."@en ;
+    schema:domainIncludes wco:TransportContractDocument ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D023" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 799" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:transportcontractdocumentTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Transportcontractdocument type code"@en ;
+    skos:definition "Code specifying the type of a document evidencing a transport contract."@en ;
+    schema:domainIncludes wco:TransportContractDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D024" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 803" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:traveldocumentCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "Traveldocument category code"@en ;
+    skos:definition "Code specifying the category of a document."@en ;
+    schema:domainIncludes wco:TravelDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/user-code-list> ;
+    wco:codeListBasis "User code list"@en ;
+    wco:xmlTag "CategoryCode" ;
+    wco:jsonTag "categoryCode" ;
+    wco:attributeId "D031" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 807" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:traveldocumentIdentificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "Traveldocument identification identifier"@en ;
+    skos:definition "Identification of the travel document by number."@en ;
+    schema:domainIncludes wco:TravelDocument ;
+    schema:rangeIncludes xsd:string ;
+    wco:xmlTag "ID" ;
+    wco:jsonTag "id" ;
+    wco:attributeId "D035" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 809" ;
+    rdfs:isDefinedBy wco-mod:document ;
+    wco:termStatus ts:active .
+
+wco:traveldocumentTypeCode a owl:DatatypeProperty ;
+    rdfs:label "Traveldocument type code"@en ;
+    skos:definition "Code specifying the name of a travel document."@en ;
+    schema:domainIncludes wco:TravelDocument ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:xmlTag "Type", "TypeCode" ;
+    wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
+    wco:attributeId "D037" ;
+    dcterms:source "DataSet 1.2, 1.3, 1.4 rows 814" ;
     rdfs:isDefinedBy wco-mod:document ;
     wco:termStatus ts:active .
 

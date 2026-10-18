@@ -79,3 +79,18 @@ def label_from_den(den, fallback=None):
         else:
             out.append(w.lower())
     return " ".join(out)
+
+
+def label_from_local(name):
+    """sealTypeCode -> "Seal type code". Used for a property that was split out of a merged one:
+    its label has to follow its new name, or fifty split properties all read "Type code"."""
+    words = re.sub(r"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])", " ", name or "").split()
+    out = []
+    for i, w in enumerate(words):
+        if w.isupper() and len(w) > 1:
+            out.append(w)
+        elif i == 0:
+            out.append(w[0].upper() + w[1:].lower())
+        else:
+            out.append(w.lower())
+    return " ".join(out)
