@@ -7,14 +7,19 @@ administrations and the parties that deal with them exchange. Version 4.3.0 defi
 This site publishes the same model as a linked data vocabulary: every class, property and code has
 its own address, and that address answers a reader with a page and a machine with Turtle or JSON-LD.
 
-## What is here
+## Three kinds of term
 
-| | |
-|---|---|
-| Classes | 283, including the ten core data types |
-| Properties | 409 |
-| Code lists | 136, of which twelve carry their values and the rest name an external list |
-| Mappings | to vocab.unece.org, where a corresponding concept exists |
+The vocabulary has three categories, and a code list is one of them rather than a detail hanging off
+a property. Each has its own index, each term has its own address, and each resolves as a page, as
+Turtle and as JSON-LD.
+
+| | | |
+|---|---|---|
+| [Classes](classes/) | 283 | A group of information the model treats as a thing: a consignment, a party, a means of transport |
+| [Properties](properties/) | 409 | A single piece of information about a class. One property serves every class that uses it |
+| [Code lists](code-lists/) | 171 | The value domain of a coded property, with its codes where WCO owns them |
+
+Mappings to vocab.unece.org are carried on the term pages, where a corresponding concept exists.
 
 Every term carries the file, sheet and row of the WCO workbook it came from, so any statement here
 can be traced back to a cell in the published model.

@@ -57,9 +57,11 @@ def nav_html(current=None):
         href = BASE if item["slug"] == "index" else f'{BASE}docs/{item["slug"]}'
         cls = ' class="here"' if item["slug"] == current else ""
         out.append(f'<a{cls} href="{href}">{html.escape(item["title"])}</a>')
+    out.append(f'<a href="{BASE}classes/">Classes</a>')
+    out.append(f'<a href="{BASE}properties/">Properties</a>')
     out.append(f'<a href="{BASE}code-lists/">Code lists</a>')
     out.append(f'<a href="{BASE}schemas/">Schemas</a>')
-    out.append(f'<a href="{BASE}module/core">Browse the vocabulary</a>')
+
     return '<nav class="sitenav">' + "".join(out) + "</nav>"
 
 
@@ -426,6 +428,43 @@ def main():
                                              "".join(body), [("Vocabulary", BASE), ("Modules", None), (module, None)]))
         counts["module"] += 1
 
+    # The three categories each get an index. A code list is not a detail of a property: it is a
+    # term in its own right, with its own address, its own values and its own page, exactly as a
+    # class and a property are.
+    module_of = lambda t: (one(g, t, RDFS.isDefinedBy) or "").rsplit("/", 1)[-1]
+    mod_link = lambda t: (f'<a href="{BASE}module/{module_of(t)}">{html.escape(module_of(t))}</a>'
+                          if module_of(t) else "")
+
+    all_classes = sorted((t for t in kinds if kinds[t] == "class"), key=lambda t: display_label(g, t).lower())
+    (DIST / "classes").mkdir(parents=True, exist_ok=True)
+    (DIST / "classes" / "index.html").write_text(page(
+        "Classes", "Every class the WCO Data Model vocabulary defines.",
+        f"<h1>Classes ({len(all_classes)})</h1>"
+        '<p class="definition">A class is a group of information the model treats as a thing: a '
+        'consignment, a party, a means of transport. Its properties are listed on its own page.</p>'
+        + table(["Class", "Module", "Definition", "Properties"],
+                [(term_link(g, c), mod_link(c), short(one(g, c, SKOS.definition), 120),
+                  str(len(idx["class_props"].get(c, [])))) for c in all_classes],
+                col_classes=["name", "mod", "prose", "num"]),
+        [("Vocabulary", BASE), ("Classes", None)], current="classes"))
+    counts["page"] += 1
+
+    all_props = sorted((t for t in kinds if kinds[t] == "property"), key=lambda t: display_label(g, t).lower())
+    (DIST / "properties").mkdir(parents=True, exist_ok=True)
+    (DIST / "properties" / "index.html").write_text(page(
+        "Properties", "Every property the WCO Data Model vocabulary defines.",
+        f"<h1>Properties ({len(all_props)})</h1>"
+        '<p class="definition">A property is a single piece of information about a class. One '
+        'property serves every class that uses it, so the same concept has one address however many '
+        'classes carry it.</p>'
+        + table(["Property", "Module", "Definition", "Value", "Used by"],
+                [(term_link(g, t), mod_link(t), short(one(g, t, SKOS.definition), 100),
+                  render_range(g, t, limit=1),
+                  str(len(list(g.objects(t, SCHEMA.domainIncludes))))) for t in all_props],
+                col_classes=["name", "mod", "prose", "value", "num"]),
+        [("Vocabulary", BASE), ("Properties", None)], current="properties"))
+    counts["page"] += 1
+
     # A code list register, grouped by what the model actually knows about each list.
     schemes = sorted(g.subjects(RDF.type, SKOS.ConceptScheme), key=lambda t: display_label(g, t).lower())
     schemes = [t for t in schemes if str(t).startswith(SOURCE_BASE + "code-list/")]
@@ -629,6 +668,7 @@ table.listing td{overflow-wrap:anywhere}
 .c-code{width:90px}
 .c-num{width:84px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .c-rel{width:190px}
+.c-mod{width:110px;white-space:nowrap}
 .rel{font-weight:600;color:var(--brand)}
 .rel-candidate{color:var(--muted);font-weight:500}
 a.more{font-size:13.5px;color:var(--muted)}
