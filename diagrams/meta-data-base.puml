@@ -1,0 +1,67 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title Meta Data
+class "MDIP" as C0 <<root>> {
+  9 elements
+}
+class "BinaryFile" as C1 {
+  16 elements
+}
+class "CommunicationMetaData" as C2 {
+  8 elements
+}
+class "ContextMetaData" as C3 {
+  8 elements
+}
+class "Recipient" as C4 {
+  3 elements
+}
+class "Sender" as C5 {
+  3 elements
+}
+class "Communication" as C6 {
+  2 elements
+}
+class "AdditionalIdentifier" as C7 {
+  3 elements
+}
+class "Communication" as C8 {
+  2 elements
+}
+class "AdditionalIdentifier" as C9 {
+  3 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C0 *-- "0..*" C3
+C2 *-- "0..*" C4
+C2 *-- "0..*" C5
+C4 *-- "0..*" C6
+C4 *-- "0..*" C7
+C5 *-- "0..*" C8
+C5 *-- "0..*" C9
+@enduml

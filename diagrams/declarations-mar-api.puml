@@ -1,0 +1,107 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+left to right direction
+title Maritime API
+class "Declaration" as C0 <<root>> {
+  3 elements
+}
+class "Submitter" as C1 {
+  2 elements
+}
+class "BorderTransportMeans" as C2 {
+  7 elements
+}
+class "Address" as C3 {
+  4 elements
+}
+class "Contact" as C4 {
+  1 element
+}
+class "ArrivalLocation" as C5 {
+  3 elements
+}
+class "BerthLocation" as C6 {
+  2 elements
+}
+class "DepartureLocation" as C7 {
+  3 elements
+}
+class "Itinerary" as C8 {
+  4 elements
+}
+class "Reservation" as C9 {
+  1 element
+}
+class "Communication" as C10 {
+  2 elements
+}
+class "Cabin" as C11 {
+  1 element
+}
+class "Itinerary" as C12 {
+  6 elements
+}
+class "PersonOnBoard" as C13 {
+  2 elements
+}
+class "AdditionalDocument" as C14 {
+  2 elements
+}
+class "Address" as C15 {
+  4 elements
+}
+class "Communication" as C16 {
+  2 elements
+}
+class "PersonData" as C17 {
+  8 elements
+}
+class "TravelDocument" as C18 {
+  6 elements
+}
+class "AdditionalInformation" as C19 {
+  3 elements
+}
+C0 *-- "0..*" C1
+C0 *-- "0..*" C2
+C1 *-- "0..*" C3
+C1 *-- "0..*" C4
+C2 *-- "0..*" C5
+C2 *-- "0..*" C6
+C2 *-- "0..*" C7
+C2 *-- "0..*" C8
+C2 *-- "0..*" C9
+C4 *-- "0..*" C10
+C9 *-- "0..*" C11
+C9 *-- "0..*" C12
+C9 *-- "0..*" C13
+C13 *-- "0..*" C14
+C13 *-- "0..*" C15
+C13 *-- "0..*" C16
+C13 *-- "0..*" C17
+C13 *-- "0..*" C18
+C17 *-- "0..*" C19
+@enduml

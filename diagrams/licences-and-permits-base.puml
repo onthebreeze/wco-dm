@@ -1,0 +1,67 @@
+@startuml
+hide circle
+hide empty members
+hide stereotype
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam nodesep 10
+skinparam ranksep 35
+skinparam packageStyle rectangle
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #0B4EA2
+  ArrowColor #5B6B7C
+  FontColor #14202E
+}
+skinparam class<<root>> {
+  BackgroundColor #0B4EA2
+  FontColor #FFFFFF
+  BorderColor #083A7A
+}
+skinparam class<<more>> {
+  BackgroundColor #F6F9FC
+  BorderColor #9FB3C8
+}
+title LPCO  —  top level by vocabulary module
+class "LPCO" as ROOT <<root>>
+class "core (5)" as M0 {
+  AdditionalInformation
+  Authentication
+  Consignment
+  CurrencyExchange
+  TradeTerms
+}
+ROOT *-- M0
+class "government (5)" as M1 {
+  ContactOffice
+  DeclarationOffice
+  EntryOffice
+  ExitOffice
+  ResponsibleGovernmentAgency
+}
+ROOT *-- M1
+class "party (5)" as M2 {
+  AuthorizedPerson
+  Exporter
+  Importer
+  LPCOAuthorizedParty
+  RepresentativePerson
+}
+ROOT *-- M2
+class "document (4)" as M3 {
+  AdditionalDocument
+  Declaration
+  ObligationGuarantee
+  PreviousDocument
+}
+ROOT *-- M3
+class "location (1)" as M4 {
+  UnloadingLocation
+}
+ROOT *-- M4
+note as N
+  Each box is one vocabulary module and lists the top-level
+  classes of this message that belong to it.
+end note
+@enduml

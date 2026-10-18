@@ -14,13 +14,20 @@ raw-data/*.xlsx          the WCO workbooks, unmodified
       v
 intermediate/*.json      one record per class, attribute, data type, code list and occurrence,
       |                  each carrying its source file, sheet and row
-      |  build_vocabulary.py
-      v
-ontology/*.ttl           the vocabulary: modules, classes, properties, code lists, lifecycle
-      |  build_site.py
+      |  build_vocabulary.py                 |  extract_packages.py
+      v                                      v
+ontology/*.ttl           the vocabulary     intermediate/packages/*.json
+      |                                      |  build_schemas.py -> schemas/
+      |                                      |  build_package_views.py -> views/, diagrams/
+      |  build_site.py  <--------------------+
       v
 dist/<Term>/index.{html,ttl,jsonld}    one directory per term
+dist/packages/<package>/[<message>/]<version>/   one directory per release
 ```
+
+The vocabulary and the messages are built from the same source but down separate paths, and only
+the site generator sees both. That is why a change to how messages are published cannot disturb a
+term, and why `ontology/` stays the thing to read in a diff.
 
 The narrative pages you are reading come out of the same generator, from Markdown in `docs/`, so the
 whole site is one toolchain and one visual language.
@@ -36,7 +43,8 @@ python3 scripts/map_to_unece.py     # 5. refresh mapping candidates, keeping dec
 python3 scripts/extract_packages.py # 6. read the four Information Package workbooks
 python3 scripts/build_schemas.py    # 7. generate a schema and context per package
 python3 scripts/validate_schemas.py # 8. check each one is valid and still rejects something
-python3 scripts/build_site.py       # 9. build the pages
+python3 scripts/build_package_views.py  # 9. the browsable tree and the diagram per message
+python3 scripts/build_site.py       # 10. build the pages
 ```
 
 `scripts/build_all.sh` runs the lot, including the search index. The diff in `ontology/` after step
@@ -67,6 +75,29 @@ python3 -m venv .venv && .venv/bin/pip install jsonschema
 It checks two things. That each schema is valid draft 2020-12, and that each one still rejects an
 instance carrying a field the model does not have — because a schema that accepts everything is
 worse than no schema, since it looks like a control.
+
+## The message views
+
+`build_package_views.py` writes two things per message, for the four packages and the sixteen
+derived packages alike.
+
+`views/<package>/<message>/tree.json` is the message as data: every position with its cardinality,
+its tags, the vocabulary term it is bound to and the code list its values come from. Names and
+definitions are pooled into one string table and referenced by index, because the Declaration
+repeats 243 classes over 1,847 positions and sending each one again would multiply the file for no
+extra meaning. It is minified because it is a transport format for the browser widget; the
+reviewable form of the same content is `intermediate/packages/*.json`.
+
+`diagrams/<package>-<message>.puml` is the conceptual view, rendered to SVG when plantuml is on the
+path and committed so that the site builds without it. There are two shapes. A message whose top
+level is small enough is drawn class by class, as deep as stays readable. The three Base packages
+are not: the Declaration has 67 classes directly under its root, which graphviz lays out in one
+rank 8,000 pixels wide. Those are drawn a level up, as the root and the vocabulary modules its
+top-level classes belong to, with each module box listing them.
+
+The widget itself is `assets/message-browser.js`, which is plain JavaScript with no dependency and
+no build step. It renders rows only as they are opened, so the 9,064 positions of the Declaration
+are never all in the page at once.
 
 ## Why the pages are generated rather than routed
 

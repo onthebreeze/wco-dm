@@ -10,6 +10,7 @@ deploy, which is how vocab.unece.org does the same job.
 
     WCO_BASE=https://test-wcodm.trade-commons.org/ python3 scripts/build_site.py
 """
+import hashlib
 import html
 import json
 import os
@@ -85,7 +86,7 @@ def nav_html(current=None):
     return f'<nav class="sitenav">{top}</nav><nav class="subnav">{sub}</nav>'
 
 
-def page(title, subtitle, body, crumbs, current=None):
+def page(title, subtitle, body, crumbs, current=None, extra_scripts=""):
     nav = " / ".join(f'<a href="{html.escape(h)}">{html.escape(t)}</a>' if h else html.escape(t) for t, h in crumbs)
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -102,8 +103,9 @@ def page(title, subtitle, body, crumbs, current=None):
 </div>{nav_html(current)}</header>
 <main class="wrap">{body}</main>
 <footer class="wrap foot">
-  <p>Generated from the WCO Data Model version 4.3.0. This term is served as HTML, Turtle and
-     JSON-LD at the same address; ask for <code>text/turtle</code> or <code>application/ld+json</code>.</p>
+  <p>Generated from the WCO Data Model version 4.3.0. Every vocabulary term is served as HTML,
+     Turtle and JSON-LD at the same address; ask for <code>text/turtle</code> or
+     <code>application/ld+json</code>.</p>
 </footer>
 <script src="/_pagefind/pagefind-ui.js" onerror="document.getElementById('search').remove()"></script>
 <script>
@@ -119,6 +121,7 @@ def page(title, subtitle, body, crumbs, current=None):
     }}
   }});
 </script>
+{extra_scripts}
 </body></html>
 """
 
@@ -610,124 +613,361 @@ def main():
                  f'<article class="prose">{body}</article>', crumbs, current=item["slug"]))
         counts["page"] += 1
 
-    # The schemas, served beside the vocabulary, with an index that says what each one is for.
-    schemas_dir = ROOT / "schemas"
-    if schemas_dir.exists():
-        import shutil as _sh
-        target = DIST / "schemas"
-        target.mkdir(parents=True, exist_ok=True)
-        report = {}
-        rp = schemas_dir / "build-report.json"
-        if rp.exists():
-            report = json.loads(rp.read_text())
-        for f in schemas_dir.iterdir():
-            if f.name == "build-report.json":
-                continue
-            text = f.read_text()
-            if BASE != SOURCE_BASE:
-                text = text.replace(SOURCE_BASE, BASE)
-            (target / f.name).write_text(text)
-            counts["schema file"] += 1
-
+    # The schemas and the message views, served beside the vocabulary. A package gets a landing page
+    # that says what the message is and shows its shape, and a page per release that carries the
+    # machine artefacts and the structure browser. The landing page is unversioned on purpose: it is
+    # the stable place to link to a message, while each release has its own citable address.
+    schemas_dir, views_dir = ROOT / "schemas", ROOT / "views"
+    if (views_dir / "manifest.json").exists():
+        manifest = json.loads((views_dir / "manifest.json").read_text())
         meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
         pkg_meta, dip_meta = meta["packages"], meta["derived"]
-        PKG_SLUG = {"bip-dec": "declarations", "bip-lpco": "licences-and-permits",
-                    "aip": "additional", "mdip": "meta-data"}
+        VERSION = "4.3.0"
 
-        def dip_rows(key, info):
-            rows = []
-            for slug, n in sorted((info.get("derived") or {}).items()):
-                d = dip_meta.get(slug, {})
-                ds = f"{BASE}schemas/{key}-{slug}-4.3.0.json"
-                dc = f"{BASE}schemas/{key}-{slug}-4.3.0-context.jsonld"
-                editorial = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
-                             if d.get("source") == "editorial" else "")
-                rows.append((
-                    f'<a href="{ds}"><b>{html.escape(d.get("name", slug))}</b></a>{editorial}',
-                    html.escape(d.get("group", "")),
-                    html.escape(d.get("gloss", "")),
-                    str(n),
-                    f'<a class="quiet" href="{dc}">context</a>'))
-            return rows
+        def rewrite(text):
+            return text.replace(SOURCE_BASE, BASE) if BASE != SOURCE_BASE else text
 
-        # One page per package.
-        for key, slug in PKG_SLUG.items():
-            info = report.get(key, {})
-            m = pkg_meta.get(key, {})
-            schema = f"{BASE}schemas/{key}-4.3.0.json"
-            ctx = f"{BASE}schemas/{key}-4.3.0-context.jsonld"
-            facts = [
-                f'<tr><th>Covers</th><td>{html.escape(m.get("description", ""))}</td></tr>',
-                f'<tr><th>Size</th><td>{info.get("nodes", "")} nodes in the information tree</td></tr>',
-                f'<tr><th>Terms in context</th><td>{info.get("context_terms", "")}</td></tr>',
-                f'<tr><th>Files</th><td><a href="{schema}">JSON Schema</a> · '
-                f'<a href="{ctx}">JSON-LD context</a></td></tr>',
-            ]
-            if info.get("ambiguous_tags"):
-                facts.append(
-                    f'<tr><th>Left out of the context</th><td>'
-                    f'{html.escape(", ".join(info["ambiguous_tags"]))}'
-                    f'<br><span class="muted">A tag that means different things in different places '
-                    f'is not bound to one of them.</span></td></tr>')
-            rows = dip_rows(key, info)
-            body = [
-                f'<h1>{html.escape(m.get("title", key))}</h1>',
-                f'<p class="definition">{html.escape(m.get("subtitle", ""))}. '
-                f'{html.escape(m.get("description", ""))}</p>',
-                f'<table class="facts">{"".join(facts)}</table>',
-            ]
-            if rows:
-                body.append(
-                    f'<section><h2>Derived packages ({len(rows)})</h2>'
-                    '<p class="muted">The same tree cut down to the nodes a particular message '
-                    'marks, with the ancestors those nodes need. Each is generated from this '
-                    'package rather than maintained separately.</p>'
-                    + table(["Message", "Group", "What it is", "Nodes", ""], rows,
-                            col_classes=["name", "mod", "prose", "num", "value"])
-                    + '<p class="muted">Where an entry is marked <span class="editorial">gloss</span> '
-                    'the explanation is ours: the workbook names the package but never spells the '
-                    'abbreviation out.</p></section>')
-            else:
-                body.append('<section><h2>Derived packages</h2><p class="muted">None. This package '
-                            'is used as it stands.</p></section>')
-            out = DIST / "packages" / slug
+        # /schemas/ stays a flat directory of every file, because that is where each schema's own
+        # $id points and a published identifier is not moved.
+        if schemas_dir.exists():
+            flat = DIST / "schemas"
+            flat.mkdir(parents=True, exist_ok=True)
+            for f in sorted(schemas_dir.iterdir()):
+                if f.name == "build-report.json":
+                    continue
+                (flat / f.name).write_text(rewrite(f.read_text()))
+                counts["schema file"] += 1
+
+        def message_url(pslug, mslug, version=None):
+            tail = "" if mslug == "base" else f"{mslug}/"
+            return f"{BASE}packages/{pslug}/{tail}" + (f"{version}/" if version else "")
+
+        def message_dir(pslug, mslug, version=None):
+            parts = [DIST, "packages", pslug] + ([] if mslug == "base" else [mslug])
+            if version:
+                parts.append(version)
+            out = pathlib.Path(*parts)
             out.mkdir(parents=True, exist_ok=True)
-            (out / "index.html").write_text(page(
-                m.get("title", key), m.get("description", ""), "".join(body),
-                [("Vocabulary", BASE), ("Information packages", f"{BASE}packages/"),
-                 (m.get("title", key), None)], current=key))
-            counts["page"] += 1
+            return out
+
+        def stat_rows(st):
+            return [
+                ("Positions", f'{st["nodes"]:,}'),
+                ("Classes", f'{st["classes"]:,}'),
+                ("Elements", f'{st["elements"]:,}'),
+                ("Repeating positions", f'{st["repeating"]:,}'),
+                ("Depth", f'{st["maxDepth"]} levels'),
+                ("Mandatory positions", "none" if not st["required"] else f'{st["required"]:,}'),
+            ]
+
+        def facts_table(rows):
+            body = "".join(
+                f'<tr><th>{html.escape(k)}</th><td>{v}</td></tr>' for k, v in rows if v)
+            return f'<table class="facts">{body}</table>'
+
+        def top_level_table(entry, pslug, mslug):
+            """Classes and elements are tabulated apart. The classes are the structure of the
+            message; the elements at the top level are its header, and mixing the two buries the
+            structure in a list of dates."""
+            rel = message_url(pslug, mslug, VERSION)
+
+            def rows_for(kind):
+                return [(
+                    f'<a href="{rel}#{html.escape(t["path"])}"><b>{html.escape(t["name"])}</b></a>',
+                    html.escape(t["card"]),
+                    f'{t["below"]:,}' if t["below"] else "",
+                    html.escape(t["definition"]),
+                ) for t in entry["top_level"] if t["type"] == kind]
+
+            out = []
+            classes, elements = rows_for("C"), rows_for("E")
+            if classes:
+                out.append(f'<h3>Classes ({len(classes)})</h3>'
+                           + table(["Name", "Occurs", "Positions inside", "Definition"], classes,
+                                   col_classes=["name", "code", "num", "prose"]))
+            if elements:
+                out.append(f'<h3>Elements ({len(elements)})</h3>'
+                           + table(["Name", "Occurs", "", "Definition"], elements,
+                                   col_classes=["name", "code", "num", "prose"]))
+            return "".join(out)
+
+        def diagram_figure(entry, pslug, mslug, out):
+            if not entry.get("diagram"):
+                return ""
+            src = ROOT / "diagrams" / entry["diagram"]
+            if not src.exists():
+                return ""
+            (out / "diagram.svg").write_text(src.read_text())
+            counts["message file"] += 1
+            url = message_url(pslug, mslug) + "diagram.svg"
+            if entry["diagram_boxes"] <= 12 and entry.get("diagram_cut"):
+                note = ("Each box is one vocabulary module, listing the classes of this message that "
+                        "belong to it. The top level is too wide to draw class by class, and the "
+                        "module is the model's own grouping rather than a convenience of this page.")
+            elif entry.get("diagram_cut"):
+                note = ("Classes only, to the depth that stays readable. A shaded box has further "
+                        "classes inside it.")
+            else:
+                note = "Every class in the message, with the number of times each may occur."
+            return (f'<section><h2>Conceptual view</h2>'
+                    f'<figure class="diagram"><a href="{url}">'
+                    f'<img src="{url}" alt="Classes of {html.escape(entry["title"])}"></a>'
+                    f'<figcaption>{note} Elements are left out; the structure browser has them. '
+                    f'<a href="{url}">Open the diagram</a>.</figcaption></figure></section>')
+
+        def versions_table(pslug, mslug, st):
+            rel = message_url(pslug, mslug, VERSION)
+            rows = [(
+                f'<a href="{rel}"><b>{VERSION}</b></a>',
+                "current",
+                f'{st["nodes"]:,}',
+                f'<a href="{rel}schema.json">schema.json</a>',
+                f'<a href="{rel}context.jsonld">context.jsonld</a>',
+            )]
+            return table(["Version", "Status", "Positions", "JSON Schema", "JSON-LD context"], rows,
+                         col_classes=["code", "mod", "num", "name", "name"])
+
+        def publish_artefacts(out, entry, pslug):
+            """The machine files beside the release page, each with the digest of what was published."""
+            digests = {}
+            sources = [("schema.json", schemas_dir / entry["schema"]),
+                       ("context.jsonld", schemas_dir / entry["context"]),
+                       ("tree.json", views_dir / pslug / entry["slug"] / "tree.json")]
+            for name, src in sources:
+                if not src.exists():
+                    continue
+                text = rewrite(src.read_text())
+                (out / name).write_text(text)
+                digests[name] = hashlib.sha256(text.encode("utf-8")).hexdigest()
+                counts["message file"] += 1
+            return digests
+
+        for key, pkg in manifest.items():
+            pslug = pkg["slug"]
+            pm = pkg_meta.get(key, {})
+            base = pkg["messages"]["base"]
+            derived = [m for s, m in sorted(pkg["messages"].items()) if s != "base"]
+
+            for entry in [base] + derived:
+                mslug = entry["slug"]
+                is_derived = entry["derived"]
+                dm = dip_meta.get(mslug, {}) if is_derived else {}
+                name = dm.get("name", entry["title"]) if is_derived else pm.get("title", entry["title"])
+                title = f'{name} {"derived package" if is_derived else "Information Package"}'
+                st = entry["stats"]
+                out = message_dir(pslug, mslug)
+                rel = message_url(pslug, mslug, VERSION)
+
+                editorial = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
+                             if dm.get("source") == "editorial" else "")
+                lead = (html.escape(dm.get("gloss", "")) + editorial if is_derived
+                        else html.escape(pm.get("description", entry["title"])))
+                rows = [("Derived from" if is_derived else "Kind",
+                         f'<a href="{message_url(pslug, "base")}">'
+                         f'{html.escape(pm.get("title", key))}</a>' if is_derived else
+                         html.escape(pm.get("subtitle", "Information Package")))]
+                if is_derived:
+                    rows.append(("Group in the workbook",
+                                 html.escape(dm.get("group") or entry.get("group", ""))))
+                    share = st["nodes"] * 100.0 / max(base["stats"]["nodes"], 1)
+                    rows.append(("Share of the package",
+                                 f'{st["nodes"]:,} of {base["stats"]["nodes"]:,} positions '
+                                 f'({share:.1f}%)'))
+                rows += stat_rows(st)
+                rows.append(("Current version", f'<a href="{rel}">{VERSION}</a>, '
+                                                'from WCO Data Model 4.3.0'))
+                rows.append(("Source", html.escape(pkg["source"]["file"])))
+
+                body = [f'<h1>{html.escape(title)}</h1>',
+                        f'<p class="definition">{lead}</p>',
+                        facts_table(rows),
+                        diagram_figure(entry, pslug, mslug, out)]
+                if st["required"] == 0:
+                    body.append(
+                        '<p class="aside">Nothing in this message is mandatory: every position is '
+                        'optional in the model. Obligation is set by the regulation or the national '
+                        'profile that uses the message, which is what a derived package begins to '
+                        'do.</p>')
+                body.append(f'<section><h2>Versions</h2>'
+                            '<p class="muted">The message is versioned even though the vocabulary is '
+                            'not, because a format has to be pinned before anyone can validate '
+                            'against it. Each release keeps its own address.</p>'
+                            + versions_table(pslug, mslug, st) + '</section>')
+                body.append(f'<section><h2>Top level</h2>'
+                            f'<p class="muted">What sits directly inside '
+                            f'<code>{html.escape(entry["top_level"][0]["path"].split("/")[0])}</code>. '
+                            f'Follow a name to that point in the structure browser.</p>'
+                            + top_level_table(entry, pslug, mslug) + '</section>')
+                if not is_derived and derived:
+                    drows = []
+                    for d in derived:
+                        d_meta = dip_meta.get(d["slug"], {})
+                        mark = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
+                                if d_meta.get("source") == "editorial" else "")
+                        drows.append((
+                            f'<a href="{message_url(pslug, d["slug"])}">'
+                            f'<b>{html.escape(d_meta.get("name", d["title"]))}</b></a>{mark}',
+                            html.escape(d_meta.get("group") or d.get("group", "")),
+                            html.escape(d_meta.get("gloss", "")),
+                            f'{d["stats"]["nodes"]:,}',
+                        ))
+                    body.append(
+                        f'<section><h2>Derived packages ({len(derived)})</h2>'
+                        '<p class="muted">The same tree cut down to the positions one message marks, '
+                        'with the ancestors those positions need. Each is generated from this package '
+                        'rather than maintained separately, so it cannot drift from it.</p>'
+                        + table(["Message", "Group", "What it is", "Positions"], drows,
+                                col_classes=["name", "mod", "prose", "num"])
+                        + '<p class="muted">Where an entry is marked '
+                        '<span class="editorial">gloss</span> the explanation is ours: the workbook '
+                        'names the package but never spells the abbreviation out.</p></section>')
+                crumbs = [("Vocabulary", BASE), ("Information packages", f"{BASE}packages/")]
+                if is_derived:
+                    crumbs.append((pm.get("title", key), message_url(pslug, "base")))
+                crumbs.append((name, None))
+                (out / "index.html").write_text(page(title, lead, "".join(body), crumbs, current=key))
+                counts["page"] += 1
+
+                # The release page: machine artefacts, their digests, and the browser.
+                rout = message_dir(pslug, mslug, VERSION)
+                digests = publish_artefacts(rout, entry, pslug)
+                files = [
+                    ("JSON Schema", "schema.json", "Validates an instance of this message."),
+                    ("JSON-LD context", "context.jsonld",
+                     "Binds each tag in the message to the published term that defines it."),
+                    ("Structure", "tree.json",
+                     "The message as data: every position with its cardinality, tags and term."),
+                ]
+                frows = []
+                for label, fname, what in files:
+                    if fname not in digests:
+                        continue
+                    frows.append((
+                        f'<b>{label}</b><br><span class="muted">{what}</span>',
+                        f'<a href="{rel}{fname}"><code>{rel}{fname}</code></a>',
+                        f'<code class="digest">{digests[fname][:16]}…</code>',
+                    ))
+                rbody = [
+                    f'<h1>{html.escape(name)} {VERSION}</h1>',
+                    f'<p class="definition">Release {VERSION} of the '
+                    f'<a href="{message_url(pslug, mslug)}">{html.escape(title)}</a>, generated from '
+                    f'WCO Data Model 4.3.0.</p>',
+                    '<section><h2>Machine artefacts</h2>'
+                    '<p class="muted">These addresses are permanent. A later WCO release publishes '
+                    'under its own version rather than replacing these files, so a document '
+                    'validated today can be validated the same way later.</p>'
+                    + table(["File", "Address", "SHA-256"], frows,
+                            col_classes=["name", "prose", "code"])
+                    + '<p class="muted">The digest is of the file as published. Recording it with a '
+                    'document fixes which schema and which context that document was written '
+                    'against.</p></section>',
+                    f'<section><h2>Structure</h2>'
+                    '<p class="muted">Every position in the message. Classes are shown in bold, '
+                    'elements plain; the number on the right is how many classes and elements sit '
+                    'inside. Select a position for its definition, its tags, and the vocabulary term '
+                    'that defines it.</p>'
+                    f'<div class="browser" data-tree="{rel}tree.json" data-pagefind-ignore>'
+                    '<div class="browser-bar">'
+                    '<input class="browser-filter" type="search" '
+                    'placeholder="Filter by name, tag or WCO ID" aria-label="Filter the structure">'
+                    '<button type="button" data-act="two">Two levels</button>'
+                    '<button type="button" data-act="three">Three</button>'
+                    '<button type="button" data-act="collapse">Collapse</button>'
+                    '<span class="browser-count"></span></div>'
+                    '<div class="browser-panes"><div class="browser-tree" role="tree" '
+                    'aria-label="Message structure">Loading the structure…</div>'
+                    '<aside class="browser-detail"><p class="muted">Select a position to see what it '
+                    'is.</p></aside></div></div>'
+                    '<noscript><p class="aside">The structure browser needs JavaScript. Without it, '
+                    f'<a href="{rel}tree.json">tree.json</a> carries the same content, and the top '
+                    f'level is tabulated on the <a href="{message_url(pslug, mslug)}">package '
+                    'page</a>.</p></noscript></section>',
+                    '<section><h2>How the schema was derived</h2><p class="muted">A class becomes an '
+                    'object, an element becomes a typed property, an unbounded maximum becomes an '
+                    'array, and a minimum of one becomes required. The cardinality is the model\'s '
+                    'own: it comes from the Number of Occurrences column of the package workbook, '
+                    'which neither the library nor the overall information structure carries.</p>'
+                    + facts_table([
+                        ("Positions bound to a vocabulary term",
+                         f'{st["bound"]:,} of {st["nodes"]:,}'),
+                        ("Positions with a code list", f'{st["coded"]:,}'),
+                        ("Mandatory positions",
+                         "none in the model" if not st["required"] else f'{st["required"]:,}'),
+                    ]) + '</section>',
+                ]
+                (rout / "index.html").write_text(page(
+                    f"{name} {VERSION}", f"Release {VERSION} of the {name} message.",
+                    "".join(rbody),
+                    crumbs[:-1] + [(name, message_url(pslug, mslug)), (VERSION, None)],
+                    current=key, extra_scripts=f'<script src="{BASE}message-browser.js"></script>'))
+                counts["page"] += 1
 
         # The overview.
         rows_over = []
         for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
-            info, m = report.get(key, {}), pkg_meta.get(key, {})
+            pkg = manifest.get(key)
+            if not pkg:
+                continue
+            pm, st = pkg_meta.get(key, {}), pkg["messages"]["base"]["stats"]
+            n_derived = len(pkg["messages"]) - 1
             rows_over.append((
-                f'<a href="{BASE}packages/{PKG_SLUG[key]}/"><b>{html.escape(m.get("title", key))}</b></a>',
-                html.escape(m.get("description", "")),
-                str(info.get("nodes", "")),
-                str(len(info.get("derived") or {}))))
+                f'<a href="{message_url(pkg["slug"], "base")}">'
+                f'<b>{html.escape(pm.get("title", key))}</b></a>',
+                html.escape(pm.get("description", "")),
+                f'{st["nodes"]:,}',
+                f'{st["classes"]:,}',
+                str(n_derived) if n_derived else "",
+            ))
+        all_derived = []
+        for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
+            pkg = manifest.get(key)
+            if not pkg:
+                continue
+            for slug, m in sorted(pkg["messages"].items()):
+                if slug == "base":
+                    continue
+                d_meta = dip_meta.get(slug, {})
+                mark = (' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>'
+                        if d_meta.get("source") == "editorial" else "")
+                all_derived.append((
+                    f'<a href="{message_url(pkg["slug"], slug)}">'
+                    f'<b>{html.escape(d_meta.get("name", m["title"]))}</b></a>{mark}',
+                    f'<a class="quiet" href="{message_url(pkg["slug"], "base")}">'
+                    f'{html.escape(pkg_meta.get(key, {}).get("title", key))}</a>',
+                    html.escape(d_meta.get("gloss", "")),
+                    f'{m["stats"]["nodes"]:,}',
+                ))
         body = (
             "<h1>Information packages</h1>"
             '<p class="definition">The vocabulary says what a term means. An Information Package '
             'says how terms are assembled into a message, and how many times each piece may occur. '
-            'A JSON Schema and a JSON-LD context are generated for each, and for every derived '
-            'package that subsets it.</p>'
-            + table(["Package", "Covers", "Nodes", "Derived"], rows_over,
-                    col_classes=["name", "prose", "num", "num"])
-            + '<section><h2>How to read the schemas</h2><p class="muted">A class becomes an object, '
-            'an element becomes a typed property, an unbounded maximum becomes an array, and a '
-            'minimum of one becomes required. Each property carries the WCO identifier it came from '
-            'and, where the vocabulary has the term, a link to it.</p>'
-            '<p class="muted">The cardinality is the model\'s own: it comes from the Number of '
-            'Occurrences column of the package workbooks, which the library and the overall '
-            'information structure do not carry.</p></section>')
+            'A JSON Schema, a JSON-LD context and a browsable structure are generated for each, and '
+            'for every derived package that subsets it.</p>'
+            + table(["Package", "Covers", "Positions", "Classes", "Derived"], rows_over,
+                    col_classes=["name", "prose", "num", "num", "num"])
+            + '<section><h2>Base, derived, and what that means in practice</h2>'
+            '<p class="muted">A Base Information Package is a catalogue: everything a declaration or '
+            'a licence could carry, with every position optional. Nothing in any of the four '
+            'packages is mandatory, so a schema generated straight from one will accept an almost '
+            'empty document. Obligation arrives with the regulation or the national profile that '
+            'uses the message.</p>'
+            '<p class="muted">A derived package is the first narrowing: the workbook marks which '
+            'positions a particular message uses, and the Maritime API package is 86 positions of '
+            'the Declaration\'s 9,064. That is the number worth knowing before implementing.</p>'
+            '</section>'
+            f'<section><h2>Derived packages ({len(all_derived)})</h2>'
+            + table(["Message", "From", "What it is", "Positions"], all_derived,
+                    col_classes=["name", "mod", "prose", "num"])
+            + '<p class="muted">Where an entry is marked <span class="editorial">gloss</span> the '
+            'explanation is ours: the workbook names the package but never spells the abbreviation '
+            'out.</p></section>')
         out = DIST / "packages"
         out.mkdir(parents=True, exist_ok=True)
         (out / "index.html").write_text(page(
             "Information packages", "How the WCO Data Model assembles terms into messages.",
             body, [("Vocabulary", BASE), ("Information packages", None)], current="packages"))
         counts["page"] += 1
+        (DIST / "message-browser.js").write_text((ROOT / "assets" / "message-browser.js").read_text())
 
     (DIST / "vocab.css").write_text(CSS)
     print(f"base: {BASE}")
@@ -796,6 +1036,38 @@ table.listing td{overflow-wrap:anywhere}
 .c-num{width:84px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .c-rel{width:190px}
 .c-mod{width:110px;white-space:nowrap}
+figure.diagram{margin:14px 0 6px;padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:center}
+figure.diagram img{max-width:100%;max-height:620px;height:auto}
+figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:12px;text-align:left}
+p.aside{border-left:3px solid var(--brand);background:var(--bg);padding:10px 14px;margin:14px 0;font-size:15px}
+code.digest{font-size:12.5px;color:var(--muted)}
+.browser{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:14px 0;background:#fff}
+.browser-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+.browser-bar input{flex:1 1 240px;min-width:180px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;font:inherit;font-size:14px}
+.browser-bar button{padding:6px 11px;border:1px solid var(--line);border-radius:6px;background:#fff;font:inherit;font-size:13.5px;color:var(--brand);cursor:pointer}
+.browser-bar button:hover{border-color:var(--brand)}
+.browser-count{font-size:13px;color:var(--muted);margin-left:auto}
+.browser-panes{display:flex;align-items:stretch;min-height:320px}
+.browser-tree{flex:1 1 58%;max-height:560px;overflow:auto;padding:8px 4px 14px;font-size:14.5px}
+.browser-detail{flex:1 1 42%;border-left:1px solid var(--line);background:#fcfdff;padding:14px 16px;max-height:560px;overflow:auto}
+.browser-detail h3{margin:0 0 4px;font-size:17px}
+.browser-detail .bpath{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--muted);word-break:break-all;margin:0 0 10px}
+.browser-detail .bdef{margin:0 0 10px;font-size:14.5px}
+.browser-detail .brem{margin:0 0 10px;font-size:13.5px;color:var(--muted)}
+.browser-detail table.facts th{width:140px;font-size:13px;padding:6px 10px 6px 0}
+.browser-detail table.facts td{font-size:13.5px}
+.browser .kids{margin-left:15px;border-left:1px dotted var(--line);padding-left:5px}
+.browser .row{display:flex;gap:7px;align-items:baseline;padding:3px 8px;border-radius:5px;cursor:pointer}
+.browser .row:hover{background:var(--bg)}
+.browser .row.on{background:#e8f1fc;outline:1px solid #bcd6f2}
+.browser .twisty{width:12px;flex:0 0 12px;color:var(--muted);font-size:11px;line-height:1.6}
+.browser .nm{color:var(--ink)}
+.browser .nm.cls{font-weight:600;color:var(--brand-dark)}
+.browser .tag{font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.browser .card{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.browser .kidcount{font-size:11.5px;color:#8294a6;margin-left:auto;white-space:nowrap}
+.browser-failed .browser-tree{color:var(--muted);padding:18px}
+@media (max-width:760px){.browser-panes{flex-direction:column}.browser-detail{border-left:0;border-top:1px solid var(--line)}}
 .jump{font-size:14px;color:var(--muted);margin:0 0 18px}
 .jump a{margin-right:2px}
 a.modhead{text-decoration:none}
