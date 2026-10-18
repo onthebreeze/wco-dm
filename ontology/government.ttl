@@ -216,7 +216,7 @@ wco:nameCode a owl:DatatypeProperty ;
     rdfs:label "Name code"@en ;
     skos:definition "Identification of the government agency, responsible for regulatory and statutory obligations."@en ;
     schema:domainIncludes wco:ResponsibleGovernmentAgency ;
-    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes> ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-list> ;
     wco:codeListBasis "UN/LOCODE + User codes"@en ;
     wco:xmlTag "NameCode" ;
     wco:jsonTag "nameCode" ;

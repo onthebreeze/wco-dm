@@ -57,10 +57,20 @@ def load(name):
 
 
 def code_list_slug(name):
-    """AEOProgramTypeCode -> aeo-program-type-code. Hyphens go in at the camel-case boundaries
-    before lowercasing, so the slug stays readable in a URL."""
+    """AEOProgramTypeCode -> aeo-program-type-code-list. Hyphens go in at the camel-case boundaries
+    before lowercasing, so the slug stays readable in a URL.
+
+    The register names a list after the attribute it serves, so "TypeCode" is both a property and a
+    list and a reader cannot tell which a link leads to. The suffix settles it: the property is
+    "Type code", the list is "TypeCodeList"."""
     s = re.sub(r"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])", "-", name or "")
-    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+    slug = re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+    return slug if slug.endswith("-list") else slug + "-list"
+
+
+def code_list_label(name):
+    n = (name or "").strip()
+    return n if n.lower().endswith("list") else n + "List"
 
 
 def norm_basis(text):
@@ -301,7 +311,8 @@ def main():
     cl = [header("code-lists", "WCO Data Model — code lists", "The code lists the WCO Data Model 4.3.0 registers. Twelve carry their values; the rest name an external list.")]
     for c in code_lists:
         slug = code_list_slug(c["name"])
-        cl.append(f'wco-cl:{slug} a skos:ConceptScheme ;\n    rdfs:label "{esc(c["name"])}"@en ;')
+        cl.append(f'wco-cl:{slug} a skos:ConceptScheme ;\n    rdfs:label "{esc(code_list_label(c["name"]))}"@en ;')
+        cl.append(f'    skos:altLabel "{esc(c["name"])}"@en ;')
         if c.get("basis"):
             cl.append(f'    wco:codeListBasis "{esc(c["basis"])}"@en ;')
         cl.append(f'    wco:codeListOrigin "registered" ;')

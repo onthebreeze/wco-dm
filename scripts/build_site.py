@@ -129,17 +129,31 @@ def term_link(g, iri):
     return f'<a href="{publish(iri)}">{html.escape(display_label(g, iri))}</a>'
 
 
-def render_range(g, t):
-    """A property's value. A code list is a link; anything else is a type."""
-    out = []
+def split_range(g, t):
+    """A property's value, as (plain types, code lists)."""
+    types, lists = [], []
     for o in sorted(g.objects(t, SCHEMA.rangeIncludes), key=str):
         if (o, RDF.type, SKOS.ConceptScheme) in g:
-            out.append(f'<a class="codelist" href="{publish(o)}">{html.escape(display_label(g, o))}</a>')
+            lists.append(o)
         elif str(o).startswith(SOURCE_BASE):
-            out.append(term_link(g, o))
+            types.append(term_link(g, o))
         else:
-            out.append(f'<code>{html.escape(str(o).rsplit("#", 1)[-1])}</code>')
-    return ", ".join(out)
+            types.append(f'<code>{html.escape(str(o).rsplit("#", 1)[-1])}</code>')
+    return types, sorted(lists, key=lambda o: display_label(g, o).lower())
+
+
+def render_range(g, t, limit=2):
+    """The value column. A merged property can draw on many code lists - typeCode draws on
+    seventeen, because each class that uses it codes against a different one - so the column shows
+    the type and the first few lists, and sends the reader to the property page for the rest rather
+    than unrolling them into the table."""
+    types, lists = split_range(g, t)
+    out = list(types)
+    for o in lists[:limit]:
+        out.append(f'<a class="codelist" href="{publish(o)}">{html.escape(display_label(g, o))}</a>')
+    if len(lists) > limit:
+        out.append(f'<a class="more" href="{publish(t)}">and {len(lists) - limit} more</a>')
+    return ", ".join(out) or "<code>string</code>"
 
 
 def short(text, n=150):
@@ -166,7 +180,7 @@ def term_body(g, s, kind, idx):
     if module:
         row("Module", f'<a href="{BASE}module/{module}">{html.escape(module)}</a>')
     if kind == "property":
-        row("Value", render_range(g, s))
+        row("Value", ", ".join(split_range(g, s)[0]) or "<code>string</code>")
     for prop, name in ((WCO.xmlTag, "XML tag"), (WCO.jsonTag, "JSON tag"),
                        (WCO.classId, "WCO class ID"), (WCO.attributeId, "WCO attribute ID"),
                        (SKOS.notation, "Code")):
@@ -199,6 +213,17 @@ def term_body(g, s, kind, idx):
             + "</section>")
 
     if kind == "property":
+        _, lists = split_range(g, s)
+        if lists:
+            sections.append(
+                f'<section><h2>Value domain ({len(lists)})</h2>'
+                + ('<p class="muted">Each class that uses this property codes against its own list, '
+                   'so the value domain depends on where it is used.</p>' if len(lists) > 1 else "")
+                + table(["Code list", "Based on", "Values"],
+                        [(term_link(g, o), short(one(g, o, WCO.codeListBasis), 90),
+                          str(len(idx["scheme_concepts"].get(o, [])))) for o in lists],
+                        col_classes=["name", "prose", "num"])
+                + "</section>")
         classes = sorted(g.objects(s, SCHEMA.domainIncludes), key=lambda t: display_label(g, t).lower())
         sections.append(
             f'<section><h2>Used by ({len(classes)})</h2>'
@@ -606,6 +631,7 @@ table.listing td{overflow-wrap:anywhere}
 .c-rel{width:190px}
 .rel{font-weight:600;color:var(--brand)}
 .rel-candidate{color:var(--muted);font-weight:500}
+a.more{font-size:13.5px;color:var(--muted)}
 a.codelist{background:#eef4fb;border:1px solid #cfe0f2;border-radius:5px;padding:1px 7px;font-size:14px;text-decoration:none;white-space:nowrap}
 @media(max-width:760px){table.listing{table-layout:auto}.c-name,.c-value,.c-rel{width:auto}}
 table.facts th.sub{padding-left:22px;font-weight:400;color:var(--ink)}
