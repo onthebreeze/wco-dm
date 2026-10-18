@@ -6,3 +6,6 @@ dist/
 out/
 .next/
 node_modules/
+
+# The XML schemas are cached outside the repository: the Declaration alone is 50MB.
+/tmp-xsd/

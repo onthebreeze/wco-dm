@@ -123,11 +123,12 @@ def build_view(by_path, children, root, vocab):
             "t": n["type"],
             "c": cardinality(n),
         }
-        tag = clean_tag(n.get("json_tag"))
+        tag = clean_tag(n.get("json_tag"), path)
         if tag:
             out["g"] = tag
-        if n.get("xml_tag"):
-            out["x"] = n["xml_tag"]
+        xml_tag = clean_tag(n.get("xml_tag"), path)
+        if xml_tag:
+            out["x"] = xml_tag
         if n.get("format"):
             out["f"] = n["format"]
         if n.get("remark"):

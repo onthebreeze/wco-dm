@@ -38,10 +38,25 @@ SOURCE_BASE = BASE = "https://vocabulary.wcoomd.org/"
 
 
 
-def clean_tag(tag):
-    """Root tags arrive with the structure name folded in ("cis\\ndeclaration"); the last line is
-    the tag itself."""
-    return (tag or "").split("\n")[-1].strip()
+def clean_tag(tag, path=None):
+    """A tag cell that holds more than one line.
+
+    Two cases. A root tag arrives with the structure name folded in ("cis\\ndeclaration"), where the
+    last line is the tag. And ten cells in the 4.3.0 workbooks hold two candidate tags, the same
+    pair repeated on rows that need different ones: Invoice/type and Invoice/Issuer/name both say
+    "TypeCode\\nName". WCO's own XML schemas take TypeCode on one and Name on the other, which is
+    how we know the published schemas are not generated from these spreadsheets. Where the path is
+    known, the line that matches the path's last segment is the one meant.
+    """
+    lines = [t.strip() for t in (tag or "").split("\n") if t.strip()]
+    if len(lines) < 2:
+        return lines[0] if lines else ""
+    if path:
+        tail = path.rsplit("/", 1)[-1].lower()
+        matching = [t for t in lines if tail and tail in t.lower()]
+        if len(matching) == 1:
+            return matching[0]
+    return lines[-1]
 
 
 def json_type(fmt):
@@ -124,7 +139,7 @@ def node_schema(path, by_path, children, attr_iris, defs):
     properties, required = {}, []
     for child in kids:
         c = by_path[child]
-        tag = clean_tag(c["json_tag"]) or c["path"].rsplit("/", 1)[-1]
+        tag = clean_tag(c["json_tag"], c["path"]) or c["path"].rsplit("/", 1)[-1]
         sub = node_schema(child, by_path, children, attr_iris, defs)
         if (c.get("max") or "").lower() == "unbounded":
             sub = {"type": "array", "items": sub}
@@ -149,7 +164,7 @@ def context_for(by_path, attr_iris, class_iris):
     in different places is left out rather than bound to one of them."""
     seen, conflicts = {}, set()
     for node in by_path.values():
-        tag = clean_tag(node["json_tag"])
+        tag = clean_tag(node["json_tag"], node["path"])
         if not tag or not node.get("wco_id"):
             continue
         iri = (attr_iris if node["type"] == "E" else class_iris).get(node["wco_id"])

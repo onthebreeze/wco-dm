@@ -1,0 +1,71 @@
+{
+  "_note": "The XML schemas WCO publishes for a release, and the two things about each that the workbooks do not carry: the token used in its file name and target namespace, and the name of its root element. Both are read from the published schema itself. A derived package usually keeps the root element of the package it subsets, but not always: UPU CUSRSP is rooted at Response and UPU REFRSP at its own name.",
+  "4.3.0": {
+    "_unmapped/ois": {
+      "name": "OIS",
+      "root": "OIS",
+      "file": "OIS_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/2.%20Overall%20Information%20Package%20(OIS)/2.3%20XML%20Schema/OIS/WithNotes/OIS_4p3p0.xsd"
+    },
+    "meta-data/base": {
+      "name": "MDIP",
+      "root": "MDIP",
+      "file": "MDIP_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/1.%20MDIP/WithNotes/MDIP_4p3p0.xsd"
+    },
+    "additional/aeo-master-data": {
+      "name": "AEO_MasterData",
+      "root": "AIP",
+      "file": "AEO_MasterData_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/2.%20AIP/1.%20DIP/AEO%20MasterData/AEO_MasterData_4p3p0.xsd"
+    },
+    "additional/upu-cusres": {
+      "name": "UPU_CUSRSP",
+      "root": "Response",
+      "file": "UPU_CUSRSP_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/2.%20AIP/1.%20DIP/UPU%20CUSRSP/UPU_CUSRSP_4p3p0.xsd"
+    },
+    "declarations/base": {
+      "name": "Declaration",
+      "root": "Declaration",
+      "file": "Declaration_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/1.%20BIP/WithNotes/Declaration_4p3p0.xsd"
+    },
+    "declarations/mar-api": {
+      "name": "MaritimeAPI",
+      "root": "Declaration",
+      "file": "MaritimeAPI_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/Maritime%20API/WithNotes/MaritimeAPI_4p3p0.xsd"
+    },
+    "declarations/mar-bri": {
+      "name": "BRI",
+      "root": "Declaration",
+      "file": "BRI_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/Maritime%20BRI/WithNotes/BRI_4p3p0.xsd"
+    },
+    "declarations/upu-cusitm": {
+      "name": "UPU_CUSITM",
+      "root": "Declaration",
+      "file": "UPU_CUSITM_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/UPU%20CUSITM/WithNotes/UPU_CUSITM_4p3p0.xsd"
+    },
+    "declarations/upu-refrsp": {
+      "name": "UPU_REFRSP",
+      "root": "UPU_REFRSP",
+      "file": "UPU_REFRSP_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/UPU%20REFRSP/WithNotes/UPU_REFRSP_4p3p0.xsd"
+    },
+    "licences-and-permits/base": {
+      "name": "LPCO",
+      "root": "LPCO",
+      "file": "LPCO_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/4.%20LPCO/1.%20BIP/WithNotes/LPCO_4p3p0.xsd"
+    },
+    "licences-and-permits/coo-wco-tcro": {
+      "name": "e_CO",
+      "root": "LPCO",
+      "file": "e_CO_4p3p0.xsd",
+      "url": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/4.%20LPCO/2.%20DIP/Certificate%20of%20Origin%20(under%20the%20WCO%20TCRO)/WithNotes/e_CO_4p3p0.xsd"
+    }
+  }
+}
