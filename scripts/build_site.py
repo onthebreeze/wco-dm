@@ -82,24 +82,126 @@ def closure(g, subject, kind, idx):
     of address answers with itself plus one step of what its page shows, and every borrowed term
     keeps its own rdfs:isDefinedBy, so a reader can see which module it really belongs to.
 
+    A borrowed property is included in outline rather than in full. `identificationIdentifier` has
+    174 domains and a class-specific gloss for each, and listing all of them under a class that
+    uses one of them turned a 4KB description of Agent into 49KB, nearly all of it about other
+    classes. What is kept is what the class needs: the property's name, definition, value space and
+    status, the statement that it applies to this class, and the gloss written for this class. The
+    rest is at the property's own address, which is the identifier already in front of the reader.
+
     Nothing is duplicated in the source. ontology/<module>.ttl still defines each term exactly once;
     the overlap exists only in what is generated from it.
     """
-    subjects = [subject]
+    sub = new_graph()
+    for p, o in g.predicate_objects(subject):
+        sub.add((subject, p, o))
+
     if kind == "class":
-        subjects += idx["class_props"].get(subject, [])
-    elif kind == "property":
-        subjects += [r for r in g.objects(subject, SCHEMA.rangeIncludes) if (r, RDF.type, SKOS.ConceptScheme) in g]
+        label = next((str(o) for o in g.objects(subject, RDFS.label)), "")
+        outline = {RDF.type, RDFS.label, RDFS.isDefinedBy, SKOS.definition,
+                   SCHEMA.rangeIncludes, WCO.termStatus}
+        for prop in idx["class_props"].get(subject, []):
+            for p, o in g.predicate_objects(prop):
+                if p in outline:
+                    sub.add((prop, p, o))
+                elif p == SCHEMA.domainIncludes and o == subject:
+                    sub.add((prop, p, o))
+                elif p == SKOS.scopeNote and label and str(o).startswith(label + ":"):
+                    sub.add((prop, p, o))
+        # A superclass says which classes are its subclasses, because the page does and because a
+        # reader resolving wco:Party and finding nothing about the 89 classes marked as parties
+        # would conclude the model does not say it. One statement each, not their descriptions.
+        for child in g.subjects(RDFS.subClassOf, subject):
+            sub.add((child, RDFS.subClassOf, subject))
+            for lab in g.objects(child, RDFS.label):
+                sub.add((child, RDFS.label, lab))
+        return sub
+
+    subjects = []
+    if kind == "property":
+        subjects = [r for r in g.objects(subject, SCHEMA.rangeIncludes)
+                    if (r, RDF.type, SKOS.ConceptScheme) in g]
     elif kind == "code-list":
-        subjects += idx["scheme_concepts"].get(subject, [])
-    return describe(g, subjects)
+        subjects = idx["scheme_concepts"].get(subject, [])
+    for s2 in subjects:
+        for p, o in g.predicate_objects(s2):
+            sub.add((s2, p, o))
+    return sub
 
 
-def write_rdf(out, sub):
-    """Serialise one resource three ways into its own directory."""
+# The JSON-LD context. Without one, every predicate is a full IRI and every value an object with
+# an @value key, which is correct RDF and miserable JSON: a class came to 83KB of it. With terms
+# declared here the same description reads as ordinary JSON - "label": "Agent" - and a developer
+# who has never heard of RDF can use it.
+#
+# The language is declared per term rather than once for the document, because a document-wide
+# @language forces every untagged literal into an @value wrapper to say it has no language.
+def _lang(iri):
+    return {"@id": iri, "@language": "en"}
+
+
+def _ref(iri):
+    return {"@id": iri, "@type": "@id"}
+
+
+JSONLD_CONTEXT = {
+    "wco": SOURCE_BASE, "wco-mod": SOURCE_BASE + "module/",
+    "wco-cl": SOURCE_BASE + "code-list/", "ts": SOURCE_BASE + "term-status/",
+    "rdfs": str(RDFS), "owl": str(OWL), "skos": str(SKOS), "dcterms": str(DCTERMS),
+    "schema": str(SCHEMA), "dcat": str(DCAT), "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "label": _lang("rdfs:label"), "comment": _lang("rdfs:comment"),
+    "definition": _lang("skos:definition"), "scopeNote": _lang("skos:scopeNote"),
+    "altLabel": _lang("skos:altLabel"), "prefLabel": _lang("skos:prefLabel"),
+    "note": _lang("skos:note"), "codeListBasis": _lang("wco:codeListBasis"),
+    "superclassElement": _lang("wco:superclassElement"),
+    "name": _lang("schema:name"), "description": _lang("schema:description"),
+    "module": _ref("rdfs:isDefinedBy"), "subClassOf": _ref("rdfs:subClassOf"),
+    "member": _ref("rdfs:member"), "seeAlso": _ref("rdfs:seeAlso"),
+    "domainIncludes": _ref("schema:domainIncludes"),
+    "rangeIncludes": _ref("schema:rangeIncludes"),
+    "inScheme": _ref("skos:inScheme"), "termStatus": _ref("wco:termStatus"),
+    "exactMatch": _ref("skos:exactMatch"), "closeMatch": _ref("skos:closeMatch"),
+    "relatedMatch": _ref("skos:relatedMatch"), "isPartOf": _ref("dcterms:isPartOf"),
+    "distribution": _ref("dcat:distribution"), "downloadURL": _ref("dcat:downloadURL"),
+    "source": "dcterms:source", "notation": "skos:notation",
+    "classId": "wco:classId", "attributeId": "wco:attributeId",
+    "introducedIn": "wco:introducedIn", "deprecatedIn": "wco:deprecatedIn",
+    "presentIn": "wco:presentIn", "superclassId": "wco:superclassId",
+    "superclassElementId": "wco:superclassElementId",
+    "xmlTag": "wco:xmlTag", "jsonTag": "wco:jsonTag",
+    "codeListOrigin": "wco:codeListOrigin", "hasVersion": "dcterms:hasVersion",
+    "mediaType": "dcat:mediaType", "sha256": "schema:sha256",
+}
+
+CONTEXT_URL = SOURCE_BASE + "context.jsonld"
+
+
+def write_rdf(out, sub, primary=None):
+    """Serialise one resource three ways into its own directory.
+
+    The JSON-LD is compacted against the context above and the resource that was asked for is put
+    first, so that a reader fetching a class is not handed a list that begins with one of its
+    properties.
+    """
     for ext, fmt, _label in MACHINE:
-        text = (sub.serialize(format=fmt, indent=1) if fmt == "json-ld"
-                else sub.serialize(format=fmt))
+        if fmt == "json-ld":
+            text = sub.serialize(format=fmt, context=dict(JSONLD_CONTEXT), indent=1,
+                                 auto_compact=True)
+            try:
+                doc = json.loads(text)
+                # The context is published once, at its own address, and referenced. Inlined it is
+                # two and a half kilobytes of boilerplate in front of every description on the
+                # site, and the first thing a reader sees is the plumbing rather than the term.
+                doc["@context"] = CONTEXT_URL
+                nodes = doc.get("@graph")
+                if isinstance(nodes, list) and primary is not None:
+                    want = str(primary).replace(SOURCE_BASE, "wco:")
+                    nodes.sort(key=lambda n: 0 if n.get("@id") in (want, str(primary)) else 1)
+                text = json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
+            except ValueError:
+                pass
+        else:
+            text = sub.serialize(format=fmt)
         if BASE != SOURCE_BASE:
             text = text.replace(SOURCE_BASE, BASE)
         (out / f"index.{ext}").write_text(text)
@@ -614,7 +716,7 @@ def write_term(g, s, kind, counts, idx):
     out = DIST / rel
     out.mkdir(parents=True, exist_ok=True)
 
-    write_rdf(out, closure(g, s, kind, idx))
+    write_rdf(out, closure(g, s, kind, idx), primary=s)
     label = display_label(g, s)
     crumbs = [("Vocabulary", BASE)]
     if kind == "concept":
@@ -1846,6 +1948,8 @@ def main():
 
     (DIST / "vocab.css").write_text(CSS)
     (DIST / "search.js").write_text((ROOT / "assets" / "search.js").read_text())
+    (DIST / "context.jsonld").write_text(
+        json.dumps({"@context": JSONLD_CONTEXT}, indent=1, ensure_ascii=False) + "\n")
     print(f"base: {BASE}")
     for k in sorted(counts):
         print(f"  {k}: {counts[k]}")
