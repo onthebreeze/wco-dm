@@ -100,11 +100,18 @@ def page(title, subtitle, body, crumbs, current=None):
 """
 
 
-def table(headers, rows, cls="listing"):
+def table(headers, rows, cls="listing", col_classes=None):
+    """col_classes names each column so the stylesheet can size it: "name" for a term, "prose" for a
+    definition that must wrap, "num" for a count that must not."""
     if not rows:
         return ""
-    head = "".join(f"<th>{h}</th>" for h in headers)
-    body = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
+    cc = col_classes or [""] * len(headers)
+    head = "".join(f'<th class="c-{c}">{h}</th>' if c else f"<th>{h}</th>"
+                   for h, c in zip(headers, cc))
+    body = "".join(
+        "<tr>" + "".join(f'<td class="c-{c}">{v}</td>' if c else f"<td>{v}</td>"
+                         for v, c in zip(r, cc)) + "</tr>"
+        for r in rows)
     return f'<table class="{cls}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>'
 
 
@@ -164,11 +171,6 @@ def term_body(g, s, kind, idx):
         scheme = next(iter(g.objects(s, SKOS.inScheme)), None)
         if scheme:
             row("Code list", link(scheme))
-    for prop, name in ((SKOS.exactMatch, "Exact match"), (SKOS.closeMatch, "Close match"),
-                       (SKOS.relatedMatch, "Related")):
-        vals = many(g, s, prop)
-        if vals:
-            row(name, ", ".join(f'<a href="{html.escape(v)}">{html.escape(v)}</a>' for v in vals))
     row("Source", html.escape(one(g, s, DCTERMS.source) or ""))
 
     sections = [f'<table class="facts">{"".join(rows)}</table>']
@@ -182,7 +184,7 @@ def term_body(g, s, kind, idx):
                  ", ".join(sorted(term_link(g, o) if str(o).startswith(SOURCE_BASE)
                                   else f"<code>{html.escape(str(o).rsplit('#', 1)[-1])}</code>"
                                   for o in g.objects(t, SCHEMA.rangeIncludes))))
-                for t in props])
+                for t in props], col_classes=["name", "prose", "value"])
                or '<p class="muted">This class carries no properties of its own.</p>')
             + "</section>")
 
@@ -191,7 +193,8 @@ def term_body(g, s, kind, idx):
         sections.append(
             f'<section><h2>Used by ({len(classes)})</h2>'
             + (table(["Class", "Definition"],
-                     [(term_link(g, c), short(one(g, c, SKOS.definition))) for c in classes])
+                     [(term_link(g, c), short(one(g, c, SKOS.definition))) for c in classes],
+                     col_classes=["name", "prose"])
                or '<p class="muted">No class declares this property.</p>')
             + "</section>")
 
@@ -203,7 +206,8 @@ def term_body(g, s, kind, idx):
                 f'<section><h2>Values ({len(concepts)})</h2>'
                 + table(["Code", "Meaning"],
                         [(f'<a href="{publish(c)}"><code>{html.escape(one(g, c, SKOS.notation) or "")}</code></a>',
-                          short(one(g, c, SKOS.prefLabel), 200)) for c in concepts])
+                          short(one(g, c, SKOS.prefLabel), 200)) for c in concepts],
+                        col_classes=["code", "prose"])
                 + "</section>")
         else:
             sections.append(
@@ -214,8 +218,40 @@ def term_body(g, s, kind, idx):
             sections.append(
                 f'<section><h2>Used by ({len(users)})</h2>'
                 + table(["Property", "Definition"],
-                        [(term_link(g, t), short(one(g, t, SKOS.definition))) for t in users])
+                        [(term_link(g, t), short(one(g, t, SKOS.definition))) for t in users],
+                        col_classes=["name", "prose"])
                 + "</section>")
+
+    # Mappings to vocab.unece.org: the accepted ones first, then the candidates the ledger has not
+    # had reviewed, marked as such. Showing only the accepted ones would leave almost every page
+    # blank, and showing candidates unmarked would pass a guess off as a decision.
+    accepted, candidates = [], []
+    for prop, name in ((SKOS.exactMatch, "exact match"), (SKOS.closeMatch, "close match"),
+                       (SKOS.relatedMatch, "related")):
+        for v in many(g, s, prop):
+            accepted.append((name, v))
+    for c in idx["candidates"].get(str(s).replace(BASE, SOURCE_BASE), []):
+        if not any(v == c["unece_term"] for _, v in accepted):
+            candidates.append(c)
+    if accepted or candidates:
+        rows_m = []
+        for name, v in sorted(accepted):
+            rows_m.append((f'<span class="rel">{html.escape(name)}</span>',
+                           f'<a href="{html.escape(v)}">{html.escape(v.rsplit("/", 1)[-1])}</a>',
+                           f'<code class="muted">{html.escape(v)}</code>'))
+        for c in sorted(candidates, key=lambda c: -float(c["score"])):
+            rel = c["relation"].replace("skos:", "")
+            rows_m.append((
+                f'<span class="rel rel-candidate">{html.escape(rel)}</span> '
+                f'<span class="editorial" title="Proposed by the matcher, not yet reviewed">candidate {c["score"]}</span>',
+                f'<a href="{html.escape(c["unece_term"])}">{html.escape(c["unece_label"] or c["unece_term"].rsplit("/", 1)[-1])}</a>',
+                f'<span class="muted">{html.escape(c["evidence"])}</span>'))
+        sections.append(
+            f'<section><h2>Mapped to vocab.unece.org ({len(rows_m)})</h2>'
+            + table(["Relation", "Term", "Evidence"], rows_m, col_classes=["rel", "name", "prose"])
+            + ('<p class="muted">A candidate is proposed by the matcher and has not been reviewed. '
+               'See <code>mappings/wco-to-unece.csv</code>.</p>' if candidates else "")
+            + "</section>")
 
     notes = many(g, s, SKOS.scopeNote)
     if notes:
@@ -288,6 +324,15 @@ def main():
         for scheme in g.objects(concept, SKOS.inScheme):
             idx["scheme_concepts"][scheme].append(concept)
 
+    idx["candidates"] = defaultdict(list)
+    ledger = ROOT / "mappings" / "wco-to-unece.csv"
+    if ledger.exists():
+        import csv as _csv
+        with ledger.open() as f:
+            for r in _csv.DictReader(f):
+                if r.get("decision") == "review":
+                    idx["candidates"][r["wco_term"]].append(r)
+
     kinds = {}
     for s in g.subjects(RDF.type, OWL.Class):
         kinds[s] = "class"
@@ -322,14 +367,16 @@ def main():
             body.append(f'<section><h2>Classes ({len(classes)})</h2>' + table(
                 ["Class", "Definition", "Properties"],
                 [(term_link(g, c), short(one(g, c, SKOS.definition)),
-                  str(len(idx["class_props"].get(c, [])))) for c in classes]) + "</section>")
+                  str(len(idx["class_props"].get(c, [])))) for c in classes],
+                col_classes=["name", "prose", "num"]) + "</section>")
 
         props = sorted(groups.get("property", []), key=by_label)
         if props:
             body.append(f'<section><h2>Properties ({len(props)})</h2>' + table(
                 ["Property", "Definition", "Used by"],
                 [(term_link(g, t), short(one(g, t, SKOS.definition)),
-                  str(len(list(g.objects(t, SCHEMA.domainIncludes))))) for t in props]) + "</section>")
+                  str(len(list(g.objects(t, SCHEMA.domainIncludes))))) for t in props],
+                col_classes=["name", "prose", "num"]) + "</section>")
 
         schemes = sorted(groups.get("code-list", []), key=by_label)
         if schemes:
@@ -337,7 +384,8 @@ def main():
                 ["Code list", "Based on", "Values", "Used by"],
                 [(term_link(g, c), short(one(g, c, WCO.codeListBasis), 90),
                   str(len(idx["scheme_concepts"].get(c, []))) or "0",
-                  str(len(idx["scheme_props"].get(c, [])))) for c in schemes]) + "</section>")
+                  str(len(idx["scheme_props"].get(c, [])))) for c in schemes],
+                col_classes=["name", "prose", "num", "num"]) + "</section>")
 
         (out / "index.html").write_text(page(f"{module} module", "A module of the WCO Data Model vocabulary.",
                                              "".join(body), [("Vocabulary", BASE), ("Modules", None), (module, None)]))
@@ -499,7 +547,17 @@ table.listing{border-collapse:collapse;width:100%;margin:6px 0 4px;font-size:15p
 table.listing th{text-align:left;background:var(--bg);border-bottom:2px solid var(--line);padding:8px 10px;color:var(--muted);font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.03em}
 table.listing td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
 table.listing tr:hover td{background:#f9fbfe}
-table.listing td:last-child,table.listing th:last-child{white-space:nowrap}
+table.listing{table-layout:fixed}
+table.listing td{overflow-wrap:anywhere}
+.c-name{width:22%}
+.c-prose{width:auto;white-space:normal}
+.c-value{width:18%}
+.c-code{width:90px}
+.c-num{width:84px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.c-rel{width:190px}
+.rel{font-weight:600;color:var(--brand)}
+.rel-candidate{color:var(--muted);font-weight:500}
+@media(max-width:760px){table.listing{table-layout:auto}.c-name,.c-value,.c-rel{width:auto}}
 table.facts th.sub{padding-left:22px;font-weight:400;color:var(--ink)}
 ul.dips{margin:0;padding-left:18px}
 ul.dips li{margin:10px 0}
