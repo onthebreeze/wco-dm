@@ -12,6 +12,11 @@ echo "== fidelity =="           && python3 scripts/fidelity_check.py
 echo "== vocabulary =="         && python3 scripts/build_vocabulary.py
 echo "== validate =="           && python3 scripts/validate_vocab.py
 echo "== mappings =="           && python3 scripts/map_to_unece.py
+echo "== packages =="           && python3 scripts/extract_packages.py
+echo "== schemas =="            && python3 scripts/build_schemas.py
+# The schema gate needs jsonschema, which the rest of the pipeline does not. It skips rather than
+# fails when the library is absent, so a plain checkout still builds.
+echo "== schema check =="       && python3 scripts/validate_schemas.py
 echo "== site =="               && python3 scripts/build_site.py
 
 echo "== search index =="

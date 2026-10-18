@@ -1,0 +1,56 @@
+{
+ "aip": {
+  "nodes": 440,
+  "context_terms": 113,
+  "ambiguous_tags": [],
+  "derived": {
+   "etir": 89,
+   "sstl": 8,
+   "aeo-master-data": 46,
+   "aeomra": 25,
+   "cntrl": 252,
+   "inf": 258,
+   "bussval": 140,
+   "techval": 123,
+   "sta": 244,
+   "upu-cusres": 58
+  }
+ },
+ "bip-dec": {
+  "nodes": 9064,
+  "context_terms": 583,
+  "ambiguous_tags": [
+   "authentication",
+   "id",
+   "name",
+   "nameCode",
+   "quantityQuantity",
+   "rateNumeric"
+  ],
+  "derived": {
+   "mar-api": 86,
+   "mar-bri": 144,
+   "upu-cusitm": 83,
+   "upu-refrsp": 26
+  }
+ },
+ "bip-lpco": {
+  "nodes": 763,
+  "context_terms": 231,
+  "ambiguous_tags": [
+   "authentication",
+   "name",
+   "nameCode"
+  ],
+  "derived": {
+   "coo-wco-tcro": 107,
+   "customs-bond": 35
+  }
+ },
+ "mdip": {
+  "nodes": 67,
+  "context_terms": 51,
+  "ambiguous_tags": [],
+  "derived": {}
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "mdip": {
+  "title": "Meta Data Information Package",
+  "nodes": 67,
+  "classes": 10,
+  "elements": 57,
+  "repeating": 9,
+  "max_depth": 5,
+  "derived_packages": []
+ },
+ "aip": {
+  "title": "Additional Information Package",
+  "nodes": 440,
+  "classes": 93,
+  "elements": 347,
+  "repeating": 92,
+  "max_depth": 6,
+  "derived_packages": [
+   "etir",
+   "sstl",
+   "aeo master data",
+   "aeomra",
+   "cntrl",
+   "inf",
+   "bussval",
+   "techval",
+   "sta",
+   "upu cusres"
+  ]
+ },
+ "bip-dec": {
+  "title": "Declaration Base Information Package",
+  "nodes": 9064,
+  "classes": 1847,
+  "elements": 7217,
+  "repeating": 1842,
+  "max_depth": 11,
+  "derived_packages": [
+   "mar. api",
+   "mar. bri",
+   "upu cusitm",
+   "upu refrsp"
+  ]
+ },
+ "bip-lpco": {
+  "title": "LPCO Base Information Package",
+  "nodes": 763,
+  "classes": 172,
+  "elements": 591,
+  "repeating": 171,
+  "max_depth": 8,
+  "derived_packages": [
+   "coo wco tcro",
+   "customs bond"
+  ]
+ }
+}

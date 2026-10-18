@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""Stage D, second half: JSON Schema and JSON-LD context per Information Package.
+
+The library gives meaning, the packages give structure. A package file is a tree of information
+paths, each node saying how many times it may occur, so a schema follows directly: a class becomes
+an object, an element becomes a typed property, max unbounded becomes an array, and min one becomes
+required.
+
+Each derived package - eTIR, Certificate of Origin, Maritime API and the rest - is the same tree cut
+down to the nodes it marks, with the ancestors those nodes need, so its schema is generated from the
+same source rather than maintained separately.
+
+    python3 scripts/build_schemas.py
+"""
+import json
+import os
+import pathlib
+import re
+import sys
+
+import rdflib
+from rdflib.namespace import OWL, RDF, RDFS
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+PKG = ROOT / "intermediate" / "packages"
+ONT, OUT = ROOT / "ontology", ROOT / "schemas"
+SOURCE_BASE = "https://vocabulary.wcoomd.org/"
+BASE = os.environ.get("WCO_BASE", SOURCE_BASE).rstrip("/") + "/"
+VERSION = "4.3.0"
+
+
+def clean_tag(tag):
+    """Root tags arrive with the structure name folded in ("cis\\ndeclaration"); the last line is
+    the tag itself."""
+    return (tag or "").split("\n")[-1].strip()
+
+
+def json_type(fmt):
+    """A WCO format to a JSON Schema type. an..35 is a string of up to 35, n..2 an integer of up to
+    two digits, a2 exactly two letters."""
+    if not fmt:
+        return {"type": "string"}
+    f = fmt.strip()
+    m = re.match(r"^(a|an|n)(\.\.)?(\d+)$", f)
+    if not m:
+        return {"type": "string", "description": f"WCO format {f}"}
+    kind, variable, size = m.group(1), bool(m.group(2)), int(m.group(3))
+    if kind == "n":
+        # Numeric formats cover identifiers and counts alike; a string with a pattern keeps leading
+        # zeros, which a number would lose, and WCO numerics are frequently coded values.
+        return {"type": "string", "pattern": rf"^\d{{1,{size}}}$" if variable else rf"^\d{{{size}}}$"}
+    out = {"type": "string"}
+    if variable:
+        out["maxLength"] = size
+    else:
+        out["minLength"] = out["maxLength"] = size
+    return out
+
+
+def property_iris():
+    """WCO attribute ID -> vocabulary IRI, so a context can point at the published term."""
+    g = rdflib.Graph()
+    for f in sorted(ONT.glob("*.ttl")):
+        g.parse(f, format="turtle")
+    wco = rdflib.Namespace(SOURCE_BASE)
+    out = {}
+    for kind in (OWL.DatatypeProperty, OWL.ObjectProperty):
+        for s in g.subjects(RDF.type, kind):
+            for attr_id in g.objects(s, wco.attributeId):
+                out.setdefault(str(attr_id), str(s))
+    classes = {}
+    for s in g.subjects(RDF.type, OWL.Class):
+        for class_id in g.objects(s, wco.classId):
+            classes.setdefault(str(class_id), str(s))
+    return out, classes
+
+
+def build_tree(nodes, keep=None):
+    """Nodes to a nested dict keyed by path. `keep` limits it to a derived package: a node is kept
+    if it is marked, or if a kept node sits below it."""
+    by_path = {n["path"]: n for n in nodes}
+    if keep is not None:
+        wanted = set()
+        for n in nodes:
+            if keep in (n["used_by"] or []):
+                parts = n["path"].split("/")
+                for i in range(1, len(parts) + 1):
+                    wanted.add("/".join(parts[:i]))
+        by_path = {p: n for p, n in by_path.items() if p in wanted}
+    children = {}
+    for path in by_path:
+        parent = path.rsplit("/", 1)[0] if "/" in path else None
+        children.setdefault(parent, []).append(path)
+    for v in children.values():
+        v.sort(key=lambda p: int(by_path[p].get("seq") or 0))
+    return by_path, children
+
+
+def node_schema(path, by_path, children, attr_iris, defs):
+    node = by_path[path]
+    kids = children.get(path, [])
+    if node["type"] == "E" and not kids:
+        schema = json_type(node["format"])
+        if node.get("definition"):
+            schema["description"] = node["definition"]
+        if node.get("code_list"):
+            schema["x-wco-code-list"] = node["code_list"]
+        if node.get("wco_id"):
+            schema["x-wco-id"] = node["wco_id"]
+            iri = attr_iris.get(node["wco_id"])
+            if iri:
+                schema["x-wco-term"] = iri.replace(SOURCE_BASE, BASE)
+        return schema
+
+    properties, required = {}, []
+    for child in kids:
+        c = by_path[child]
+        tag = clean_tag(c["json_tag"]) or c["path"].rsplit("/", 1)[-1]
+        sub = node_schema(child, by_path, children, attr_iris, defs)
+        if (c.get("max") or "").lower() == "unbounded":
+            sub = {"type": "array", "items": sub}
+            if (c.get("min") or "0") not in ("0", None):
+                sub["minItems"] = int(c["min"])
+        properties[tag] = sub
+        if (c.get("min") or "0") not in ("0", "", None):
+            required.append(tag)
+
+    schema = {"type": "object", "properties": properties, "additionalProperties": False}
+    if node.get("definition"):
+        schema["description"] = node["definition"]
+    if node.get("wco_id"):
+        schema["x-wco-id"] = node["wco_id"]
+    if required:
+        schema["required"] = sorted(required)
+    return schema
+
+
+def context_for(by_path, attr_iris, class_iris):
+    """A JSON-LD context mapping each tag to its published term. A tag that means different things
+    in different places is left out rather than bound to one of them."""
+    seen, conflicts = {}, set()
+    for node in by_path.values():
+        tag = clean_tag(node["json_tag"])
+        if not tag or not node.get("wco_id"):
+            continue
+        iri = (attr_iris if node["type"] == "E" else class_iris).get(node["wco_id"])
+        if not iri:
+            continue
+        iri = iri.replace(SOURCE_BASE, BASE)
+        if tag in seen and seen[tag] != iri:
+            conflicts.add(tag)
+        seen[tag] = iri
+    ctx = {"@version": 1.1, "wco": BASE}
+    for tag, iri in sorted(seen.items()):
+        if tag not in conflicts:
+            ctx[tag] = iri
+    return ctx, sorted(conflicts)
+
+
+def write(pkg_key, title, description, by_path, children, root, attr_iris, class_iris, suffix=""):
+    name = f"{pkg_key}{suffix}"
+    schema = node_schema(root, by_path, children, attr_iris, {})
+    schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": f"{BASE}schemas/{name}-{VERSION}.json",
+        "title": title,
+        "description": description,
+        "x-wco-data-model-version": VERSION,
+        **schema,
+    }
+    (OUT / f"{name}-{VERSION}.json").write_text(json.dumps(schema, indent=1, ensure_ascii=False) + "\n")
+    ctx, conflicts = context_for(by_path, attr_iris, class_iris)
+    (OUT / f"{name}-{VERSION}-context.jsonld").write_text(
+        json.dumps({"@context": ctx}, indent=1, ensure_ascii=False) + "\n")
+    return len(by_path), len(ctx) - 2, conflicts
+
+
+def main():
+    OUT.mkdir(exist_ok=True)
+    attr_iris, class_iris = property_iris()
+    report = {}
+    for path in sorted(PKG.glob("*.json")):
+        if path.name == "summary.json":
+            continue
+        pkg = json.loads(path.read_text())
+        nodes = pkg["nodes"]
+        by_path, children = build_tree(nodes)
+        root = next(n["path"] for n in nodes if n["depth"] == 1)
+        n, terms, conflicts = write(pkg["key"], pkg["title"], pkg["description"],
+                                    by_path, children, root, attr_iris, class_iris)
+        print(f"  {pkg['key']}: {n} nodes, {terms} terms in context"
+              + (f", {len(conflicts)} ambiguous tags left out" if conflicts else ""))
+        report[pkg["key"]] = {"nodes": n, "context_terms": terms, "ambiguous_tags": conflicts,
+                              "derived": {}}
+        for dip in pkg["derived_packages"]:
+            d_by_path, d_children = build_tree(nodes, keep=dip)
+            if root not in d_by_path:
+                continue
+            slug = re.sub(r"[^a-z0-9]+", "-", dip).strip("-")
+            dn, dterms, _ = write(pkg["key"], f"{pkg['title']} — {dip}",
+                                  f"The {dip} derived information package: the subset of {pkg['title']} it uses.",
+                                  d_by_path, d_children, root, attr_iris, class_iris, suffix=f"-{slug}")
+            report[pkg["key"]]["derived"][slug] = dn
+            print(f"      {slug}: {dn} nodes")
+    (OUT / "build-report.json").write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

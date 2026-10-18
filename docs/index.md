@@ -38,6 +38,19 @@ It is not a replacement for the WCO Data Model, and it is not a second source of
 spreadsheets WCO publishes remain authoritative; everything here is generated from them, and
 regenerating is how it is kept current.
 
-It does not yet carry the document schemas. Neither published spreadsheet states whether an element
-is mandatory, optional or repeatable, so a schema generated from them could not say what a message
-requires. That waits for the information package exports rather than being guessed at.
+## The messages
+
+The library says what a class and an attribute mean. The four Information Package workbooks say how
+they are assembled into a message, and crucially how many times each piece may occur, which the
+library does not record.
+
+| Package | What it carries |
+|---|---|
+| Declaration | Business to government submissions: import and export declarations, cargo reports, transit |
+| LPCO | Licences, permits, certificates and other documents |
+| Additional | The wrapper around business information: Response for G2B, Intergov for G2G |
+| Meta Data | The technical aspect of the exchange, kept apart so the others carry only business content |
+
+A JSON Schema and a JSON-LD context are generated for each, and for each of the sixteen derived
+packages that subset them, among them the Certificate of Origin, eTIR, Maritime API and the UPU
+messages. See [Schemas](schemas/).

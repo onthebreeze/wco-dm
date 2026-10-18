@@ -57,6 +57,7 @@ def nav_html(current=None):
         href = BASE if item["slug"] == "index" else f'{BASE}docs/{item["slug"]}'
         cls = ' class="here"' if item["slug"] == current else ""
         out.append(f'<a{cls} href="{href}">{html.escape(item["title"])}</a>')
+    out.append(f'<a href="{BASE}schemas/">Schemas</a>')
     out.append(f'<a href="{BASE}module/core">Browse the vocabulary</a>')
     return '<nav class="sitenav">' + "".join(out) + "</nav>"
 
@@ -252,6 +253,58 @@ def main():
                  f'<article class="prose">{body}</article>', crumbs, current=item["slug"]))
         counts["page"] += 1
 
+    # The schemas, served beside the vocabulary, with an index that says what each one is for.
+    schemas_dir = ROOT / "schemas"
+    if schemas_dir.exists():
+        import shutil as _sh
+        target = DIST / "schemas"
+        target.mkdir(parents=True, exist_ok=True)
+        report = {}
+        rp = schemas_dir / "build-report.json"
+        if rp.exists():
+            report = json.loads(rp.read_text())
+        for f in schemas_dir.iterdir():
+            if f.name == "build-report.json":
+                continue
+            text = f.read_text()
+            if BASE != SOURCE_BASE:
+                text = text.replace(SOURCE_BASE, BASE)
+            (target / f.name).write_text(text)
+            counts["schema file"] += 1
+
+        titles = {"mdip": "Meta Data", "aip": "Additional (Response and Intergov)",
+                  "bip-dec": "Declaration", "bip-lpco": "Licences, permits, certificates"}
+        rows = []
+        for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
+            info = report.get(key, {})
+            schema = f"{BASE}schemas/{key}-4.3.0.json"
+            ctx = f"{BASE}schemas/{key}-4.3.0-context.jsonld"
+            rows.append(
+                f'<tr><th><a href="{schema}">{html.escape(titles.get(key, key))}</a></th>'
+                f'<td>{info.get("nodes", "")} nodes</td>'
+                f'<td><a href="{schema}">schema</a> · <a href="{ctx}">context</a></td></tr>')
+            for slug, n in sorted((info.get("derived") or {}).items()):
+                ds = f"{BASE}schemas/{key}-{slug}-4.3.0.json"
+                dc = f"{BASE}schemas/{key}-{slug}-4.3.0-context.jsonld"
+                rows.append(
+                    f'<tr><th class="sub">{html.escape(slug)}</th><td>{n} nodes</td>'
+                    f'<td><a href="{ds}">schema</a> · <a href="{dc}">context</a></td></tr>')
+        body = (
+            "<h1>Schemas</h1>"
+            "<p class=\"definition\">A JSON Schema and a JSON-LD context for each Information "
+            "Package, and for each derived package that subsets it. Generated from the package "
+            "workbooks, so the cardinality is the model's own.</p>"
+            f"<table class=\"facts\">{''.join(rows)}</table>"
+            "<section><h2>How to read them</h2><p class=\"muted\">A class becomes an object, an "
+            "element becomes a typed property, an unbounded maximum becomes an array, and a minimum "
+            "of one becomes required. Each property carries the WCO identifier it came from and, "
+            "where the vocabulary has the term, a link to it.</p></section>")
+        out = DIST / "schemas"
+        (out / "index.html").write_text(page(
+            "Schemas", "JSON Schema and JSON-LD context for each WCO Information Package.",
+            body, [("Vocabulary", BASE), ("Schemas", None)], current="schemas"))
+        counts["page"] += 1
+
     (DIST / "vocab.css").write_text(CSS)
     print(f"base: {BASE}")
     for k in sorted(counts):
@@ -302,6 +355,7 @@ ul.terms li,ul.notes li{margin:4px 0}
 .prose pre{background:#0f2238;color:#e6eef8;padding:14px 16px;border-radius:8px;overflow:auto;font-size:13.5px;line-height:1.45}
 .prose pre code{background:none;border:0;color:inherit;padding:0}
 .prose li{margin:4px 0}
+table.facts th.sub{padding-left:22px;font-weight:400;color:var(--ink)}
 @media(max-width:620px){table.facts th{width:auto;display:block;border-top:0;padding-bottom:0}table.facts td{display:block;border-top:0;padding-top:2px}table.facts tr{display:block;border-top:1px solid var(--line);padding:8px 0}}
 """
 

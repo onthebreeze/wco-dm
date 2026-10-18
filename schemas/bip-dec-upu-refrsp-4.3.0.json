@@ -1,0 +1,221 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://test-wcodm.trade-commons.org/schemas/bip-dec-upu-refrsp-4.3.0.json",
+ "title": "Declaration Base Information Package — upu refrsp",
+ "description": "Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.",
+ "x-wco-data-model-version": "4.3.0",
+ "type": "object",
+ "properties": {
+  "functionCode": {
+   "type": "string",
+   "pattern": "^\\d{1,2}$",
+   "description": "Code specifying the function of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1225",
+   "x-wco-id": "D046",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/functionCode"
+  },
+  "functionalReferenceId": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific information exchange.",
+   "x-wco-id": "D026",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/functionalReferenceIdentifier"
+  },
+  "id": {
+   "type": "string",
+   "maxLength": 70,
+   "description": "Identification of a specific document.",
+   "x-wco-id": "D014",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+  },
+  "issueDateTime": {
+   "type": "string",
+   "maxLength": 35,
+   "description": "Date and time the document was issued and when appropriate, signed or otherwise authenticated.",
+   "x-wco-id": "D011",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/issueDateTime"
+  },
+  "typeCode": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the name of a document.",
+   "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
+   "x-wco-id": "D013",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+  },
+  "versionId": {
+   "type": "string",
+   "maxLength": 9,
+   "description": "Identification of the version of a specific document/message number.",
+   "x-wco-id": "D055",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/versionIdentifier"
+  },
+  "replyTypeCode": {
+   "type": "string",
+   "maxLength": 3,
+   "description": "Code specifying the type of reply required or transmitted.",
+   "x-wco-code-list": "UN/EDIFACT code list 4343 OR User code list",
+   "x-wco-id": "D040",
+   "x-wco-term": "https://test-wcodm.trade-commons.org/replyTypeCode"
+  },
+  "additionalDocument": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "maxLength": 70,
+      "description": "Identification of a document providing additional information.",
+      "x-wco-id": "D005",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/identificationIdentifier"
+     },
+     "typeCode": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of an additional document.",
+      "x-wco-code-list": "UN/EDIFACT code list 1001 OR User code list",
+      "x-wco-id": "D006",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to additional documents as part of a declaration or as part of a response.",
+    "x-wco-id": "02A"
+   }
+  },
+  "additionalInformation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "statementCode": {
+      "type": "string",
+      "maxLength": 17,
+      "description": "Code specifying the form of an additional statement.",
+      "x-wco-code-list": "User code list",
+      "x-wco-id": "226",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/statementCode"
+     },
+     "statementDescription": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "Description of an additional statement.",
+      "x-wco-id": "225",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/statementDescriptionText"
+     },
+     "statementTypeCode": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the subject of the additional statement.",
+      "x-wco-code-list": "UN/EDIFACT code list 4451",
+      "x-wco-id": "369",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/statementTypeCode"
+     },
+     "pointer": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "sequenceNumeric": {
+         "type": "string",
+         "pattern": "^\\d{1,5}$",
+         "description": "Number indicating the position in a sequence.",
+         "x-wco-id": "006",
+         "x-wco-term": "https://test-wcodm.trade-commons.org/sequenceNumeric"
+        },
+        "location": {
+         "type": "string",
+         "maxLength": 512,
+         "description": "Location in the document in syntax (e.g. XPath).",
+         "x-wco-id": "512",
+         "x-wco-term": "https://test-wcodm.trade-commons.org/locationText"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to a functional attribute within a declaration.",
+       "x-wco-id": "97A"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to the special request from declarant to government to take or not to take action.",
+    "x-wco-id": "03A"
+   }
+  },
+  "control": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "typeCode": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Code specifying the type of governmental examination.",
+      "x-wco-code-list": "User code list",
+      "x-wco-id": "449",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/typeCode"
+     },
+     "certifier": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string",
+         "maxLength": 70,
+         "description": "Name of the party who has provided the certification.",
+         "x-wco-id": "R048",
+         "x-wco-term": "https://test-wcodm.trade-commons.org/nameText"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the party which certifies something.",
+       "x-wco-id": "20A"
+      }
+     },
+     "controlResult": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "examinationImageBinaryObject": {
+         "type": "string",
+         "description": "Digital information resulting from an inspection or examination (e.g. x-ray scan of a container).",
+         "x-wco-id": "405",
+         "x-wco-term": "https://test-wcodm.trade-commons.org/examinationImageBinaryObject"
+        }
+       },
+       "additionalProperties": false,
+       "description": "Details related to the outcome of (governmental) examination.",
+       "x-wco-id": "83B"
+      }
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to (governmental) examination.",
+    "x-wco-id": "38A"
+   }
+  },
+  "status": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "releaseDateTime": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Date and time the goods have been released from government custody.",
+      "x-wco-id": "277",
+      "x-wco-term": "https://test-wcodm.trade-commons.org/releaseDateTime"
+     }
+    },
+    "additionalProperties": false,
+    "description": "Details related to status.",
+    "x-wco-id": "12B"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "x-wco-id": "42A"
+}

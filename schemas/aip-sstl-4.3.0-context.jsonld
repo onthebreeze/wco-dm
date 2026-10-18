@@ -1,0 +1,13 @@
+{
+ "@context": {
+  "@version": 1.1,
+  "wco": "https://test-wcodm.trade-commons.org/",
+  "aIP": "https://test-wcodm.trade-commons.org/AIP",
+  "control": "https://test-wcodm.trade-commons.org/Control",
+  "controlResult": "https://test-wcodm.trade-commons.org/ControlResult",
+  "functionCode": "https://test-wcodm.trade-commons.org/functionCode",
+  "functionalReferenceId": "https://test-wcodm.trade-commons.org/functionalReferenceIdentifier",
+  "identificationCode": "https://test-wcodm.trade-commons.org/identificationCode",
+  "typeCode": "https://test-wcodm.trade-commons.org/typeCode"
+ }
+}

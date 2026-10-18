@@ -11,7 +11,10 @@ python3 scripts/fidelity_check.py   # 2. check that nothing was lost on the way 
 python3 scripts/build_vocabulary.py # 3. regenerate the vocabulary
 python3 scripts/validate_vocab.py   # 4. check it holds together
 python3 scripts/map_to_unece.py     # 5. refresh mapping candidates, keeping decisions
-python3 scripts/build_site.py       # 6. build the pages
+python3 scripts/extract_packages.py # 6. read the four Information Package workbooks
+python3 scripts/build_schemas.py    # 7. generate a schema and context per package
+python3 scripts/validate_schemas.py # 8. check each one is valid and still rejects something
+python3 scripts/build_site.py       # 9. build the pages
 ```
 
 `scripts/build_all.sh` runs the lot, including the search index. The diff in `ontology/` after step
@@ -27,6 +30,21 @@ a status and a module, every property with a domain and a range, every reference
 term citing its source, no class declared twice, and every class from the library present with
 nothing invented. It earned its place by catching three properties whose range pointed at classes
 the generator had not yet emitted.
+
+## The schema gate needs one extra library
+
+`validate_schemas.py` needs `jsonschema`, which the rest of the pipeline does not. It skips with a
+message rather than failing when the library is absent, so a plain checkout still builds, but a
+release should run it:
+
+```
+python3 -m venv .venv && .venv/bin/pip install jsonschema
+.venv/bin/python scripts/validate_schemas.py
+```
+
+It checks two things. That each schema is valid draft 2020-12, and that each one still rejects an
+instance carrying a field the model does not have — because a schema that accepts everything is
+worse than no schema, since it looks like a control.
 
 ## Deciding a mapping
 
