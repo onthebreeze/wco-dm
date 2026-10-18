@@ -275,7 +275,6 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
 <title>{html.escape(title)} — WCO Data Model vocabulary</title>
 <meta name="description" content="{html.escape(subtitle)}">
 <link rel="stylesheet" href="/vocab.css">
-<link rel="stylesheet" href="/_pagefind/pagefind-ui.css">
 <link rel="alternate" type="text/turtle" href="index.ttl">
 <link rel="alternate" type="application/ld+json" href="index.jsonld">
 <link rel="alternate" type="application/rdf+xml" href="index.rdf">
@@ -284,15 +283,17 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
 <header class="masthead"><div class="wrap">
   <a class="brand" href="{BASE}"><span class="brand-mark">WCO</span> Data Model vocabulary</a>
   <nav class="crumbs">{nav}</nav>
-  <div class="search">
-    <div id="search"></div>
-    <div class="search-filters" id="search-filters" hidden>
+  <div class="search" data-pagefind="/_pagefind/">
+    <input class="search-input" type="search" placeholder="Search the vocabulary"
+           aria-label="Search the vocabulary" autocomplete="off" spellcheck="false">
+    <div class="search-filters" hidden>
       <label><input type="checkbox" value="Classes" checked> Classes</label>
       <label><input type="checkbox" value="Properties" checked> Properties</label>
       <label><input type="checkbox" value="Codes" checked> Codes</label>
       <label><input type="checkbox" value="BIPs" checked> BIPs</label>
       <label class="sep"><input type="checkbox" id="all-versions"> All versions</label>
     </div>
+    <div class="search-results" hidden></div>
   </div>
 </div>{nav_html(current)}</header>
 <main class="wrap" data-pagefind-body{search_tags(filters)[0] if filters else ""}>{search_facets(filters)}{with_negotiate(body)}</main>
@@ -300,71 +301,7 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
   <p>Generated from the WCO Data Model, releases 4.0.0 to {VERSION}. The vocabulary is
      unversioned and its terms carry their own lifecycle; the messages are versioned.</p>
 </footer>
-<script src="/_pagefind/pagefind-ui.js" onerror="document.getElementById('search').remove()"></script>
-<script>
-  // The index covers the term pages as well as the narrative, because Pagefind runs over the
-  // finished tree rather than over one framework's output. If it is missing - a local build that
-  // skipped the index step - the box removes itself rather than sitting there broken.
-  window.addEventListener('DOMContentLoaded', function () {{
-    if (!window.PagefindUI) {{
-      var el = document.getElementById('search'); if (el) el.remove();
-      var f = document.getElementById('search-filters'); if (f) f.remove();
-      return;
-    }}
-
-    var ui = new PagefindUI({{
-      element: '#search', showImages: false, pageSize: 8,
-      showEmptyFilters: false,
-      translations: {{ placeholder: 'Search the vocabulary' }},
-      // The kind of thing a result is matters more than its excerpt when one word names a class,
-      // two properties, a code list and a message, so it is shown as a badge.
-      processResult: function (result) {{
-        var kind = result.meta && result.meta.kind;
-        if (kind) {{
-          var tag = '<span class="pf-kind pf-' +
-            kind.toLowerCase().replace(/[^a-z]+/g, '-') + '">' + kind + '</span>';
-          if (result.meta.release) {{
-            tag += '<span class="pf-kind pf-rel">' + result.meta.release + '</span>';
-          }}
-          result.excerpt = tag + ' ' + (result.excerpt || '');
-        }}
-        return result;
-      }}
-    }});
-
-    // Pagefind's own filter panel cannot start with a box ticked, and everything here should be
-    // searched unless a reader says otherwise. So the panel is hidden and these five checkboxes
-    // drive it instead, through the UI's triggerFilters. Documentation is always included and has
-    // no checkbox: a search that hides the explanation of a thing while showing the thing is
-    // worse than one that shows both.
-    var panel = document.getElementById('search-filters');
-    var boxes = panel ? panel.querySelectorAll('input[type=checkbox]') : [];
-    var allVersions = document.getElementById('all-versions');
-
-    function applyFilters() {{
-      var show = ['Documentation'];
-      boxes.forEach(function (b) {{
-        if (b !== allVersions && b.checked) show.push(b.value);
-      }});
-      var filters = {{ show: show }};
-      if (!allVersions.checked) filters.versions = ['current'];
-      ui.triggerFilters(filters);
-    }}
-
-    boxes.forEach(function (b) {{ b.addEventListener('change', applyFilters); }});
-    applyFilters();
-
-    // The checkboxes appear with the results and not before: an empty search box has nothing to
-    // narrow, and five controls above every page would be chrome for a feature most visits to a
-    // term page never use.
-    var input = document.querySelector('#search .pagefind-ui__search-input');
-    if (input && panel) {{
-      var toggle = function () {{ panel.hidden = !input.value.trim(); }};
-      input.addEventListener('input', toggle);
-      input.addEventListener('focus', toggle);
-    }}
-  }});
-</script>
+<script src="/search.js" type="module"></script>
 {extra_scripts}
 </body></html>
 """
@@ -1908,6 +1845,7 @@ def main():
         return 1
 
     (DIST / "vocab.css").write_text(CSS)
+    (DIST / "search.js").write_text((ROOT / "assets" / "search.js").read_text())
     print(f"base: {BASE}")
     for k in sorted(counts):
         print(f"  {k}: {counts[k]}")
@@ -1943,11 +1881,19 @@ ul.terms li,ul.notes li{margin:4px 0}
 .status-deprecated{background:#fce8e6;color:#8c1d18}
 .foot{color:var(--muted);font-size:14px;padding-bottom:30px}
 .search{flex:1 1 280px;max-width:420px;min-width:220px}
-.search .pagefind-ui__search-input{font-size:14px;padding:7px 10px;border-radius:6px;border:0;width:100%}
-.search .pagefind-ui__drawer{position:absolute;z-index:40;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;margin-top:6px;max-width:420px;max-height:60vh;overflow:auto;padding:6px 12px;box-shadow:0 10px 28px rgba(10,30,60,.18)}
-.search .pagefind-ui__result-title a{color:var(--brand)}
-/* Pagefind's own filter panel is hidden: it cannot start with a box ticked, and these can. */
-.pagefind-ui__filter-panel{display:none}
+.search{position:relative}
+.search-input{font:inherit;font-size:14px;padding:7px 10px;border-radius:6px;border:0;width:100%}
+.search-results{position:absolute;z-index:40;left:0;right:0;background:#fff;color:var(--ink);
+  border:1px solid var(--line);border-radius:8px;margin-top:6px;max-height:60vh;overflow:auto;
+  padding:4px 14px 10px;box-shadow:0 10px 28px rgba(10,30,60,.18)}
+.search-note{margin:10px 0 6px;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.search-list{list-style:none;margin:0;padding:0}
+.search-list li{padding:9px 0;border-top:1px solid var(--line)}
+.search-list li:first-child{border-top:0}
+.search-list a{font-weight:600;text-decoration:none}
+.search-list a:hover{text-decoration:underline}
+.search-excerpt{margin:3px 0 0;font-size:13.5px;color:#2d3f52;line-height:1.45}
+.search-excerpt mark{background:#fff2cd;color:inherit;padding:0 2px;border-radius:2px}
 .search-filters{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:13.5px;color:#dce9f8}
 .search-filters label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
 .search-filters input{accent-color:#fff;margin:0}
