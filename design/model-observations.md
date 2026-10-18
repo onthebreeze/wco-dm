@@ -97,13 +97,17 @@ kept as a scope note. The merge is only safe where the value domains agree, and 
 they did not, which is itself the useful signal: those are the places where one name was doing two
 jobs.
 
-## 4. A quarter of the code list register does not resolve to a list
+## 4. A code list is cited in prose, and most citations do not resolve to one list
 
-The register (DataSet 1.6) names the basis of each code list as free text. 215 entries join cleanly
-to a list. 36 name an external authority's list that the register does not hold - "UN/EDIFACT code
-list 3035", "ISO 3166-1 alpha-2" - and are published here as referenced schemes with no values. 25
-are prose guidance rather than a reference at all, for example "User code list (see EU CDM code list
-for DE 11 10 001 000)".
+The register (DataSet 1.6) names the basis of each code list as free text, and so do the attributes
+that cite it. Of the 573 citations, 214 resolve to exactly one of the 135 register entries; 140
+match several, because registered lists share basis strings; 219 match none. Of those 219, the ones
+naming an external authority's list - "UN/EDIFACT code list 3035", "ISO 3166-1 alpha-2" - are
+published here as 36 referenced schemes with no values, and 138 are guidance rather than a
+reference, for example "User code list (see EU CDM code list for DE 11 10 001 000)".
+
+Counts: `python3 scripts/build_vocabulary.py` reports 135 registered and 36 referenced schemes; the
+citation breakdown is a join of intermediate/attributes.json against intermediate/code-lists.json.
 
 A consumer cannot tell from the register alone whether a list has values, where they come from, or
 whether two attributes citing the same prose string mean the same list. A basis expressed as an
