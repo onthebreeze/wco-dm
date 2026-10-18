@@ -4,6 +4,18 @@
 
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
+<https://vocabulary.wcoomd.org/code-list/address-type-code-list> skos:exactMatch <https://vocab.unece.org/address-type-code-list> .
+<https://vocabulary.wcoomd.org/code-list/currency-code-list> skos:exactMatch <https://vocab.unece.org/currency-code-list> .
+<https://vocabulary.wcoomd.org/code-list/document-status-code-list> skos:exactMatch <https://vocab.unece.org/document-status-code-list> .
+<https://vocabulary.wcoomd.org/code-list/language-code-list> skos:exactMatch <https://vocab.unece.org/language-code-list> .
+<https://vocabulary.wcoomd.org/code-list/location-function-code-list> skos:exactMatch <https://vocab.unece.org/location-function-code-list> .
+<https://vocabulary.wcoomd.org/code-list/package-type-code-list> skos:exactMatch <https://vocab.unece.org/package-type-code-list> .
+<https://vocabulary.wcoomd.org/code-list/payment-method-code-list> skos:exactMatch <https://vocab.unece.org/payment-method-code-list> .
+<https://vocabulary.wcoomd.org/code-list/seal-condition-code-list> skos:exactMatch <https://vocab.unece.org/seal-condition-code-list> .
+<https://vocabulary.wcoomd.org/code-list/status-code-list> skos:exactMatch <https://vocab.unece.org/status-code-list> .
+<https://vocabulary.wcoomd.org/code-list/transport-equipment-fullness-code-list> skos:exactMatch <https://vocab.unece.org/transport-equipment-fullness-code-list> .
+<https://vocabulary.wcoomd.org/code-list/transport-means-direction-code-list> skos:exactMatch <https://vocab.unece.org/transport-means-direction-code-list> .
+<https://vocabulary.wcoomd.org/code-list/transport-means-type-code-list> skos:exactMatch <https://vocab.unece.org/transport-means-type-code-list> .
 <https://vocabulary.wcoomd.org/securityLevelCode> skos:exactMatch <https://vocab.unece.org/securityLevelCode> .
 <https://vocabulary.wcoomd.org/addressTypeCode> skos:exactMatch <https://vocab.unece.org/addressTypeCode> .
 <https://vocabulary.wcoomd.org/paymentMethodCode> skos:exactMatch <https://vocab.unece.org/paymentMethodCode> .

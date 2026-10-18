@@ -33,6 +33,13 @@ ONT, DIST = ROOT / "ontology", ROOT / "dist"
 SOURCE_BASE = "https://vocabulary.wcoomd.org/"
 BASE = os.environ.get("WCO_BASE", SOURCE_BASE).rstrip("/") + "/"
 SCHEMA = rdflib.Namespace("https://schema.org/")
+# A mapping's object is the identifier UN/CEFACT intends to publish under, which is where the
+# skos:exactMatch points and must keep pointing. Those addresses do not resolve yet: the vocabulary
+# is served from the project's test host while vocab.unece.org carries only documentation. So the
+# statement keeps the durable identifier and the link sends a reader where it answers today, which
+# is one line to change when the production deployment lands.
+UNECE_CANONICAL = "https://vocab.unece.org/"
+UNECE_RESOLVES = os.environ.get("UNECE_RESOLVES", "https://test.uncefact.org/vocabulary/")
 WCO = rdflib.Namespace(SOURCE_BASE)
 
 KIND_LABEL = {"class": "Class", "property": "Property", "code-list": "Code list", "concept": "Code"}
@@ -186,6 +193,33 @@ def search_tags(filters):
             f' data-pagefind-meta="{html.escape(meta, quote=True)}"')
 
 
+NEGOTIATE_BAR = (
+    '<p class="negotiate"><span>Also available to machines.</span> This address answers as '
+    '<a href="index.ttl">Turtle</a>, <a href="index.jsonld">JSON-LD</a> or '
+    '<a href="index.rdf">RDF/XML</a>: ask for <code>text/turtle</code>, '
+    '<code>application/ld+json</code> or <code>application/rdf+xml</code> and the same address '
+    'serves the machine representation.</p>')
+
+
+def with_negotiate(body):
+    """The negotiation note sits under the opening paragraph rather than in the footer.
+
+    One address answering four ways is the point of the site, and a reader who has to reach the
+    bottom of a page of tables to find that out mostly does not find it out.
+    """
+    anchor = body.find('<p class="definition">')
+    if anchor != -1:
+        end = body.find("</p>", anchor)
+        if end != -1:
+            end += 4
+            return body[:end] + NEGOTIATE_BAR + body[end:]
+    anchor = body.find("</h1>")
+    if anchor != -1:
+        anchor += 5
+        return body[:anchor] + NEGOTIATE_BAR + body[anchor:]
+    return NEGOTIATE_BAR + body
+
+
 def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=None):
     nav = " / ".join(f'<a href="{html.escape(h)}">{html.escape(t)}</a>' if h else html.escape(t) for t, h in crumbs)
     return f"""<!doctype html>
@@ -204,13 +238,10 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
   <nav class="crumbs">{nav}</nav>
   <div id="search" class="search"></div>
 </div>{nav_html(current)}</header>
-<main class="wrap" data-pagefind-body{search_tags(filters)}>{body}</main>
+<main class="wrap" data-pagefind-body{search_tags(filters)}>{with_negotiate(body)}</main>
 <footer class="wrap foot">
-  <p>Generated from the WCO Data Model version {VERSION}. This address also answers as
-     <a href="index.ttl">Turtle</a>, <a href="index.jsonld">JSON-LD</a> and
-     <a href="index.rdf">RDF/XML</a>: ask for <code>text/turtle</code>,
-     <code>application/ld+json</code> or <code>application/rdf+xml</code> and the same address
-     serves the machine representation.</p>
+  <p>Generated from the WCO Data Model, releases 4.0.0 to {VERSION}. The vocabulary is
+     unversioned and its terms carry their own lifecycle; the messages are versioned.</p>
 </footer>
 <script src="/_pagefind/pagefind-ui.js" onerror="document.getElementById('search').remove()"></script>
 <script>
@@ -308,6 +339,25 @@ def short(text, n=150):
     return html.escape(text if len(text) <= n else text[: n - 1].rstrip() + "…")
 
 
+def unece_href(iri):
+    return iri.replace(UNECE_CANONICAL, UNECE_RESOLVES) if UNECE_RESOLVES else iri
+
+
+def unece_mapping(g, s, idx):
+    """The accepted mapping to vocab.unece.org, or the best unreviewed candidate, or nothing."""
+    for prop, name in ((SKOS.exactMatch, "exact match"), (SKOS.closeMatch, "close match"),
+                       (SKOS.relatedMatch, "related")):
+        for v in many(g, s, prop):
+            return {"iri": v, "relation": name, "decided": True}
+    best = sorted(idx["candidates"].get(str(s).replace(BASE, SOURCE_BASE), []),
+                  key=lambda c: -float(c["score"]))
+    if best:
+        c = best[0]
+        return {"iri": c["unece_term"], "relation": c["relation"].replace("skos:", ""),
+                "decided": False, "score": c["score"], "label": c["unece_label"]}
+    return None
+
+
 def term_body(g, s, kind, idx):
     label = display_label(g, s)
     definition = one(g, s, SKOS.definition) or ""
@@ -367,6 +417,25 @@ def term_body(g, s, kind, idx):
             row("Code list", "<br>".join(html.escape(r) for r in refs))
     if kind in ("code-list", "concept"):
         row("Based on", "<br>".join(html.escape(r) for r in many(g, s, WCO.codeListBasis)))
+    if kind == "code-list":
+        # Where the value domain is one UN/CEFACT already publishes, say so here rather than
+        # leaving the reader to find it further down the page.
+        m = unece_mapping(g, s, idx)
+        if m and m["decided"]:
+            row("Also published by UN/CEFACT",
+                f'<a href="{html.escape(unece_href(m["iri"]))}">'
+                f'{html.escape(m["iri"].rsplit("/", 1)[-1])}</a> in the UN/CEFACT vocabulary '
+                f'<span class="muted">({html.escape(m["relation"])})</span>')
+        elif m:
+            row("Possibly published by UN/CEFACT",
+                f'<a href="{html.escape(unece_href(m["iri"]))}">'
+                f'{html.escape(m["label"] or m["iri"].rsplit("/", 1)[-1])}</a> in the UN/CEFACT '
+                f'vocabulary <span class="editorial" title="Proposed by the matcher, not yet '
+                f'reviewed">candidate {html.escape(m["score"])}</span>')
+        elif (one(g, s, WCO.codeListOrigin) or "") == "referenced":
+            row("UN/CEFACT equivalent",
+                '<span class="muted">None found. The list belongs to an external authority and '
+                'the UN/CEFACT vocabulary does not appear to carry it.</span>')
     if kind == "concept":
         scheme = next(iter(g.objects(s, SKOS.inScheme)), None)
         if scheme:
@@ -455,20 +524,25 @@ def term_body(g, s, kind, idx):
         rows_m = []
         for name, v in sorted(accepted):
             rows_m.append((f'<span class="rel">{html.escape(name)}</span>',
-                           f'<a href="{html.escape(v)}">{html.escape(v.rsplit("/", 1)[-1])}</a>',
+                           f'<a href="{html.escape(unece_href(v))}">'
+                           f'{html.escape(v.rsplit("/", 1)[-1])}</a>',
                            f'<code class="muted">{html.escape(v)}</code>'))
         for c in sorted(candidates, key=lambda c: -float(c["score"])):
             rel = c["relation"].replace("skos:", "")
             rows_m.append((
                 f'<span class="rel rel-candidate">{html.escape(rel)}</span> '
                 f'<span class="editorial" title="Proposed by the matcher, not yet reviewed">candidate {c["score"]}</span>',
-                f'<a href="{html.escape(c["unece_term"])}">{html.escape(c["unece_label"] or c["unece_term"].rsplit("/", 1)[-1])}</a>',
+                f'<a href="{html.escape(unece_href(c["unece_term"]))}">'
+                f'{html.escape(c["unece_label"] or c["unece_term"].rsplit("/", 1)[-1])}</a>',
                 f'<span class="muted">{html.escape(c["evidence"])}</span>'))
         sections.append(
             f'<section><h2>Mapped to vocab.unece.org ({len(rows_m)})</h2>'
             + table(["Relation", "Term", "Evidence"], rows_m, col_classes=["rel", "name", "prose"])
             + ('<p class="muted">A candidate is proposed by the matcher and has not been reviewed. '
                'See <code>mappings/wco-to-unece.csv</code>.</p>' if candidates else "")
+            + '<p class="muted">The identifier in the third column is the one UN/CEFACT intends to '
+              'publish under and is what the mapping asserts. It does not resolve yet, so the link '
+              'goes to the host serving that vocabulary today.</p>'
             + "</section>")
 
     notes = many(g, s, SKOS.scopeNote)
@@ -709,12 +783,23 @@ def main():
     registered_empty = [t for t in schemes if not idx["scheme_concepts"].get(t) and origin(t) == "registered"]
     referenced = [t for t in schemes if origin(t) == "referenced"]
 
+    def unece_cell(c):
+        m = unece_mapping(g, c, idx)
+        if not m:
+            return ""
+        name = m["iri"].rsplit("/", 1)[-1]
+        if m["decided"]:
+            return f'<a href="{html.escape(unece_href(m["iri"]))}">{html.escape(name)}</a>'
+        return (f'<a class="quiet" href="{html.escape(unece_href(m["iri"]))}">'
+                f'{html.escape(name)}</a> <span class="editorial">candidate</span>')
+
     def scheme_table(items):
-        return table(["Code list", "Based on", "Values", "Used by"],
+        return table(["Code list", "Based on", "Values", "Used by", "In the UN/CEFACT vocabulary"],
                      [(term_link(g, t), short(one(g, t, WCO.codeListBasis), 90),
                        str(len(idx["scheme_concepts"].get(t, []))),
-                       str(len(idx["scheme_props"].get(t, [])))) for t in items],
-                     col_classes=["name", "prose", "num", "num"])
+                       str(len(idx["scheme_props"].get(t, []))),
+                       unece_cell(t)) for t in items],
+                     col_classes=["name", "prose", "num", "num", "name"])
 
     body = [
         "<h1>Code lists</h1>",
@@ -1747,6 +1832,9 @@ code.digest{font-size:12.5px;color:var(--muted)}
 .pf-release,.pf-change-log{background:#fbeef2;color:#8c2a4a;border-color:#f0ced9}
 .pf-rel{font-variant-numeric:tabular-nums}
 .pagefind-ui__filter-panel{font-size:14px}
+p.negotiate{margin:0 0 20px;padding:9px 14px;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:0 7px 7px 0;background:var(--bg);font-size:14px;color:var(--muted)}
+p.negotiate span{color:var(--brand-dark);font-weight:600}
+p.negotiate code{font-size:12.5px}
 .jump{font-size:14px;color:var(--muted);margin:0 0 18px}
 .jump a{margin-right:2px}
 a.modhead{text-decoration:none}

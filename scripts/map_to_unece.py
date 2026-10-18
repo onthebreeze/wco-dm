@@ -25,6 +25,7 @@ ONT, MAP = ROOT / "ontology", ROOT / "mappings"
 UNECE_ONT = pathlib.Path(os.environ.get("UNECE_ONTOLOGY", "/Users/stevencapell/gitlab/vocab-bsp/ontology"))
 # The vocabulary's TTL carries a test base; the published concepts live here.
 UNECE_PUBLISHED = os.environ.get("UNECE_BASE", "https://vocab.unece.org/")
+WCO_NS = "https://vocabulary.wcoomd.org/"
 LEDGER = MAP / "wco-to-unece.csv"
 
 # Above this a match is proposed as accepted; between the two it is proposed for review; below the
@@ -51,12 +52,18 @@ def split_camel(name):
 def tokens(term):
     """A term's words for matching. WCO class labels arrive run together (AEOProgramProfile), so
     camel case is split on every label rather than only on the ones that are missing."""
-    return words(split_camel(term["label"] or "") or split_camel(term["local"]))
+    base = words(split_camel(term["label"] or "") or split_camel(term["local"]))
+    for alias in term.get("aliases") or []:
+        base += words(split_camel(alias))
+    # A code list is named for the concept, not for the fact that it is a list.
+    return [w for w in base if w not in ("code", "list", "codes")]
 
 
 def load_terms(graph, base_filter=None):
     out = []
-    for kind in (OWL.Class, OWL.DatatypeProperty, OWL.ObjectProperty):
+    kinds = ((OWL.Class, "class"), (OWL.DatatypeProperty, "property"),
+             (OWL.ObjectProperty, "property"), (SKOS.ConceptScheme, "code-list"))
+    for kind, name in kinds:
         for s in graph.subjects(RDF.type, kind):
             iri = str(s)
             if base_filter and not iri.startswith(base_filter):
@@ -65,10 +72,56 @@ def load_terms(graph, base_filter=None):
             definition = next((str(o) for o in graph.objects(s, SKOS.definition)), "")
             out.append({
                 "iri": iri, "local": iri.rsplit("/", 1)[-1], "label": label,
-                "definition": definition,
-                "kind": "class" if kind == OWL.Class else "property",
+                "definition": definition, "kind": name, "aliases": [],
             })
     return out
+
+
+def name_externals(terms, graph):
+    """A code list the WCO register does not hold is named after the reference rather than after
+    the concept: the scheme for "UN/EDIFACT code list 4405 OR User codes" is called exactly that,
+    which matches nothing. The properties that range at it do have concept names - Document/message
+    status code - so those are added as aliases and the matching has something to work with."""
+    wco = rdflib.Namespace("https://vocabulary.wcoomd.org/")
+    schema = rdflib.Namespace("https://schema.org/")
+    by_iri = {t["iri"]: t for t in terms}
+    for prop in graph.subjects(schema.rangeIncludes, None):
+        pass
+    for prop, scheme in graph.subject_objects(schema.rangeIncludes):
+        t = by_iri.get(str(scheme))
+        if t is None or t["kind"] != "code-list":
+            continue
+        if next(graph.objects(scheme, wco.codeListOrigin), None) != rdflib.Literal("referenced"):
+            continue
+        label = next((str(o) for o in graph.objects(prop, RDFS.label)), "")
+        local = str(prop).rsplit("/", 1)[-1]
+        t.setdefault("users", 0)
+        t["users"] += 1
+        for alias in (local, label):
+            if alias and alias not in t["aliases"]:
+                t["aliases"].append(alias)
+
+    # A list that many properties range at is not named by any one of them. "User code list" is
+    # the extreme case: it is not a concept at all, it is the register declining to name one, and
+    # letting it borrow the name of whichever property happened to be read first produced a
+    # confident match to seal-condition-code-list.
+    for t in terms:
+        if t["kind"] != "code-list":
+            continue
+        basis = " ".join(str(o).lower() for o in graph.objects(rdflib.URIRef(t["iri"]),
+                                                               rdflib.URIRef(WCO_NS + "codeListBasis")))
+        if t.get("users", 0) > 2 or not basis or basis.strip().startswith("user code"):
+            t["aliases"] = []
+    return terms
+
+
+def list_key(name):
+    """A code list's name with the noise removed, for comparing one register's naming with
+    another's. DocumentStatusCode, document-status-code-list and "Document Status" all reduce to
+    "document status"."""
+    out = [w for w in words(split_camel(name or "").replace("-", " "))
+           if w not in ("code", "codes", "list")]
+    return " ".join(out)
 
 
 def strip_representation(name):
@@ -114,7 +167,27 @@ def score(a, b):
     # the vocabulary models consignor as a relation. That is a real correspondence and the most
     # useful kind to record, so it is noted and related rather than discarded.
     if a["kind"] != b["kind"]:
+        # A code list only ever corresponds to a code list. The class-against-property case is a
+        # real correspondence - WCO models Consignor as a class, the vocabulary as a relation - but
+        # a code list matched against a property is noise.
+        if "code-list" in (a["kind"], b["kind"]):
+            return 0.0, "different kinds of term"
         s -= 0.08; ev.append("class against property, so related rather than equivalent")
+
+    if a["kind"] == b["kind"] == "code-list":
+        ka, kb = list_key(a["local"]), list_key(b["local"])
+        if ka and ka == kb:
+            s += 0.55; ev.append("same list name once code and list are removed")
+        elif ka and kb and ka.rstrip("s") == kb.rstrip("s"):
+            s += 0.45; ev.append("same list name but for plural")
+        # An alias is the name of a property that ranges at this list, used where the list itself
+        # is named after an external reference rather than after the concept. Weaker evidence than
+        # the list's own name, because several properties may range at one list.
+        for alias in a.get("aliases") or []:
+            if list_key(alias) and list_key(alias) == kb:
+                s += 0.35
+                ev.append(f"a property ranging at this list is named {alias}")
+                break
     return min(s, 1.0), "; ".join(ev)
 
 
@@ -134,7 +207,7 @@ def main():
         except Exception:
             continue
 
-    wco_terms = load_terms(wco, "https://vocabulary.wcoomd.org/")
+    wco_terms = name_externals(load_terms(wco, "https://vocabulary.wcoomd.org/"), wco)
     unece_terms = [t for t in load_terms(unece) if "/vocabulary/" in t["iri"] and "/module/" not in t["iri"]]
     print(f"{len(wco_terms)} WCO terms against {len(unece_terms)} vocab.unece.org terms")
 
@@ -204,6 +277,10 @@ def main():
     print(f"  candidates: {len(rows)} over {len({r['wco_term'] for r in rows})} WCO terms")
     print(f"  accepted automatically: {len(accepted)} covering {covered} terms ({covered/len(wco_terms):.0%})")
     print(f"  awaiting review: {sum(1 for r in rows if r['decision'] == 'review')}")
+    for kind in ("class", "property", "code-list"):
+        n = len({r["wco_term"] for r in rows if r["wco_kind"] == kind})
+        total = sum(1 for t in wco_terms if t["kind"] == kind)
+        print(f"  {kind}: {n} of {total} with a candidate")
     print(f"  ledger: {LEDGER.relative_to(ROOT)}   mappings: ontology/mappings.ttl")
     return 0
 
