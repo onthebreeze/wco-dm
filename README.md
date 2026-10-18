@@ -1,30 +1,40 @@
 # WCO Data Model as linked data
 
-The World Customs Organization (WCO) Data Model version 4.3.0, published as a navigable, resolvable,
-content-negotiable linked data vocabulary. Every class, property and code has an address that
-answers a reader with a page and a machine with Turtle, JSON-LD or RDF/XML.
+The World Customs Organization (WCO) Data Model, published as a navigable, resolvable,
+content-negotiable linked data vocabulary. Every class, property, code list and code value has an
+address that answers a reader with a page and a machine with Turtle, JSON-LD or RDF/XML.
+
+Four releases are held here, 4.0.0 to 4.3.0. The vocabulary across them is one unversioned set of
+terms, each saying which release introduced it and, where it has gone, which release dropped it.
+The messages are versioned, because a format has to be pinned before anyone can validate against
+it.
 
 ## Layout
 
 | | |
 |---|---|
-| `raw-data/` | The WCO workbooks, as published and unmodified |
-| `intermediate/` | Normalised records, each carrying the file, sheet and row it came from |
-| `ontology/` | The generated vocabulary: eight TTL modules, 9,449 triples |
-| `mappings/` | The ledger of candidate mappings to vocab.unece.org |
+| `raw-data/v<release>/` | The WCO workbooks, as published and unmodified |
+| `intermediate/v<release>/` | Normalised records, each carrying the file, sheet and row it came from |
+| `ontology/` | The generated vocabulary: ten TTL modules, 11,616 triples |
+| `schemas/` | A JSON Schema and a JSON-LD context per message per release |
+| `views/v<release>/` | `tree.json` per message: the structure the browser reads |
+| `diagrams/` | A conceptual diagram per message per release, PlantUML and SVG |
+| `mappings/` | The ledger of mappings to the UN/CEFACT vocabulary |
 | `docs/` | The narrative pages, in Markdown |
-| `dist/` | The built site: a directory per term, each with `index.html`, `index.ttl`, `index.jsonld` |
+| `assets/` | The structure browser |
 | `scripts/` | The generator and its gates |
 | `deploy/` | Infrastructure and pipeline, written but not yet run |
-| `design/` | The design note and the plan |
+| `design/` | The design note, the plan, and observations about the model |
+| `dist/` | The built site: a directory per address, gitignored |
 
-Nothing in `ontology/` or `dist/` is edited by hand.
+Nothing generated is edited by hand. See `CLAUDE.md` for how the pipeline fits together.
 
 ## Build
 
 ```bash
 pip install openpyxl rdflib markdown
-scripts/build_all.sh
+scripts/build_all.sh                 # about 45 seconds
+python3 scripts/serve.py 8099        # serves dist/ the way the edge will
 ```
 
 Or with the host the site will be served from:
@@ -40,24 +50,42 @@ does not re-home a term.
 
 | | |
 |---|---|
-| Classes | 283, including the ten core data types |
-| Properties | 409, from 1,156 attributes |
-| Code lists | 136, twelve with values and 123 naming an external list |
-| Pages | 906, indexed for local search |
+| Classes | 287: 272 from the library, five superclasses, ten core data types |
+| Properties | 452, merged from 1,226 attribute positions across the four releases |
+| Code lists | 177: 138 the register holds, 38 referenced from an external authority |
+| Code values | 73, one page each, for the thirteen lists WCO owns |
+| Messages | 36, of which 20 are in 4.3.0 and 16 were discontinued before it |
+| Schemas and contexts | 106, one pair per message per release |
+| Pages | 1,154, each answering in four representations, with a local search index |
 
-## Why 1,156 attributes become 409 properties
+Three attribute positions in a hundred are deprecated rather than current: 72 attribute positions
+and three code lists were dropped by a later release and are still published, because an identifier
+that stops resolving breaks every document that used it.
 
-The WCO Data Model names a property inside the context of its class, so `id` appears 174 times and
-`typeCode` 49. A linked data vocabulary needs one IRI per concept, so attributes sharing a name and
-a core data type become one property with many `schema:domainIncludes`, which is how vocab.unece.org
-models the same ground. WCO writes a class-specific gloss for each use, and every one is kept as a
-scope note naming its class, so nothing is lost.
+## Why 1,226 attribute positions become 452 properties
 
-## What is not here
+The WCO Data Model names an attribute inside the context of its class, so `id` appears 174 times
+and `typeCode` 49. A linked data vocabulary needs one IRI per concept, so attributes sharing a
+local name and a core data type become one property with many `schema:domainIncludes`, which is how
+the UN/CEFACT vocabulary models the same ground. WCO writes a class-specific gloss for each use,
+and every one is kept as a scope note naming its class, so nothing is lost.
 
-Document schemas. Neither published workbook states whether an element is mandatory, optional or
-repeatable, so a schema generated from them could not say what a message requires. That waits for
-the information package exports.
+Where that merge produces a property whose classes code against different lists, the attributes did
+not mean the same thing and the merge is undone. `WCO_SPLIT` chooses how; the default splits by
+value domain.
+
+The Library also states which superclass each class belongs to and which superclass element each
+attribute realises - that a Carrier is a Party, and that Agent identifier and Carrier identifier
+are both S009, identification. That statement is published as `rdfs:subClassOf` and as an
+annotation on each property, but nothing is merged on it, so no term's address depends on it.
+
+## Information packages
+
+Each of the four Information Packages, and each derived package that subsets it, has a page saying
+what the message is, a conceptual diagram, a browsable structure, and a schema, context and digest
+per release. Nothing in any package is mandatory: every position in all four is `0..1` or
+`0..unbounded`, so obligation arrives with the regulation or the national profile that uses the
+message, and a derived package is the first narrowing.
 
 ## Licensing
 
