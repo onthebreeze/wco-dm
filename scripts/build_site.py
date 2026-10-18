@@ -1319,14 +1319,14 @@ def main():
         # appears. Attributing it to the release where the term was last seen would pile every
         # rename onto the current release.
         renames = {}
-        for kind, records, name_of in (
-                ("classes", union["classes"], lambda r: r.get("class_name")),
-                ("attributes", union["attributes"], lambda r: r.get("attr_name"))):
+        for kind, records in (("class", union["classes"]), ("attribute", union["attributes"])):
             for r in records:
                 history = r.get("nameHistory") or []
                 for i in range(1, len(history)):
-                    renames.setdefault(history[i]["version"], []).append(
-                        (kind, history[i - 1]["name"], history[i]["name"]))
+                    renames.setdefault(history[i]["version"], []).append({
+                        "kind": kind, "was": history[i - 1]["name"], "now": history[i]["name"],
+                        "class": r.get("class_name"), "attr_id": r.get("attr_id"),
+                    })
 
         rows_rel = []
         for i, version in enumerate(RELEASES):
@@ -1390,15 +1390,54 @@ def main():
             return {kind: (sorted(here[kind] - before[kind]), sorted(before[kind] - here[kind]))
                     for kind in ("classes", "attributes", "code lists")}
 
+        # A change log entry is only useful if it leads somewhere, so each one links at the term
+        # it names. A term the release dropped still has a page - published, deprecated, saying
+        # which release dropped it - so those links resolve too.
+        prop_by_attr = defaultdict(list)
+        for _kind in (OWL.DatatypeProperty, OWL.ObjectProperty):
+            for _s in g.subjects(RDF.type, _kind):
+                for _a in g.objects(_s, WCO.attributeId):
+                    prop_by_attr[str(_a)].append(_s)
+        class_by_name, scheme_by_name = {}, {}
+        for _s in g.subjects(RDF.type, OWL.Class):
+            for _l in list(g.objects(_s, RDFS.label)) + list(g.objects(_s, SKOS.altLabel)):
+                class_by_name.setdefault(str(_l).replace(" ", ""), _s)
+        for _s in g.subjects(RDF.type, SKOS.ConceptScheme):
+            for _l in list(g.objects(_s, SKOS.altLabel)) + list(g.objects(_s, RDFS.label)):
+                scheme_by_name.setdefault(str(_l), _s)
+
+        def link_to(iri, text, extra=""):
+            if iri is None:
+                return html.escape(text)
+            return f'<a href="{publish(iri)}"{extra}>{html.escape(text)}</a>'
+
+        def link_class(name):
+            return link_to(class_by_name.get(str(name).replace(" ", "")), str(name))
+
+        def link_attribute(cls, attr_id, name):
+            """An attribute becomes a property, which several attributes may share. Five attribute
+            identifiers out of 865 belong to more than one property; for those the class decides."""
+            candidates = prop_by_attr.get(attr_id or "", [])
+            target = None
+            if len(candidates) > 1 and cls:
+                cls_iri = class_by_name.get(cls.replace(" ", ""))
+                target = next((c for c in candidates
+                               if cls_iri is not None and (c, SCHEMA.domainIncludes, cls_iri) in g),
+                              None)
+            target = target or (candidates[0] if candidates else None)
+            return link_to(target, name)
+
         def describe_term(kind, t):
-            if kind != "attributes":
-                return html.escape(str(t))
+            if kind == "classes":
+                return link_class(t)
+            if kind == "code lists":
+                return link_to(scheme_by_name.get(str(t)), str(t))
             cls, attr_id = t
             rec = next((a for a in union["attributes"]
                         if a.get("class_name") == cls and a.get("attr_id") == attr_id), None)
             name = (rec or {}).get("attr_name") or attr_id
-            return (f'{html.escape(name or "")} '
-                    f'<span class="muted">{html.escape(cls or "")} '
+            return (f'{link_attribute(cls, attr_id, name or "")} '
+                    f'<span class="muted">on {link_class(cls or "")} '
                     f'<code>{html.escape(attr_id or "")}</code></span>')
 
         for i, version in enumerate(RELEASES):
@@ -1538,10 +1577,13 @@ def main():
                 cbody.append(
                     f'<section id="renamed"><h2>Renamed ({len(renamed)})</h2>'
                     '<p class="muted">The identifier stayed, the name changed.</p>'
-                    + table(["Kind", "Was", "Is now"],
-                            [(k, html.escape(a or ""), html.escape(b or ""))
-                             for k, a, b in sorted(renamed)],
-                            col_classes=["mod", "prose", "prose"]) + '</section>')
+                    + table(["Kind", "Was", "Is now", "On"],
+                            [(r["kind"], html.escape(r["was"] or ""),
+                              link_class(r["now"]) if r["kind"] == "class"
+                              else link_attribute(r["class"], r["attr_id"], r["now"] or ""),
+                              link_class(r["class"]) if r["kind"] == "attribute" else "")
+                             for r in sorted(renamed, key=lambda r: (r["kind"], r["was"] or ""))],
+                            col_classes=["mod", "prose", "prose", "name"]) + '</section>')
             if new_msgs or gone_msgs:
                 rows_m = [("added",
                            f'<a href="{message_url(m["pslug"], m["mslug"], version)}">'
