@@ -8,9 +8,17 @@ stated plainly: WCO decides what the model says; this publication decides only h
 
 ## What is authoritative
 
-The WCO Data Model is the authority. This site is generated from a release of it and is not a second
-source of truth. Where this site and the published model differ, the published model is right and
-the difference is a defect here.
+The WCO Data Model is the authority. This site is generated from it, and where the two differ the
+model is right and the difference is a defect here.
+
+One qualification, which the work of generating the artefacts made necessary. WCO publishes the
+model in more than one form, and those forms do not always agree: a tag cell in a workbook holds two
+candidate names where the published XML schema uses one of them, and a derived package's schema
+states obligations its workbook does not carry. Where two WCO publications disagree, this site
+follows the one that is more specific and records the choice, in
+[docs/cardinality-overrides.json](/docs/artefact-generation/) and on the
+[artefact generation](/docs/artefact-generation/) page. It does not decide anything the model
+decides for itself.
 
 Four releases are published here - **4.0.0, 4.1.0, 4.2.0 and 4.3.0** - each taken from its Library
 and Overall Information Structure workbooks together with its four Information Package workbooks.

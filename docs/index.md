@@ -47,12 +47,6 @@ release, and these pages. A client never has to know in advance which addresses 
 This is what makes the model usable by software that has never been told about it: a system meeting
 an unfamiliar identifier can resolve it and find out what it means.
 
-## What this site is not
-
-It is not a replacement for the WCO Data Model, and it is not a second source of truth. The
-spreadsheets WCO publishes remain authoritative; everything here is generated from them, and
-regenerating is how it is kept current.
-
 ## The messages
 
 The library says what a class and an attribute mean. The four Information Package workbooks say how
