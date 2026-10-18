@@ -272,33 +272,55 @@ def main():
             (target / f.name).write_text(text)
             counts["schema file"] += 1
 
-        titles = {"mdip": "Meta Data", "aip": "Additional (Response and Intergov)",
-                  "bip-dec": "Declaration", "bip-lpco": "Licences, permits, certificates"}
-        rows = []
+        meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
+        pkg_meta, dip_meta = meta["packages"], meta["derived"]
+
+        sections = []
         for key in ("bip-dec", "bip-lpco", "aip", "mdip"):
             info = report.get(key, {})
+            m = pkg_meta.get(key, {})
             schema = f"{BASE}schemas/{key}-4.3.0.json"
             ctx = f"{BASE}schemas/{key}-4.3.0-context.jsonld"
-            rows.append(
-                f'<tr><th><a href="{schema}">{html.escape(titles.get(key, key))}</a></th>'
-                f'<td>{info.get("nodes", "")} nodes</td>'
-                f'<td><a href="{schema}">schema</a> · <a href="{ctx}">context</a></td></tr>')
-            for slug, n in sorted((info.get("derived") or {}).items()):
-                ds = f"{BASE}schemas/{key}-{slug}-4.3.0.json"
-                dc = f"{BASE}schemas/{key}-{slug}-4.3.0-context.jsonld"
+            rows = [
+                f'<tr><th>Covers</th><td>{html.escape(m.get("description", ""))}</td></tr>',
+                f'<tr><th>Size</th><td>{info.get("nodes", "")} nodes in the information tree</td></tr>',
+                f'<tr><th>Files</th><td><a href="{schema}">JSON Schema</a> · '
+                f'<a href="{ctx}">JSON-LD context</a></td></tr>',
+            ]
+            derived = sorted((info.get("derived") or {}).items())
+            if derived:
+                items = []
+                for slug, n in derived:
+                    d = dip_meta.get(slug, {})
+                    ds = f"{BASE}schemas/{key}-{slug}-4.3.0.json"
+                    dc = f"{BASE}schemas/{key}-{slug}-4.3.0-context.jsonld"
+                    editorial = ' <span class="editorial" title="Our wording, not WCO\'s">gloss</span>' if d.get("source") == "editorial" else ""
+                    items.append(
+                        f'<li><a href="{ds}"><b>{html.escape(d.get("name", slug))}</b></a> '
+                        f'<span class="muted">· {n} nodes · {html.escape(d.get("group", ""))}</span>{editorial}'
+                        f'<br><span class="muted">{html.escape(d.get("gloss", ""))}</span> '
+                        f'<a class="quiet" href="{dc}">context</a></li>')
                 rows.append(
-                    f'<tr><th class="sub">{html.escape(slug)}</th><td>{n} nodes</td>'
-                    f'<td><a href="{ds}">schema</a> · <a href="{dc}">context</a></td></tr>')
+                    f'<tr><th>Derived packages</th><td><ul class="dips">{"".join(items)}</ul></td></tr>')
+            sections.append(
+                f'<section><h2>{html.escape(m.get("title", key))} '
+                f'<span class="muted">— {html.escape(m.get("subtitle", ""))}</span></h2>'
+                f'<table class="facts">{"".join(rows)}</table></section>')
+
         body = (
             "<h1>Schemas</h1>"
-            "<p class=\"definition\">A JSON Schema and a JSON-LD context for each Information "
-            "Package, and for each derived package that subsets it. Generated from the package "
-            "workbooks, so the cardinality is the model's own.</p>"
-            f"<table class=\"facts\">{''.join(rows)}</table>"
-            "<section><h2>How to read them</h2><p class=\"muted\">A class becomes an object, an "
+            "<p class=\"definition\">A JSON Schema and a JSON-LD context for each of the four "
+            "Information Packages, and for each derived package that subsets it. Generated from the "
+            "package workbooks, so the cardinality is the model\'s own rather than an assumption.</p>"
+            + "".join(sections)
+            + "<section><h2>How to read them</h2><p class=\"muted\">A class becomes an object, an "
             "element becomes a typed property, an unbounded maximum becomes an array, and a minimum "
             "of one becomes required. Each property carries the WCO identifier it came from and, "
-            "where the vocabulary has the term, a link to it.</p></section>")
+            "where the vocabulary has the term, a link to it.</p>"
+            "<p class=\"muted\">A derived package is the same tree cut down to the nodes it marks, "
+            "with the ancestors those nodes need. Where an entry is marked <span class=\"editorial\">"
+            "gloss</span> the explanation is ours: the workbook names the package but never spells "
+            "the abbreviation out.</p></section>")
         out = DIST / "schemas"
         (out / "index.html").write_text(page(
             "Schemas", "JSON Schema and JSON-LD context for each WCO Information Package.",
@@ -356,6 +378,10 @@ ul.terms li,ul.notes li{margin:4px 0}
 .prose pre code{background:none;border:0;color:inherit;padding:0}
 .prose li{margin:4px 0}
 table.facts th.sub{padding-left:22px;font-weight:400;color:var(--ink)}
+ul.dips{margin:0;padding-left:18px}
+ul.dips li{margin:10px 0}
+a.quiet{font-size:13px}
+.editorial{background:#fef7e0;color:#7a5900;border-radius:999px;padding:1px 8px;font-size:12px;font-weight:600}
 @media(max-width:620px){table.facts th{width:auto;display:block;border-top:0;padding-bottom:0}table.facts td{display:block;border-top:0;padding-top:2px}table.facts tr{display:block;border-top:1px solid var(--line);padding:8px 0}}
 """
 

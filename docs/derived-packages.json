@@ -1,0 +1,123 @@
+{
+  "_note": "Descriptions for the Information Packages and the derived packages that subset them. The group is what the workbook's own heading row says and is authoritative. The gloss expands an abbreviation the workbook never spells out; where the source is 'editorial' it is our wording, not WCO's, and should be checked before publication.",
+  "packages": {
+    "bip-dec": {
+      "title": "Declaration",
+      "subtitle": "Base Information Package",
+      "description": "Business to government submissions: import and export customs declarations, cargo reports and transit declarations."
+    },
+    "bip-lpco": {
+      "title": "LPCO",
+      "subtitle": "Base Information Package",
+      "description": "Licences, permits, certificates and other documents, such as a certificate of origin or a phytosanitary certificate."
+    },
+    "aip": {
+      "title": "Additional",
+      "subtitle": "Additional Information Package",
+      "description": "A wrapper around business information held in a Base Information Package: Response for government to business, Intergov for government to government. Its relationship to a BIP is composition, not association."
+    },
+    "mdip": {
+      "title": "Meta Data",
+      "subtitle": "Meta Data Information Package",
+      "description": "The technical aspect of a data exchange, separated so the other packages carry only business content."
+    }
+  },
+  "derived": {
+    "mar-api": {
+      "name": "Maritime API",
+      "group": "Derived IP",
+      "gloss": "Advance Passenger Information for maritime arrivals and departures, aligned to the IMO FAL forms.",
+      "source": "editorial"
+    },
+    "mar-bri": {
+      "name": "Maritime BRI",
+      "group": "Derived IP",
+      "gloss": "Booking Reservation Information. Added in WCO Data Model 4.1.0 for the cruise industry.",
+      "source": "WCO 4.1.0 release note"
+    },
+    "upu-cusitm": {
+      "name": "UPU CUSITM",
+      "group": "Derived IP",
+      "gloss": "The Universal Postal Union message by which a postal operator sends mail item information to its local customs authority.",
+      "source": "WCO-UPU joint message standards"
+    },
+    "upu-refrsp": {
+      "name": "UPU REFRSP",
+      "group": "Derived IP",
+      "gloss": "One of the WCO-UPU joint message standards version 2, alongside CUSITM and CUSRSP. The workbook does not spell the abbreviation out.",
+      "source": "WCO-UPU joint message standards"
+    },
+    "coo-wco-tcro": {
+      "name": "Certificate of Origin",
+      "group": "DIP use",
+      "gloss": "Certificate of Origin, under the WCO Technical Committee on Rules of Origin.",
+      "source": "workbook heading"
+    },
+    "customs-bond": {
+      "name": "Customs Bond",
+      "group": "DIP use",
+      "gloss": "A customs bond: the guarantee lodged against duties and taxes.",
+      "source": "workbook heading"
+    },
+    "etir": {
+      "name": "eTIR",
+      "group": "InterGov Projects",
+      "gloss": "The UNECE eTIR international system, which carries TIR transit data between customs administrations.",
+      "source": "editorial"
+    },
+    "sstl": {
+      "name": "SSTL",
+      "group": "InterGov Projects",
+      "gloss": "Smart and Secure Trade Lanes, the customs to customs exchange piloted on selected trade lanes.",
+      "source": "editorial"
+    },
+    "aeo-master-data": {
+      "name": "AEO Master Data",
+      "group": "InterGov DIP",
+      "gloss": "The master data describing an Authorised Economic Operator, exchanged between administrations.",
+      "source": "editorial"
+    },
+    "aeomra": {
+      "name": "AEOMRA",
+      "group": "InterGov Work in Progress",
+      "gloss": "Authorised Economic Operator Mutual Recognition Arrangement: the exchange that lets one administration recognise another's AEOs. Marked work in progress in the workbook.",
+      "source": "editorial"
+    },
+    "cntrl": {
+      "name": "CNTRL",
+      "group": "Response Category",
+      "gloss": "Control: a response telling the declarant that the goods or the declaration have been selected for control.",
+      "source": "editorial"
+    },
+    "inf": {
+      "name": "INF",
+      "group": "Response Category",
+      "gloss": "Information: a response carrying information rather than a decision.",
+      "source": "editorial"
+    },
+    "bussval": {
+      "name": "BUSSVAL",
+      "group": "Response Category",
+      "gloss": "Business validation: a response reporting whether the submission passed the business rules.",
+      "source": "editorial"
+    },
+    "techval": {
+      "name": "TECHVAL",
+      "group": "Response Category",
+      "gloss": "Technical validation: a response reporting whether the submission was well formed and schema valid.",
+      "source": "editorial"
+    },
+    "sta": {
+      "name": "STA",
+      "group": "Response Category",
+      "gloss": "Status: a response reporting the current state of a declaration.",
+      "source": "editorial"
+    },
+    "upu-cusres": {
+      "name": "UPU CUSRES",
+      "group": "Response DIP",
+      "gloss": "The Universal Postal Union response to a CUSITM message. The workbook spells it CUSRES in the column and CUSRSP2 in the heading above it.",
+      "source": "WCO-UPU joint message standards"
+    }
+  }
+}
