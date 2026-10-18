@@ -307,7 +307,11 @@ def table(headers, rows, cls="listing", col_classes=None):
         "<tr>" + "".join(f'<td class="c-{c}">{v}</td>' if c else f"<td>{v}</td>"
                          for v, c in zip(r, cc)) + "</tr>"
         for r in rows)
-    return f'<table class="{cls}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>'
+    # Wrapped so that a table too wide for the screen scrolls inside its own box. Without it the
+    # page itself gains a horizontal scrollbar and every paragraph on it moves when the reader
+    # drags the table.
+    return (f'<div class="scroll-x"><table class="{cls}"><thead><tr>{head}</tr></thead>'
+            f'<tbody>{body}</tbody></table></div>')
 
 
 def display_label(g, iri):
@@ -895,6 +899,10 @@ def main():
             continue
         renderer.reset()
         body = renderer.convert(src.read_text())
+        # The same treatment for the tables Markdown produces, which this generator does not build
+        # and so cannot wrap as it goes.
+        body = body.replace("<table>", '<div class="scroll-x"><table>').replace(
+            "</table>", "</table></div>")
         title = item["title"]
         out = DIST if item["slug"] == "index" else DIST / "docs" / item["slug"]
         out.mkdir(parents=True, exist_ok=True)
@@ -1879,7 +1887,8 @@ code.digest{font-size:12.5px;color:var(--muted)}
 .browser .card{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .browser .kidcount{font-size:11.5px;color:#8294a6;margin-left:auto;white-space:nowrap}
 .browser-failed .browser-tree{color:var(--muted);padding:18px}
-@media (max-width:760px){.browser-panes{flex-direction:column}.browser-detail{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:760px){.browser-panes{flex-direction:column}.browser-detail{border-left:0;border-top:1px solid var(--line)}
+.browser-tree,.browser-detail{max-height:52vh}}
 .pf-kind{display:inline-block;border-radius:4px;padding:1px 7px;font-size:12px;font-weight:600;margin-right:6px;background:var(--bg);color:var(--muted);border:1px solid var(--line);vertical-align:middle}
 .pf-class{background:#eaf2fd;color:#0b4ea2;border-color:#c5dbf7}
 .pf-property{background:#f0f0fb;color:#4b3f9e;border-color:#d9d6f3}
@@ -1895,6 +1904,33 @@ code.digest{font-size:12.5px;color:var(--muted)}
 p.negotiate{margin:0 0 20px;padding:9px 14px;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:0 7px 7px 0;background:var(--bg);font-size:14px;color:var(--muted)}
 p.negotiate span{color:var(--brand-dark);font-weight:600}
 p.negotiate code{font-size:12.5px}
+/* A table that does not fit scrolls inside this, so the page never does. The shadow on the right
+   edge is what tells a reader there is more of it. */
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.scroll-x table{margin-top:0}
+@media (max-width:620px){
+  /* Give the content back the 88px of gutter that the card and the wrapper take between them. */
+  .wrap{padding:0 12px}
+  main{padding:18px 14px;border-radius:10px;margin:14px auto 20px}
+  h1{font-size:24px}
+  h2{font-size:17px}
+  .definition{font-size:16px}
+  /* The two navigation strips stay on one line and scroll, rather than wrapping to four rows and
+     pushing the page itself down the screen. */
+  .sitenav,.subnav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  .sitenav a,.subnav a{padding-left:12px;padding-right:12px}
+  .search{min-width:0;flex:1 1 100%}
+  .search .pagefind-ui__drawer{max-width:none;width:calc(100vw - 24px)}
+  /* A diagram shrunk to the width of a phone is unreadable. Shown at its own size and scrolled,
+     it stays legible, and the caption still links to the file for a pinch-zoom. */
+  figure.diagram{padding:10px}
+  figure.diagram a{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  figure.diagram img{max-width:none;max-height:none}
+  .browser-bar input{min-width:0;flex:1 1 100%}
+  table.listing{font-size:14px}
+  table.listing th,table.listing td{padding:7px 8px}
+  p.negotiate{font-size:13px}
+}
 .jump{font-size:14px;color:var(--muted);margin:0 0 18px}
 .jump a{margin-right:2px}
 a.modhead{text-decoration:none}
