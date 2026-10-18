@@ -356,7 +356,7 @@ wco:nameIdentificationIdentifier a owl:DatatypeProperty ;
     rdfs:label "Name identification identifier"@en ;
     skos:definition "Identification of the location/port where waste of any type was or will be delivered."@en ;
     schema:domainIncludes wco:WasteDeliveryLocation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes <https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes> ;
     wco:codeListBasis "UN/LOCODE + User codes"@en ;
     wco:xmlTag "ID" ;
     wco:jsonTag "id" ;

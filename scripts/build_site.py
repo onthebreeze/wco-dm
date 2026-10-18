@@ -57,6 +57,7 @@ def nav_html(current=None):
         href = BASE if item["slug"] == "index" else f'{BASE}docs/{item["slug"]}'
         cls = ' class="here"' if item["slug"] == current else ""
         out.append(f'<a{cls} href="{href}">{html.escape(item["title"])}</a>')
+    out.append(f'<a href="{BASE}code-lists/">Code lists</a>')
     out.append(f'<a href="{BASE}schemas/">Schemas</a>')
     out.append(f'<a href="{BASE}module/core">Browse the vocabulary</a>')
     return '<nav class="sitenav">' + "".join(out) + "</nav>"
@@ -128,6 +129,19 @@ def term_link(g, iri):
     return f'<a href="{publish(iri)}">{html.escape(display_label(g, iri))}</a>'
 
 
+def render_range(g, t):
+    """A property's value. A code list is a link; anything else is a type."""
+    out = []
+    for o in sorted(g.objects(t, SCHEMA.rangeIncludes), key=str):
+        if (o, RDF.type, SKOS.ConceptScheme) in g:
+            out.append(f'<a class="codelist" href="{publish(o)}">{html.escape(display_label(g, o))}</a>')
+        elif str(o).startswith(SOURCE_BASE):
+            out.append(term_link(g, o))
+        else:
+            out.append(f'<code>{html.escape(str(o).rsplit("#", 1)[-1])}</code>')
+    return ", ".join(out)
+
+
 def short(text, n=150):
     text = " ".join((text or "").split())
     return html.escape(text if len(text) <= n else text[: n - 1].rstrip() + "…")
@@ -152,9 +166,7 @@ def term_body(g, s, kind, idx):
     if module:
         row("Module", f'<a href="{BASE}module/{module}">{html.escape(module)}</a>')
     if kind == "property":
-        row("Value", ", ".join(sorted(
-            link(o) if str(o).startswith(SOURCE_BASE) else f"<code>{html.escape(str(o).rsplit('#', 1)[-1])}</code>"
-            for o in g.objects(s, SCHEMA.rangeIncludes))))
+        row("Value", render_range(g, s))
     for prop, name in ((WCO.xmlTag, "XML tag"), (WCO.jsonTag, "JSON tag"),
                        (WCO.classId, "WCO class ID"), (WCO.attributeId, "WCO attribute ID"),
                        (SKOS.notation, "Code")):
@@ -181,9 +193,7 @@ def term_body(g, s, kind, idx):
             f'<section><h2>Properties ({len(props)})</h2>'
             + (table(["Property", "Definition", "Value"], [
                 (term_link(g, t), short(one(g, t, SKOS.definition)),
-                 ", ".join(sorted(term_link(g, o) if str(o).startswith(SOURCE_BASE)
-                                  else f"<code>{html.escape(str(o).rsplit('#', 1)[-1])}</code>"
-                                  for o in g.objects(t, SCHEMA.rangeIncludes))))
+                 render_range(g, t))
                 for t in props], col_classes=["name", "prose", "value"])
                or '<p class="muted">This class carries no properties of its own.</p>')
             + "</section>")
@@ -373,10 +383,10 @@ def main():
         props = sorted(groups.get("property", []), key=by_label)
         if props:
             body.append(f'<section><h2>Properties ({len(props)})</h2>' + table(
-                ["Property", "Definition", "Used by"],
-                [(term_link(g, t), short(one(g, t, SKOS.definition)),
+                ["Property", "Definition", "Value", "Used by"],
+                [(term_link(g, t), short(one(g, t, SKOS.definition), 110), render_range(g, t),
                   str(len(list(g.objects(t, SCHEMA.domainIncludes))))) for t in props],
-                col_classes=["name", "prose", "num"]) + "</section>")
+                col_classes=["name", "prose", "value", "num"]) + "</section>")
 
         schemes = sorted(groups.get("code-list", []), key=by_label)
         if schemes:
@@ -390,6 +400,45 @@ def main():
         (out / "index.html").write_text(page(f"{module} module", "A module of the WCO Data Model vocabulary.",
                                              "".join(body), [("Vocabulary", BASE), ("Modules", None), (module, None)]))
         counts["module"] += 1
+
+    # A code list register, grouped by what the model actually knows about each list.
+    schemes = sorted(g.subjects(RDF.type, SKOS.ConceptScheme), key=lambda t: display_label(g, t).lower())
+    schemes = [t for t in schemes if str(t).startswith(SOURCE_BASE + "code-list/")]
+    origin = lambda t: (one(g, t, WCO.codeListOrigin) or "registered")
+    with_values = [t for t in schemes if idx["scheme_concepts"].get(t)]
+    registered_empty = [t for t in schemes if not idx["scheme_concepts"].get(t) and origin(t) == "registered"]
+    referenced = [t for t in schemes if origin(t) == "referenced"]
+
+    def scheme_table(items):
+        return table(["Code list", "Based on", "Values", "Used by"],
+                     [(term_link(g, t), short(one(g, t, WCO.codeListBasis), 90),
+                       str(len(idx["scheme_concepts"].get(t, []))),
+                       str(len(idx["scheme_props"].get(t, [])))) for t in items],
+                     col_classes=["name", "prose", "num", "num"])
+
+    body = [
+        "<h1>Code lists</h1>",
+        '<p class="definition">Every coded property resolves to a code list rather than to a bare '
+        'string. Whether that list carries its values here depends on who maintains them.</p>',
+        f'<section><h2>With their values ({len(with_values)})</h2>'
+        '<p class="muted">WCO owns these codes, so they are published here and each value has its '
+        'own address.</p>' + scheme_table(with_values) + "</section>",
+        f'<section><h2>Registered, values held elsewhere ({len(registered_empty)})</h2>'
+        '<p class="muted">The WCO register names the list and says what it is based on. The values '
+        'belong to that authority, so they are not reproduced here.</p>'
+        + scheme_table(registered_empty) + "</section>",
+        f'<section><h2>Referenced but not registered ({len(referenced)})</h2>'
+        '<p class="muted">The model names these lists against an attribute, but the register either '
+        'does not hold them or holds several drawing on the same basis and cannot say which. They '
+        'exist here so a coded property has something to resolve to.</p>'
+        + scheme_table(referenced) + "</section>",
+    ]
+    out = DIST / "code-lists"
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "index.html").write_text(page(
+        "Code lists", "Every code list the WCO Data Model names, and what is known about each.",
+        "".join(body), [("Vocabulary", BASE), ("Code lists", None)], current="code-lists"))
+    counts["page"] += 1
 
     # The whole graph, for a machine asking at the root. The root HTML page comes from the Nextra
     # site, which is merged over this tree at deploy.
@@ -557,6 +606,7 @@ table.listing td{overflow-wrap:anywhere}
 .c-rel{width:190px}
 .rel{font-weight:600;color:var(--brand)}
 .rel-candidate{color:var(--muted);font-weight:500}
+a.codelist{background:#eef4fb;border:1px solid #cfe0f2;border-radius:5px;padding:1px 7px;font-size:14px;text-decoration:none;white-space:nowrap}
 @media(max-width:760px){table.listing{table-layout:auto}.c-name,.c-value,.c-rel{width:auto}}
 table.facts th.sub{padding-left:22px;font-weight:400;color:var(--ink)}
 ul.dips{margin:0;padding-left:18px}

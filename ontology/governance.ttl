@@ -50,6 +50,11 @@ wco:codeListBasis a owl:AnnotationProperty ;
     rdfs:comment "The external list a code list is based on, where WCO does not own the values."@en ;
     rdfs:isDefinedBy wco-mod:governance .
 
+wco:codeListOrigin a owl:AnnotationProperty ;
+    rdfs:label "code list origin"@en ;
+    rdfs:comment "Whether the list is registered in the WCO code list register, or only referenced by the model."@en ;
+    rdfs:isDefinedBy wco-mod:governance .
+
 # The term-status scheme, on the vocab.unece.org lifecycle.
 
 ts:scheme a skos:ConceptScheme ; rdfs:label "WCO vocabulary term status"@en .

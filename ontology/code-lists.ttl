@@ -23,6 +23,7 @@ wco-mod:code-lists a owl:Ontology ;
 wco-cl:action-code a skos:ConceptScheme ;
     rdfs:label "ActionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 1229 OR User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:3" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -30,6 +31,7 @@ wco-cl:action-code a skos:ConceptScheme ;
 wco-cl:additional-procedure-code a skos:ConceptScheme ;
     rdfs:label "AdditionalProcedureCode"@en ;
     wco:codeListBasis "User code list (see EU CDM code list for DE 11 10 001 000)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:4" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -37,6 +39,7 @@ wco-cl:additional-procedure-code a skos:ConceptScheme ;
 wco-cl:address-type-code a skos:ConceptScheme ;
     rdfs:label "AddressTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3131"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:5" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -44,6 +47,7 @@ wco-cl:address-type-code a skos:ConceptScheme ;
 wco-cl:aeo-program-type-code a skos:ConceptScheme ;
     rdfs:label "AEOProgramTypeCode"@en ;
     wco:codeListBasis "WCO code list/AEOProgramTypeCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:6" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -66,6 +70,7 @@ wco-cl:aeo-program-type-code a skos:ConceptScheme ;
 wco-cl:agent-function-code a skos:ConceptScheme ;
     rdfs:label "AgentFunctionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4405 For use with the EU CDM: - code 2 (Representative (direct representation within the meaning of Article 18(1 of the code)) - code 3 (Representative (indirect representation within the meaning of Article 18(1 of the code))"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:7" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -73,6 +78,7 @@ wco-cl:agent-function-code a skos:ConceptScheme ;
 wco-cl:agent-quality-assurance-code a skos:ConceptScheme ;
     rdfs:label "AgentQualityAssuranceCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 166 and 167)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:8" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -80,6 +86,7 @@ wco-cl:agent-quality-assurance-code a skos:ConceptScheme ;
 wco-cl:aip-type-code a skos:ConceptScheme ;
     rdfs:label "AIPTypeCode"@en ;
     wco:codeListBasis "WCO code list/AIPTypeCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:9" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -97,6 +104,7 @@ wco-cl:aip-type-code a skos:ConceptScheme ;
 wco-cl:arrival-confirmation-code a skos:ConceptScheme ;
     rdfs:label "ArrivalConfirmationCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 164 and 165)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:10" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -104,6 +112,7 @@ wco-cl:arrival-confirmation-code a skos:ConceptScheme ;
 wco-cl:ballast-or-cargo-type-code a skos:ConceptScheme ;
     rdfs:label "BallastOrCargoTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7085"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:11" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -111,6 +120,7 @@ wco-cl:ballast-or-cargo-type-code a skos:ConceptScheme ;
 wco-cl:bond-activity-type-code a skos:ConceptScheme ;
     rdfs:label "BondActivityTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:12" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -118,6 +128,7 @@ wco-cl:bond-activity-type-code a skos:ConceptScheme ;
 wco-cl:bunker-fuel-type-code a skos:ConceptScheme ;
     rdfs:label "BunkerFuelTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:13" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -125,6 +136,7 @@ wco-cl:bunker-fuel-type-code a skos:ConceptScheme ;
 wco-cl:business-type-code a skos:ConceptScheme ;
     rdfs:label "BusinessTypeCode"@en ;
     wco:codeListBasis "ISIC code list OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:14" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -132,6 +144,7 @@ wco-cl:business-type-code a skos:ConceptScheme ;
 wco-cl:call-purpose-code a skos:ConceptScheme ;
     rdfs:label "CallPurposeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8025"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:15" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -139,6 +152,7 @@ wco-cl:call-purpose-code a skos:ConceptScheme ;
 wco-cl:carrier-split-consignment-code a skos:ConceptScheme ;
     rdfs:label "CarrierSplitConsignmentCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 156 and 157)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:16" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -146,6 +160,7 @@ wco-cl:carrier-split-consignment-code a skos:ConceptScheme ;
 wco-cl:change-reason-code a skos:ConceptScheme ;
     rdfs:label "ChangeReasonCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:17" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -153,6 +168,7 @@ wco-cl:change-reason-code a skos:ConceptScheme ;
 wco-cl:characteristic-code a skos:ConceptScheme ;
     rdfs:label "CharacteristicCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:18" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -160,6 +176,7 @@ wco-cl:characteristic-code a skos:ConceptScheme ;
 wco-cl:characteristic-value-code a skos:ConceptScheme ;
     rdfs:label "CharacteristicValueCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7111 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:19" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -167,6 +184,7 @@ wco-cl:characteristic-value-code a skos:ConceptScheme ;
 wco-cl:charges-type-code a skos:ConceptScheme ;
     rdfs:label "ChargesTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 5025 For use with the EU CDM: - AB  Commissions and brokerage, except buying commissions    - AD  Containers and packing    - AE  Materials, components, parts and similar items incorporated in the imported goods    - AF  Tools, dies, moulds and similar items used in the production of the imported goods   - AG  Materials consumed in the production of the imported goods - AH  Engineering, development, artwork, design work and plans and sketches undertaken elsewhere than in the European Union and necessary for the production of the imported goods    - AI  Royalties and license fees - AJ  Proceeds of any subsequent resale, disposal or use accruing to the seller    - AK  Transport costs, loading and handling charges and insurance costs up to the place of introduction in the European Union    - AL  Indirect payments and other payments (Article 70 of the code) - AN  Additions based on a decision granted in accordance with Article 71 of Delegated Regulation (EU) 2015/2446. Deductions (As defined under Articles 72 of the Code)    - BA  Costs of transport after arrival at the place of introduction    - BB  Charges for construction, erection, assembly, maintenance or technical assistance undertaken after importation    - BC  Import duties or other charges payable in the Union for reason of the import or sale of goods    - BD  Interest charges    - BE  Charges for the right to reproduce the imported goods in the European Union    - BF  Buying commissions   - BG  Deductions based on a decision granted in accordance with Article 71 of Delegated Regulation (EU) 2015/2446"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:20" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -174,6 +192,7 @@ wco-cl:charges-type-code a skos:ConceptScheme ;
 wco-cl:classification-name-code a skos:ConceptScheme ;
     rdfs:label "ClassificationNameCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7357"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:21" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -181,6 +200,7 @@ wco-cl:classification-name-code a skos:ConceptScheme ;
 wco-cl:commodity-category-code a skos:ConceptScheme ;
     rdfs:label "CommodityCategoryCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7009"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:22" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -188,6 +208,7 @@ wco-cl:commodity-category-code a skos:ConceptScheme ;
 wco-cl:commodity-category-qualifier-code a skos:ConceptScheme ;
     rdfs:label "CommodityCategoryQualifierCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3055 OR User codes (1131)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:23" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -195,6 +216,7 @@ wco-cl:commodity-category-qualifier-code a skos:ConceptScheme ;
 wco-cl:commodity-characteristic-qualifier-code a skos:ConceptScheme ;
     rdfs:label "CommodityCharacteristicQualifierCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7081"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:24" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -202,6 +224,7 @@ wco-cl:commodity-characteristic-qualifier-code a skos:ConceptScheme ;
 wco-cl:commodity-classification-type-code a skos:ConceptScheme ;
     rdfs:label "CommodityClassificationTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:25" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -209,6 +232,7 @@ wco-cl:commodity-classification-type-code a skos:ConceptScheme ;
 wco-cl:commodity-dangerous-goods-packing-group-code a skos:ConceptScheme ;
     rdfs:label "CommodityDangerousGoodsPackingGroupCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7233"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:26" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -216,6 +240,7 @@ wco-cl:commodity-dangerous-goods-packing-group-code a skos:ConceptScheme ;
 wco-cl:commodity-identifier-type-code a skos:ConceptScheme ;
     rdfs:label "CommodityIdentifierTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:27" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -223,6 +248,7 @@ wco-cl:commodity-identifier-type-code a skos:ConceptScheme ;
 wco-cl:commodity-identity-number-qualifier-code a skos:ConceptScheme ;
     rdfs:label "CommodityIdentityNumberQualifierCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7405"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:28" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -230,6 +256,7 @@ wco-cl:commodity-identity-number-qualifier-code a skos:ConceptScheme ;
 wco-cl:commodity-name-qualifier-code a skos:ConceptScheme ;
     rdfs:label "CommodityNameQualifierCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7081"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:29" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -237,6 +264,7 @@ wco-cl:commodity-name-qualifier-code a skos:ConceptScheme ;
 wco-cl:commodity-physical-state-code a skos:ConceptScheme ;
     rdfs:label "CommodityPhysicalStateCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7007"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:30" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -244,6 +272,7 @@ wco-cl:commodity-physical-state-code a skos:ConceptScheme ;
 wco-cl:commodity-process-type-identification-code a skos:ConceptScheme ;
     rdfs:label "CommodityProcessTypeIdentificationCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7187"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:31" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -251,6 +280,7 @@ wco-cl:commodity-process-type-identification-code a skos:ConceptScheme ;
 wco-cl:communication-means-type-code a skos:ConceptScheme ;
     rdfs:label "CommunicationMeansTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3155"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:32" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -258,6 +288,7 @@ wco-cl:communication-means-type-code a skos:ConceptScheme ;
 wco-cl:communication-qualifier-code a skos:ConceptScheme ;
     rdfs:label "CommunicationQualifierCode"@en ;
     wco:codeListBasis "WCO code list/CommunicationSubTypeCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:33" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -265,6 +296,7 @@ wco-cl:communication-qualifier-code a skos:ConceptScheme ;
 wco-cl:constituent-element-or-component-code a skos:ConceptScheme ;
     rdfs:label "ConstituentElementOrComponentCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:34" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -272,6 +304,7 @@ wco-cl:constituent-element-or-component-code a skos:ConceptScheme ;
 wco-cl:contact-function-code a skos:ConceptScheme ;
     rdfs:label "ContactFunctionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3139"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:35" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -279,6 +312,7 @@ wco-cl:contact-function-code a skos:ConceptScheme ;
 wco-cl:container-legal-status-code a skos:ConceptScheme ;
     rdfs:label "ContainerLegalStatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 162 and 163)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:36" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -286,6 +320,7 @@ wco-cl:container-legal-status-code a skos:ConceptScheme ;
 wco-cl:container-status-code a skos:ConceptScheme ;
     rdfs:label "ContainerStatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8249"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:37" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -293,6 +328,7 @@ wco-cl:container-status-code a skos:ConceptScheme ;
 wco-cl:container-transport-code a skos:ConceptScheme ;
     rdfs:label "ContainerTransportCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 68 and 69) For use with the EU CDM: - code 0 (Goods not transported in containers) - code 1 (Goods transported in containers)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:38" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -300,6 +336,7 @@ wco-cl:container-transport-code a skos:ConceptScheme ;
 wco-cl:control-result-code a skos:ConceptScheme ;
     rdfs:label "ControlResultCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:39" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -307,6 +344,7 @@ wco-cl:control-result-code a skos:ConceptScheme ;
 wco-cl:control-type-code a skos:ConceptScheme ;
     rdfs:label "ControlTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:40" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -314,6 +352,7 @@ wco-cl:control-type-code a skos:ConceptScheme ;
 wco-cl:country-code a skos:ConceptScheme ;
     rdfs:label "CountryCode"@en ;
     wco:codeListBasis "ISO 3166-1"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:41" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -321,6 +360,7 @@ wco-cl:country-code a skos:ConceptScheme ;
 wco-cl:country-relationship-code a skos:ConceptScheme ;
     rdfs:label "CountryRelationshipCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:42" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -328,6 +368,7 @@ wco-cl:country-relationship-code a skos:ConceptScheme ;
 wco-cl:country-sub-division-code a skos:ConceptScheme ;
     rdfs:label "CountrySubDivisionCode"@en ;
     wco:codeListBasis "ISO 3166-2 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:43" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -335,6 +376,7 @@ wco-cl:country-sub-division-code a skos:ConceptScheme ;
 wco-cl:criteria-conformance-code a skos:ConceptScheme ;
     rdfs:label "CriteriaConformanceCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:44" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -342,6 +384,7 @@ wco-cl:criteria-conformance-code a skos:ConceptScheme ;
 wco-cl:currency-code a skos:ConceptScheme ;
     rdfs:label "CurrencyCode"@en ;
     wco:codeListBasis "ISO 4217"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:45" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -349,6 +392,7 @@ wco-cl:currency-code a skos:ConceptScheme ;
 wco-cl:dangerous-goods-regulations-code a skos:ConceptScheme ;
     rdfs:label "DangerousGoodsRegulationsCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8273"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:46" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -356,6 +400,7 @@ wco-cl:dangerous-goods-regulations-code a skos:ConceptScheme ;
 wco-cl:declarant-function-code a skos:ConceptScheme ;
     rdfs:label "DeclarantFunctionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:47" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -363,6 +408,7 @@ wco-cl:declarant-function-code a skos:ConceptScheme ;
 wco-cl:document-category-code a skos:ConceptScheme ;
     rdfs:label "DocumentCategoryCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:48" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -370,6 +416,7 @@ wco-cl:document-category-code a skos:ConceptScheme ;
 wco-cl:document-function-code a skos:ConceptScheme ;
     rdfs:label "DocumentFunctionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 1225"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:49" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -377,6 +424,7 @@ wco-cl:document-function-code a skos:ConceptScheme ;
 wco-cl:document-message-section-code a skos:ConceptScheme ;
     rdfs:label "DocumentMessageSectionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 1049"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:50" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -384,6 +432,7 @@ wco-cl:document-message-section-code a skos:ConceptScheme ;
 wco-cl:document-status-code a skos:ConceptScheme ;
     rdfs:label "DocumentStatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:51" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -391,6 +440,7 @@ wco-cl:document-status-code a skos:ConceptScheme ;
 wco-cl:document-type-code a skos:ConceptScheme ;
     rdfs:label "DocumentTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 1001 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:52" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -398,6 +448,7 @@ wco-cl:document-type-code a skos:ConceptScheme ;
 wco-cl:duty-regime-code a skos:ConceptScheme ;
     rdfs:label "DutyRegimeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 9213 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:53" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -405,6 +456,7 @@ wco-cl:duty-regime-code a skos:ConceptScheme ;
 wco-cl:endorsement-code a skos:ConceptScheme ;
     rdfs:label "EndorsementCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:54" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -412,6 +464,7 @@ wco-cl:endorsement-code a skos:ConceptScheme ;
 wco-cl:equipment-type-code a skos:ConceptScheme ;
     rdfs:label "EquipmentTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8053"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:55" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -419,6 +472,7 @@ wco-cl:equipment-type-code a skos:ConceptScheme ;
 wco-cl:error-code a skos:ConceptScheme ;
     rdfs:label "ErrorCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:56" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -426,6 +480,7 @@ wco-cl:error-code a skos:ConceptScheme ;
 wco-cl:event-type-code a skos:ConceptScheme ;
     rdfs:label "EventTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:57" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -433,6 +488,7 @@ wco-cl:event-type-code a skos:ConceptScheme ;
 wco-cl:free-trade-zone-status-code a skos:ConceptScheme ;
     rdfs:label "FreeTradeZoneStatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:58" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -440,6 +496,7 @@ wco-cl:free-trade-zone-status-code a skos:ConceptScheme ;
 wco-cl:freight-charge-apportioning-method-code a skos:ConceptScheme ;
     rdfs:label "FreightChargeApportioningMethodCode"@en ;
     wco:codeListBasis "WCO code list/FreightChargeApportioningMethodCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:59" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -457,6 +514,7 @@ wco-cl:freight-charge-apportioning-method-code a skos:ConceptScheme ;
 wco-cl:freight-charge-payment-method-code a skos:ConceptScheme ;
     rdfs:label "FreightChargePaymentMethodCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4215"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:60" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -464,6 +522,7 @@ wco-cl:freight-charge-payment-method-code a skos:ConceptScheme ;
 wco-cl:goods-group-name-code a skos:ConceptScheme ;
     rdfs:label "GoodsGroupNameCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7059"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:61" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -471,6 +530,7 @@ wco-cl:goods-group-name-code a skos:ConceptScheme ;
 wco-cl:goods-location-identification-type-code a skos:ConceptScheme ;
     rdfs:label "GoodsLocationIdentificationTypeCode"@en ;
     wco:codeListBasis "User code list (see EU CDM code list for DE 16 15 046 000)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:62" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -478,6 +538,7 @@ wco-cl:goods-location-identification-type-code a skos:ConceptScheme ;
 wco-cl:goods-measure-function-code a skos:ConceptScheme ;
     rdfs:label "GoodsMeasureFunctionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 6311"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:63" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -485,6 +546,7 @@ wco-cl:goods-measure-function-code a skos:ConceptScheme ;
 wco-cl:government-agency-name-code a skos:ConceptScheme ;
     rdfs:label "GovernmentAgencyNameCode"@en ;
     wco:codeListBasis "UN/LOCODE (an..5) + User codes (an..12)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:64" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -492,6 +554,7 @@ wco-cl:government-agency-name-code a skos:ConceptScheme ;
 wco-cl:government-agency-type-code a skos:ConceptScheme ;
     rdfs:label "GovernmentAgencyTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 9415"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:65" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -499,6 +562,7 @@ wco-cl:government-agency-type-code a skos:ConceptScheme ;
 wco-cl:government-procedure-code a skos:ConceptScheme ;
     rdfs:label "GovernmentProcedureCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 For Customs:  User codes, categorized based on the revised Kyoto Convention"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:66" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -506,6 +570,7 @@ wco-cl:government-procedure-code a skos:ConceptScheme ;
 wco-cl:guarantee-activity-type-code a skos:ConceptScheme ;
     rdfs:label "GuaranteeActivityTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:67" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -513,6 +578,7 @@ wco-cl:guarantee-activity-type-code a skos:ConceptScheme ;
 wco-cl:handling-code a skos:ConceptScheme ;
     rdfs:label "HandlingCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4079"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:68" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -520,6 +586,7 @@ wco-cl:handling-code a skos:ConceptScheme ;
 wco-cl:inf-ship-class-code a skos:ConceptScheme ;
     rdfs:label "INFShipClassCode"@en ;
     wco:codeListBasis "Chapter VII of SOLAS (Carriage of dangerous goods)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:69" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -542,6 +609,7 @@ wco-cl:inf-ship-class-code a skos:ConceptScheme ;
 wco-cl:intended-use-code a skos:ConceptScheme ;
     rdfs:label "IntendedUseCode"@en ;
     wco:codeListBasis "WCO code list/IntendedUseCode OR User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:70" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -549,6 +617,7 @@ wco-cl:intended-use-code a skos:ConceptScheme ;
 wco-cl:ipr-type-code a skos:ConceptScheme ;
     rdfs:label "IPRTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:71" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -556,6 +625,7 @@ wco-cl:ipr-type-code a skos:ConceptScheme ;
 wco-cl:language-code a skos:ConceptScheme ;
     rdfs:label "LanguageCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3453"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:72" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -563,6 +633,7 @@ wco-cl:language-code a skos:ConceptScheme ;
 wco-cl:location-function-code a skos:ConceptScheme ;
     rdfs:label "LocationFunctionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:73" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -570,6 +641,7 @@ wco-cl:location-function-code a skos:ConceptScheme ;
 wco-cl:lpco-exemption-code a skos:ConceptScheme ;
     rdfs:label "LPCOExemptionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4183"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:74" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -577,6 +649,7 @@ wco-cl:lpco-exemption-code a skos:ConceptScheme ;
 wco-cl:measurement-unit-code a skos:ConceptScheme ;
     rdfs:label "MeasurementUnitCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 6411"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:75" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -584,6 +657,7 @@ wco-cl:measurement-unit-code a skos:ConceptScheme ;
 wco-cl:obligation-guarantee-code a skos:ConceptScheme ;
     rdfs:label "ObligationGuaranteeCode"@en ;
     wco:codeListBasis "WCO code list/ObligationGuaranteeCode OR User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:76" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -641,6 +715,7 @@ wco-cl:obligation-guarantee-code a skos:ConceptScheme ;
 wco-cl:origin-rule-code a skos:ConceptScheme ;
     rdfs:label "OriginRuleCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:77" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -648,6 +723,7 @@ wco-cl:origin-rule-code a skos:ConceptScheme ;
 wco-cl:origin-type-code a skos:ConceptScheme ;
     rdfs:label "OriginTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:78" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -655,6 +731,7 @@ wco-cl:origin-type-code a skos:ConceptScheme ;
 wco-cl:package-hierarchy-code a skos:ConceptScheme ;
     rdfs:label "PackageHierarchyCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7075"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:79" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -662,6 +739,7 @@ wco-cl:package-hierarchy-code a skos:ConceptScheme ;
 wco-cl:package-type-code a skos:ConceptScheme ;
     rdfs:label "PackageTypeCode"@en ;
     wco:codeListBasis "UN/ECE Recommendation 21 Annex VI"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:80" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -669,6 +747,7 @@ wco-cl:package-type-code a skos:ConceptScheme ;
 wco-cl:party-relationship-code a skos:ConceptScheme ;
     rdfs:label "PartyRelationshipCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 135, 136 and 137)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:81" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -676,6 +755,7 @@ wco-cl:party-relationship-code a skos:ConceptScheme ;
 wco-cl:payment-method-code a skos:ConceptScheme ;
     rdfs:label "PaymentMethodCode"@en ;
     wco:codeListBasis "WCO code list/PaymentMethodCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:82" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -768,6 +848,7 @@ wco-cl:payment-method-code a skos:ConceptScheme ;
 wco-cl:payment-terms-code a skos:ConceptScheme ;
     rdfs:label "PaymentTermsCode"@en ;
     wco:codeListBasis "UN/ECE Recommendation 17"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:83" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -775,6 +856,7 @@ wco-cl:payment-terms-code a skos:ConceptScheme ;
 wco-cl:payment-type-code a skos:ConceptScheme ;
     rdfs:label "PaymentTypeCode"@en ;
     wco:codeListBasis "WCO code list/PaymentTypeCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:84" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -792,6 +874,7 @@ wco-cl:payment-type-code a skos:ConceptScheme ;
 wco-cl:person-category-code a skos:ConceptScheme ;
     rdfs:label "PersonCategoryCode"@en ;
     wco:codeListBasis "User code list (preferably new WCO code list)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:85" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -799,6 +882,7 @@ wco-cl:person-category-code a skos:ConceptScheme ;
 wco-cl:person-gender-code a skos:ConceptScheme ;
     rdfs:label "PersonGenderCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3499"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:86" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -806,6 +890,7 @@ wco-cl:person-gender-code a skos:ConceptScheme ;
 wco-cl:person-nationality-code a skos:ConceptScheme ;
     rdfs:label "PersonNationalityCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3207"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:87" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -813,6 +898,7 @@ wco-cl:person-nationality-code a skos:ConceptScheme ;
 wco-cl:person-status-code a skos:ConceptScheme ;
     rdfs:label "PersonStatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3035 UN/EDIFACT code list 7365"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:88" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -820,6 +906,7 @@ wco-cl:person-status-code a skos:ConceptScheme ;
 wco-cl:person-type-code a skos:ConceptScheme ;
     rdfs:label "PersonTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:89" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -827,6 +914,7 @@ wco-cl:person-type-code a skos:ConceptScheme ;
 wco-cl:program-partner-profile-type-code a skos:ConceptScheme ;
     rdfs:label "ProgramPartnerProfileTypeCode"@en ;
     wco:codeListBasis "WCO code list/ProgramPartnerProfileTypeCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:90" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -834,6 +922,7 @@ wco-cl:program-partner-profile-type-code a skos:ConceptScheme ;
 wco-cl:rate-type-code a skos:ConceptScheme ;
     rdfs:label "RateTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 5419"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:91" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -841,6 +930,7 @@ wco-cl:rate-type-code a skos:ConceptScheme ;
 wco-cl:reconciliation-reason-code a skos:ConceptScheme ;
     rdfs:label "ReconciliationReasonCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4183"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:92" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -848,6 +938,7 @@ wco-cl:reconciliation-reason-code a skos:ConceptScheme ;
 wco-cl:reference-type-code a skos:ConceptScheme ;
     rdfs:label "ReferenceTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 1153. For EU CDM usage: Additional references must be entered in the form of a code defined in Title I. The list of additional references and their respective codes can be found in the TARIC database, their format is a1an3. Member States may define national codes, national codes must have the format n1an3"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:93" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -855,6 +946,7 @@ wco-cl:reference-type-code a skos:ConceptScheme ;
 wco-cl:reply-type-code a skos:ConceptScheme ;
     rdfs:label "ReplyTypeCode"@en ;
     wco:codeListBasis "EDIFACT 4343 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:94" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -862,6 +954,7 @@ wco-cl:reply-type-code a skos:ConceptScheme ;
 wco-cl:request-override-code a skos:ConceptScheme ;
     rdfs:label "RequestOverrideCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:95" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -869,6 +962,7 @@ wco-cl:request-override-code a skos:ConceptScheme ;
 wco-cl:reseal-code a skos:ConceptScheme ;
     rdfs:label "ResealCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:96" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -876,6 +970,7 @@ wco-cl:reseal-code a skos:ConceptScheme ;
 wco-cl:responsible-agency-code a skos:ConceptScheme ;
     rdfs:label "ResponsibleAgencyCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 0051"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:97" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -883,6 +978,7 @@ wco-cl:responsible-agency-code a skos:ConceptScheme ;
 wco-cl:role-code a skos:ConceptScheme ;
     rdfs:label "RoleCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:98" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -890,6 +986,7 @@ wco-cl:role-code a skos:ConceptScheme ;
 wco-cl:seal-condition-code a skos:ConceptScheme ;
     rdfs:label "SealConditionCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:99" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -897,6 +994,7 @@ wco-cl:seal-condition-code a skos:ConceptScheme ;
 wco-cl:sealing-party-type-code a skos:ConceptScheme ;
     rdfs:label "SealingPartyTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 9303"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:100" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -904,6 +1002,7 @@ wco-cl:sealing-party-type-code a skos:ConceptScheme ;
 wco-cl:seal-type-code a skos:ConceptScheme ;
     rdfs:label "SealTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:101" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -911,6 +1010,7 @@ wco-cl:seal-type-code a skos:ConceptScheme ;
 wco-cl:security-code a skos:ConceptScheme ;
     rdfs:label "SecurityCode"@en ;
     wco:codeListBasis "User code list (EU CDM codes available, could be the basis for new WCO code list)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:102" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -918,6 +1018,7 @@ wco-cl:security-code a skos:ConceptScheme ;
 wco-cl:security-level-code a skos:ConceptScheme ;
     rdfs:label "SecurityLevelCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:103" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -925,6 +1026,7 @@ wco-cl:security-level-code a skos:ConceptScheme ;
 wco-cl:sensitive-goods-code a skos:ConceptScheme ;
     rdfs:label "SensitiveGoodsCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 170, 171 and 172) OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:104" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -932,6 +1034,7 @@ wco-cl:sensitive-goods-code a skos:ConceptScheme ;
 wco-cl:source-type-code a skos:ConceptScheme ;
     rdfs:label "SourceTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:105" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -939,6 +1042,7 @@ wco-cl:source-type-code a skos:ConceptScheme ;
 wco-cl:specific-circumstances-code a skos:ConceptScheme ;
     rdfs:label "SpecificCircumstancesCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:106" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -946,6 +1050,7 @@ wco-cl:specific-circumstances-code a skos:ConceptScheme ;
 wco-cl:statement-code a skos:ConceptScheme ;
     rdfs:label "StatementCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:107" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -953,6 +1058,7 @@ wco-cl:statement-code a skos:ConceptScheme ;
 wco-cl:statement-type-code a skos:ConceptScheme ;
     rdfs:label "StatementTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4451"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:108" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -960,6 +1066,7 @@ wco-cl:statement-type-code a skos:ConceptScheme ;
 wco-cl:status-code a skos:ConceptScheme ;
     rdfs:label "StatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4405 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:109" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -967,6 +1074,7 @@ wco-cl:status-code a skos:ConceptScheme ;
 wco-cl:supplementary-filing-type-code a skos:ConceptScheme ;
     rdfs:label "SupplementaryFilingTypeCode"@en ;
     wco:codeListBasis "User code list (preferably new WCO code list)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:110" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -974,6 +1082,7 @@ wco-cl:supplementary-filing-type-code a skos:ConceptScheme ;
 wco-cl:syntax-identifier-code a skos:ConceptScheme ;
     rdfs:label "SyntaxIdentifierCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 0001"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:111" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -981,6 +1090,7 @@ wco-cl:syntax-identifier-code a skos:ConceptScheme ;
 wco-cl:syntax-version-code a skos:ConceptScheme ;
     rdfs:label "SyntaxVersionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 0002"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:112" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -988,6 +1098,7 @@ wco-cl:syntax-version-code a skos:ConceptScheme ;
 wco-cl:tariff-class-specification-code a skos:ConceptScheme ;
     rdfs:label "TariffClassSpecificationCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 5243"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:113" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -995,6 +1106,7 @@ wco-cl:tariff-class-specification-code a skos:ConceptScheme ;
 wco-cl:tax-or-fee-type-code a skos:ConceptScheme ;
     rdfs:label "TaxOrFeeTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 5153 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:114" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1002,6 +1114,7 @@ wco-cl:tax-or-fee-type-code a skos:ConceptScheme ;
 wco-cl:temperature-category-code a skos:ConceptScheme ;
     rdfs:label "TemperatureCategoryCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 6155"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:115" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1009,6 +1122,7 @@ wco-cl:temperature-category-code a skos:ConceptScheme ;
 wco-cl:termination-type-code a skos:ConceptScheme ;
     rdfs:label "TerminationTypeCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:116" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1016,6 +1130,7 @@ wco-cl:termination-type-code a skos:ConceptScheme ;
 wco-cl:tradeterm-condition-code a skos:ConceptScheme ;
     rdfs:label "TradetermConditionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4053"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:117" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1023,6 +1138,7 @@ wco-cl:tradeterm-condition-code a skos:ConceptScheme ;
 wco-cl:transaction-nature-type-code a skos:ConceptScheme ;
     rdfs:label "TransactionNatureTypeCode"@en ;
     wco:codeListBasis "WCO code list/TransactionNatureTypeCode (n1) + User code (n1) Remark: * First digit indicates WCO code table value; * Second digit can be used as additional user code to further define first digit"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:118" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1075,6 +1191,7 @@ wco-cl:transaction-nature-type-code a skos:ConceptScheme ;
 wco-cl:transit-passenger-indicator-code a skos:ConceptScheme ;
     rdfs:label "TransitPassengerIndicatorCode"@en ;
     wco:codeListBasis "WCO code list/TransitPassengerIndicatorCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:119" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1097,6 +1214,7 @@ wco-cl:transit-passenger-indicator-code a skos:ConceptScheme ;
 wco-cl:transport-contract-document-condition-code a skos:ConceptScheme ;
     rdfs:label "TransportContractDocumentConditionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4065"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:120" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1104,6 +1222,7 @@ wco-cl:transport-contract-document-condition-code a skos:ConceptScheme ;
 wco-cl:transport-equipment-characteristic-code a skos:ConceptScheme ;
     rdfs:label "TransportEquipmentCharacteristicCode"@en ;
     wco:codeListBasis "ISO, IATA, UN/EDIFACT code list 8053 or 8155 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:121" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1111,6 +1230,7 @@ wco-cl:transport-equipment-characteristic-code a skos:ConceptScheme ;
 wco-cl:transport-equipment-fullness-code a skos:ConceptScheme ;
     rdfs:label "TransportEquipmentFullnessCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8169"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:122" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1118,6 +1238,7 @@ wco-cl:transport-equipment-fullness-code a skos:ConceptScheme ;
 wco-cl:transport-equipment-supplier-party-type-code a skos:ConceptScheme ;
     rdfs:label "TransportEquipmentSupplierPartyTypeCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8077"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:123" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1125,6 +1246,7 @@ wco-cl:transport-equipment-supplier-party-type-code a skos:ConceptScheme ;
 wco-cl:transport-means-direction-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansDirectionCode"@en ;
     wco:codeListBasis "WCO code list/TransportMeansDirectionCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:124" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1142,6 +1264,7 @@ wco-cl:transport-means-direction-code a skos:ConceptScheme ;
 wco-cl:transport-means-identification-type-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansIdentificationTypeCode"@en ;
     wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:125" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1149,6 +1272,7 @@ wco-cl:transport-means-identification-type-code a skos:ConceptScheme ;
 wco-cl:transport-means-mode-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansModeCode"@en ;
     wco:codeListBasis "UN/Recommendation 19"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:126" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1156,6 +1280,7 @@ wco-cl:transport-means-mode-code a skos:ConceptScheme ;
 wco-cl:transport-means-movement-description-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansMovementDescriptionCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8335"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:127" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1163,6 +1288,7 @@ wco-cl:transport-means-movement-description-code a skos:ConceptScheme ;
 wco-cl:transport-means-operation-type-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansOperationTypeCode"@en ;
     wco:codeListBasis "User code list (e.g. IATA code list)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:128" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1170,6 +1296,7 @@ wco-cl:transport-means-operation-type-code a skos:ConceptScheme ;
 wco-cl:transport-means-registration-nationality-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansRegistrationNationalityCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8453"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:129" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1177,6 +1304,7 @@ wco-cl:transport-means-registration-nationality-code a skos:ConceptScheme ;
 wco-cl:transport-means-type-code a skos:ConceptScheme ;
     rdfs:label "TransportMeansTypeCode"@en ;
     wco:codeListBasis "UN/Recommendation 28"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:130" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1184,6 +1312,7 @@ wco-cl:transport-means-type-code a skos:ConceptScheme ;
 wco-cl:transport-movement-code a skos:ConceptScheme ;
     rdfs:label "TransportMovementCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 8323"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:131" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1191,6 +1320,7 @@ wco-cl:transport-movement-code a skos:ConceptScheme ;
 wco-cl:transport-status-code a skos:ConceptScheme ;
     rdfs:label "TransportStatusCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 4405 OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:132" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1198,6 +1328,7 @@ wco-cl:transport-status-code a skos:ConceptScheme ;
 wco-cl:travel-class-code a skos:ConceptScheme ;
     rdfs:label "TravelClassCode"@en ;
     wco:codeListBasis "WCO code list/TravelClassCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:133" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1249,6 +1380,7 @@ wco-cl:travel-class-code a skos:ConceptScheme ;
 wco-cl:user-rider-action-code a skos:ConceptScheme ;
     rdfs:label "UserRiderActionCode"@en ;
     wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:134" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1256,6 +1388,7 @@ wco-cl:user-rider-action-code a skos:ConceptScheme ;
 wco-cl:valuation-additions-qualifier-code a skos:ConceptScheme ;
     rdfs:label "ValuationAdditionsQualifierCode"@en ;
     wco:codeListBasis "UN/EDIFACT code list 7365) subset (codes 145, 146, 147, 148 and 149) OR User codes"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:135" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1263,6 +1396,7 @@ wco-cl:valuation-additions-qualifier-code a skos:ConceptScheme ;
 wco-cl:valuation-method-code a skos:ConceptScheme ;
     rdfs:label "ValuationMethodCode"@en ;
     wco:codeListBasis "WCO code list/ValuationMethodCode"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:136" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .
@@ -1305,6 +1439,337 @@ wco-cl:valuation-method-code a skos:ConceptScheme ;
 wco-cl:waste-type-code a skos:ConceptScheme ;
     rdfs:label "WasteTypeCode"@en ;
     wco:codeListBasis "IMO codes See IMO Compendium, Section 3 Code List for IMO0183 (Waste type, coded)"@en ;
+    wco:codeListOrigin "registered" ;
     dcterms:source "DataSet 1.6:137" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+# --------------------------------------------------------------------------
+# Referenced lists the register does not hold, or holds under several names.
+# --------------------------------------------------------------------------
+
+<https://vocabulary.wcoomd.org/code-list/external/iban-swift-bic-codes> a skos:ConceptScheme ;
+    rdfs:label "IBAN /SWIFT /BIC Codes"@en ;
+    skos:definition "The code list the WCO Data Model names as IBAN /SWIFT /BIC Codes. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "IBAN /SWIFT /BIC Codes"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/isic-code-list-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "ISIC code list OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as ISIC code list OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISIC code list OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/iso-15459-or-equivalent> a skos:ConceptScheme ;
+    rdfs:label "ISO 15459 OR equivalent"@en ;
+    skos:definition "The code list the WCO Data Model names as ISO 15459 OR equivalent. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISO 15459 OR equivalent"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/iso-28005-annex-c> a skos:ConceptScheme ;
+    rdfs:label "ISO 28005 annex C"@en ;
+    skos:definition "The code list the WCO Data Model names as ISO 28005 annex C. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISO 28005 annex C"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/iso-3166-2> a skos:ConceptScheme ;
+    rdfs:label "ISO 3166-2"@en ;
+    skos:definition "The code list the WCO Data Model names as ISO 3166-2. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISO 3166-2"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/iso-3166-2-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "ISO 3166-2 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as ISO 3166-2 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISO 3166-2 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/iso-6346-iata> a skos:ConceptScheme ;
+    rdfs:label "ISO 6346, IATA"@en ;
+    skos:definition "The code list the WCO Data Model names as ISO 6346, IATA. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISO 6346, IATA"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/iso-iata-edifact-8053-or-8155-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "ISO, IATA, EDIFACT (8053 or 8155) OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as ISO, IATA, EDIFACT (8053 or 8155) OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "ISO, IATA, EDIFACT (8053 or 8155) OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/marpol-as-defined-in-imdg-and-ibc> a skos:ConceptScheme ;
+    rdfs:label "MARPOL as defined in IMDG and IBC"@en ;
+    skos:definition "The code list the WCO Data Model names as MARPOL as defined in IMDG and IBC. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "MARPOL as defined in IMDG and IBC"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/to-be-defined> a skos:ConceptScheme ;
+    rdfs:label "To be defined"@en ;
+    skos:definition "The code list the WCO Data Model names as To be defined. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "To be defined"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/to-be-defined-by-imo> a skos:ConceptScheme ;
+    rdfs:label "To be defined by IMO"@en ;
+    skos:definition "The code list the WCO Data Model names as To be defined by IMO. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "To be defined by IMO"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-1001-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 1001 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 1001 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 3035"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 3035. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:person-type-code ;
+    skos:related wco-cl:role-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3035-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 3035 User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 3035 User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3035 User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3055-user-code-list-1131> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 3055 / User code list (1131)"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 3055 / User code list (1131). Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3055 / User code list (1131)"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 3227"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 3227. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:location-function-code ;
+    skos:related wco-cl:source-type-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-3227-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 3227 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 3227 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3227 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-4183> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 4183"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 4183. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4183"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:lpco-exemption-code ;
+    skos:related wco-cl:reconciliation-reason-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-4343-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 4343 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 4343 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4343 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-4405> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 4405"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 4405. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:declarant-function-code ;
+    skos:related wco-cl:free-trade-zone-status-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-4405-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 4405 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 4405 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4405 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-5025> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 5025"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 5025. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 5025"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-5153-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 5153 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 5153 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 5153 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-7081> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 7081"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 7081. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 7081"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:commodity-characteristic-qualifier-code ;
+    skos:related wco-cl:commodity-name-qualifier-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-7111-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 7111 / User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 7111 / User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 7111 / User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-7143> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 7143"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 7143. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:commodity-classification-type-code ;
+    skos:related wco-cl:commodity-identifier-type-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-edifact-code-list-9213-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/EDIFACT code list 9213 OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/EDIFACT code list 9213 OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/EDIFACT code list 9213 OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-locode> a skos:ConceptScheme ;
+    rdfs:label "UN/LOCODE"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/LOCODE. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/LOCODE"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes> a skos:ConceptScheme ;
+    rdfs:label "UN/LOCODE + User codes"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/LOCODE + User codes. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/LOCODE + User codes"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-iso-3166-1> a skos:ConceptScheme ;
+    rdfs:label "UN/LOCODE + User codes OR ISO 3166-1"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/LOCODE + User codes OR ISO 3166-1. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/LOCODE + User codes OR ISO 3166-1"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/un-locode-user-codes-or-user-code-list> a skos:ConceptScheme ;
+    rdfs:label "UN/LOCODE + User codes OR User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as UN/LOCODE + User codes OR User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/user-code-list> a skos:ConceptScheme ;
+    rdfs:label "User code list"@en ;
+    skos:definition "The code list the WCO Data Model names as User code list. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "User code list"@en ;
+    wco:codeListOrigin "referenced" ;
+    skos:related wco-cl:bond-activity-type-code ;
+    skos:related wco-cl:bunker-fuel-type-code ;
+    skos:related wco-cl:change-reason-code ;
+    skos:related wco-cl:characteristic-code ;
+    skos:related wco-cl:constituent-element-or-component-code ;
+    skos:related wco-cl:control-result-code ;
+    skos:related wco-cl:control-type-code ;
+    skos:related wco-cl:country-relationship-code ;
+    skos:related wco-cl:criteria-conformance-code ;
+    skos:related wco-cl:document-category-code ;
+    skos:related wco-cl:endorsement-code ;
+    skos:related wco-cl:error-code ;
+    skos:related wco-cl:event-type-code ;
+    skos:related wco-cl:guarantee-activity-type-code ;
+    skos:related wco-cl:ipr-type-code ;
+    skos:related wco-cl:origin-rule-code ;
+    skos:related wco-cl:origin-type-code ;
+    skos:related wco-cl:request-override-code ;
+    skos:related wco-cl:reseal-code ;
+    skos:related wco-cl:seal-condition-code ;
+    skos:related wco-cl:seal-type-code ;
+    skos:related wco-cl:security-level-code ;
+    skos:related wco-cl:specific-circumstances-code ;
+    skos:related wco-cl:statement-code ;
+    skos:related wco-cl:termination-type-code ;
+    skos:related wco-cl:user-rider-action-code ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/user-code-list-preferably-new-wco-codes> a skos:ConceptScheme ;
+    rdfs:label "User code list (preferably new WCO codes)"@en ;
+    skos:definition "The code list the WCO Data Model names as User code list (preferably new WCO codes). Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "User code list (preferably new WCO codes)"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/wco-code-list-wco-category> a skos:ConceptScheme ;
+    rdfs:label "WCO code list/WCOCategory"@en ;
+    skos:definition "The code list the WCO Data Model names as WCO code list/WCOCategory. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "WCO code list/WCOCategory"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/wco-code-list-wco-data-model-version> a skos:ConceptScheme ;
+    rdfs:label "WCO code list/WCODataModelVersion"@en ;
+    skos:definition "The code list the WCO Data Model names as WCO code list/WCODataModelVersion. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "WCO code list/WCODataModelVersion"@en ;
+    wco:codeListOrigin "referenced" ;
+    rdfs:isDefinedBy wco-mod:code-lists ;
+    wco:termStatus ts:active .
+
+<https://vocabulary.wcoomd.org/code-list/external/wco-code-list-wco-type> a skos:ConceptScheme ;
+    rdfs:label "WCO code list/WCOType"@en ;
+    skos:definition "The code list the WCO Data Model names as WCO code list/WCOType. Its values are maintained by that authority and are not carried here."@en ;
+    wco:codeListBasis "WCO code list/WCOType"@en ;
+    wco:codeListOrigin "referenced" ;
     rdfs:isDefinedBy wco-mod:code-lists ;
     wco:termStatus ts:active .

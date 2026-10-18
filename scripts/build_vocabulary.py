@@ -67,6 +67,18 @@ def norm_basis(text):
     return " ".join((text or "").split()).strip().lower()
 
 
+def is_list_like(ref):
+    """A code list reference names a list; some cells carry guidance instead. "ISO 3166-1" names a
+    list. "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID..." is advice to an
+    implementer, and minting a code list for it would invent a thing that does not exist."""
+    r = " ".join((ref or "").split())
+    return bool(r) and len(r) <= 60 and "\n" not in r and "." not in r.rstrip(".")
+
+
+def external_slug(ref):
+    return "external/" + code_list_slug(" ".join((ref or "").split()))
+
+
 def resolve_range(attr, code_list_slugs, by_basis=None):
     """The range of a property: a code list, a value object, or an xsd type.
 
@@ -75,10 +87,16 @@ def resolve_range(attr, code_list_slugs, by_basis=None):
     list" and could not be told apart, so a reference is only turned into a link when exactly one
     register entry carries that basis. The rest keep the reference as text."""
     cdt = (attr.get("core_data_type") or "").strip()
-    if cdt in ("Code", "Identifier") and attr.get("code_list"):
-        hit = (by_basis or {}).get(norm_basis(attr["code_list"]))
+    ref = attr.get("code_list")
+    if cdt in ("Code", "Identifier") and ref:
+        hit = (by_basis or {}).get(norm_basis(ref))
         if hit and len(hit) == 1:
             return f"wco-cl:{hit[0]}"
+        # The register either does not hold this list, or holds several drawing on the same basis
+        # and cannot say which. The reference still names a real list, so it becomes one in its own
+        # right rather than collapsing to a plain string.
+        if is_list_like(ref):
+            return f"<{BASE}code-list/{external_slug(ref)}>"
     if cdt in VALUE_OBJECT_OF:
         return f"wco:{VALUE_OBJECT_OF[cdt]}"
     if cdt in ("Code", "Identifier"):
@@ -267,6 +285,7 @@ def main():
         ("xmlTag", "XML tag name", "The XML tag name the WCO Data Model assigns to this property."),
         ("jsonTag", "JSON tag name", "The JSON tag name the WCO Data Model assigns to this property."),
         ("codeListBasis", "code list basis", "The external list a code list is based on, where WCO does not own the values."),
+        ("codeListOrigin", "code list origin", "Whether the list is registered in the WCO code list register, or only referenced by the model."),
     ]:
         mach.append(f'wco:{name} a owl:AnnotationProperty ;\n    rdfs:label "{label}"@en ;\n    rdfs:comment "{comment}"@en ;\n    rdfs:isDefinedBy wco-mod:governance .\n')
     mach.append("# The term-status scheme, on the vocab.unece.org lifecycle.\n")
@@ -285,6 +304,7 @@ def main():
         cl.append(f'wco-cl:{slug} a skos:ConceptScheme ;\n    rdfs:label "{esc(c["name"])}"@en ;')
         if c.get("basis"):
             cl.append(f'    wco:codeListBasis "{esc(c["basis"])}"@en ;')
+        cl.append(f'    wco:codeListOrigin "registered" ;')
         cl.append(f'    dcterms:source "DataSet 1.6:{c["source"]["row"]}" ;')
         cl.append(f'    rdfs:isDefinedBy wco-mod:code-lists ;\n    wco:termStatus ts:active .\n')
         for code in c["codes"]:
@@ -295,6 +315,33 @@ def main():
             cl.append(f'    wco:termStatus ts:active .\n')
             written["code"] += 1
         written["code-list"] += 1
+    # Lists the model references but the register does not hold, or holds ambiguously. They carry
+    # no values - the values belong to the external authority - but they give every coded property
+    # a code list to resolve to instead of a bare string.
+    minted = {}
+    for a in attributes:
+        ref = a.get("code_list")
+        cdt = (a.get("core_data_type") or "").strip()
+        if cdt not in ("Code", "Identifier") or not ref or not is_list_like(ref):
+            continue
+        hit = by_basis.get(norm_basis(ref))
+        if hit and len(hit) == 1:
+            continue
+        minted.setdefault(external_slug(ref), {"ref": " ".join(ref.split()), "shared_with": hit or []})
+    if minted:
+        cl.append("# " + "-" * 74)
+        cl.append("# Referenced lists the register does not hold, or holds under several names.")
+        cl.append("# " + "-" * 74 + "\n")
+    for slug, info in sorted(minted.items()):
+        cl.append(f'<{BASE}code-list/{slug}> a skos:ConceptScheme ;\n    rdfs:label "{esc(info["ref"])}"@en ;')
+        cl.append(f'    skos:definition "The code list the WCO Data Model names as {esc(info["ref"])}. '
+                  f'Its values are maintained by that authority and are not carried here."@en ;')
+        cl.append(f'    wco:codeListBasis "{esc(info["ref"])}"@en ;')
+        cl.append('    wco:codeListOrigin "referenced" ;')
+        for other in sorted(info["shared_with"]):
+            cl.append(f'    skos:related wco-cl:{other} ;')
+        cl.append(f'    rdfs:isDefinedBy wco-mod:code-lists ;\n    wco:termStatus ts:active .\n')
+        written["referenced-code-list"] += 1
     (ONT / "code-lists.ttl").write_text("\n".join(cl))
 
     # --- the collision ledger ---
