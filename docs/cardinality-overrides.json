@@ -1,0 +1,1557 @@
+{
+ "_note": "Cardinality taken from WCO's published XML schemas where it differs from the workbook. The workbook's derived-package columns record that a position is used by a message, never how often it must appear, so for a derived package the schema is the only statement of obligation there is. Keyed by the model path, which is what the workbooks use. Rewritten by scripts/import_xsd_cardinality.py.",
+ "4.3.0": {
+  "aip/aeo-master-data": {
+   "source": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/2.%20AIP/1.%20DIP/AEO%20MasterData/AEO_MasterData_4p3p0.xsd",
+   "schema": "AEO_MasterData_4p3p0.xsd",
+   "positions": {
+    "AIP/function": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "AIP/functionalReference": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "AIP/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "AIP/MasterDataRecipient": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "AIP/MasterDataSender": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    }
+   }
+  },
+  "bip-dec/mar-api": {
+   "source": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/Maritime%20API/WithNotes/MaritimeAPI_4p3p0.xsd",
+   "schema": "MaritimeAPI_4p3p0.xsd",
+   "positions": {
+    "Declaration/function": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/functionalReference": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Address": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Address/line": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Address/postcode": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Contact": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/Contact/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Contact/Communication": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/Contact/Communication/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Contact/Communication/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/identificationType": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/registrationNationality": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/journey": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/direction": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/ArrivalLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/ArrivalLocation/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/ArrivalLocation/arrival": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/DepartureLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/DepartureLocation/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/DepartureLocation/departure": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/arrival": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Cabin/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/function": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/transit": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/postcode": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Communication": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Communication/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Communication/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/familyName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/givenName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/birth": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/birthPlace": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/gender": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/TravelDocument": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    }
+   }
+  },
+  "bip-dec/mar-bri": {
+   "source": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/Maritime%20BRI/WithNotes/BRI_4p3p0.xsd",
+   "schema": "BRI_4p3p0.xsd",
+   "positions": {
+    "Declaration/function": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/functionalReference": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/role": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Contact": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/Contact/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Contact/Communication": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/Submitter/Contact/Communication/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Submitter/Contact/Communication/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/ArrivalLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/ArrivalLocation/actual": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/ArrivalLocation/arrival": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/DepartureLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/DepartureLocation/departure": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/DepartureLocation/actual": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/arrival": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/departure": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Itinerary/function": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/booking": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Cabin/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Cabin/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Cabin/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/DisembarkationLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/DisembarkationLocation/disembarkation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/EmbarkationLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/EmbarkationLocation/embarkation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/arrival": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/departure": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Itinerary/function": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/method": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/payment": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/Address": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/Address/line": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/Address/postcode": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/FinancialCard": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/FinancialCard/expiration": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/FinancialCard/holderName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/Payment/FinancialCard/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/AdditionalInformation/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/AdditionalInformation/statementDescription": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/AdditionalInformation/statementType": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/line": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Address/postcode": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Communication/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Communication/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/mode": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/direction": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/ArrivalLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/ArrivalLocation/arrival": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/DepartureLocation": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/ConnectionTransportMeans/DepartureLocation/departure": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/LoyaltyProgram/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/LoyaltyProgram/statusDescription": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/familyName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/givenName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/nationality": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/birth": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/PersonData/gender": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Ticket": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/Ticket/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/TravelDocument": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/TravelDocument/expiration": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/TravelDocument/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/PersonOnBoard/TravelDocument/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TotalPersons": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TotalPersons/quantity": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Address": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Address/line": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Address/postcode": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Contact": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Contact/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Contact/Communication": {
+     "min": "1",
+     "max": "unbounded",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Contact/Communication/identification": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/BorderTransportMeans/Reservation/TravelAgency/Contact/Communication/type": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/Carrier/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    }
+   }
+  },
+  "bip-dec/upu-cusitm": {
+   "source": "https://datamodel.wcoomd.org/webpage/4.3.0/download%20files%20-%202/3.%20Information%20Packages/3.3%20XML%20Schema/3.%20Declaration/2.%20DIP/UPU%20CUSITM/WithNotes/UPU_CUSITM_4p3p0.xsd",
+   "schema": "UPU_CUSITM_4p3p0.xsd",
+   "positions": {
+    "Declaration/BorderTransportMeans": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/DutyTaxFee/Payment/taxAssessed": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/transactionNature": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignee": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/Consignee/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignee/Address": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/Consignee/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignee/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignee/Address/line": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignor": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/Consignor/name": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignor/Address": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/Consignor/Address/cityName": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignor/Address/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/Consignor/Address/line": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/CustomsValuation": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/DestinationLocation": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/DestinationLocation/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/ExportCountry": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/ExportCountry/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem": {
+     "min": "0",
+     "max": "999",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/customsValue": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/sequence": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity/description": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity/Classification": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity/DangerousGoods": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity/GoodsMeasure": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity/Origin": {
+     "min": "0",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "unbounded"
+     }
+    },
+    "Declaration/GoodsShipment/GoodsItem/Commodity/Origin/country": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    },
+    "Declaration/GoodsShipment/UCR/traderAssignedReference": {
+     "min": "1",
+     "max": "1",
+     "workbook": {
+      "min": "0",
+      "max": "1"
+     }
+    }
+   }
+  }
+ }
+}

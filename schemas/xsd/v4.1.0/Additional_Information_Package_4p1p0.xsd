@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:Additional_Information_Package:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:Additional_Information_Package_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:Additional_Information_Package:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:Additional_Information_Package_DS:4" schemaLocation="Additional_Information_Package_4p1p0_urn_wco_datamodel_WCO_Additional_Information_Package_DS_4.xsd"/>
+  <xs:element name="AIP">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.</xs:documentation>
+      <xs:documentation source="WCO ID">58C</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FunctionalReferenceID" type="ds:AIPFunctionalReferenceIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">AIP. Functional Reference. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific information exchange.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Trader</xs:documentation>
+            <xs:documentation source="WCO ID">D026</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ID" type="ds:AIPIdentificationIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">AIP. Identification. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific document.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Government</xs:documentation>
+            <xs:documentation source="WCO ID">D014</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TypeCode" type="ds:AIPTypeCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">AIP. Type. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the name of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D013</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1001 OR User codes</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="AdditionalInformation" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the special request from declarant to government to take or not to take action.</xs:documentation>
+            <xs:documentation source="Remark">In case of using Additional statement code, text or indicator you can make the information more specific by also using Additional statement type.
+If there are more than 1 occurrences you should always use it in combination with the type.</xs:documentation>
+            <xs:documentation source="WCO ID">03A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0030R</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Additional Information. Statement. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the form of an additional statement.</xs:documentation>
+                  <xs:documentation source="WCO ID">226</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0030R</xs:documentation>
+                  <xs:documentation source="Format">an..17</xs:documentation>
+                  <xs:documentation source="Code List">User codes</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="StatementDescription" type="ds:AdditionalInformationStatementDescriptionTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Description. Text</xs:documentation>
+                  <xs:documentation source="Definition">Description of an additional statement.</xs:documentation>
+                  <xs:documentation source="WCO ID">225</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0030R</xs:documentation>
+                  <xs:documentation source="Format">an..512</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="StatementTypeCode" type="ds:AdditionalInformationStatementTypeCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the subject of the additional statement.</xs:documentation>
+                  <xs:documentation source="WCO ID">369</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0030R</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">UN/EDIFACT code list 4451</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Status" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to status.</xs:documentation>
+            <xs:documentation source="WCO ID">12B</xs:documentation>
+            <xs:documentation source="Unique Position ID">1838I</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReleaseDateTime" type="ds:StatusReleaseDateTimeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Status. Release. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time the goods have been released from government custody.</xs:documentation>
+                  <xs:documentation source="WCO ID">277</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1838I</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Declaration" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.</xs:documentation>
+            <xs:documentation source="Remark">Also to be used for AIP/ObligationGuarantee.
+Use a separate instance of AIP/Declaration including AIP/Declaration/AdditionalInformation with attribute Additional statement type code, code "AIL" (Guarantee).</xs:documentation>
+            <xs:documentation source="WCO ID">42A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="LPCO" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to Licenses, Permits, Certificates or Others.</xs:documentation>
+            <xs:documentation source="WCO ID">74B</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

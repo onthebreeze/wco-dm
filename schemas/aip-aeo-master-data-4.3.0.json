@@ -38,56 +38,50 @@
    "x-wco-term": "https://vocabulary.wcoomd.org/packageTypeCode"
   },
   "masterDataRecipient": {
-   "type": "array",
-   "items": {
-    "type": "object",
-    "properties": {
-     "typeCode": {
-      "type": "string",
-      "description": "Code specifying the type of regulatory office that receives the master data.",
-      "x-wco-code-list": "UN/EDIFACT code list 9415",
-      "x-wco-id": "G016",
-      "x-wco-term": "https://vocabulary.wcoomd.org/governmentAgencyTypeCode"
-     },
-     "id": {
-      "type": "string",
-      "maxLength": 17,
-      "description": "Identification of the regulatory office that receives the master data.",
-      "x-wco-code-list": "UN/LOCODE + User codes",
-      "x-wco-id": "G017",
-      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
-     }
+   "type": "object",
+   "properties": {
+    "typeCode": {
+     "type": "string",
+     "description": "Code specifying the type of regulatory office that receives the master data.",
+     "x-wco-code-list": "UN/EDIFACT code list 9415",
+     "x-wco-id": "G016",
+     "x-wco-term": "https://vocabulary.wcoomd.org/governmentAgencyTypeCode"
     },
-    "additionalProperties": false,
-    "description": "Details related to the recipient of the master data.",
-    "x-wco-id": "26C"
-   }
+    "id": {
+     "type": "string",
+     "maxLength": 17,
+     "description": "Identification of the regulatory office that receives the master data.",
+     "x-wco-code-list": "UN/LOCODE + User codes",
+     "x-wco-id": "G017",
+     "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+    }
+   },
+   "additionalProperties": false,
+   "description": "Details related to the recipient of the master data.",
+   "x-wco-id": "26C"
   },
   "masterDataSender": {
-   "type": "array",
-   "items": {
-    "type": "object",
-    "properties": {
-     "typeCode": {
-      "type": "string",
-      "description": "Code specifying the type of regulatory office that sends the master data.",
-      "x-wco-code-list": "UN/EDIFACT code list 9415",
-      "x-wco-id": "G018",
-      "x-wco-term": "https://vocabulary.wcoomd.org/governmentAgencyTypeCode"
-     },
-     "id": {
-      "type": "string",
-      "maxLength": 17,
-      "description": "Identification of the regulatory office that sends the master data.",
-      "x-wco-code-list": "UN/LOCODE + User codes",
-      "x-wco-id": "G019",
-      "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
-     }
+   "type": "object",
+   "properties": {
+    "typeCode": {
+     "type": "string",
+     "description": "Code specifying the type of regulatory office that sends the master data.",
+     "x-wco-code-list": "UN/EDIFACT code list 9415",
+     "x-wco-id": "G018",
+     "x-wco-term": "https://vocabulary.wcoomd.org/governmentAgencyTypeCode"
     },
-    "additionalProperties": false,
-    "description": "Details related to the sender of the master data.",
-    "x-wco-id": "27C"
-   }
+    "id": {
+     "type": "string",
+     "maxLength": 17,
+     "description": "Identification of the regulatory office that sends the master data.",
+     "x-wco-code-list": "UN/LOCODE + User codes",
+     "x-wco-id": "G019",
+     "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+    }
+   },
+   "additionalProperties": false,
+   "description": "Details related to the sender of the master data.",
+   "x-wco-id": "27C"
   },
   "masterDataParty": {
    "type": "array",
@@ -383,5 +377,12 @@
   }
  },
  "additionalProperties": false,
- "x-wco-id": "58C"
+ "x-wco-id": "58C",
+ "required": [
+  "functionCode",
+  "functionalReferenceId",
+  "masterDataRecipient",
+  "masterDataSender",
+  "typeCode"
+ ]
 }

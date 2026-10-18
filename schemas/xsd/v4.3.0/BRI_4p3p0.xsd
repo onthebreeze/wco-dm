@@ -1,0 +1,1419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:BRI:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:BRI_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:BRI:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:BRI_DS:4" schemaLocation="BRI_4p3p0_urn_wco_datamodel_WCO_BRI_DS_4.xsd"/>
+  <xs:element name="Declaration">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to any statement or action, in any form prescribed or accepted by the Government Agency, giving information or particulars required by the Governmental Agency.</xs:documentation>
+      <xs:documentation source="WCO ID">42A</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001D</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FunctionCode" type="ds:DeclarationFunctionCodeType">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">Declaration. Function. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the function of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D046</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001D</xs:documentation>
+            <xs:documentation source="Format">n..2</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1225</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FunctionalReferenceID" type="ds:DeclarationFunctionalReferenceIDType">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">Declaration. Functional Reference. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific information exchange.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Trader</xs:documentation>
+            <xs:documentation source="WCO ID">D026</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001D</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ID" type="ds:DeclarationIdentificationIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">Declaration. Identification. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific document.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Government</xs:documentation>
+            <xs:documentation source="WCO ID">D014</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001D</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TypeCode" type="ds:DeclarationTypeCodeType">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">Declaration. Type. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the name of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D013</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001D</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1001 OR User code list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Submitter">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the submitter of written or electronic documentation.</xs:documentation>
+            <xs:documentation source="WCO ID">17B</xs:documentation>
+            <xs:documentation source="Unique Position ID">1846D</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="ds:SubmitterNameTextType">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Submitter. Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the party who presents a document or data for the approval, consideration, or decision of another.</xs:documentation>
+                  <xs:documentation source="WCO ID">R058</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1846D</xs:documentation>
+                  <xs:documentation source="Format">an..70</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="RoleCode" type="ds:SubmitterRoleCodeType">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Submitter. Role. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                  <xs:documentation source="WCO ID">R005</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1846D</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Contact" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to contact information of a department or employee.</xs:documentation>
+                  <xs:documentation source="WCO ID">34A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1850D</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:ContactNameTextType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Contact. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of a department or employee.</xs:documentation>
+                        <xs:documentation source="WCO ID">246</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1850D</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Communication" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                        <xs:documentation source="WCO ID">25A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1851D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:CommunicationIdentificationIDType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">240</xs:documentation>
+                              <xs:documentation source="Unique Position ID">1851D</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">253</xs:documentation>
+                              <xs:documentation source="Unique Position ID">1851D</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BorderTransportMeans">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the means of transport crossing the border of the Customs territory.</xs:documentation>
+            <xs:documentation source="WCO ID">15A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0071D</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="ds:BorderTransportMeansNameTextType">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Border Transport Means. Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name to identify the means of transport used for the carriage of the goods in crossing the border.</xs:documentation>
+                  <xs:documentation source="WCO ID">T005</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0071D</xs:documentation>
+                  <xs:documentation source="Format">an..70</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ID" type="ds:BorderTransportMeansIdentificationIDType">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Border Transport Means. Identification. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the means of transport used in crossing the border.</xs:documentation>
+                  <xs:documentation source="WCO ID">T006</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0071D</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">Sea: ITU Standard or Lloyd's number
+Air: IATA aircraft ID
+Road: national license plate
+Rail: locomotive number</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="TypeCode" type="ds:BorderTransportMeansTypeCodeType">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Border Transport Means. Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying type of means of transport used for the carriage of the goods in crossing the border.</xs:documentation>
+                  <xs:documentation source="WCO ID">T010</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0071D</xs:documentation>
+                  <xs:documentation source="Format">an..4</xs:documentation>
+                  <xs:documentation source="Code List">UN/Recommendation 28</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="JourneyID" type="ds:BorderTransportMeansJourneyIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Border Transport Means. Journey. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the journey of a means of transport, for example voyage number, flight number, trip number.</xs:documentation>
+                  <xs:documentation source="WCO ID">149</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0071D</xs:documentation>
+                  <xs:documentation source="Format">an..17</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ArrivalLocation">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the first arrival location.</xs:documentation>
+                  <xs:documentation source="WCO ID">11C</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0074D</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:ArrivalLocationNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Arrival Location. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the arrival location. This would be a port for sea, airport for air and border post for land crossing.</xs:documentation>
+                        <xs:documentation source="WCO ID">L108</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0074D</xs:documentation>
+                        <xs:documentation source="Format">an..256</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:ArrivalLocationIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Arrival Location. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the arrival location. This would be a port for sea, airport for air and border post for land crossing.</xs:documentation>
+                        <xs:documentation source="WCO ID">L109</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0074D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">UN/LOCODE + User codes OR User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ActualIndicator" type="ds:ArrivalLocationActualIndicatorType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Arrival Location. Actual. Indicator</xs:documentation>
+                        <xs:documentation source="Definition">Indicator to differentiate between estimated and actual information (e.g. estimated and actual offices of entry or estimated and actual date of arrival).</xs:documentation>
+                        <xs:documentation source="WCO ID">498</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0074D</xs:documentation>
+                        <xs:documentation source="Format">an1</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ArrivalDateTime" type="ds:ArrivalLocationArrivalDateTimeType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Arrival Location. Arrival. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time of arrival (actual or scheduled) of the means of transport at the first port (e.g. seaport, airport, freight terminal, rail station).</xs:documentation>
+                        <xs:documentation source="WCO ID">172</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0074D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DepartureLocation">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to departure location.</xs:documentation>
+                  <xs:documentation source="WCO ID">98B</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0098D</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:DepartureLocationNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Departure Location. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the departure location.</xs:documentation>
+                        <xs:documentation source="WCO ID">L100</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0098D</xs:documentation>
+                        <xs:documentation source="Format">an..256</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:DepartureLocationIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Departure Location. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the place of departure of the goods.</xs:documentation>
+                        <xs:documentation source="WCO ID">L101</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0098D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">UN/LOCODE + User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DepartureDateTime" type="ds:DepartureLocationDepartureDateTimeType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Departure Location. Departure. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time of departure of the means of transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">156</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0098D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ActualIndicator" type="ds:DepartureLocationActualIndicatorType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Departure Location. Actual. Indicator</xs:documentation>
+                        <xs:documentation source="Definition">Indicator to differentiate between estimated and actual information (e.g. estimated and actual offices of entry or estimated and actual date of arrival).</xs:documentation>
+                        <xs:documentation source="WCO ID">498</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0098D</xs:documentation>
+                        <xs:documentation source="Format">an1</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Itinerary" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the itinerary of the means of transport.</xs:documentation>
+                  <xs:documentation source="WCO ID">81A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:ItineraryNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Itinerary. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of a single port of call or other location in the itinerary of a means of transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">L005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                        <xs:documentation source="Format">an..256</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:ItineraryIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Itinerary. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of a single port of call or other location of the itinerary of a means of transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">L006</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">UN/LOCODE + User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SequenceNumeric" type="ds:ItinerarySequenceNumericType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Itinerary. Sequence. Numeric</xs:documentation>
+                        <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                        <xs:documentation source="WCO ID">006</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                        <xs:documentation source="Format">n..5</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ArrivalDateTime" type="ds:ItineraryArrivalDateTimeType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Itinerary. Arrival. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time of arrival at itinerary port of the means of transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">208</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DepartureDateTime" type="ds:ItineraryDepartureDateTimeType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Itinerary. Departure. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time of departure at itinerary port of the means of transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">209</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="FunctionCode" type="ds:ItineraryFunctionCodeType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Itinerary. Function. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the type of the itinerary location.</xs:documentation>
+                        <xs:documentation source="WCO ID">251</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0100D</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3227</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Reservation" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to a reservation (e.g. seat number).</xs:documentation>
+                  <xs:documentation source="WCO ID">66B</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2146D</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="BookingDateTime" type="ds:Reservation. BookingDateTimeType">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Reservation. Booking. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time of the booking.</xs:documentation>
+                        <xs:documentation source="WCO ID">609</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2146D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PNRID" type="ds:ReservationPNRIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Reservation. PNR. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the passenger by Passenger Name Record Locator Number (or unique identifier).</xs:documentation>
+                        <xs:documentation source="WCO ID">432</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2146D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SeatID" type="ds:ReservationSeatIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Reservation. Seat. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of an assigned seat or berth.</xs:documentation>
+                        <xs:documentation source="WCO ID">433</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2146D</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TravelGroupName" type="ds:ReservationTravelGroupNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Reservation. Travel Group Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the travelling group.</xs:documentation>
+                        <xs:documentation source="WCO ID">613</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2146D</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Cabin" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the cabin.</xs:documentation>
+                        <xs:documentation source="WCO ID">66C</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2147D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SequenceNumeric" type="ds:CabinSequenceNumericType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Cabin. Sequence. Numeric</xs:documentation>
+                              <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                              <xs:documentation source="WCO ID">006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2147D</xs:documentation>
+                              <xs:documentation source="Format">n..5</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:CabinIdentificationIDType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Cabin. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the specific cabin or room on board.</xs:documentation>
+                              <xs:documentation source="WCO ID">605</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2147D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="TypeID" type="ds:CabinTypeIDType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Cabin. Type. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the type of cabin or room on board.</xs:documentation>
+                              <xs:documentation source="WCO ID">606</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2147D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DisembarkationLocation">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the disembarkation location.</xs:documentation>
+                        <xs:documentation source="WCO ID">63B</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2167D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Name" type="ds:DisembarkationLocationNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Disembarkation Location. Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a port or location of disembarkation.</xs:documentation>
+                              <xs:documentation source="WCO ID">L090</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2167D</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:DisembarkationLocationIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Disembarkation Location. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of a port or location of disembarkation.</xs:documentation>
+                              <xs:documentation source="WCO ID">L091</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2167D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">UN/LOCODE + User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="DisembarkationDateTime" type="ds:DisembarkationLocationDisembarkationDateTimeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Disembarkation Location.Disembarkation. Date Time</xs:documentation>
+                              <xs:documentation source="Definition">Date and time of disembarkation of a person on board.</xs:documentation>
+                              <xs:documentation source="WCO ID">615</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2167D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="EmbarkationLocation">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the embarkation location.</xs:documentation>
+                        <xs:documentation source="WCO ID">64B</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2168D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Name" type="ds:EmbarkationPlaceNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Embarkation Place. Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a port or location of embarkation.</xs:documentation>
+                              <xs:documentation source="WCO ID">L092</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2168D</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:EmbarkationPlaceIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Embarkation Place. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of a port or location of embarkation.</xs:documentation>
+                              <xs:documentation source="WCO ID">L093</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2168D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">UN/LOCODE + User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="EmbarkationDateTime" type="ds:EmbarkationLocationEmbarkationDateTimeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Embarkation Location.Embarkation. Date Time</xs:documentation>
+                              <xs:documentation source="Definition">Date and time of embarkation of a person on board.</xs:documentation>
+                              <xs:documentation source="WCO ID">489</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2168D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Itinerary" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the itinerary of the means of transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">81A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Name" type="ds:ItineraryNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Itinerary. Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a single port of call or other location in the itinerary of a means of transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">L005</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:ItineraryIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Itinerary. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of a single port of call or other location of the itinerary of a means of transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">L006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">UN/LOCODE + User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="SequenceNumeric" type="ds:ItinerarySequenceNumericType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Itinerary. Sequence. Numeric</xs:documentation>
+                              <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                              <xs:documentation source="WCO ID">006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                              <xs:documentation source="Format">n..5</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ArrivalDateTime" type="ds:ItineraryArrivalDateTimeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Itinerary. Arrival. Date Time</xs:documentation>
+                              <xs:documentation source="Definition">Date and time of arrival at itinerary port of the means of transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">208</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="DepartureDateTime" type="ds:ItineraryDepartureDateTimeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Itinerary. Departure. Date Time</xs:documentation>
+                              <xs:documentation source="Definition">Date and time of departure at itinerary port of the means of transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">209</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="FunctionCode" type="ds:ItineraryFunctionCodeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Itinerary. Function. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of the itinerary location.</xs:documentation>
+                              <xs:documentation source="WCO ID">251</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2148D</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3227</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Payment" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to payment details.</xs:documentation>
+                        <xs:documentation source="WCO ID">94A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2149D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TypeCode" type="ds:PaymentTypeCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Payment. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of payment.</xs:documentation>
+                              <xs:documentation source="WCO ID">610</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2149D</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">WCO code list/PaymentTypeCode</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="MethodCode" type="ds:PaymentMethodCodeType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Payment. Method. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying a method of payment.</xs:documentation>
+                              <xs:documentation source="WCO ID">107</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2149D</xs:documentation>
+                              <xs:documentation source="Format">a1</xs:documentation>
+                              <xs:documentation source="Code List">WCO code list/PaymentMethodCode</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="PaymentAmount" type="ds:PaymentPaymentAmountType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Payment. Payment. Amount</xs:documentation>
+                              <xs:documentation source="Definition">Amount actually paid, or to be paid.</xs:documentation>
+                              <xs:documentation source="WCO ID">378</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2149D</xs:documentation>
+                              <xs:documentation source="Format">n..16,3</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="Address" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to an address.</xs:documentation>
+                              <xs:documentation source="WCO ID">04A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2150D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CityName" type="ds:AddressCityNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. City Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of a city.</xs:documentation>
+                                    <xs:documentation source="WCO ID">241</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2150D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="CountryCode" type="ds:AddressCountryCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Country. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                                    <xs:documentation source="WCO ID">242</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2150D</xs:documentation>
+                                    <xs:documentation source="Format">a2</xs:documentation>
+                                    <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="Line" type="ds:AddressLineTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Line. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Specification of the postal delivery point such as street and number or post office box.</xs:documentation>
+                                    <xs:documentation source="Remark">Not to be used in combination with Street name, House number, House number addition and P.O. Box</xs:documentation>
+                                    <xs:documentation source="WCO ID">239</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2150D</xs:documentation>
+                                    <xs:documentation source="Format">an..256</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="PostcodeID" type="ds:AddressPostcodeIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Postcode. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the postal zone or address.</xs:documentation>
+                                    <xs:documentation source="WCO ID">245</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2150D</xs:documentation>
+                                    <xs:documentation source="Format">an..17</xs:documentation>
+                                    <xs:documentation source="Code List">User code list</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="FinancialCard" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the financial card.</xs:documentation>
+                              <xs:documentation source="WCO ID">67C</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2151D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ExpirationDateTime" type="ds:FinancialCardExpirationDateTimeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Financial Card. Expiration. Date Time</xs:documentation>
+                                    <xs:documentation source="Definition">Date and time of expiry up to which this financial card is valid.</xs:documentation>
+                                    <xs:documentation source="WCO ID">612</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2151D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="HolderName" type="ds:FinancialCardHolderNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Financial Card. Holder Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of the cardholder as it appears on this financial card.
+This may include both an individual authorized to use the card as well as the organization that owns the card.</xs:documentation>
+                                    <xs:documentation source="WCO ID">607</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2151D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ID" type="ds:FinancialCardIdentificationIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Financial Card. Identification. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the financial card.</xs:documentation>
+                                    <xs:documentation source="WCO ID">608</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2151D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="PersonOnBoard" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the person on board of a transport means.</xs:documentation>
+                        <xs:documentation source="WCO ID">67B</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2152D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:PersonOnBoardIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Person On Board. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the person on board.</xs:documentation>
+                              <xs:documentation source="WCO ID">614</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2152D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="SequenceNumeric" type="ds:PersonOnBoardSequenceNumericType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Person On Board. Sequence. Numeric</xs:documentation>
+                              <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                              <xs:documentation source="WCO ID">006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2152D</xs:documentation>
+                              <xs:documentation source="Format">n..5</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="AdditionalInformation" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the special request from declarant to government to take or not to take action.</xs:documentation>
+                              <xs:documentation source="Remark">In case of using Additional statement code, text or indicator you can make the information more specific by also using Additional statement type.
+If there are more than 1 occurrences you should always use it in combination with the type.</xs:documentation>
+                              <xs:documentation source="WCO ID">03A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2153D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SequenceNumeric" type="ds:AdditionalInformationSequenceNumericType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Additional Information. Sequence. Numeric</xs:documentation>
+                                    <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                                    <xs:documentation source="WCO ID">006</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2153D</xs:documentation>
+                                    <xs:documentation source="Format">n..5</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="StatementDescription" type="ds:AdditionalInformationStatementDescriptionTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of an additional statement.</xs:documentation>
+                                    <xs:documentation source="WCO ID">225</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2153D</xs:documentation>
+                                    <xs:documentation source="Format">an..512</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="StatementTypeCode" type="ds:AdditionalInformationStatementTypeCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Type. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the subject of the additional statement.</xs:documentation>
+                                    <xs:documentation source="WCO ID">369</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2153D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 4451</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to an address.</xs:documentation>
+                              <xs:documentation source="WCO ID">04A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2154D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CityName" type="ds:AddressCityNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. City Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of a city.</xs:documentation>
+                                    <xs:documentation source="WCO ID">241</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2154D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="CountryCode" type="ds:AddressCountryCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Country. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                                    <xs:documentation source="WCO ID">242</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2154D</xs:documentation>
+                                    <xs:documentation source="Format">a2</xs:documentation>
+                                    <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="Line" type="ds:AddressLineTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Line. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Specification of the postal delivery point such as street and number or post office box.</xs:documentation>
+                                    <xs:documentation source="Remark">Not to be used in combination with Street name, House number, House number addition and P.O. Box</xs:documentation>
+                                    <xs:documentation source="WCO ID">239</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2154D</xs:documentation>
+                                    <xs:documentation source="Format">an..256</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="PostcodeID" type="ds:AddressPostcodeIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Postcode. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the postal zone or address.</xs:documentation>
+                                    <xs:documentation source="WCO ID">245</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2154D</xs:documentation>
+                                    <xs:documentation source="Format">an..17</xs:documentation>
+                                    <xs:documentation source="Code List">User code list</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Communication" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                              <xs:documentation source="WCO ID">25A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2155D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="ds:CommunicationIdentificationIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                                    <xs:documentation source="WCO ID">240</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2155D</xs:documentation>
+                                    <xs:documentation source="Format">an..256</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                                    <xs:documentation source="WCO ID">253</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2155D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ConnectionTransportMeans" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the means of transport the traveler uses to join or leave the primary means of transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">65C</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Name" type="ds:ConnectionTransportMeansNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Connection Transport Means. Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name to identify the means of transport used for connection.</xs:documentation>
+                                    <xs:documentation source="WCO ID">T038</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ModeCode" type="ds:ConnectionTransportMeansModeCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Connection Transport Means. Mode. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the mode of transport used for connection.</xs:documentation>
+                                    <xs:documentation source="WCO ID">T037</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                                    <xs:documentation source="Format">n1</xs:documentation>
+                                    <xs:documentation source="Code List">UN/Recommendation 19</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="SequenceNumeric" type="ds:ConnectionTransportMeansSequenceNumericType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Connection Transport Means. Sequence. Numeric</xs:documentation>
+                                    <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                                    <xs:documentation source="WCO ID">006</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                                    <xs:documentation source="Format">n..5</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="BookingReferenceID" type="ds:ConnectionTransportMeansBookingReferenceIDType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Connection Transport Means. Booking Reference. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the booking or reservation.</xs:documentation>
+                                    <xs:documentation source="WCO ID">602</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="TravelClassCode" type="ds:ConnectionTransportMeansTravelClassCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Connection Transport Means. Travel Class. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the class of travel.</xs:documentation>
+                                    <xs:documentation source="WCO ID">603</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">WCO code list/TravelClassCode</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="DirectionCode" type="ds:ConnectionTransportMeansDirectionCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Connection Transport Means. Direction. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the direction of the transport means (i.e., inbound or outbound).</xs:documentation>
+                                    <xs:documentation source="WCO ID">604</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2156D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">WCO code list/TransportMeansDirectionCode</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ArrivalLocation">
+                                  <xs:annotation>
+                                    <xs:documentation source="Definition">Details related to the first arrival location.</xs:documentation>
+                                    <xs:documentation source="WCO ID">11C</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2169D</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="Name" type="ds:ArrivalLocationNameTextType" minOccurs="0">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Arrival Location. Name. Text</xs:documentation>
+                                          <xs:documentation source="Definition">Name of the arrival location. This would be a port for sea, airport for air and border post for land crossing.</xs:documentation>
+                                          <xs:documentation source="WCO ID">L108</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2169D</xs:documentation>
+                                          <xs:documentation source="Format">an..256</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="ID" type="ds:ArrivalLocationIdentificationIDType" minOccurs="0">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Arrival Location. Identification. Identifier</xs:documentation>
+                                          <xs:documentation source="Definition">Identification of the arrival location. This would be a port for sea, airport for air and border post for land crossing.</xs:documentation>
+                                          <xs:documentation source="WCO ID">L109</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2169D</xs:documentation>
+                                          <xs:documentation source="Format">an..35</xs:documentation>
+                                          <xs:documentation source="Code List">UN/LOCODE + User codes OR User code list</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="ArrivalDateTime" type="ds:ArrivalLocationArrivalDateTimeType">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Arrival Location. Arrival. Date Time</xs:documentation>
+                                          <xs:documentation source="Definition">Date and time of arrival (actual or scheduled) of the means of transport at the first port (e.g. seaport, airport, freight terminal, rail station).</xs:documentation>
+                                          <xs:documentation source="WCO ID">172</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2169D</xs:documentation>
+                                          <xs:documentation source="Format">an..35</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="DepartureLocation">
+                                  <xs:annotation>
+                                    <xs:documentation source="Definition">Details related to departure location.</xs:documentation>
+                                    <xs:documentation source="WCO ID">98B</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2170D</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="Name" type="ds:DepartureLocationNameTextType" minOccurs="0">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Departure Location. Name. Text</xs:documentation>
+                                          <xs:documentation source="Definition">Name of the departure location.</xs:documentation>
+                                          <xs:documentation source="WCO ID">L100</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2170D</xs:documentation>
+                                          <xs:documentation source="Format">an..256</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="ID" type="ds:DepartureLocationIdentificationIDType" minOccurs="0">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Departure Location. Identification. Identifier</xs:documentation>
+                                          <xs:documentation source="Definition">Identification of the place of departure of the goods.</xs:documentation>
+                                          <xs:documentation source="WCO ID">L101</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2170D</xs:documentation>
+                                          <xs:documentation source="Format">an..35</xs:documentation>
+                                          <xs:documentation source="Code List">UN/LOCODE + User codes</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="DepartureDateTime" type="ds:DepartureLocationDepartureDateTimeType">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Departure Location. Departure. Date Time</xs:documentation>
+                                          <xs:documentation source="Definition">Date and time of departure of the means of transport.</xs:documentation>
+                                          <xs:documentation source="WCO ID">156</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2170D</xs:documentation>
+                                          <xs:documentation source="Format">an..35</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="LoyaltyProgram" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the loyalty program.</xs:documentation>
+                              <xs:documentation source="WCO ID">63C</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2158D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="EntitlementsDescription" type="ds:Loyalty ProgramEntitlementsDescriptionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Loyalty Program. Entitlements Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of the entitlements available.</xs:documentation>
+                                    <xs:documentation source="WCO ID">600</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2158D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ID" type="ds:LoyaltyProgramIdentificationIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Loyalty Program. Identification. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the loyalty program.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D065</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2158D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="RedemptionsDescription" type="ds:Loyalty ProgramRedemptionsDescriptionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Loyalty Program. Redemptions Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of the redemptions.</xs:documentation>
+                                    <xs:documentation source="WCO ID">601</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2158D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="StatusDescription" type="ds:LoyaltyProgramStatusDescriptionTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Loyalty Program. Status. Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of the membership status of the loyalty program.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D066</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2158D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="PersonData">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the person.</xs:documentation>
+                              <xs:documentation source="WCO ID">60C</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="FamilyName" type="ds:PersonDataFamilyNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Person Data. Family Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Family name of a person as mentioned in an official document.</xs:documentation>
+                                    <xs:documentation source="WCO ID">421</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="GivenName" type="ds:PersonDataGivenNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Person Data. Given Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Given name of a person as mentioned in an official document.</xs:documentation>
+                                    <xs:documentation source="WCO ID">422</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="NationalityCode" type="ds:PersonDataNationalityCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Person Data. Nationality. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the nationality of a person.</xs:documentation>
+                                    <xs:documentation source="WCO ID">424</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 3207</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="BirthDateTime" type="ds:PersonDataBirthDateTimeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Person Data. Birth. Date Time</xs:documentation>
+                                    <xs:documentation source="Definition">Date and time an individual was born.</xs:documentation>
+                                    <xs:documentation source="WCO ID">425</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="BirthPlace" type="ds:PersonDataBirthPlaceTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Person Data. Birth Place. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of the location where a person is or was born.</xs:documentation>
+                                    <xs:documentation source="WCO ID">426</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="GenderCode" type="ds:PersonDataGenderCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Person Data. Gender. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the gender of a person.</xs:documentation>
+                                    <xs:documentation source="WCO ID">427</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2159D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 3499</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Ticket">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the ticket.</xs:documentation>
+                              <xs:documentation source="WCO ID">64C</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2160D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="ds:TicketIdentificationIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Ticket. Identification. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the ticket.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D067</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2160D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="FareTypeDescription" type="ds:TicketFareTypeDescriptionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Ticket. Fare Type Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of the applicable fare type.</xs:documentation>
+                                    <xs:documentation source="WCO ID">611</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2160D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="TravelDocument" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the travel document (e.g. passport).</xs:documentation>
+                              <xs:documentation source="WCO ID">34B</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ExpirationDateTime" type="ds:TravelDocumentExpirationDateTimeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Expiration. Date Time</xs:documentation>
+                                    <xs:documentation source="Definition">Date and time of expiration of the document (e.g. license, visa, permit, certificate, bond).</xs:documentation>
+                                    <xs:documentation source="WCO ID">D051</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ID" type="ds:TravelDocumentIdentificationIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Identification. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the travel document by number.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D035</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="IssueDateTime" type="ds:TravelDocumentIssueDateTimeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Issue. Date Time</xs:documentation>
+                                    <xs:documentation source="Definition">Date and time the travel document was issued.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D068</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="IssueLocationID" type="ds:TravelDocumentIssueLocationIDType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Issue Location. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the country or political entity issuing the travel document.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D044</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..5</xs:documentation>
+                                    <xs:documentation source="Code List">UN/LOCODE</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="IssueLocationName" type="ds:TravelDocumentIssuingLocationNameTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Issuing Location Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Country or political entity issuing the travel document.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D027</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..256</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="IssuingPartyID" type="ds:TravelDocumentIssuingPartyIDType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Issuing Party. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the party having issued the travel document.</xs:documentation>
+                                    <xs:documentation source="Remark">In major version 5 this attribute will be replaced by class "Issuer".</xs:documentation>
+                                    <xs:documentation source="WCO ID">D036</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..17</xs:documentation>
+                                    <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="TypeCode" type="ds:TravelDocumentTypeCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Type. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the name of a travel document.</xs:documentation>
+                                    <xs:documentation source="WCO ID">D037</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 1001 OR User code list</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ValidityDurationQuantity" type="ds:Travel DocumentValidityDurationQuantityType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Travel Document. Validity Duration. Quantity</xs:documentation>
+                                    <xs:documentation source="Definition">Quantity specifying the requested validity expressed in days (i.e., it will be a number of days indicated in the data field and not a period expressed as "from ? until ?").</xs:documentation>
+                                    <xs:documentation source="WCO ID">540</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2161D</xs:documentation>
+                                    <xs:documentation source="Format">n..3</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TotalPersons" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the total number of persons (e.g. passengers, crew).</xs:documentation>
+                        <xs:documentation source="WCO ID">96B</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2162D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="QuantityQuantity" type="ds:TotalPersonsQuantityQuantityType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Total Persons. Quantity. Quantity</xs:documentation>
+                              <xs:documentation source="Definition">Quantity specifying the total number of persons (passengers and crew, including the captain/master) on board of a means of transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">459</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2162D</xs:documentation>
+                              <xs:documentation source="Format">n..4</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TravelAgency" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the travel agency.</xs:documentation>
+                        <xs:documentation source="WCO ID">62C</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2163D</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Name" type="ds:TravelAgencyNameTextType">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Travel Agency. Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of the travel agency that made the booking or reservation.</xs:documentation>
+                              <xs:documentation source="WCO ID">R163</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2163D</xs:documentation>
+                              <xs:documentation source="Format">an..70</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:TravelAgencyIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Travel Agency. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the travel agency.</xs:documentation>
+                              <xs:documentation source="WCO ID">R164</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2163D</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="RoleCode" type="ds:TravelAgencyRoleCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Travel Agency. Role. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                              <xs:documentation source="WCO ID">R005</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2163D</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="Address" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to an address.</xs:documentation>
+                              <xs:documentation source="WCO ID">04A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2164D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="CityName" type="ds:AddressCityNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. City Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of a city.</xs:documentation>
+                                    <xs:documentation source="WCO ID">241</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2164D</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="CountryCode" type="ds:AddressCountryCodeType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Country. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                                    <xs:documentation source="WCO ID">242</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2164D</xs:documentation>
+                                    <xs:documentation source="Format">a2</xs:documentation>
+                                    <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="Line" type="ds:AddressLineTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Line. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Specification of the postal delivery point such as street and number or post office box.</xs:documentation>
+                                    <xs:documentation source="Remark">Not to be used in combination with Street name, House number, House number addition and P.O. Box</xs:documentation>
+                                    <xs:documentation source="WCO ID">239</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2164D</xs:documentation>
+                                    <xs:documentation source="Format">an..256</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="PostcodeID" type="ds:AddressPostcodeIDType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Address. Postcode. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of the postal zone or address.</xs:documentation>
+                                    <xs:documentation source="WCO ID">245</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2164D</xs:documentation>
+                                    <xs:documentation source="Format">an..17</xs:documentation>
+                                    <xs:documentation source="Code List">User code list</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Contact" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to contact information of a department or employee.</xs:documentation>
+                              <xs:documentation source="WCO ID">34A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2165D</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Name" type="ds:ContactNameTextType">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Contact. Name. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of a department or employee.</xs:documentation>
+                                    <xs:documentation source="WCO ID">246</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2165D</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="Communication" maxOccurs="unbounded">
+                                  <xs:annotation>
+                                    <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                                    <xs:documentation source="WCO ID">25A</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">2166D</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ID" type="ds:CommunicationIdentificationIDType">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                                          <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                                          <xs:documentation source="WCO ID">240</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2166D</xs:documentation>
+                                          <xs:documentation source="Format">an..256</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType">
+                                        <xs:annotation>
+                                          <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                                          <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                                          <xs:documentation source="WCO ID">253</xs:documentation>
+                                          <xs:documentation source="Unique Position ID">2166D</xs:documentation>
+                                          <xs:documentation source="Format">an..3</xs:documentation>
+                                          <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Carrier" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the party undertaking or arranging transport of goods between named points.</xs:documentation>
+            <xs:documentation source="WCO ID">18A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0178D</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="ds:CarrierNameTextType">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Carrier. Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the party providing the transport of goods between named points.</xs:documentation>
+                  <xs:documentation source="WCO ID">R011</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0178D</xs:documentation>
+                  <xs:documentation source="Format">an..70</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

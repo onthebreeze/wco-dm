@@ -27,6 +27,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import rdflib
 from rdflib.namespace import OWL, RDF, SKOS
 
+import _overrides  # noqa: E402
 import _release  # noqa: E402
 
 from build_schemas import SOURCE_BASE, build_tree, clean_tag
@@ -289,6 +290,7 @@ def build(version, vocab, names, pkg_names, pending):
             root = next((n["path"] for n in nodes if n["depth"] == 1), None)
             if root not in by_path:
                 continue
+            _overrides.apply(version, key, mslug or "base", by_path)
             view = build_view(by_path, children, root, vocab)
             name = mslug or "base"
             display = names.get(mslug, mtitle) if mslug else pkg_names.get(key, mtitle)

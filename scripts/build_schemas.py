@@ -26,6 +26,7 @@ import rdflib
 from rdflib.namespace import OWL, RDF, RDFS
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import _overrides  # noqa: E402
 import _release  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -210,6 +211,7 @@ def build(version, attr_iris, class_iris):
         pkg = json.loads(path.read_text())
         nodes = pkg["nodes"]
         by_path, children = build_tree(nodes)
+        _overrides.apply(version, pkg["key"], "base", by_path)
         root = next(n["path"] for n in nodes if n["depth"] == 1)
         n, terms, conflicts = write(pkg["key"], pkg["title"], pkg["description"],
                                     by_path, children, root, attr_iris, class_iris, version)
@@ -220,6 +222,7 @@ def build(version, attr_iris, class_iris):
             if root not in d_by_path:
                 continue
             slug = re.sub(r"[^a-z0-9]+", "-", dip).strip("-")
+            _overrides.apply(version, pkg["key"], slug, d_by_path)
             dn, dterms, _ = write(pkg["key"], f"{pkg['title']} — {dip}",
                                   f"The {dip} derived information package: the subset of "
                                   f"{pkg['title']} it uses.",

@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:MDIP:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:MDIP_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:MDIP:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:MDIP_DS:4" schemaLocation="MDIP_4p3p0_urn_wco_datamodel_WCO_MDIP_DS_4.xsd"/>
+  <xs:element name="MDIP">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to meta data to be used related to the document.</xs:documentation>
+      <xs:documentation source="WCO ID">3MD</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="WCODataModelVersionCode" type="ds:MDIPWCODataModelVersionCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. WCO Data Model Version. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the version of the WCO Data Model (e.g. 3.40).</xs:documentation>
+            <xs:documentation source="WCO ID">MD17</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..6</xs:documentation>
+            <xs:documentation source="Code List">WCO code list/WCODataModelVersion</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="WCOCategoryCode" type="ds:MDIPWCOCategoryCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. WCO Category. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the category within the WCO Data Model.</xs:documentation>
+            <xs:documentation source="WCO ID">MD18</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">WCO code list/WCOCategory</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="WCOTypeCode" type="ds:MDIPWCOTypeCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. WCO Type. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the WCO Type.</xs:documentation>
+            <xs:documentation source="WCO ID">MD19</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..6</xs:documentation>
+            <xs:documentation source="Code List">WCO code list/WCOType</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ResponsibleCountryCode" type="ds:MDIPResponsibleCountryCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. Responsible Country. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the country controlling the specification, maintenance and publication of the message type.</xs:documentation>
+            <xs:documentation source="WCO ID">MD21</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">a2</xs:documentation>
+            <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ResponsibleAgencyCode" type="ds:MDIPResponsibleAgencyCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. Responsible Agency. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the agency controlling the specification, maintenance and publication of the message type.</xs:documentation>
+            <xs:documentation source="WCO ID">MD22</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..2</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 0051</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ResponsibleAgencyName" type="ds:MDIPResponsibleAgencyNameTextType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. ResponsibleAgencyName. Text</xs:documentation>
+            <xs:documentation source="Definition">Name to identify the agency controlling the specification, maintenance and publication of the message type.</xs:documentation>
+            <xs:documentation source="WCO ID">MD23</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="AgencyAssignedCustomizationCode" type="ds:MDIPAgencyAssignedCustomizationCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. Agency Assigned Customization. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the agency responsible for the design and maintenance of the message type concerned, which further identifies the message.</xs:documentation>
+            <xs:documentation source="WCO ID">MD24</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..6</xs:documentation>
+            <xs:documentation source="Code List">User code list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="AgencyAssignedCustomizationVersionCode" type="ds:MDIPAgencyAssignedCustomizationVersionCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. Agency Assigned Customization Version. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the version of the agency assigned customization.</xs:documentation>
+            <xs:documentation source="WCO ID">MD25</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">User code list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FunctionalDefinition" type="ds:MDIPFunctionalDefinitionTextType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">MDIP. Functional Definition. Text</xs:documentation>
+            <xs:documentation source="Definition">Definition of the function of the message.</xs:documentation>
+            <xs:documentation source="WCO ID">MD26</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001M</xs:documentation>
+            <xs:documentation source="Format">an..512</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="BinaryFile" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the computer file or program stored in a binary format.</xs:documentation>
+            <xs:documentation source="WCO ID">72B</xs:documentation>
+            <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" type="ds:BinaryFileIdentificationIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Identification. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">551</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Title" type="ds:BinaryFileTitleTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Title. Text</xs:documentation>
+                  <xs:documentation source="Definition">Title of this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">552</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="AuthorName" type="ds:BinaryFileAuthorNameTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Author Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the author for this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">553</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..70</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="VersionID" type="ds:BinaryFileVersionIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Version. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the version for this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">554</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..17</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="FileName" type="ds:BinaryFileFileNameTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. File Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the file usually including the file type for this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">555</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="URIID" type="ds:BinaryFileURIIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. URI. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the Uniform Resource Identifier (URI) for this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">556</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..2048</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="MIMECode" type="ds:BinaryFileMIMECodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. MIME. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the Multipurpose Internet Mail Extensions (MIME) type for this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">557</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..255</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="EncodingCode" type="ds:BinaryFileEncodingCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Encoding. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the encoding of this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">558</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..17</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="CharacterSetCode" type="ds:BinaryFileCharacterSetCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Character Set. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the character set for this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">559</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">n..17</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="IncludedBinaryObject" type="ds:BinaryFileIncludedBinaryObjectType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Included. Binary Object</xs:documentation>
+                  <xs:documentation source="Definition">Binary object included for this file.</xs:documentation>
+                  <xs:documentation source="WCO ID">560</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">NA</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Access" type="ds:BinaryFileAccessTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Access. Text</xs:documentation>
+                  <xs:documentation source="Definition">Information on access for this binary file such as security and download parameters.</xs:documentation>
+                  <xs:documentation source="WCO ID">561</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Description" type="ds:BinaryFileDescriptionTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Description. Text</xs:documentation>
+                  <xs:documentation source="Definition">Description of this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">562</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SizeMeasure" type="ds:BinaryFileSizeMeasureType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Size. Measure</xs:documentation>
+                  <xs:documentation source="Definition">Measure of the size of this binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">563</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">n..16,6</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="TypeCode" type="ds:BinaryFileTypeCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the type of binary file, such as photo, spreadsheet.</xs:documentation>
+                  <xs:documentation source="WCO ID">564</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..6</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="HashCode" type="ds:BinaryFileHashCodeTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Hash Code. Text</xs:documentation>
+                  <xs:documentation source="Definition">Hash code of the binary file.</xs:documentation>
+                  <xs:documentation source="WCO ID">565</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="HashCodeAlgorithmIDCode" type="ds:BinaryFileHashCodeAlgorithmIDCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Binary File. Hash Code Algorithm ID. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the algorithm used to calculate the hash code (e.g. MD5).</xs:documentation>
+                  <xs:documentation source="WCO ID">566</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0070M</xs:documentation>
+                  <xs:documentation source="Format">an..6</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CommunicationMetaData" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to meta data to be used for communication purposes.</xs:documentation>
+            <xs:documentation source="WCO ID">1MD</xs:documentation>
+            <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AcknowledgementRequestIndicator" type="ds:CommunicationMetaDataAcknowledgementRequestIndicatorType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Acknowledgement Request. Indicator</xs:documentation>
+                  <xs:documentation source="Definition">Indicator requesting acknowledgement of the interchange.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD01</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">n1</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ApplicationReferenceID" type="ds:CommunicationMetaDataApplicationReferenceIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Application Reference. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the application area assigned by the sender, to which the messages in the interchange relate (e.g. the message identifier if all the messages in the interchange are of the same type).</xs:documentation>
+                  <xs:documentation source="WCO ID">MD02</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">an..70</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="CommunicationsAgreementID" type="ds:CommunicationMetaDataCommunicationsAgreementIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Communications Agreement. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the type of agreement under which the interchange takes place by name or code.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD03</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="PreparationDateTime" type="ds:CommunicationMetaDataPreparationDateTimeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Preparation. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time locally when an interchange or a functional group was prepared.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD04</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SyntaxIdentificationCode" type="ds:CommunicationMetaDataSyntaxIdentificationCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Syntax Identification. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the agency controlling a syntax and syntax level used in an interchange.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD05</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">a4</xs:documentation>
+                  <xs:documentation source="Code List">UN/EDIFACT code list 0001</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SyntaxVersionCode" type="ds:CommunicationMetaDataSyntaxVersionCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Syntax Version. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the version number of the syntax identified in the syntax identifier (e.g. 0001).</xs:documentation>
+                  <xs:documentation source="WCO ID">MD06</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">n1</xs:documentation>
+                  <xs:documentation source="Code List">UN/EDIFACT code list 0002</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="TestIndicator" type="ds:CommunicationMetaDataTestIndicatorType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Test. Indicator</xs:documentation>
+                  <xs:documentation source="Definition">Indicator that the interchange is a test.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD07</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">n1</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SequenceNumeric" type="ds:CommunicationMetaDataSequenceNumericType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Communication Meta Data. Sequence. Numeric</xs:documentation>
+                  <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                  <xs:documentation source="WCO ID">006</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0190M</xs:documentation>
+                  <xs:documentation source="Format">n..5</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Recipient" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the recipient of a message (technical information).</xs:documentation>
+                  <xs:documentation source="WCO ID">4MD</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0191M</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ID" type="ds:RecipientIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Recipient. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the (message) recipient.</xs:documentation>
+                        <xs:documentation source="WCO ID">R161</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0191M</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:RecipientRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Recipient. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0191M</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="IdentificationIssuingCountryCode" type="ds:RecipientIdentificationIssuingCountryCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Recipient. Identification Issuing Country. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the issuing country of the identification.</xs:documentation>
+                        <xs:documentation source="WCO ID">R147</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0191M</xs:documentation>
+                        <xs:documentation source="Format">a2</xs:documentation>
+                        <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Communication" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                        <xs:documentation source="WCO ID">25A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0193M</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:CommunicationIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">240</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0193M</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">253</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0193M</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="AdditionalIdentifier" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to an additional identification of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">23C</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0192M</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SequenceNumeric" type="ds:AdditionalIdentifierSequenceNumericType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Additional Identifier. Sequence. Numeric</xs:documentation>
+                              <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                              <xs:documentation source="WCO ID">006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0192M</xs:documentation>
+                              <xs:documentation source="Format">n..5</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:AdditionalIdentifierIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Additional Identifier. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of an additional party (e.g. VAT number).</xs:documentation>
+                              <xs:documentation source="WCO ID">511</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0192M</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list.
+To be used with CDT attributes "Identification Scheme. Identifier" and
+"Identification Scheme Agency. Identifier" to make the information unique</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="IdentificationIssuingCountryCode" type="ds:AdditionalIdentifierIdentificationIssuingCountryCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Additional Identifier. Identification Issuing Country. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the issuing country of the identification.</xs:documentation>
+                              <xs:documentation source="WCO ID">550</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0192M</xs:documentation>
+                              <xs:documentation source="Format">a2</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Sender" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the sender of a message (technical information).</xs:documentation>
+                  <xs:documentation source="WCO ID">5MD</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0194M</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ID" type="ds:SenderIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Sender. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the (message) sender.</xs:documentation>
+                        <xs:documentation source="WCO ID">R162</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0194M</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:SenderRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Sender. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0194M</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="IdentificationIssuingCountryCode" type="ds:SenderIdentificationIssuingCountryCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Sender. Identification Issuing Country. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the issuing country of the identification.</xs:documentation>
+                        <xs:documentation source="WCO ID">R147</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0194M</xs:documentation>
+                        <xs:documentation source="Format">a2</xs:documentation>
+                        <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Communication" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                        <xs:documentation source="WCO ID">25A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0196M</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:CommunicationIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">240</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0196M</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">253</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0196M</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="AdditionalIdentifier" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to an additional identification of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">23C</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0195M</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SequenceNumeric" type="ds:AdditionalIdentifierSequenceNumericType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Additional Identifier. Sequence. Numeric</xs:documentation>
+                              <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                              <xs:documentation source="WCO ID">006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0195M</xs:documentation>
+                              <xs:documentation source="Format">n..5</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ID" type="ds:AdditionalIdentifierIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Additional Identifier. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of an additional party (e.g. VAT number).</xs:documentation>
+                              <xs:documentation source="WCO ID">511</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0195M</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list.
+To be used with CDT attributes "Identification Scheme. Identifier" and
+"Identification Scheme Agency. Identifier" to make the information unique</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="IdentificationIssuingCountryCode" type="ds:AdditionalIdentifierIdentificationIssuingCountryCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Additional Identifier. Identification Issuing Country. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the issuing country of the identification.</xs:documentation>
+                              <xs:documentation source="WCO ID">550</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0195M</xs:documentation>
+                              <xs:documentation source="Format">a2</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ContextMetaData" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to meta data to be used related to the context.</xs:documentation>
+            <xs:documentation source="WCO ID">2MD</xs:documentation>
+            <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BusinessProcessID" type="ds:ContextMetaDataBusinessProcessIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Business Process. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the interaction between trading partners to achieve a given business objective.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD09</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">These values will be summarized and will be hierarchical where applicable. 
+This list can be extended.
+Default value "ALL" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ProductClassificationID" type="ds:ContextMetaDataProductClassificationIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Product Classification. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the goods or services concerned in the collaboration.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD10</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">Use relevant HS codes OR text.
+Default value "ALL" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="IndustryClassificationID" type="ds:ContextMetaDataIndustryClassificationIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Industry Classification. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the relevant trading partner industries.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD11</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">UN International Standard Industrial Classification (ISIC).
+Default value "ALL" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="GeopoliticalID" type="ds:ContextMetaDataGeopoliticalIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Geopolitical. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of where the business process is to be conducted.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD12</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">ISO 3166  including ISO 3166_1 and ISO 3166_2.
+Default value "ALL" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="OfficialConstraintsID" type="ds:ContextMetaDataOfficialConstraintsIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Official Constraints. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of any legal restrictions or requirements on this business process.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD13</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">Proposed guideline: Use relevant laws, treaties OR regulations : User code list and abbreviations are allowed. 
+Default  value "NONE" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="BusinessProcessRoleID" type="ds:ContextMetaDataBusinessProcessRoleIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Business Process Role. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the roles played by the trading partners. 
+These can be derived from the Business Process.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD14</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">To be supplied by the producer of My IP.
+Default value "ALL" if no restrictions apply. 
+&lt;Examples: Broker, ImpORter, forwarder etc.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SupportingRoleID" type="ds:ContextMetaDataSupportingRoleIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. Supporting Role. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of other significant parties that will be using the data in the messages. Determine their role in the overall process.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD15</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">To be supplied by the producer of My IP.
+Default value "ALL" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SystemCapabilitiesID" type="ds:ContextMetaDataSystemCapabilitiesIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Context Meta Data. System Capabilities. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of major restrictions derived from system, a class of systems or standard in the business situation. Identify the type of system.</xs:documentation>
+                  <xs:documentation source="WCO ID">MD16</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0833M</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                  <xs:documentation source="Code List">To be supplied by the producer of My IP.
+Default value "ALL" if no restrictions apply.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

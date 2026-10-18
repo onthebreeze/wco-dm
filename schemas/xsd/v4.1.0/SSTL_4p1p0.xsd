@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:SSTL:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:SSTL_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:SSTL:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:SSTL_DS:4" schemaLocation="SSTL_4p1p0_urn_wco_datamodel_WCO_SSTL_DS_4.xsd"/>
+  <xs:element name="AIP">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.</xs:documentation>
+      <xs:documentation source="WCO ID">58C</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FunctionCode" type="ds:AIPFunctionCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">AIP. Function. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the function of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D046</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+            <xs:documentation source="Format">n..2</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1225</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FunctionalReferenceID" type="ds:AIPFunctionalReferenceIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">AIP. Functional Reference. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific information exchange.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Trader</xs:documentation>
+            <xs:documentation source="WCO ID">D026</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TypeCode" type="ds:AIPTypeCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">AIP. Type. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the name of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D013</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1001 OR User codes</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Control" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to (governmental) examination.</xs:documentation>
+            <xs:documentation source="WCO ID">38A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0834I</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TypeCode" type="ds:ControlTypeCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Control. Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the type of governmental examination.</xs:documentation>
+                  <xs:documentation source="WCO ID">449</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0834I</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">User codes</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ControlResult" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the outcome of (governmental) examination.</xs:documentation>
+                  <xs:documentation source="WCO ID">83B</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0842I</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="IdentificationCode" type="ds:ControlResultIdentificationCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Control Result. Identification. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the results of a control.</xs:documentation>
+                        <xs:documentation source="WCO ID">444</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0842I</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

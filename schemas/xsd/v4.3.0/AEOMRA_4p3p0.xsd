@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:AEOMRA:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:AEOMRA_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:AEOMRA:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:AEOMRA_DS:4" schemaLocation="AEOMRA_4p3p0_urn_wco_datamodel_WCO_AEOMRA_DS_4.xsd"/>
+  <xs:element name="AIP">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to the Additional Information Package (AIP) to be used for exchange of response or intergovernmental information, if needed in combination with Base Information Package (BIP) Declaration or LPCO.</xs:documentation>
+      <xs:documentation source="WCO ID">58C</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001I</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="AEOProgramProfile" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the Authorized Economic Operator (AEO) program.</xs:documentation>
+            <xs:documentation source="WCO ID">71C</xs:documentation>
+            <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CountryCode" type="ds:AEOProgramProfileCountryCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">AEO Program Profile. Country. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                  <xs:documentation source="WCO ID">242</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+                  <xs:documentation source="Format">a2</xs:documentation>
+                  <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="CountryAgencyName" type="ds:AEOProgramProfileCountry AgencyNameTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">AEO Program Profile. Country Agency Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the agency responsible for the country’s Authorized Economic Operator (AEO) program.</xs:documentation>
+                  <xs:documentation source="WCO ID">625</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ProgramName" type="ds:AEOProgramProfileProgramNameTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">AEO Program Profile. Program Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the country’s Authorized Economic Operator (AEO) program.</xs:documentation>
+                  <xs:documentation source="WCO ID">626</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="MembersQuantity" type="ds:AEOProgramProfileMembersQuantityType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">AEO Program Profile. members. Quantity</xs:documentation>
+                  <xs:documentation source="Definition">Quantity specifying the number of members in a country’s Authorized Economic Operator (AEO) program.</xs:documentation>
+                  <xs:documentation source="WCO ID">627</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+                  <xs:documentation source="Format">n..6</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="EstablishedYearDateTime" type="ds:AEOProgramProfileEstablishedYearDateTime" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">AEOProgramProfile. Established Year. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time the AEO program was established.</xs:documentation>
+                  <xs:documentation source="WCO ID">628</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="TypeCode" type="ds:AEOProgramProfileTypeCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">AEOProgramProfile. Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying whether the country’s Authorized Economic Operator (AEO) program is a security based program, compliance based, or both.</xs:documentation>
+                  <xs:documentation source="WCO ID">629</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2180I</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">WCO code list/AEOProgramTypeCode</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Communication" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                  <xs:documentation source="WCO ID">25A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2181I</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ID" type="ds:CommunicationIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                        <xs:documentation source="WCO ID">240</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2181I</xs:documentation>
+                        <xs:documentation source="Format">an..256</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                        <xs:documentation source="WCO ID">253</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2181I</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Name" type="ds:CommunicationNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Communication. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the communication identifier.</xs:documentation>
+                        <xs:documentation source="WCO ID">636</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2181I</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="TradeRole" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the trade roles.</xs:documentation>
+                  <xs:documentation source="WCO ID">73C</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2182I</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="RoleCode" type="ds:TradeRolRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">TradeRol. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2182I</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Contact" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to contact information of a department or employee.</xs:documentation>
+                  <xs:documentation source="WCO ID">34A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2183I</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:ContactNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Contact. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of a department or employee.</xs:documentation>
+                        <xs:documentation source="WCO ID">246</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2183I</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Communication" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to communication including number and number type.</xs:documentation>
+                        <xs:documentation source="WCO ID">25A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2184I</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:CommunicationIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">240</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2184I</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="TypeCode" type="ds:CommunicationTypeCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Communication. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of communication address.</xs:documentation>
+                              <xs:documentation source="WCO ID">253</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2184I</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3155</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ProgramPartnerProfile" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the program or partner profile.</xs:documentation>
+                  <xs:documentation source="WCO ID">72C</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2185I</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="TypeCode" type="ds:ProgramPartnerProfileTypeCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Program Partner Profile. Type. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the type of program or partner profile (e.g. MRA (Mutual Recognition Arrangement/Agreement), JWP (the Joint Work Plan), PGA (Participating Government Agency)).</xs:documentation>
+                        <xs:documentation source="WCO ID">634</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2185I</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">WCO code list/ProgramPartnerProfileTypeCode</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountryCode" type="ds:ProgramPartnerProfileCountryCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Program Partner Profile. Country. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                        <xs:documentation source="WCO ID">242</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2185I</xs:documentation>
+                        <xs:documentation source="Format">a2</xs:documentation>
+                        <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="AgencyName" type="ds:ProgramPartnerProfileAgencyNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Program Partner Profile. Agency Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the agency responsible for the country’s program or partner profile.</xs:documentation>
+                        <xs:documentation source="WCO ID">631</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2185I
+2180I</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ProgramName" type="ds:ProgramPartnerProfileProgramNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Program Partner Profile. Program Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the country’s program or partner profile.</xs:documentation>
+                        <xs:documentation source="WCO ID">632</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2185I</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="SignedDateTime" type="ds:ProgramPartnerProfileSignedDateTimeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Program Partner Profile. Signed. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time the country’s program or partner profile was signed.</xs:documentation>
+                        <xs:documentation source="WCO ID">633</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2185I</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

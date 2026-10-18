@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:ePhyto:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:ePhyto_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:ePhyto:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:ePhyto_DS:4" schemaLocation="ePhyto_4p1p0_urn_wco_datamodel_WCO_ePhyto_DS_4.xsd"/>
+  <xs:element name="LPCO">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to Licenses, Permits, Certificates or Others.</xs:documentation>
+      <xs:documentation source="WCO ID">74B</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ID" type="ds:LPCOIdentificationIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">LPCO. Identification. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific document.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Government</xs:documentation>
+            <xs:documentation source="WCO ID">D014</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Authentication" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the authentication of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">61B</xs:documentation>
+            <xs:documentation source="Unique Position ID">0045L</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ActualDateTime" type="ds:AuthenticationActualDateTimeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Authentication. Actual. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time when this authentication was actually signed or otherwise authenticated.</xs:documentation>
+                  <xs:documentation source="WCO ID">451</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0045L</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ActualLocationID" type="ds:AuthenticationActualLocationIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Authentication. Actual Location. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the location where a document was signed or otherwise authenticated.</xs:documentation>
+                  <xs:documentation source="WCO ID">544</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0045L</xs:documentation>
+                  <xs:documentation source="Format">an..17</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Authentication" type="ds:AuthenticationAuthenticationTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Authentication. Authentication. Text</xs:documentation>
+                  <xs:documentation source="Definition">Statement providing proof that the document has been authenicated.</xs:documentation>
+                  <xs:documentation source="WCO ID">104</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0045L</xs:documentation>
+                  <xs:documentation source="Format">an..256</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="AuthorizedPerson" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to a person designated under relevant legislation for the purpose of issuing official assurances.</xs:documentation>
+                  <xs:documentation source="WCO ID">13A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0052L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:AuthorizedPersonNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Authorized Person. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of a person designated under relevant legislation for the purpose of issuing official assurances.</xs:documentation>
+                        <xs:documentation source="WCO ID">R067</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0052L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:AuthorizedPersonIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Authorized Person. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of a person designated under relevant legislation for the purpose of issuing official assurances.</xs:documentation>
+                        <xs:documentation source="WCO ID">R068</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0052L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">International codes (e.g. DUNS, EAN) OR User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:AuthorizedPersonRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Authorized Person. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0052L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AdditionalInformation" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the special request from declarant to government to take or not to take action.</xs:documentation>
+            <xs:documentation source="Remark">In case of using Additional statement code, text or indicator you can make the information more specific by also using Additional statement type.
+If there are more than 1 occurrences you should always use it in combination with the type.</xs:documentation>
+            <xs:documentation source="WCO ID">03A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0030L</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Additional Information. Statement. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the form of an additional statement.</xs:documentation>
+                  <xs:documentation source="WCO ID">226</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0030L</xs:documentation>
+                  <xs:documentation source="Format">an..17</xs:documentation>
+                  <xs:documentation source="Code List">User codes</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="StatementDescription" type="ds:AdditionalInformationStatementDescriptionTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Description. Text</xs:documentation>
+                  <xs:documentation source="Definition">Description of an additional statement.</xs:documentation>
+                  <xs:documentation source="WCO ID">225</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0030L</xs:documentation>
+                  <xs:documentation source="Format">an..512</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="StatementTypeCode" type="ds:AdditionalInformationStatementTypeCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the subject of the additional statement.</xs:documentation>
+                  <xs:documentation source="WCO ID">369</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0030L</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">UN/EDIFACT code list 4451</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Consignment" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the transport between a consignor and a consignee as specified in the transport contract document.</xs:documentation>
+            <xs:documentation source="WCO ID">28A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0203L</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BorderTransportMeans" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the means of transport crossing the border of the Customs territory.</xs:documentation>
+                  <xs:documentation source="WCO ID">15A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0250L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:BorderTransportMeansNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Border Transport Means. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name to identify the means of transport used for the carriage of the goods in crossing the border.</xs:documentation>
+                        <xs:documentation source="WCO ID">T005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0250L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:BorderTransportMeansIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Border Transport Means. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the means of transport used in crossing the border.</xs:documentation>
+                        <xs:documentation source="WCO ID">T006</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0250L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">Sea: ITU Standard or Lloyd's number
+Air: IATA aircraft ID
+Road: national license plate
+Rail: locomotive number</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TypeCode" type="ds:BorderTransportMeansTypeCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Border Transport Means. Type. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying type of means of transport used for the carriage of the goods in crossing the border.</xs:documentation>
+                        <xs:documentation source="WCO ID">T010</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0250L</xs:documentation>
+                        <xs:documentation source="Format">an..4</xs:documentation>
+                        <xs:documentation source="Code List">UN/Recommendation 28</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ArrivalLocation" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the first arrival location.</xs:documentation>
+                        <xs:documentation source="WCO ID">11C</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1969L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:ArrivalLocationIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Arrival Location. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the arrival location. This would be a port for sea, airport for air and border post for land crossing.</xs:documentation>
+                              <xs:documentation source="WCO ID">L109</xs:documentation>
+                              <xs:documentation source="Unique Position ID">1969L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">UN/LOCODE + User codes OR User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Consignee" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the party to which goods are consigned.</xs:documentation>
+                  <xs:documentation source="WCO ID">27A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0269L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:ConsigneeNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Consignee. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the party to which goods are consigned.</xs:documentation>
+                        <xs:documentation source="WCO ID">R014</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0269L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:ConsigneeIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Consignee. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of a party to which goods are consigned.</xs:documentation>
+                        <xs:documentation source="WCO ID">R015</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0269L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">International codes (e.g. DUNS, EAN) OR User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:ConsigneeRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Consignee. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0269L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to an address.</xs:documentation>
+                        <xs:documentation source="WCO ID">04A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CityName" type="ds:AddressCityNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. City Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a city.</xs:documentation>
+                              <xs:documentation source="WCO ID">241</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountryCode" type="ds:AddressCountryCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                              <xs:documentation source="WCO ID">242</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">a2</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountryName" type="ds:AddressCountryNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of the country or other geographical entity.</xs:documentation>
+                              <xs:documentation source="Remark">Transitional element</xs:documentation>
+                              <xs:documentation source="WCO ID">412</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountrySubDivisionCode" type="ds:AddressCountrySubDivisionCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country Sub Division. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the name of a country subdivision.</xs:documentation>
+                              <xs:documentation source="WCO ID">244</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">an..9</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-2 OR User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountrySubDivisionName" type="ds:AddressCountrySubDivisionNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country Sub Division Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a country subdivision.</xs:documentation>
+                              <xs:documentation source="WCO ID">243</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="Line" type="ds:AddressLineTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Line. Text</xs:documentation>
+                              <xs:documentation source="Definition">Specification of the postal delivery point such as street and number or post office box.</xs:documentation>
+                              <xs:documentation source="Remark">Not to be used in combination with Street name, House number, House number addition and P.O. Box</xs:documentation>
+                              <xs:documentation source="WCO ID">239</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="PostcodeID" type="ds:AddressPostcodeIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Postcode. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the postal zone or address.</xs:documentation>
+                              <xs:documentation source="WCO ID">245</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0271L</xs:documentation>
+                              <xs:documentation source="Format">an..17</xs:documentation>
+                              <xs:documentation source="Code List">User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ConsignmentItem" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to an item in a consignment.</xs:documentation>
+                  <xs:documentation source="WCO ID">29A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0275L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Commodity" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the properties of the goods.</xs:documentation>
+                        <xs:documentation source="WCO ID">23A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0307L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Description" type="ds:CommodityDescriptionTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Commodity. Description. Text</xs:documentation>
+                              <xs:documentation source="Definition">Description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport.</xs:documentation>
+                              <xs:documentation source="WCO ID">137</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0307L</xs:documentation>
+                              <xs:documentation source="Format">an..512</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="AdditionalInformation" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the special request from declarant to government to take or not to take action.</xs:documentation>
+                              <xs:documentation source="Remark">In case of using Additional statement code, text or indicator you can make the information more specific by also using Additional statement type.
+If there are more than 1 occurrences you should always use it in combination with the type.</xs:documentation>
+                              <xs:documentation source="WCO ID">03A</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0329L</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Additional Information. Statement. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the form of an additional statement.</xs:documentation>
+                                    <xs:documentation source="WCO ID">226</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0329L</xs:documentation>
+                                    <xs:documentation source="Format">an..17</xs:documentation>
+                                    <xs:documentation source="Code List">User codes</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="StatementDescription" type="ds:AdditionalInformationStatementDescriptionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of an additional statement.</xs:documentation>
+                                    <xs:documentation source="WCO ID">225</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0329L</xs:documentation>
+                                    <xs:documentation source="Format">an..512</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="StatementTypeCode" type="ds:AdditionalInformationStatementTypeCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Additional Information. Statement Type. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the subject of the additional statement.</xs:documentation>
+                                    <xs:documentation source="WCO ID">369</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0329L</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 4451</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Process" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details relating to a Process which has, will, or is required to be performed on a commodity.</xs:documentation>
+                              <xs:documentation source="WCO ID">60B</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0354L</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SequenceNumeric" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                                    <xs:documentation source="WCO ID">006</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0354L</xs:documentation>
+                                    <xs:documentation source="Format">n..5</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="ActualTemperatureMeasure" type="ds:ProcessActualTemperatureMeasureType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Process. Actual Temperature. Measure</xs:documentation>
+                                    <xs:documentation source="Definition">Measure of temperature.</xs:documentation>
+                                    <xs:documentation source="WCO ID">320</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0354L</xs:documentation>
+                                    <xs:documentation source="Format">n..15</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="TypeIdentificationCode" type="ds:ProcessTypeIdentificationCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Process. Type Identification. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the process or production associated with the commodity (e.g. method of growing, pretreatment, etc).</xs:documentation>
+                                    <xs:documentation source="WCO ID">340</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0354L</xs:documentation>
+                                    <xs:documentation source="Format">an..17</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 7187</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="TypeDescription" type="ds:ProcessTypeDescriptionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Process. Type Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Description of the production method or other process applied to the commodity.</xs:documentation>
+                                    <xs:documentation source="WCO ID">339</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0354L</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="DurationDateTime" type="ds:ProcessDurationDateTimeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Process. Duration. Date Time</xs:documentation>
+                                    <xs:documentation source="Definition">Date and time on which the process associated with the commodity was performed.</xs:documentation>
+                                    <xs:documentation source="WCO ID">269</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0354L</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Product" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the tangible article or substance produced by human or mechanical effort or by a natural process.</xs:documentation>
+                              <xs:documentation source="WCO ID">46B</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0357L</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ID" type="ds:ProductIdentificationIDType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Product. Identification. Identifier</xs:documentation>
+                                    <xs:documentation source="Definition">Identification of an object, for example the unique number affixed by the manufacturer to a product for identification purposes.</xs:documentation>
+                                    <xs:documentation source="WCO ID">147</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0357L</xs:documentation>
+                                    <xs:documentation source="Format">an..25</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="IDTypeCode" type="ds:ProductIDTypeCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Product. Identifier Type. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the type of commodity identifier.</xs:documentation>
+                                    <xs:documentation source="WCO ID">338</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0357L</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 7143</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ProductName" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the name of a product.</xs:documentation>
+                              <xs:documentation source="WCO ID">47B</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0359L</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Description" type="ds:ProductNameDescriptionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Product Name. Description. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name or term that identifies the goods assigned by a seller as distinct from those of other sellers, in legal terms known as trademark, which helps to identify one item, a family of items, or all items of that seller.</xs:documentation>
+                                    <xs:documentation source="WCO ID">258</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0359L</xs:documentation>
+                                    <xs:documentation source="Format">an..35</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="QualifierCode" type="ds:ProductNameQualifierCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Product Name. Qualifier. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the commodity name (e.g. common name, registered name, brand name).</xs:documentation>
+                                    <xs:documentation source="WCO ID">335</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0359L</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 7081</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Source" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Details related to the source of goods in accordance with regulation and laws.</xs:documentation>
+                              <xs:documentation source="WCO ID">11B</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0364L</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="GeographicRegion" type="ds:SourceGeographicRegionTextType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Source. Geographic Region. Text</xs:documentation>
+                                    <xs:documentation source="Definition">Name of the source geographic region (non-political).</xs:documentation>
+                                    <xs:documentation source="WCO ID">286</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0364L</xs:documentation>
+                                    <xs:documentation source="Format">an..70</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="CountryCode" type="ds:SourceCountryCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Source. Country. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the source country.</xs:documentation>
+                                    <xs:documentation source="WCO ID">396</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0364L</xs:documentation>
+                                    <xs:documentation source="Format">a2</xs:documentation>
+                                    <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="TypeCode" type="ds:SourceTypeCodeType" minOccurs="0">
+                                  <xs:annotation>
+                                    <xs:documentation source="Dictionary Entry Name">Source. Type. Code</xs:documentation>
+                                    <xs:documentation source="Definition">Code specifying the type of source location.</xs:documentation>
+                                    <xs:documentation source="WCO ID">397</xs:documentation>
+                                    <xs:documentation source="Unique Position ID">0364L</xs:documentation>
+                                    <xs:documentation source="Format">an..3</xs:documentation>
+                                    <xs:documentation source="Code List">UN/EDIFACT code list 3227</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DepartureLocation" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to departure location.</xs:documentation>
+                        <xs:documentation source="WCO ID">98B</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0386L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CountryCode" type="ds:DepartureLocationCountryCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Departure Location. Country. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the country of departure.</xs:documentation>
+                              <xs:documentation source="WCO ID">463</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0386L</xs:documentation>
+                              <xs:documentation source="Format">a2</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountryName" type="ds:DepartureLocationCountryNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Departure Location. Country Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of the country of departure.</xs:documentation>
+                              <xs:documentation source="WCO ID">462</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0386L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DestinationLocation" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the destination location.</xs:documentation>
+                        <xs:documentation source="WCO ID">99B</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0387L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CountryCode" type="ds:DestinationLocationCountryCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Destination Location. Country. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the country of destination.</xs:documentation>
+                              <xs:documentation source="WCO ID">465</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0387L</xs:documentation>
+                              <xs:documentation source="Format">a2</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountryName" type="ds:DestinationLocationCountryNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Destination Location. Country Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of the country of destination.</xs:documentation>
+                              <xs:documentation source="WCO ID">464</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0387L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="GoodsMeasure" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to goods weight, quantities, and amounts.</xs:documentation>
+                        <xs:documentation source="WCO ID">65A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0395L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TariffQuantityAmount" type="ds:GoodsMeasureTariffQuantityAmountType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Goods Measure. Tariff Quantity. Amount</xs:documentation>
+                              <xs:documentation source="Definition">Amount reported in 1st, 2nd, or 3rd tariff quantity.</xs:documentation>
+                              <xs:documentation source="WCO ID">324</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0395L</xs:documentation>
+                              <xs:documentation source="Format">n..16,3</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Packaging" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to packaging.</xs:documentation>
+                        <xs:documentation source="WCO ID">93A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0406L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SequenceNumeric" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Definition">Number indicating the position in a sequence.</xs:documentation>
+                              <xs:documentation source="WCO ID">006</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0406L</xs:documentation>
+                              <xs:documentation source="Format">n..5</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="MarksNumbers" type="ds:PackagingMarksNumbersTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Packaging. Marks Numbers. Text</xs:documentation>
+                              <xs:documentation source="Definition">Marks and or numbers on a transport unit or package.</xs:documentation>
+                              <xs:documentation source="WCO ID">142</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0406L</xs:documentation>
+                              <xs:documentation source="Format">an..512</xs:documentation>
+                              <xs:documentation source="Code List">UN/ECE Recommendation 15</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="QuantityQuantity" type="ds:PackagingQuantityQuantityType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Packaging. Quantity. Quantity</xs:documentation>
+                              <xs:documentation source="Definition">Quantity specifying the number of individual items packaged in such a way that they cannot be divided without first undoing the packing.</xs:documentation>
+                              <xs:documentation source="WCO ID">144</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0406L</xs:documentation>
+                              <xs:documentation source="Format">n..8</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="TypeCode" type="ds:PackagingTypeCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Packaging. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of package of an item.</xs:documentation>
+                              <xs:documentation source="WCO ID">141</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0406L</xs:documentation>
+                              <xs:documentation source="Format">an..2</xs:documentation>
+                              <xs:documentation source="Code List">UN/ECE Recommendation 21 Annex VI</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Consignor" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the party which, by contract with a carrier, consigns or sends goods with the carrier, or has them conveyed by him.</xs:documentation>
+                  <xs:documentation source="WCO ID">30A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0474L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:ConsignorNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Consignor. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the party consigning goods as stipulated in the transport contract by the party ordering transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">R020</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0474L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:ConsignorIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Consignor. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of  the party consigning goods as stipulated in the transport contract by the party ordering the transport.</xs:documentation>
+                        <xs:documentation source="WCO ID">R021</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0474L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">International codes (e.g. DUNS, EAN) OR User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:ConsignorRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Consignor. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0474L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to an address.</xs:documentation>
+                        <xs:documentation source="WCO ID">04A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TypeCode" type="ds:AddressTypeCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Type. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the type of address.</xs:documentation>
+                              <xs:documentation source="WCO ID">410</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..3</xs:documentation>
+                              <xs:documentation source="Code List">UN/EDIFACT code list 3131</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CityName" type="ds:AddressCityNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. City Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a city.</xs:documentation>
+                              <xs:documentation source="WCO ID">241</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountryCode" type="ds:AddressCountryCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                              <xs:documentation source="WCO ID">242</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">a2</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountryName" type="ds:AddressCountryNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of the country or other geographical entity.</xs:documentation>
+                              <xs:documentation source="Remark">Transitional element</xs:documentation>
+                              <xs:documentation source="WCO ID">412</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountrySubDivisionCode" type="ds:AddressCountrySubDivisionCodeType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country Sub Division. Code</xs:documentation>
+                              <xs:documentation source="Definition">Code specifying the name of a country subdivision.</xs:documentation>
+                              <xs:documentation source="WCO ID">244</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..9</xs:documentation>
+                              <xs:documentation source="Code List">ISO 3166-2 OR User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="CountrySubDivisionName" type="ds:AddressCountrySubDivisionNameTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Country Sub Division Name. Text</xs:documentation>
+                              <xs:documentation source="Definition">Name of a country subdivision.</xs:documentation>
+                              <xs:documentation source="WCO ID">243</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="Line" type="ds:AddressLineTextType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Line. Text</xs:documentation>
+                              <xs:documentation source="Definition">Specification of the postal delivery point such as street and number or post office box.</xs:documentation>
+                              <xs:documentation source="Remark">Not to be used in combination with Street name, House number, House number addition and P.O. Box</xs:documentation>
+                              <xs:documentation source="WCO ID">239</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..256</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="PostcodeID" type="ds:AddressPostcodeIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Address. Postcode. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of the postal zone or address.</xs:documentation>
+                              <xs:documentation source="WCO ID">245</xs:documentation>
+                              <xs:documentation source="Unique Position ID">0476L</xs:documentation>
+                              <xs:documentation source="Format">an..17</xs:documentation>
+                              <xs:documentation source="Code List">User codes</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Exporter" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the person/party who makes or on whose behalf an export declaration is made.</xs:documentation>
+            <xs:documentation source="WCO ID">57A</xs:documentation>
+            <xs:documentation source="Unique Position ID">0961L</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="ds:ExporterNameTextType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Exporter. Name. Text</xs:documentation>
+                  <xs:documentation source="Definition">Name of the person who makes, or on whose behalf the export declaration is made, and who is the owner of the goods or has similar right of disposal over them at the time when the declaration is accepted.</xs:documentation>
+                  <xs:documentation source="WCO ID">R031</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0961L</xs:documentation>
+                  <xs:documentation source="Format">an..70</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ID" type="ds:ExporterIdentificationIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Exporter. Identification. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the party who makes, or on whose behalf the export declaration is made, and who is the owner of the goods or has similar rights of disposal over them at the time when the declaration is accepted.</xs:documentation>
+                  <xs:documentation source="WCO ID">R032</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0961L</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="RoleCode" type="ds:ExporterRoleCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Exporter. Role. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                  <xs:documentation source="WCO ID">R005</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0961L</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="Address" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to an address.</xs:documentation>
+                  <xs:documentation source="WCO ID">04A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="CityName" type="ds:AddressCityNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. City Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of a city.</xs:documentation>
+                        <xs:documentation source="WCO ID">241</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountryCode" type="ds:AddressCountryCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. Country. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.</xs:documentation>
+                        <xs:documentation source="WCO ID">242</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">a2</xs:documentation>
+                        <xs:documentation source="Code List">ISO 3166-1</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountryName" type="ds:AddressCountryNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. Country Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the country or other geographical entity.</xs:documentation>
+                        <xs:documentation source="Remark">Transitional element</xs:documentation>
+                        <xs:documentation source="WCO ID">412</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountrySubDivisionCode" type="ds:AddressCountrySubDivisionCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. Country Sub Division. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the name of a country subdivision.</xs:documentation>
+                        <xs:documentation source="WCO ID">244</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">an..9</xs:documentation>
+                        <xs:documentation source="Code List">ISO 3166-2 OR User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="CountrySubDivisionName" type="ds:AddressCountrySubDivisionNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. Country Sub Division Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of a country subdivision.</xs:documentation>
+                        <xs:documentation source="WCO ID">243</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Line" type="ds:AddressLineTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. Line. Text</xs:documentation>
+                        <xs:documentation source="Definition">Specification of the postal delivery point such as street and number or post office box.</xs:documentation>
+                        <xs:documentation source="Remark">Not to be used in combination with Street name, House number, House number addition and P.O. Box</xs:documentation>
+                        <xs:documentation source="WCO ID">239</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">an..256</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PostcodeID" type="ds:AddressPostcodeIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Address. Postcode. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the postal zone or address.</xs:documentation>
+                        <xs:documentation source="WCO ID">245</xs:documentation>
+                        <xs:documentation source="Unique Position ID">0963L</xs:documentation>
+                        <xs:documentation source="Format">an..17</xs:documentation>
+                        <xs:documentation source="Code List">User codes</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

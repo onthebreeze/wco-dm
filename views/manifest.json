@@ -13196,8 +13196,8 @@
        "nodes": 46,
        "classes": 10,
        "elements": 36,
-       "repeating": 9,
-       "required": 0,
+       "repeating": 7,
+       "required": 5,
        "maxDepth": 5,
        "bound": 46,
        "unbound": 0,
@@ -13208,7 +13208,7 @@
         "name": "Message function code",
         "path": "AIP/function",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Code specifying the function of a document.",
         "below": 0
        },
@@ -13216,7 +13216,7 @@
         "name": "Functional identifier",
         "path": "AIP/functionalReference",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Identification of a specific information exchange.",
         "below": 0
        },
@@ -13224,7 +13224,7 @@
         "name": "Document name code",
         "path": "AIP/type",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Code specifying the name of a document.",
         "below": 0
        },
@@ -13240,7 +13240,7 @@
         "name": "MasterDataRecipient",
         "path": "AIP/MasterDataRecipient",
         "type": "C",
-        "card": "0..*",
+        "card": "1..1",
         "definition": "Details related to the recipient of the master data.",
         "below": 2
        },
@@ -13248,7 +13248,7 @@
         "name": "MasterDataSender",
         "path": "AIP/MasterDataSender",
         "type": "C",
-        "card": "0..*",
+        "card": "1..1",
         "definition": "Details related to the sender of the master data.",
         "below": 2
        },
@@ -15001,8 +15001,8 @@
        "nodes": 86,
        "classes": 20,
        "elements": 66,
-       "repeating": 19,
-       "required": 0,
+       "repeating": 11,
+       "required": 55,
        "maxDepth": 7,
        "bound": 86,
        "unbound": 0,
@@ -15013,7 +15013,7 @@
         "name": "Message function code",
         "path": "Declaration/function",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Code specifying the function of a document.",
         "below": 0
        },
@@ -15021,7 +15021,7 @@
         "name": "Functional identifier",
         "path": "Declaration/functionalReference",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Identification of a specific information exchange.",
         "below": 0
        },
@@ -15037,7 +15037,7 @@
         "name": "Submitter",
         "path": "Declaration/Submitter",
         "type": "C",
-        "card": "0..*",
+        "card": "1..1",
         "definition": "Details related to the submitter of written or electronic documentation.",
         "below": 12
        },
@@ -15045,7 +15045,7 @@
         "name": "BorderTransportMeans",
         "path": "Declaration/BorderTransportMeans",
         "type": "C",
-        "card": "0..*",
+        "card": "1..1",
         "definition": "Details related to the means of transport crossing the border of the Customs territory.",
         "below": 68
        }
@@ -15065,8 +15065,8 @@
        "nodes": 144,
        "classes": 33,
        "elements": 111,
-       "repeating": 30,
-       "required": 0,
+       "repeating": 13,
+       "required": 92,
        "maxDepth": 7,
        "bound": 144,
        "unbound": 0,
@@ -15077,7 +15077,7 @@
         "name": "Message function code",
         "path": "Declaration/function",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Code specifying the function of a document.",
         "below": 0
        },
@@ -15085,7 +15085,7 @@
         "name": "Functional identifier",
         "path": "Declaration/functionalReference",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Identification of a specific information exchange.",
         "below": 0
        },
@@ -15101,7 +15101,7 @@
         "name": "Document name code",
         "path": "Declaration/type",
         "type": "E",
-        "card": "0..1",
+        "card": "1..1",
         "definition": "Code specifying the name of a document.",
         "below": 0
        },
@@ -15109,7 +15109,7 @@
         "name": "Submitter",
         "path": "Declaration/Submitter",
         "type": "C",
-        "card": "0..*",
+        "card": "1..1",
         "definition": "Details related to the submitter of written or electronic documentation.",
         "below": 7
        },
@@ -15117,7 +15117,7 @@
         "name": "BorderTransportMeans",
         "path": "Declaration/BorderTransportMeans",
         "type": "C",
-        "card": "0..*",
+        "card": "1..1",
         "definition": "Details related to the means of transport crossing the border of the Customs territory.",
         "below": 128
        },
@@ -15145,8 +15145,8 @@
        "nodes": 83,
        "classes": 26,
        "elements": 57,
-       "repeating": 25,
-       "required": 0,
+       "repeating": 11,
+       "required": 18,
        "maxDepth": 6,
        "bound": 83,
        "unbound": 0,
@@ -15189,7 +15189,7 @@
         "name": "BorderTransportMeans",
         "path": "Declaration/BorderTransportMeans",
         "type": "C",
-        "card": "0..*",
+        "card": "0..1",
         "definition": "Details related to the means of transport crossing the border of the Customs territory.",
         "below": 6
        },

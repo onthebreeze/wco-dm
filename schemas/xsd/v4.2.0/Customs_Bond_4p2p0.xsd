@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:wco:datamodel:WCO:Customs_Bond:4"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="urn:wco:datamodel:WCO:Customs_Bond_DS:4"
+    targetNamespace="urn:wco:datamodel:WCO:Customs_Bond:4"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:wco:datamodel:WCO:Customs_Bond_DS:4" schemaLocation="Customs_Bond_4p2p0_urn_wco_datamodel_WCO_Customs_Bond_DS_4.xsd"/>
+  <xs:element name="LPCO">
+    <xs:annotation>
+      <xs:documentation source="Definition">Details related to Licenses, Permits, Certificates or Others.</xs:documentation>
+      <xs:documentation source="WCO ID">74B</xs:documentation>
+      <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FunctionCode" type="ds:LPCOFunctionCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">LPCO. Function. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the function of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D046</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+            <xs:documentation source="Format">n..2</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1225</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FunctionName" type="ds:LPCOFunctionNameTextType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">LPCO. Function Name. Text</xs:documentation>
+            <xs:documentation source="Definition">Purpose of the document.</xs:documentation>
+            <xs:documentation source="WCO ID">D039</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+            <xs:documentation source="Format">an..35</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FunctionalReferenceID" type="ds:LPCOFunctionalReferenceIDType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">LPCO. Functional Reference. Identifier</xs:documentation>
+            <xs:documentation source="Definition">Identification of a specific information exchange.</xs:documentation>
+            <xs:documentation source="Remark">Document reference number, assigned by the Trader</xs:documentation>
+            <xs:documentation source="WCO ID">D026</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+            <xs:documentation source="Format">an..70</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TypeCode" type="ds:LPCOTypeCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">LPCO. Type. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying the name of a document.</xs:documentation>
+            <xs:documentation source="WCO ID">D013</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">UN/EDIFACT code list 1001 OR User code list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="UsageCode" type="ds:LPCOUsageCodeType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="Dictionary Entry Name">LPCO. Usage. Code</xs:documentation>
+            <xs:documentation source="Definition">Code specifying whether the document (e.g. permit, bond, license) is for single use or multiple use.</xs:documentation>
+            <xs:documentation source="WCO ID">541</xs:documentation>
+            <xs:documentation source="Unique Position ID">0001L</xs:documentation>
+            <xs:documentation source="Format">an..3</xs:documentation>
+            <xs:documentation source="Code List">User code list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ObligationGuarantee" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation source="Definition">Details related to the undertaking given in cash, bond or as a written guarantee to ensure that an obligation will be fulfilled (e.g. under a transit procedure).</xs:documentation>
+            <xs:documentation source="WCO ID">90A</xs:documentation>
+            <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EffectiveDateTime" type="ds:LPCOEffectiveDateTimeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">LPCO. Effective. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time of effectiveness of the document (e.g. license, visa, permit, certificate, bond).</xs:documentation>
+                  <xs:documentation source="WCO ID">D052</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ExpirationDateTime" type="ds:ObligationGuaranteeExpirationDateTimeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Obligation Guarantee. Expiration. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time of expiration of the document (e.g. license, visa, permit, certificate, bond).</xs:documentation>
+                  <xs:documentation source="WCO ID">D051</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="IssueDateTime" type="ds:ObligationGuaranteeIssueDateTimeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Obligation Guarantee. Issue. Date Time</xs:documentation>
+                  <xs:documentation source="Definition">Date and time the document was issued and when appropriate, signed or otherwise authenticated.</xs:documentation>
+                  <xs:documentation source="WCO ID">D011</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ValueAmount" type="ds:ObligationGuaranteeValueAmountType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Obligation Guarantee. Value. Amount</xs:documentation>
+                  <xs:documentation source="Definition">Amount indicating the total value of the guarantee.</xs:documentation>
+                  <xs:documentation source="WCO ID">620</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+                  <xs:documentation source="Format">n..16,3</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ActivityTypeCode" type="ds:ObligationGuaranteeActivityTypeCodeType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Obligation Guarantee. Activity Type. Code</xs:documentation>
+                  <xs:documentation source="Definition">Code specifying the type of activity being guaranteed.</xs:documentation>
+                  <xs:documentation source="WCO ID">621</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+                  <xs:documentation source="Format">an..3</xs:documentation>
+                  <xs:documentation source="Code List">User code list</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ReferenceID" type="ds:ObligationGuaranteeReferenceIDType" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="Dictionary Entry Name">Obligation Guarantee. Reference. Identifier</xs:documentation>
+                  <xs:documentation source="Definition">Identification of the undertaking given as a written guarantee in cash, bond, or by other such means in order to ensure that an obligation will be fulfilled by reference number.</xs:documentation>
+                  <xs:documentation source="WCO ID">100</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1672L</xs:documentation>
+                  <xs:documentation source="Format">an..35</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="AdditionalInformation" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the special request from declarant to government to take or not to take action.</xs:documentation>
+                  <xs:documentation source="Remark">In case of using Additional statement code, text or indicator you can make the information more specific by also using Additional statement type.
+If there are more than 1 occurrences you should always use it in combination with the type.</xs:documentation>
+                  <xs:documentation source="WCO ID">03A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2171L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Additional Information. Statement. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the form of an additional statement.</xs:documentation>
+                        <xs:documentation source="WCO ID">226</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2171L</xs:documentation>
+                        <xs:documentation source="Format">an..17</xs:documentation>
+                        <xs:documentation source="Code List">User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="AdditionalDocument" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to additional documents as part of a declaration or as part of a response.</xs:documentation>
+                  <xs:documentation source="WCO ID">02A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1673L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="CategoryCode" type="ds:AdditionalDocumentCategoryCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Additional Document. Category. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the category of a document.</xs:documentation>
+                        <xs:documentation source="WCO ID">D031</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1673L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:AdditionalDocumentIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Additional Document. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of a document providing additional information.</xs:documentation>
+                        <xs:documentation source="WCO ID">D005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1673L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TypeCode" type="ds:AdditionalDocumentTypeCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Additional Document. Type. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the type of an additional document.</xs:documentation>
+                        <xs:documentation source="WCO ID">D006</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1673L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 1001 OR User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Principal" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to a party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.</xs:documentation>
+                  <xs:documentation source="WCO ID">68C</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:PrincipalNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Principal. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.</xs:documentation>
+                        <xs:documentation source="WCO ID">R165</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:PrincipalIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Principal. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the party (i.e., Principal, Co-principal, or User) who is responsible for fulfilling the obligations covered by the Customs bond or who benefits from being able to obligate a Customs bond.</xs:documentation>
+                        <xs:documentation source="WCO ID">R166</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:PrincipalRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Principal. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RiderActionCode" type="ds:PrincipalRiderActionCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Principal. Rider Action. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the bond user rider action.</xs:documentation>
+                        <xs:documentation source="WCO ID">616</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="AddDateTime" type="ds:PrincipalAddDateTimeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Principal. Add. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time the bond user is added to the bond.</xs:documentation>
+                        <xs:documentation source="WCO ID">617</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DeleteDateTime" type="ds:PrincipalDeleteDateTimeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Principal. Delete. Date Time</xs:documentation>
+                        <xs:documentation source="Definition">Date and time the bond user is removed from the bond.</xs:documentation>
+                        <xs:documentation source="WCO ID">618</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2172L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="NotifyParty" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the party to be notified.</xs:documentation>
+                  <xs:documentation source="WCO ID">89A</xs:documentation>
+                  <xs:documentation source="Unique Position ID">2178L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ID" type="ds:NotifyPartyIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Notify Party. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of a party to be notified.</xs:documentation>
+                        <xs:documentation source="WCO ID">R046</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2178L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Surety" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="Definition">Details related to the natural or legal person who accepts responsibility in due legal form for the financial consequences of non-fulfillment of another's obligations to the Customs (CCC).</xs:documentation>
+                  <xs:documentation source="WCO ID">19B</xs:documentation>
+                  <xs:documentation source="Unique Position ID">1729L</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="ds:SuretyNameTextType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Surety. Name. Text</xs:documentation>
+                        <xs:documentation source="Definition">Name of the party who agrees to be responsible for the debt or obligation of another.</xs:documentation>
+                        <xs:documentation source="WCO ID">R054</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1729L</xs:documentation>
+                        <xs:documentation source="Format">an..70</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ID" type="ds:SuretyIdentificationIDType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Surety. Identification. Identifier</xs:documentation>
+                        <xs:documentation source="Definition">Identification of the party who agrees to be responsible for the debt or obligation of another.</xs:documentation>
+                        <xs:documentation source="WCO ID">R055</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1729L</xs:documentation>
+                        <xs:documentation source="Format">an..35</xs:documentation>
+                        <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RoleCode" type="ds:SuretyRoleCodeType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Surety. Role. Code</xs:documentation>
+                        <xs:documentation source="Definition">Code specifying the role of a party.</xs:documentation>
+                        <xs:documentation source="WCO ID">R005</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1729L</xs:documentation>
+                        <xs:documentation source="Format">an..3</xs:documentation>
+                        <xs:documentation source="Code List">UN/EDIFACT code list 3035</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="LiabilityAmount" type="ds:SuretyLiabilityAmountType" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="Dictionary Entry Name">Surety Liability. Amount</xs:documentation>
+                        <xs:documentation source="Definition">Amount indicating the Surety's liability on the Customs bond.</xs:documentation>
+                        <xs:documentation source="WCO ID">619</xs:documentation>
+                        <xs:documentation source="Unique Position ID">1729L</xs:documentation>
+                        <xs:documentation source="Format">n..16,3</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Agent" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation>
+                        <xs:documentation source="Definition">Details related to the party authorized to act on behalf of another party.</xs:documentation>
+                        <xs:documentation source="WCO ID">05A</xs:documentation>
+                        <xs:documentation source="Unique Position ID">2174L</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ID" type="ds:AgentIdentificationIDType" minOccurs="0">
+                            <xs:annotation>
+                              <xs:documentation source="Dictionary Entry Name">Agent. Identification. Identifier</xs:documentation>
+                              <xs:documentation source="Definition">Identification of a party authorized to act on behalf of another party.</xs:documentation>
+                              <xs:documentation source="WCO ID">R004</xs:documentation>
+                              <xs:documentation source="Unique Position ID">2174L</xs:documentation>
+                              <xs:documentation source="Format">an..35</xs:documentation>
+                              <xs:documentation source="Code List">International code list (e.g. DUNS, EAN) OR User code list</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -62,64 +62,61 @@
    }
   },
   "borderTransportMeans": {
-   "type": "array",
-   "items": {
-    "type": "object",
-    "properties": {
-     "modeCode": {
-      "type": "string",
-      "pattern": "^\\d{1}$",
-      "description": "Code specifying mode of transport used for the carriage of the goods in crossing the border.",
-      "x-wco-code-list": "UN/Recommendation 19",
-      "x-wco-id": "T022",
-      "x-wco-term": "https://vocabulary.wcoomd.org/modeCode"
-     },
-     "arrivalDateTime": {
-      "type": "string",
-      "maxLength": 35,
-      "description": "Date and time of arrival (actual or scheduled) of the means of transport at the first port (e.g. seaport, airport, freight terminal, rail station).",
-      "x-wco-id": "172",
-      "x-wco-term": "https://vocabulary.wcoomd.org/arrivalDateTime"
-     },
-     "directionCode": {
-      "type": "string",
-      "maxLength": 3,
-      "description": "Code specifying the direction of the transport means (i.e., inbound or outbound).",
-      "x-wco-code-list": "WCO code list/TransportMeansDirectionCode",
-      "x-wco-id": "604",
-      "x-wco-term": "https://vocabulary.wcoomd.org/directionCode"
-     },
-     "berthLocation": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "name": {
-         "type": "string",
-         "maxLength": 256,
-         "description": "Name of the location in port where the means of transport will berth.",
-         "x-wco-id": "L120",
-         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
-        },
-        "id": {
-         "type": "string",
-         "maxLength": 35,
-         "description": "Identification of the location in port where the means of transport will berth.",
-         "x-wco-code-list": "UN/LOCODE + User codes",
-         "x-wco-id": "L121",
-         "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
-        }
-       },
-       "additionalProperties": false,
-       "description": "Details related to the location of berth.",
-       "x-wco-id": "74C"
-      }
-     }
+   "type": "object",
+   "properties": {
+    "modeCode": {
+     "type": "string",
+     "pattern": "^\\d{1}$",
+     "description": "Code specifying mode of transport used for the carriage of the goods in crossing the border.",
+     "x-wco-code-list": "UN/Recommendation 19",
+     "x-wco-id": "T022",
+     "x-wco-term": "https://vocabulary.wcoomd.org/modeCode"
     },
-    "additionalProperties": false,
-    "description": "Details related to the means of transport crossing the border of the Customs territory.",
-    "x-wco-id": "15A"
-   }
+    "arrivalDateTime": {
+     "type": "string",
+     "maxLength": 35,
+     "description": "Date and time of arrival (actual or scheduled) of the means of transport at the first port (e.g. seaport, airport, freight terminal, rail station).",
+     "x-wco-id": "172",
+     "x-wco-term": "https://vocabulary.wcoomd.org/arrivalDateTime"
+    },
+    "directionCode": {
+     "type": "string",
+     "maxLength": 3,
+     "description": "Code specifying the direction of the transport means (i.e., inbound or outbound).",
+     "x-wco-code-list": "WCO code list/TransportMeansDirectionCode",
+     "x-wco-id": "604",
+     "x-wco-term": "https://vocabulary.wcoomd.org/directionCode"
+    },
+    "berthLocation": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 256,
+        "description": "Name of the location in port where the means of transport will berth.",
+        "x-wco-id": "L120",
+        "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+       },
+       "id": {
+        "type": "string",
+        "maxLength": 35,
+        "description": "Identification of the location in port where the means of transport will berth.",
+        "x-wco-code-list": "UN/LOCODE + User codes",
+        "x-wco-id": "L121",
+        "x-wco-term": "https://vocabulary.wcoomd.org/appealofficeIdentificationIdentifier"
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to the location of berth.",
+      "x-wco-id": "74C"
+     }
+    }
+   },
+   "additionalProperties": false,
+   "description": "Details related to the means of transport crossing the border of the Customs territory.",
+   "x-wco-id": "15A"
   },
   "dutyTaxFee": {
    "type": "array",
@@ -148,7 +145,10 @@
        },
        "additionalProperties": false,
        "description": "Details related to payment details.",
-       "x-wco-id": "94A"
+       "x-wco-id": "94A",
+       "required": [
+        "taxAssessedAmount"
+       ]
       }
      }
     },
@@ -244,411 +244,405 @@
       }
      },
      "consignee": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "name": {
-         "type": "string",
-         "maxLength": 70,
-         "description": "Name of the party to which goods are consigned.",
-         "x-wco-id": "R014",
-         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
-        },
-        "id": {
-         "type": "string",
-         "maxLength": 35,
-         "description": "Identification of a party to which goods are consigned.",
-         "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
-         "x-wco-id": "R015",
-         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
-        },
-        "address": {
-         "type": "array",
-         "items": {
-          "type": "object",
-          "properties": {
-           "cityName": {
-            "type": "string",
-            "maxLength": 35,
-            "description": "Name of a city.",
-            "x-wco-id": "241",
-            "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
-           },
-           "countryCode": {
-            "type": "string",
-            "minLength": 2,
-            "maxLength": 2,
-            "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
-            "x-wco-code-list": "ISO 3166-1",
-            "x-wco-id": "242",
-            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
-           },
-           "countrySubDivisionName": {
-            "type": "string",
-            "maxLength": 35,
-            "description": "Name of a country subdivision.",
-            "x-wco-id": "243",
-            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
-           },
-           "line": {
-            "type": "string",
-            "maxLength": 256,
-            "description": "Specification of the postal delivery point such as street and number or post office box.",
-            "x-wco-id": "239",
-            "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
-           },
-           "postcodeId": {
-            "type": "string",
-            "maxLength": 17,
-            "description": "Identification of the postal zone or address.",
-            "x-wco-code-list": "User code list",
-            "x-wco-id": "245",
-            "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
-           }
-          },
-          "additionalProperties": false,
-          "description": "Details related to an address.",
-          "x-wco-id": "04A"
-         }
-        },
-        "communication": {
-         "type": "array",
-         "items": {
-          "type": "object",
-          "properties": {
-           "id": {
-            "type": "string",
-            "maxLength": 256,
-            "description": "Identification of the communication address.",
-            "x-wco-id": "240",
-            "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
-           },
-           "typeCode": {
-            "type": "string",
-            "maxLength": 3,
-            "description": "Code specifying the type of communication address.",
-            "x-wco-code-list": "UN/EDIFACT code list 3155",
-            "x-wco-id": "253",
-            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
-           }
-          },
-          "additionalProperties": false,
-          "description": "Details related to communication including number and number type.",
-          "x-wco-id": "25A"
-         }
-        }
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 70,
+        "description": "Name of the party to which goods are consigned.",
+        "x-wco-id": "R014",
+        "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
        },
-       "additionalProperties": false,
-       "description": "Details related to the party to which goods are consigned.",
-       "x-wco-id": "27A"
-      }
+       "id": {
+        "type": "string",
+        "maxLength": 35,
+        "description": "Identification of a party to which goods are consigned.",
+        "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+        "x-wco-id": "R015",
+        "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+       },
+       "address": {
+        "type": "object",
+        "properties": {
+         "cityName": {
+          "type": "string",
+          "maxLength": 35,
+          "description": "Name of a city.",
+          "x-wco-id": "241",
+          "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+         },
+         "countryCode": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+          "x-wco-code-list": "ISO 3166-1",
+          "x-wco-id": "242",
+          "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+         },
+         "countrySubDivisionName": {
+          "type": "string",
+          "maxLength": 35,
+          "description": "Name of a country subdivision.",
+          "x-wco-id": "243",
+          "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+         },
+         "line": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Specification of the postal delivery point such as street and number or post office box.",
+          "x-wco-id": "239",
+          "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+         },
+         "postcodeId": {
+          "type": "string",
+          "maxLength": 17,
+          "description": "Identification of the postal zone or address.",
+          "x-wco-code-list": "User code list",
+          "x-wco-id": "245",
+          "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
+         }
+        },
+        "additionalProperties": false,
+        "description": "Details related to an address.",
+        "x-wco-id": "04A",
+        "required": [
+         "cityName",
+         "countryCode",
+         "line"
+        ]
+       },
+       "communication": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "id": {
+           "type": "string",
+           "maxLength": 256,
+           "description": "Identification of the communication address.",
+           "x-wco-id": "240",
+           "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+          },
+          "typeCode": {
+           "type": "string",
+           "maxLength": 3,
+           "description": "Code specifying the type of communication address.",
+           "x-wco-code-list": "UN/EDIFACT code list 3155",
+           "x-wco-id": "253",
+           "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+          }
+         },
+         "additionalProperties": false,
+         "description": "Details related to communication including number and number type.",
+         "x-wco-id": "25A"
+        }
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to the party to which goods are consigned.",
+      "x-wco-id": "27A",
+      "required": [
+       "name"
+      ]
      },
      "consignor": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "name": {
-         "type": "string",
-         "maxLength": 70,
-         "description": "Name of the party consigning goods as stipulated in the transport contract by the party ordering transport.",
-         "x-wco-id": "R020",
-         "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
-        },
-        "id": {
-         "type": "string",
-         "maxLength": 35,
-         "description": "Identification of the party consigning goods as stipulated in the transport contract by the party ordering the transport.",
-         "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
-         "x-wco-id": "R021",
-         "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
-        },
-        "address": {
-         "type": "array",
-         "items": {
-          "type": "object",
-          "properties": {
-           "cityName": {
-            "type": "string",
-            "maxLength": 35,
-            "description": "Name of a city.",
-            "x-wco-id": "241",
-            "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
-           },
-           "countryCode": {
-            "type": "string",
-            "minLength": 2,
-            "maxLength": 2,
-            "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
-            "x-wco-code-list": "ISO 3166-1",
-            "x-wco-id": "242",
-            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
-           },
-           "countrySubDivisionName": {
-            "type": "string",
-            "maxLength": 35,
-            "description": "Name of a country subdivision.",
-            "x-wco-id": "243",
-            "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
-           },
-           "line": {
-            "type": "string",
-            "maxLength": 256,
-            "description": "Specification of the postal delivery point such as street and number or post office box.",
-            "x-wco-id": "239",
-            "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
-           },
-           "postcodeId": {
-            "type": "string",
-            "maxLength": 17,
-            "description": "Identification of the postal zone or address.",
-            "x-wco-code-list": "User code list",
-            "x-wco-id": "245",
-            "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
-           }
-          },
-          "additionalProperties": false,
-          "description": "Details related to an address.",
-          "x-wco-id": "04A"
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 70,
+        "description": "Name of the party consigning goods as stipulated in the transport contract by the party ordering transport.",
+        "x-wco-id": "R020",
+        "x-wco-term": "https://vocabulary.wcoomd.org/nameText"
+       },
+       "id": {
+        "type": "string",
+        "maxLength": 35,
+        "description": "Identification of the party consigning goods as stipulated in the transport contract by the party ordering the transport.",
+        "x-wco-code-list": "International code list (e.g. DUNS, EAN) OR User code list",
+        "x-wco-id": "R021",
+        "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+       },
+       "address": {
+        "type": "object",
+        "properties": {
+         "cityName": {
+          "type": "string",
+          "maxLength": 35,
+          "description": "Name of a city.",
+          "x-wco-id": "241",
+          "x-wco-term": "https://vocabulary.wcoomd.org/cityNameText"
+         },
+         "countryCode": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3.",
+          "x-wco-code-list": "ISO 3166-1",
+          "x-wco-id": "242",
+          "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+         },
+         "countrySubDivisionName": {
+          "type": "string",
+          "maxLength": 35,
+          "description": "Name of a country subdivision.",
+          "x-wco-id": "243",
+          "x-wco-term": "https://vocabulary.wcoomd.org/countrySubDivisionNameText"
+         },
+         "line": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Specification of the postal delivery point such as street and number or post office box.",
+          "x-wco-id": "239",
+          "x-wco-term": "https://vocabulary.wcoomd.org/lineText"
+         },
+         "postcodeId": {
+          "type": "string",
+          "maxLength": 17,
+          "description": "Identification of the postal zone or address.",
+          "x-wco-code-list": "User code list",
+          "x-wco-id": "245",
+          "x-wco-term": "https://vocabulary.wcoomd.org/postcodeIdentifier"
          }
         },
-        "communication": {
-         "type": "array",
-         "items": {
+        "additionalProperties": false,
+        "description": "Details related to an address.",
+        "x-wco-id": "04A",
+        "required": [
+         "cityName",
+         "countryCode",
+         "line"
+        ]
+       },
+       "communication": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "id": {
+           "type": "string",
+           "maxLength": 256,
+           "description": "Identification of the communication address.",
+           "x-wco-id": "240",
+           "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
+          },
+          "typeCode": {
+           "type": "string",
+           "maxLength": 3,
+           "description": "Code specifying the type of communication address.",
+           "x-wco-code-list": "UN/EDIFACT code list 3155",
+           "x-wco-id": "253",
+           "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+          }
+         },
+         "additionalProperties": false,
+         "description": "Details related to communication including number and number type.",
+         "x-wco-id": "25A"
+        }
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to the party which, by contract with a carrier, consigns or sends goods with the carrier, or has them conveyed by him.",
+      "x-wco-id": "30A",
+      "required": [
+       "name"
+      ]
+     },
+     "customsValuation": {
+      "type": "object",
+      "properties": {
+       "exitToEntryChargeAmount": {
+        "type": "string",
+        "description": "Amount indicating the total cost of freight, insurance and all other costs and expenses from the foreign exit location to the entry location.",
+        "x-wco-id": "121",
+        "x-wco-term": "https://vocabulary.wcoomd.org/exitToEntryChargeAmount"
+       },
+       "freightChargeAmount": {
+        "type": "string",
+        "description": "Amount indicating the total costs incurred by the shipper in moving goods, by whatever means, from one place to another under the terms of the contract of carriage. In addition to transport costs, this may include such elements as packing, documentation, loading, unloading, and insurance (i.e., to the extent that they relate to the freight cost).",
+        "x-wco-id": "117",
+        "x-wco-term": "https://vocabulary.wcoomd.org/freightChargeAmount"
+       },
+       "insuranceAmount": {
+        "type": "string",
+        "description": "Amount of premium paid/payable to the insurance company for insuring the goods.",
+        "x-wco-id": "480",
+        "x-wco-term": "https://vocabulary.wcoomd.org/insuranceAmount"
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to valuation applying to the shipment.",
+      "x-wco-id": "41A"
+     },
+     "destinationLocation": {
+      "type": "object",
+      "properties": {
+       "countryCode": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 2,
+        "description": "Code specifying the country of destination.",
+        "x-wco-code-list": "ISO 3166-1",
+        "x-wco-id": "465",
+        "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to the destination location.",
+      "x-wco-id": "99B",
+      "required": [
+       "countryCode"
+      ]
+     },
+     "exportCountry": {
+      "type": "object",
+      "properties": {
+       "countryCode": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 2,
+        "description": "Code specifying the country from which the goods are originally exported without any commercial transaction taken place in intermediate countries.",
+        "x-wco-code-list": "ISO 3166-1",
+        "x-wco-id": "062",
+        "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to the export country.",
+      "x-wco-id": "95B",
+      "required": [
+       "countryCode"
+      ]
+     },
+     "goodsItem": {
+      "type": "object",
+      "properties": {
+       "customsValueAmount": {
+        "type": "string",
+        "description": "Amount declared for customs purposes of those goods in a consignment which are subject to the same customs procedure, and have the same tariff/statistical heading, country information and duty regime.",
+        "x-wco-id": "108",
+        "x-wco-term": "https://vocabulary.wcoomd.org/customsValueAmount"
+       },
+       "sequenceNumeric": {
+        "type": "string",
+        "pattern": "^\\d{1,5}$",
+        "description": "Number indicating the position in a sequence.",
+        "x-wco-id": "006",
+        "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
+       },
+       "commodity": {
+        "type": "object",
+        "properties": {
+         "description": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport.",
+          "x-wco-id": "137",
+          "x-wco-term": "https://vocabulary.wcoomd.org/descriptionText"
+         },
+         "classification": {
           "type": "object",
           "properties": {
            "id": {
             "type": "string",
-            "maxLength": 256,
-            "description": "Identification of the communication address.",
-            "x-wco-id": "240",
+            "maxLength": 18,
+            "description": "Identification of the non-commercial categorization of a commodity by a standard-setting organization.",
+            "x-wco-id": "145",
             "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
            },
-           "typeCode": {
+           "identificationTypeCode": {
             "type": "string",
             "maxLength": 3,
-            "description": "Code specifying the type of communication address.",
-            "x-wco-code-list": "UN/EDIFACT code list 3155",
-            "x-wco-id": "253",
-            "x-wco-term": "https://vocabulary.wcoomd.org/communicationMeansTypeCode"
+            "description": "Code specifying the commodity classification (e.g. Harmonized Tariff Schedule (HTS), Export Control Classification Code (ECCC), UNDG Code list, International Code of Zoological Nomenclature).",
+            "x-wco-code-list": "UN/EDIFACT code list 7143",
+            "x-wco-id": "337",
+            "x-wco-term": "https://vocabulary.wcoomd.org/classificationIdentificationTypeCode"
            }
           },
           "additionalProperties": false,
-          "description": "Details related to communication including number and number type.",
-          "x-wco-id": "25A"
-         }
-        }
-       },
-       "additionalProperties": false,
-       "description": "Details related to the party which, by contract with a carrier, consigns or sends goods with the carrier, or has them conveyed by him.",
-       "x-wco-id": "30A"
-      }
-     },
-     "customsValuation": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "exitToEntryChargeAmount": {
-         "type": "string",
-         "description": "Amount indicating the total cost of freight, insurance and all other costs and expenses from the foreign exit location to the entry location.",
-         "x-wco-id": "121",
-         "x-wco-term": "https://vocabulary.wcoomd.org/exitToEntryChargeAmount"
-        },
-        "freightChargeAmount": {
-         "type": "string",
-         "description": "Amount indicating the total costs incurred by the shipper in moving goods, by whatever means, from one place to another under the terms of the contract of carriage. In addition to transport costs, this may include such elements as packing, documentation, loading, unloading, and insurance (i.e., to the extent that they relate to the freight cost).",
-         "x-wco-id": "117",
-         "x-wco-term": "https://vocabulary.wcoomd.org/freightChargeAmount"
-        },
-        "insuranceAmount": {
-         "type": "string",
-         "description": "Amount of premium paid/payable to the insurance company for insuring the goods.",
-         "x-wco-id": "480",
-         "x-wco-term": "https://vocabulary.wcoomd.org/insuranceAmount"
-        }
-       },
-       "additionalProperties": false,
-       "description": "Details related to valuation applying to the shipment.",
-       "x-wco-id": "41A"
-      }
-     },
-     "destinationLocation": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "countryCode": {
-         "type": "string",
-         "minLength": 2,
-         "maxLength": 2,
-         "description": "Code specifying the country of destination.",
-         "x-wco-code-list": "ISO 3166-1",
-         "x-wco-id": "465",
-         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
-        }
-       },
-       "additionalProperties": false,
-       "description": "Details related to the destination location.",
-       "x-wco-id": "99B"
-      }
-     },
-     "exportCountry": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "countryCode": {
-         "type": "string",
-         "minLength": 2,
-         "maxLength": 2,
-         "description": "Code specifying the country from which the goods are originally exported without any commercial transaction taken place in intermediate countries.",
-         "x-wco-code-list": "ISO 3166-1",
-         "x-wco-id": "062",
-         "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
-        }
-       },
-       "additionalProperties": false,
-       "description": "Details related to the export country.",
-       "x-wco-id": "95B"
-      }
-     },
-     "goodsItem": {
-      "type": "array",
-      "items": {
-       "type": "object",
-       "properties": {
-        "customsValueAmount": {
-         "type": "string",
-         "description": "Amount declared for customs purposes of those goods in a consignment which are subject to the same customs procedure, and have the same tariff/statistical heading, country information and duty regime.",
-         "x-wco-id": "108",
-         "x-wco-term": "https://vocabulary.wcoomd.org/customsValueAmount"
-        },
-        "sequenceNumeric": {
-         "type": "string",
-         "pattern": "^\\d{1,5}$",
-         "description": "Number indicating the position in a sequence.",
-         "x-wco-id": "006",
-         "x-wco-term": "https://vocabulary.wcoomd.org/sequenceNumeric"
-        },
-        "commodity": {
-         "type": "array",
-         "items": {
+          "description": "Details related to the non-commercial categorization of a commodity by a standard-setting organization.",
+          "x-wco-id": "21A"
+         },
+         "dangerousGoods": {
           "type": "object",
           "properties": {
-           "description": {
+           "undgid": {
             "type": "string",
-            "maxLength": 512,
-            "description": "Description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport.",
-            "x-wco-id": "137",
-            "x-wco-term": "https://vocabulary.wcoomd.org/descriptionText"
+            "pattern": "^\\d{1,4}$",
+            "description": "Identification of the unique serial number assigned within the United Nations to substances and articles contained in a list of the dangerous goods most commonly carried.",
+            "x-wco-id": "506",
+            "x-wco-term": "https://vocabulary.wcoomd.org/undgIdentifier"
            },
-           "classification": {
-            "type": "array",
-            "items": {
-             "type": "object",
-             "properties": {
-              "id": {
-               "type": "string",
-               "maxLength": 18,
-               "description": "Identification of the non-commercial categorization of a commodity by a standard-setting organization.",
-               "x-wco-id": "145",
-               "x-wco-term": "https://vocabulary.wcoomd.org/identificationIdentifier"
-              },
-              "identificationTypeCode": {
-               "type": "string",
-               "maxLength": 3,
-               "description": "Code specifying the commodity classification (e.g. Harmonized Tariff Schedule (HTS), Export Control Classification Code (ECCC), UNDG Code list, International Code of Zoological Nomenclature).",
-               "x-wco-code-list": "UN/EDIFACT code list 7143",
-               "x-wco-id": "337",
-               "x-wco-term": "https://vocabulary.wcoomd.org/classificationIdentificationTypeCode"
-              }
-             },
-             "additionalProperties": false,
-             "description": "Details related to the non-commercial categorization of a commodity by a standard-setting organization.",
-             "x-wco-id": "21A"
-            }
-           },
-           "dangerousGoods": {
-            "type": "array",
-            "items": {
-             "type": "object",
-             "properties": {
-              "undgid": {
-               "type": "string",
-               "pattern": "^\\d{1,4}$",
-               "description": "Identification of the unique serial number assigned within the United Nations to substances and articles contained in a list of the dangerous goods most commonly carried.",
-               "x-wco-id": "506",
-               "x-wco-term": "https://vocabulary.wcoomd.org/undgIdentifier"
-              },
-              "hazardClassId": {
-               "type": "string",
-               "maxLength": 7,
-               "description": "Identification of the hazard class applicable to dangerous goods as defined by the relevant regulation authority such as the IMDG Class Number of the SOLAS Convention of IMO and the ADR/RID Class Number for the road/rail environment.",
-               "x-wco-id": "507",
-               "x-wco-term": "https://vocabulary.wcoomd.org/hazardClassIdentifier"
-              }
-             },
-             "additionalProperties": false,
-             "description": "Details related to the dangerous goods.",
-             "x-wco-id": "12C"
-            }
-           },
-           "goodsMeasure": {
-            "type": "array",
-            "items": {
-             "type": "object",
-             "properties": {
-              "netNetWeightMeasure": {
-               "type": "string",
-               "description": "Weight of the goods themselves without any packing.",
-               "x-wco-id": "128",
-               "x-wco-term": "https://vocabulary.wcoomd.org/netNetWeightMeasure"
-              },
-              "tariffQuantity": {
-               "type": "string",
-               "description": "Quantity specifying the goods in the unit as required by customs for tariff, statistical, fiscal purposes or as indicated in \"type\".",
-               "x-wco-id": "130",
-               "x-wco-term": "https://vocabulary.wcoomd.org/tariffQuantity"
-              }
-             },
-             "additionalProperties": false,
-             "description": "Details related to goods weight, quantities, and amounts.",
-             "x-wco-id": "65A"
-            }
-           },
-           "origin": {
-            "type": "array",
-            "items": {
-             "type": "object",
-             "properties": {
-              "countryCode": {
-               "type": "string",
-               "minLength": 2,
-               "maxLength": 2,
-               "description": "Code specifying the country in which the goods have been produced or manufactured, according to criteria laid down for the application of the Customs tariff or quantitative restrictions, or any measure related to trade.",
-               "x-wco-code-list": "ISO 3166-1",
-               "x-wco-id": "063",
-               "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
-              }
-             },
-             "additionalProperties": false,
-             "description": "Details related to the origin of the goods.",
-             "x-wco-id": "92A"
-            }
+           "hazardClassId": {
+            "type": "string",
+            "maxLength": 7,
+            "description": "Identification of the hazard class applicable to dangerous goods as defined by the relevant regulation authority such as the IMDG Class Number of the SOLAS Convention of IMO and the ADR/RID Class Number for the road/rail environment.",
+            "x-wco-id": "507",
+            "x-wco-term": "https://vocabulary.wcoomd.org/hazardClassIdentifier"
            }
           },
           "additionalProperties": false,
-          "description": "Details related to the properties of the goods.",
-          "x-wco-id": "23A"
+          "description": "Details related to the dangerous goods.",
+          "x-wco-id": "12C"
+         },
+         "goodsMeasure": {
+          "type": "object",
+          "properties": {
+           "netNetWeightMeasure": {
+            "type": "string",
+            "description": "Weight of the goods themselves without any packing.",
+            "x-wco-id": "128",
+            "x-wco-term": "https://vocabulary.wcoomd.org/netNetWeightMeasure"
+           },
+           "tariffQuantity": {
+            "type": "string",
+            "description": "Quantity specifying the goods in the unit as required by customs for tariff, statistical, fiscal purposes or as indicated in \"type\".",
+            "x-wco-id": "130",
+            "x-wco-term": "https://vocabulary.wcoomd.org/tariffQuantity"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to goods weight, quantities, and amounts.",
+          "x-wco-id": "65A"
+         },
+         "origin": {
+          "type": "object",
+          "properties": {
+           "countryCode": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "description": "Code specifying the country in which the goods have been produced or manufactured, according to criteria laid down for the application of the Customs tariff or quantitative restrictions, or any measure related to trade.",
+            "x-wco-code-list": "ISO 3166-1",
+            "x-wco-id": "063",
+            "x-wco-term": "https://vocabulary.wcoomd.org/countryCode"
+           }
+          },
+          "additionalProperties": false,
+          "description": "Details related to the origin of the goods.",
+          "x-wco-id": "92A",
+          "required": [
+           "countryCode"
+          ]
          }
-        }
-       },
-       "additionalProperties": false,
-       "description": "Details related to the goods item as declared to Government Agency.",
-       "x-wco-id": "68A"
-      }
+        },
+        "additionalProperties": false,
+        "description": "Details related to the properties of the goods.",
+        "x-wco-id": "23A",
+        "required": [
+         "description"
+        ]
+       }
+      },
+      "additionalProperties": false,
+      "description": "Details related to the goods item as declared to Government Agency.",
+      "x-wco-id": "68A",
+      "required": [
+       "commodity",
+       "customsValueAmount",
+       "sequenceNumeric"
+      ]
      },
      "goodsMeasure": {
       "type": "array",
@@ -690,13 +684,19 @@
        },
        "additionalProperties": false,
        "description": "Details related to the Unique Trader Reference such as Unique Consignment Reference (UCR).",
-       "x-wco-id": "35B"
+       "x-wco-id": "35B",
+       "required": [
+        "traderAssignedReferenceId"
+       ]
       }
      }
     },
     "additionalProperties": false,
     "description": "Details related to the movement and the handling of goods shipped together on one or more means of transport between original consignor and final consignee.",
-    "x-wco-id": "67A"
+    "x-wco-id": "67A",
+    "required": [
+     "transactionNatureCode"
+    ]
    }
   }
  },

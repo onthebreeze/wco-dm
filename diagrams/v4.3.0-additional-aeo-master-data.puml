@@ -55,8 +55,8 @@ class "AdditionalDocument" as C8 {
 class "Communication" as C9 {
   2 elements
 }
-C0 *-- "0..*" C1
-C0 *-- "0..*" C2
+C0 *-- "1..1" C1
+C0 *-- "1..1" C2
 C0 *-- "0..*" C3
 C3 *-- "0..*" C4
 C3 *-- "0..*" C5

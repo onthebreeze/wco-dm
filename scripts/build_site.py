@@ -16,6 +16,7 @@ import html
 import json
 import os
 import pathlib
+import re
 import shutil
 import sys
 from collections import defaultdict
@@ -141,6 +142,7 @@ SECTIONS = [
         ("index", "Overview", ""),
         ("architecture", "Architecture", "docs/architecture"),
         ("governance", "Governance", "docs/governance"),
+        ("artefact-generation", "Artefact generation", "docs/artefact-generation"),
         ("maintenance", "How it is maintained", "docs/maintenance"),
         ("future", "Future improvements", "docs/future"),
     ]),
@@ -905,6 +907,8 @@ def main():
         meta = json.loads((ROOT / "docs" / "derived-packages.json").read_text())
         pkg_meta, dip_meta = meta["packages"], meta["derived"]
         RELEASES = sorted(manifest, key=lambda v: tuple(int(n) for n in v.split(".")))
+        PKG_KEY = {"declarations": "bip-dec", "licences-and-permits": "bip-lpco",
+                   "additional": "aip", "meta-data": "mdip"}
         CURRENT = RELEASES[-1]
 
         def rewrite(text):
@@ -916,7 +920,10 @@ def main():
             flat = DIST / "schemas"
             flat.mkdir(parents=True, exist_ok=True)
             for f in sorted(schemas_dir.iterdir()):
-                if f.name == "build-report.json":
+                # The XML schemas live in a directory of their own and are published beside each
+                # release page instead, because the structure imports its types by file name and
+                # the two have to sit together.
+                if f.name == "build-report.json" or f.is_dir():
                     continue
                 (flat / f.name).write_text(rewrite(f.read_text()))
                 counts["schema file"] += 1
@@ -1071,20 +1078,49 @@ def main():
             return table(["Release", "", "Positions", "Change", "JSON Schema", "JSON-LD context"],
                          rows, col_classes=["code", "mod", "num", "mod", "name", "name"])
 
-        def publish_artefacts(out, entry, pslug, version):
+        xsd_names = {}
+        xsd_dir = ROOT / "schemas" / "xsd"
+        xml_meta = json.loads((ROOT / "docs" / "xml-schemas.json").read_text())
+
+        def xsd_pair(version, key, mslug, name_hint):
+            """The two XML schema files for a message: the structure and its types.
+
+            They keep the names WCO gives them, because the structure imports the types by file
+            name and a reader should be able to drop ours in place of theirs.
+            """
+            declared = (xml_meta.get(version) or {})
+            name = None
+            for message, entry in declared.items():
+                pkg_slug, _, slug = message.rpartition("/")
+                if slug == mslug and PKG_KEY.get(pkg_slug) == key:
+                    name = entry["name"]
+                    break
+            name = name or name_hint
+            token = version.replace(".", "p")
+            return (xsd_dir / f"v{version}" / f"{name}_{token}.xsd",
+                    xsd_dir / f"v{version}" /
+                    f"{name}_{token}_urn_wco_datamodel_WCO_{name}_DS_4.xsd")
+
+        def publish_artefacts(out, entry, pslug, version, key, mslug, name_hint):
             """The machine files beside the release page, each with the digest of what was
             published."""
-            digests = {}
+            digests, published = {}, []
+            structure, types_file = xsd_pair(version, key, mslug, name_hint)
             sources = [("schema.json", schemas_dir / entry["schema"]),
                        ("context.jsonld", schemas_dir / entry["context"]),
-                       ("tree.json", views_dir / f"v{version}" / pslug / entry["slug"] / "tree.json")]
+                       ("tree.json", views_dir / f"v{version}" / pslug / entry["slug"] / "tree.json"),
+                       (structure.name, structure),
+                       (types_file.name, types_file)]
             for name, src in sources:
                 if not src.exists():
                     continue
                 text = rewrite(src.read_text())
                 (out / name).write_text(text)
                 digests[name] = hashlib.sha256(text.encode("utf-8")).hexdigest()
+                published.append(name)
                 counts["message file"] += 1
+            xsd_names[(version, key, mslug)] = (structure.name if structure.exists() else None,
+                                                types_file.name if types_file.exists() else None)
             return digests
 
         for (key, mslug), m in sorted(messages.items()):
@@ -1201,23 +1237,29 @@ def main():
                 e = m["versions"][version]
                 rel = message_url(pslug, mslug, version)
                 rout = message_dir(pslug, mslug, version)
-                digests = publish_artefacts(rout, e, pslug, version)
-                files = [
-                    ("JSON Schema", "schema.json", "Validates an instance of this message."),
-                    ("JSON-LD context", "context.jsonld",
-                     "Binds each tag in the message to the published term that defines it."),
-                    ("Structure", "tree.json",
-                     "The message as data: every position with its cardinality, tags and term."),
+                digests = publish_artefacts(rout, e, pslug, version, key, mslug,
+                                            re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_"))
+                structure_name, types_name = xsd_names.get((version, key, mslug), (None, None))
+
+                def cell(fname):
+                    if not fname or fname not in digests:
+                        return '<span class="muted">—</span>'
+                    return (f'<a href="{rel}{fname}"><code>{html.escape(fname)}</code></a>'
+                            f'<br><code class="digest">{digests[fname][:16]}…</code>')
+
+                frows = [
+                    ('<b>Schema</b><br><span class="muted">Validates an instance of this '
+                     'message.</span>', cell("schema.json"), cell(structure_name)),
+                    ('<b>Types</b><br><span class="muted">One type per class and attribute, from '
+                     'the core data types.</span>',
+                     '<span class="muted">in the schema</span>', cell(types_name)),
+                    ('<b>Context</b><br><span class="muted">Binds each tag to the published term '
+                     'that defines it.</span>', cell("context.jsonld"),
+                     '<span class="muted">—</span>'),
+                    ('<b>Structure</b><br><span class="muted">The message as data: every position '
+                     'with its cardinality, tags and term.</span>', cell("tree.json"),
+                     '<span class="muted">—</span>'),
                 ]
-                frows = []
-                for label, fname, what in files:
-                    if fname not in digests:
-                        continue
-                    frows.append((
-                        f'<b>{label}</b><br><span class="muted">{what}</span>',
-                        f'<a href="{rel}{fname}"><code>{rel}{fname}</code></a>',
-                        f'<code class="digest">{digests[fname][:16]}…</code>',
-                    ))
                 est = e["stats"]
                 others = " · ".join(
                     f'<a href="{message_url(pslug, mslug, v)}">{v}</a>' if v != version else
@@ -1234,8 +1276,8 @@ def main():
                     '<p class="muted">These addresses are permanent. A later WCO release publishes '
                     'under its own version rather than replacing these files, so a document '
                     'validated today can be validated the same way later.</p>'
-                    + table(["File", "Address", "SHA-256"], frows,
-                            col_classes=["name", "prose", "code"])
+                    + table(["Artefact", "JSON", "XML"], frows,
+                            col_classes=["prose", "name", "name"])
                     + '<p class="muted">The digest is of the file as published. Recording it with '
                     'a document fixes which schema and which context that document was written '
                     'against.</p></section>',
