@@ -812,7 +812,7 @@ def main():
             borrowed += [r for r in g.objects(prop, SCHEMA.rangeIncludes)
                          if next(g.predicate_objects(r), None)]
         sub = describe(g, dict.fromkeys([me] + own + borrowed))
-        write_rdf(out, sub)
+        write_rdf(out, sub, primary=me)
         groups = defaultdict(list)
         for kind, t in terms:
             groups[kind].append(t)
@@ -907,7 +907,8 @@ def main():
             title, lead, "".join(body),
             [("Vocabulary", BASE), (title, None)], current=folder,
             filters={"kind": "Index", "current": "yes"}))
-        write_rdf(DIST / folder, collection_rdf(f"{SOURCE_BASE}{folder}/", title, lead, terms))
+        write_rdf(DIST / folder, collection_rdf(f"{SOURCE_BASE}{folder}/", title, lead, terms),
+                  primary=rdflib.URIRef(f"{SOURCE_BASE}{folder}/"))
         counts["page"] += 1
 
     grouped_index(
@@ -980,7 +981,8 @@ def main():
     write_rdf(out, collection_rdf(
         f"{SOURCE_BASE}code-lists/", "Code lists",
         "Every code list the WCO Data Model names, and what is known about each.",
-        [t for t in kinds if kinds[t] == "code-list"]))
+        [t for t in kinds if kinds[t] == "code-list"]),
+        primary=rdflib.URIRef(f"{SOURCE_BASE}code-lists/"))
     counts["page"] += 1
 
     # An index of the modules, so the per-module pages are reachable from the masthead rather than
@@ -1015,7 +1017,7 @@ def main():
         filters={"kind": "Index", "current": "yes"}))
     write_rdf(DIST / "modules", collection_rdf(
         f"{SOURCE_BASE}modules/", "Modules", "How the WCO Data Model vocabulary is divided.",
-        [MOD[m] for m in order]))
+        [MOD[m] for m in order]), primary=rdflib.URIRef(f"{SOURCE_BASE}modules/"))
     counts["page"] += 1
 
     # The whole graph, for a machine asking at the root. The root HTML page comes from the Nextra
@@ -1055,7 +1057,8 @@ def main():
         url = SOURCE_BASE if item["slug"] == "index" else f'{SOURCE_BASE}docs/{item["slug"]}/'
         if item["slug"] != "index":
             write_rdf(out, describe_page(
-                url, title, "The WCO Data Model published as linked data.")[0])
+                url, title, "The WCO Data Model published as linked data.")[0],
+                primary=rdflib.URIRef(url))
         counts["page"] += 1
 
     # The schemas and the message views, served beside the vocabulary.
@@ -1394,7 +1397,7 @@ def main():
             if is_derived:
                 msub.add((mme, DCTERMS.isPartOf,
                           rdflib.URIRef(f'{SOURCE_BASE}packages/{pslug}/')))
-            write_rdf(out, msub)
+            write_rdf(out, msub, primary=mme)
             counts["page"] += 1
 
             # One page per release of this message.
@@ -1507,7 +1510,7 @@ def main():
                     rsub.add((dist, DCAT.downloadURL, dist))
                     rsub.add((dist, DCAT.mediaType, rdflib.Literal(media)))
                     rsub.add((dist, SCHEMA.sha256, rdflib.Literal(digests[fname])))
-                write_rdf(rout, rsub)
+                write_rdf(rout, rsub, primary=rme)
                 counts["page"] += 1
 
         # The overview.
@@ -1584,7 +1587,7 @@ def main():
             tail = "" if mslug == "base" else f"{mslug}/"
             osub.add((ome, RDFS.member,
                       rdflib.URIRef(f'{SOURCE_BASE}packages/{m["pslug"]}/{tail}')))
-        write_rdf(out, osub)
+        write_rdf(out, osub, primary=ome)
         counts["page"] += 1
         (DIST / "message-browser.js").write_text((ROOT / "assets" / "message-browser.js").read_text())
 
@@ -1670,7 +1673,7 @@ def main():
                                   kind=RDFS.Container)
         for v in RELEASES:
             rsub.add((rme, RDFS.member, rdflib.URIRef(f"{SOURCE_BASE}releases/{v}/")))
-        write_rdf(out, rsub)
+        write_rdf(out, rsub, primary=rme)
         counts["page"] += 1
 
         # One page per release, and a change log beside it. The release page says what the
@@ -1838,7 +1841,7 @@ def main():
                 f"{SOURCE_BASE}releases/{version}/", f"WCO Data Model {version}",
                 f"What release {version} holds.", kind=DCAT.Dataset)
             vsub.add((vme, DCTERMS.hasVersion, rdflib.Literal(version)))
-            write_rdf(out, vsub)
+            write_rdf(out, vsub, primary=vme)
             counts["page"] += 1
 
             if not changes:
@@ -1908,7 +1911,7 @@ def main():
                 f"{SOURCE_BASE}releases/{version}/changes/", f"What changed in {version}",
                 f"Every difference between {prev} and {version}.")
             csub.add((cme, DCTERMS.isPartOf, rdflib.URIRef(f"{SOURCE_BASE}releases/{version}/")))
-            write_rdf(cout, csub)
+            write_rdf(cout, csub, primary=cme)
             counts["page"] += 1
 
     # Every directory holding a page must hold its machine representations too. The edge function
