@@ -39,7 +39,11 @@ echo "== site =="               && python3 scripts/build_site.py
 echo "== search index =="
 # Pagefind runs over the finished tree, so the index covers the 900 term pages and not just the
 # four narrative ones. It is a static index served from the same bucket: no search service.
-npx --yes pagefind@^1.3.0 --site dist --output-subdir _pagefind
+npx --yes pagefind@^1.3.0 --site dist --output-subdir _pagefind | tee /tmp/pagefind.log
+# Two filters, not one: the search narrows by bucket and by release, and an index with one of them
+# silently returns nothing for every query the checkboxes make.
+grep -q "Indexed 2 filters" /tmp/pagefind.log || {
+  echo "ERROR: the search index does not carry both filters" >&2; exit 1; }
 
 echo
 echo "built $(find dist -name index.html | wc -l | tr -d ' ') pages into dist/"

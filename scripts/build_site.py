@@ -207,11 +207,24 @@ def search_tags(filters):
     kind = filters.get("kind") or ""
     bucket = SEARCH_BUCKET.get(kind, "Documentation")
     versions = "superseded" if filters.get("current") == "no" else "current"
-    facets = f"show:{bucket}, versions:{versions}"
     meta = [(k, v) for k, v in filters.items() if k in ("kind", "release", "status") and v]
     meta_attr = ", ".join(f"{k}:{v}" for k, v in meta)
-    return (f' data-pagefind-filter="{html.escape(facets, quote=True)}"'
-            + (f' data-pagefind-meta="{html.escape(meta_attr, quote=True)}"' if meta_attr else ""))
+    return (f' data-pagefind-filter="versions:{html.escape(versions, quote=True)}"'
+            + (f' data-pagefind-meta="{html.escape(meta_attr, quote=True)}"' if meta_attr else ""),
+            f'<span class="pf-facet" data-pagefind-filter='
+            f'"show:{html.escape(bucket, quote=True)}"></span>')
+
+
+def search_facets(filters):
+    """The second filter, as an element of its own.
+
+    One `data-pagefind-filter` attribute declares one filter. The comma-separated form that most of
+    this site used for a week registers only the last pair and silently drops the rest, which is
+    how the search came to return nothing: every page claimed a version and none claimed a bucket,
+    so a query filtered to the four buckets matched no page at all. Declaring the second on a child
+    element is the form Pagefind documents.
+    """
+    return search_tags(filters)[1] if filters else ""
 
 
 # Any host other than the WCO namespace is an unofficial copy, and says so on every page. Deriving
@@ -282,7 +295,7 @@ def page(title, subtitle, body, crumbs, current=None, extra_scripts="", filters=
     </div>
   </div>
 </div>{nav_html(current)}</header>
-<main class="wrap" data-pagefind-body{search_tags(filters)}>{with_negotiate(body)}</main>
+<main class="wrap" data-pagefind-body{search_tags(filters)[0] if filters else ""}>{search_facets(filters)}{with_negotiate(body)}</main>
 <footer class="wrap foot">
   <p>Generated from the WCO Data Model, releases 4.0.0 to {VERSION}. The vocabulary is
      unversioned and its terms carry their own lifecycle; the messages are versioned.</p>
@@ -1862,6 +1875,20 @@ def main():
     # Every directory holding a page must hold its machine representations too. The edge function
     # is one rule with no list of exceptions, so a page without them would 404 for a client that
     # asked for Turtle, and nothing else in the build would notice.
+    # Both search filters must be on every page. One data-pagefind-filter attribute declares one
+    # filter, and the comma-separated form that looked right for a week kept only the last pair, so
+    # every page claimed a version and none claimed a bucket. A search narrowed to the buckets then
+    # matched nothing, and the index reported itself as healthy throughout.
+    facetless = [p for p in DIST.rglob("index.html")
+                 if "_pagefind" not in p.parts
+                 and ('data-pagefind-filter="show:' not in p.read_text()
+                      or 'data-pagefind-filter="versions:' not in p.read_text())]
+    if facetless:
+        print(f"  {len(facetless)} pages are missing a search filter:")
+        for f in facetless[:5]:
+            print(f"    /{f.parent.relative_to(DIST)}/")
+        return 1
+
     incomplete = []
     for d in sorted(p for p in DIST.rglob("*") if p.is_dir()):
         if "_pagefind" in d.parts or "schemas" in d.parts:
