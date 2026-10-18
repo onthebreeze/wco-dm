@@ -100,8 +100,34 @@ def page(title, subtitle, body, crumbs, current=None):
 """
 
 
-def term_body(g, s, kind):
-    label = one(g, s, RDFS.label) or local(s)
+def table(headers, rows, cls="listing"):
+    if not rows:
+        return ""
+    head = "".join(f"<th>{h}</th>" for h in headers)
+    body = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
+    return f'<table class="{cls}"><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>'
+
+
+def display_label(g, iri):
+    """A code carries skos:prefLabel and a notation rather than an rdfs:label, so without this a
+    code value is titled with its whole path."""
+    return (one(g, iri, RDFS.label)
+            or one(g, iri, SKOS.prefLabel)
+            or one(g, iri, SKOS.notation)
+            or local(iri).rsplit("/", 1)[-1])
+
+
+def term_link(g, iri):
+    return f'<a href="{publish(iri)}">{html.escape(display_label(g, iri))}</a>'
+
+
+def short(text, n=150):
+    text = " ".join((text or "").split())
+    return html.escape(text if len(text) <= n else text[: n - 1].rstrip() + "…")
+
+
+def term_body(g, s, kind, idx):
+    label = display_label(g, s)
     definition = one(g, s, SKOS.definition) or ""
     status = (one(g, s, WCO.termStatus) or "").rsplit("/", 1)[-1]
     module = (one(g, s, RDFS.isDefinedBy) or "").rsplit("/", 1)[-1]
@@ -111,23 +137,33 @@ def term_body(g, s, kind):
         if v:
             rows.append(f"<tr><th>{html.escape(k)}</th><td>{v}</td></tr>")
 
-    link = lambda iri: f'<a href="{publish(iri)}">{html.escape(local(iri))}</a>'
+    link = lambda iri: term_link(g, iri)
     row("IRI", f'<code>{html.escape(publish(s))}</code>')
     row("Kind", KIND_LABEL.get(kind, kind))
     if status:
         row("Status", f'<span class="status status-{html.escape(status)}">{html.escape(status)}</span>')
     if module:
         row("Module", f'<a href="{BASE}module/{module}">{html.escape(module)}</a>')
-    for prop, name in ((SCHEMA.domainIncludes, "Used by"), (SCHEMA.rangeIncludes, "Value")):
-        vals = [link(o) if str(o).startswith(SOURCE_BASE) else f"<code>{html.escape(str(o).rsplit('#', 1)[-1])}</code>"
-                for o in g.objects(s, prop)]
-        row(name, ", ".join(sorted(vals)))
+    if kind == "property":
+        row("Value", ", ".join(sorted(
+            link(o) if str(o).startswith(SOURCE_BASE) else f"<code>{html.escape(str(o).rsplit('#', 1)[-1])}</code>"
+            for o in g.objects(s, SCHEMA.rangeIncludes))))
     for prop, name in ((WCO.xmlTag, "XML tag"), (WCO.jsonTag, "JSON tag"),
                        (WCO.classId, "WCO class ID"), (WCO.attributeId, "WCO attribute ID"),
-                       (WCO.codeListBasis, "Based on"), (SKOS.notation, "Code")):
+                       (SKOS.notation, "Code")):
         vals = many(g, s, prop)
         if vals:
             row(name, ", ".join(f"<code>{html.escape(v)}</code>" for v in vals))
+    if kind == "property":
+        refs = many(g, s, WCO.codeListBasis)
+        if refs:
+            row("Code list", "<br>".join(html.escape(r) for r in refs))
+    if kind in ("code-list", "concept"):
+        row("Based on", "<br>".join(html.escape(r) for r in many(g, s, WCO.codeListBasis)))
+    if kind == "concept":
+        scheme = next(iter(g.objects(s, SKOS.inScheme)), None)
+        if scheme:
+            row("Code list", link(scheme))
     for prop, name in ((SKOS.exactMatch, "Exact match"), (SKOS.closeMatch, "Close match"),
                        (SKOS.relatedMatch, "Related")):
         vals = many(g, s, prop)
@@ -135,20 +171,64 @@ def term_body(g, s, kind):
             row(name, ", ".join(f'<a href="{html.escape(v)}">{html.escape(v)}</a>' for v in vals))
     row("Source", html.escape(one(g, s, DCTERMS.source) or ""))
 
+    sections = [f'<table class="facts">{"".join(rows)}</table>']
+
+    if kind == "class":
+        props = sorted(idx["class_props"].get(s, []), key=lambda t: display_label(g, t).lower())
+        sections.append(
+            f'<section><h2>Properties ({len(props)})</h2>'
+            + (table(["Property", "Definition", "Value"], [
+                (term_link(g, t), short(one(g, t, SKOS.definition)),
+                 ", ".join(sorted(term_link(g, o) if str(o).startswith(SOURCE_BASE)
+                                  else f"<code>{html.escape(str(o).rsplit('#', 1)[-1])}</code>"
+                                  for o in g.objects(t, SCHEMA.rangeIncludes))))
+                for t in props])
+               or '<p class="muted">This class carries no properties of its own.</p>')
+            + "</section>")
+
+    if kind == "property":
+        classes = sorted(g.objects(s, SCHEMA.domainIncludes), key=lambda t: display_label(g, t).lower())
+        sections.append(
+            f'<section><h2>Used by ({len(classes)})</h2>'
+            + (table(["Class", "Definition"],
+                     [(term_link(g, c), short(one(g, c, SKOS.definition))) for c in classes])
+               or '<p class="muted">No class declares this property.</p>')
+            + "</section>")
+
+    if kind == "code-list":
+        concepts = sorted(idx["scheme_concepts"].get(s, []),
+                          key=lambda t: (one(g, t, SKOS.notation) or ""))
+        if concepts:
+            sections.append(
+                f'<section><h2>Values ({len(concepts)})</h2>'
+                + table(["Code", "Meaning"],
+                        [(f'<a href="{publish(c)}"><code>{html.escape(one(g, c, SKOS.notation) or "")}</code></a>',
+                          short(one(g, c, SKOS.prefLabel), 200)) for c in concepts])
+                + "</section>")
+        else:
+            sections.append(
+                '<section><h2>Values</h2><p class="muted">The WCO Data Model registers this list '
+                'but does not carry its values: they come from the external list named above.</p></section>')
+        users = sorted(idx["scheme_props"].get(s, []), key=lambda t: display_label(g, t).lower())
+        if users:
+            sections.append(
+                f'<section><h2>Used by ({len(users)})</h2>'
+                + table(["Property", "Definition"],
+                        [(term_link(g, t), short(one(g, t, SKOS.definition))) for t in users])
+                + "</section>")
+
     notes = many(g, s, SKOS.scopeNote)
-    notes_html = ""
     if notes:
         items = "".join(f"<li>{html.escape(n)}</li>" for n in notes)
-        notes_html = (f'<section><h2>How each class uses it</h2>'
-                      f'<p class="muted">The WCO Data Model defines this concept once per class. '
-                      f'Every definition is kept.</p><ul class="notes">{items}</ul></section>')
+        sections.append(f'<section><h2>How each class uses it ({len(notes)})</h2>'
+                        f'<p class="muted">The WCO Data Model defines this concept once per class. '
+                        f'Every definition is kept.</p><ul class="notes">{items}</ul></section>')
 
     return (f'<h1>{html.escape(label)}</h1>'
-            f'<p class="definition">{html.escape(definition)}</p>'
-            f'<table class="facts">{"".join(rows)}</table>{notes_html}')
+            f'<p class="definition">{html.escape(definition)}</p>' + "".join(sections))
 
 
-def write_term(g, s, kind, counts):
+def write_term(g, s, kind, counts, idx):
     rel = local(s)
     if not rel or rel.startswith("http"):
         return
@@ -168,11 +248,18 @@ def write_term(g, s, kind, counts):
 
     (out / "index.ttl").write_text(ttl)
     (out / "index.jsonld").write_text(jsonld)
-    label = one(g, s, RDFS.label) or rel
-    (out / "index.html").write_text(page(
-        label, one(g, s, SKOS.definition) or f"{KIND_LABEL.get(kind, kind)} in the WCO Data Model vocabulary.",
-        term_body(g, s, kind),
-        [("Vocabulary", BASE), (KIND_LABEL.get(kind, kind), None), (label, None)]))
+    label = display_label(g, s)
+    crumbs = [("Vocabulary", BASE)]
+    if kind == "concept":
+        scheme = next(iter(g.objects(s, SKOS.inScheme)), None)
+        if scheme is not None:
+            crumbs.append((display_label(g, scheme), publish(scheme)))
+    else:
+        crumbs.append((KIND_LABEL.get(kind, kind), None))
+    crumbs.append((label, None))
+    subtitle = one(g, s, SKOS.definition) or one(g, s, SKOS.prefLabel) or \
+        f"{KIND_LABEL.get(kind, kind)} in the WCO Data Model vocabulary."
+    (out / "index.html").write_text(page(label, subtitle, term_body(g, s, kind, idx), crumbs))
     counts[kind] += 1
 
 
@@ -186,6 +273,21 @@ def main():
     DIST.mkdir()
 
     counts = defaultdict(int)
+    # Indexes the pages need: which properties a class carries, which concepts a scheme holds, and
+    # which properties point at a scheme. Built once rather than queried per page.
+    idx = {"class_props": defaultdict(list), "scheme_concepts": defaultdict(list),
+           "scheme_props": defaultdict(list)}
+    for t in (OWL.DatatypeProperty, OWL.ObjectProperty):
+        for prop in g.subjects(RDF.type, t):
+            for cls in g.objects(prop, SCHEMA.domainIncludes):
+                idx["class_props"][cls].append(prop)
+            for rng in g.objects(prop, SCHEMA.rangeIncludes):
+                if (rng, RDF.type, SKOS.ConceptScheme) in g:
+                    idx["scheme_props"][rng].append(prop)
+    for concept in g.subjects(RDF.type, SKOS.Concept):
+        for scheme in g.objects(concept, SKOS.inScheme):
+            idx["scheme_concepts"][scheme].append(concept)
+
     kinds = {}
     for s in g.subjects(RDF.type, OWL.Class):
         kinds[s] = "class"
@@ -197,7 +299,7 @@ def main():
     for s in g.subjects(RDF.type, SKOS.Concept):
         kinds[s] = "concept"
     for s, kind in kinds.items():
-        write_term(g, s, kind, counts)
+        write_term(g, s, kind, counts, idx)
 
     # Module pages, each listing what it defines.
     modules = defaultdict(list)
@@ -209,18 +311,34 @@ def main():
         out = DIST / "module" / module
         out.mkdir(parents=True, exist_ok=True)
         groups = defaultdict(list)
-        for kind, s in terms:
-            groups[kind].append(s)
+        for kind, t in terms:
+            groups[kind].append(t)
+        by_label = lambda t: display_label(g, t).lower()
         body = [f"<h1>{html.escape(module)} module</h1>",
-                f'<p class="definition">Terms the WCO Data Model vocabulary defines in this module.</p>']
-        for kind in ("class", "property", "code-list", "concept"):
-            if not groups.get(kind):
-                continue
-            items = "".join(
-                f'<li><a href="{publish(s)}">{html.escape(one(g, s, RDFS.label) or local(s))}</a>'
-                f'<span class="muted"> — {html.escape((one(g, s, SKOS.definition) or "")[:120])}</span></li>'
-                for s in sorted(groups[kind], key=lambda s: (one(g, s, RDFS.label) or local(s)).lower()))
-            body.append(f"<section><h2>{KIND_LABEL[kind]}es ({len(groups[kind])})</h2><ul class='terms'>{items}</ul></section>")
+                '<p class="definition">Terms the WCO Data Model vocabulary defines in this module.</p>']
+
+        classes = sorted(groups.get("class", []), key=by_label)
+        if classes:
+            body.append(f'<section><h2>Classes ({len(classes)})</h2>' + table(
+                ["Class", "Definition", "Properties"],
+                [(term_link(g, c), short(one(g, c, SKOS.definition)),
+                  str(len(idx["class_props"].get(c, [])))) for c in classes]) + "</section>")
+
+        props = sorted(groups.get("property", []), key=by_label)
+        if props:
+            body.append(f'<section><h2>Properties ({len(props)})</h2>' + table(
+                ["Property", "Definition", "Used by"],
+                [(term_link(g, t), short(one(g, t, SKOS.definition)),
+                  str(len(list(g.objects(t, SCHEMA.domainIncludes))))) for t in props]) + "</section>")
+
+        schemes = sorted(groups.get("code-list", []), key=by_label)
+        if schemes:
+            body.append(f'<section><h2>Code lists ({len(schemes)})</h2>' + table(
+                ["Code list", "Based on", "Values", "Used by"],
+                [(term_link(g, c), short(one(g, c, WCO.codeListBasis), 90),
+                  str(len(idx["scheme_concepts"].get(c, []))) or "0",
+                  str(len(idx["scheme_props"].get(c, [])))) for c in schemes]) + "</section>")
+
         (out / "index.html").write_text(page(f"{module} module", "A module of the WCO Data Model vocabulary.",
                                              "".join(body), [("Vocabulary", BASE), ("Modules", None), (module, None)]))
         counts["module"] += 1
@@ -377,6 +495,11 @@ ul.terms li,ul.notes li{margin:4px 0}
 .prose pre{background:#0f2238;color:#e6eef8;padding:14px 16px;border-radius:8px;overflow:auto;font-size:13.5px;line-height:1.45}
 .prose pre code{background:none;border:0;color:inherit;padding:0}
 .prose li{margin:4px 0}
+table.listing{border-collapse:collapse;width:100%;margin:6px 0 4px;font-size:15px}
+table.listing th{text-align:left;background:var(--bg);border-bottom:2px solid var(--line);padding:8px 10px;color:var(--muted);font-weight:600;font-size:13.5px;text-transform:uppercase;letter-spacing:.03em}
+table.listing td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+table.listing tr:hover td{background:#f9fbfe}
+table.listing td:last-child,table.listing th:last-child{white-space:nowrap}
 table.facts th.sub{padding-left:22px;font-weight:400;color:var(--ink)}
 ul.dips{margin:0;padding-left:18px}
 ul.dips li{margin:10px 0}

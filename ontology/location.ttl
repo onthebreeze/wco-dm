@@ -317,7 +317,7 @@ wco:authorizationIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:disembarkationDateTime a owl:DatatypeProperty ;
-    rdfs:label "Disembarkation date/time"@en ;
+    rdfs:label "Disembarkation date time"@en ;
     skos:definition "Date and time of disembarkation of a person on board."@en ;
     schema:domainIncludes wco:DisembarkationLocation ;
     schema:rangeIncludes xsd:dateTime ;
@@ -329,7 +329,7 @@ wco:disembarkationDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:embarkationDateTime a owl:DatatypeProperty ;
-    rdfs:label "Embarkation date/time"@en ;
+    rdfs:label "Embarkation date time"@en ;
     skos:definition "Date and time of embarkation of a person on board."@en ;
     schema:domainIncludes wco:EmbarkationLocation ;
     schema:rangeIncludes xsd:dateTime ;
@@ -341,7 +341,7 @@ wco:embarkationDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:loadingDateTime a owl:DatatypeProperty ;
-    rdfs:label "Consignment loading date/time"@en ;
+    rdfs:label "Loading date time"@en ;
     skos:definition "Date and time of initial loading onto a ship or airplane during one journey from export location to import location."@en ;
     schema:domainIncludes wco:LoadingLocation ;
     schema:rangeIncludes xsd:dateTime ;
@@ -353,10 +353,11 @@ wco:loadingDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:nameIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Waste delivery location identifier"@en ;
+    rdfs:label "Name identification identifier"@en ;
     skos:definition "Identification of the location/port where waste of any type was or will be delivered."@en ;
     schema:domainIncludes wco:WasteDeliveryLocation ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/LOCODE + User codes"@en ;
     wco:xmlTag "ID" ;
     wco:jsonTag "id" ;
     wco:attributeId "L116" ;
@@ -364,11 +365,12 @@ wco:nameIdentificationIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:location ;
     wco:termStatus ts:active .
 
-wco:routingCountryCode a owl:DatatypeProperty ;
-    rdfs:label "Country of routing code"@en ;
+wco:routingCountryCode a owl:ObjectProperty ;
+    rdfs:label "Routing country code"@en ;
     skos:definition "Code specifying the country through which goods or passengers are routed between the country of original departure and final destination."@en ;
     schema:domainIncludes wco:Itinerary ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "RoutingCountryCode" ;
     wco:jsonTag "routingCountryCode" ;
     wco:attributeId "064" ;
@@ -377,7 +379,7 @@ wco:routingCountryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:routingRegionIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Region of routing identifier"@en ;
+    rdfs:label "Routing region identifier"@en ;
     skos:definition "Identification of the region through which goods or passengers are routed."@en ;
     schema:domainIncludes wco:Itinerary ;
     schema:rangeIncludes xsd:string ;
@@ -389,7 +391,7 @@ wco:routingRegionIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:routingRegionText a owl:DatatypeProperty ;
-    rdfs:label "Region of routing name"@en ;
+    rdfs:label "Routing region text"@en ;
     skos:definition "Name of the region through which goods or passengers are routed."@en ;
     schema:domainIncludes wco:Itinerary ;
     schema:rangeIncludes xsd:string ;
@@ -401,7 +403,7 @@ wco:routingRegionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:takingOverGoodsDateTime a owl:DatatypeProperty ;
-    rdfs:label "Goods taking over date/time"@en ;
+    rdfs:label "Taking over goods date time"@en ;
     skos:definition "Date and time when the goods are taken over."@en ;
     schema:domainIncludes wco:AcceptanceLocation ;
     schema:rangeIncludes xsd:dateTime ;

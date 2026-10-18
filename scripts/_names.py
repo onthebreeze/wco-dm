@@ -60,3 +60,22 @@ def local_name(den, fallback=None):
     if rep:
         return camel(" ".join(middle + [rep]))
     return camel(fallback or "")
+
+
+def label_from_den(den, fallback=None):
+    """A label for the merged property: the dictionary entry name without its object class, read as
+    words. A merged property must not be labelled after whichever class it met first - that is how
+    the identifier shared by 172 classes came to be called "Appeal office identifier"."""
+    _, middle, rep = split_den(den)
+    parts = _words(" ".join(middle + [rep])) if rep else _words(fallback or "")
+    if not parts:
+        return fallback or ""
+    out = []
+    for i, w in enumerate(parts):
+        if w.isupper() and len(w) > 1:
+            out.append(w)                      # keep WCO, AEO, UCR as they are
+        elif i == 0:
+            out.append(w[0].upper() + w[1:].lower())
+        else:
+            out.append(w.lower())
+    return " ".join(out)

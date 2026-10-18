@@ -748,7 +748,7 @@ wco:Veterinarian a owl:Class ;
 # --------------------------------------------------------------------------
 
 wco:addDateTime a owl:DatatypeProperty ;
-    rdfs:label "Principal add date/time"@en ;
+    rdfs:label "Add date time"@en ;
     skos:definition "Date and time the bond user is added to the bond."@en ;
     schema:domainIncludes wco:Principal ;
     schema:rangeIncludes xsd:dateTime ;
@@ -760,7 +760,7 @@ wco:addDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:amount a owl:ObjectProperty ;
-    rdfs:label "Surety liability amount"@en ;
+    rdfs:label "Amount"@en ;
     skos:definition "Amount indicating the Surety's liability on the Customs bond."@en ;
     schema:domainIncludes wco:Surety ;
     schema:rangeIncludes wco:Amount ;
@@ -772,7 +772,7 @@ wco:amount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:arrivalInCountryLocationNameText a owl:DatatypeProperty ;
-    rdfs:label "Arriving crew member location in-country name"@en ;
+    rdfs:label "Arrival in country location name text"@en ;
     skos:definition "Name of the location of a crew member during stay in the destination country."@en ;
     schema:domainIncludes wco:CrewMember ;
     schema:rangeIncludes xsd:string ;
@@ -788,6 +788,7 @@ wco:businessTypeCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the business type of a party."@en ;
     schema:domainIncludes wco:MasterDataParty ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISIC code list OR User code list"@en ;
     wco:xmlTag "BusinessType" ;
     wco:jsonTag "businessType" ;
     wco:attributeId "517" ;
@@ -796,7 +797,7 @@ wco:businessTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:contactFunctionText a owl:DatatypeProperty ;
-    rdfs:label "Representative function"@en ;
+    rdfs:label "Contact function text"@en ;
     skos:definition "Specification of the capacity in which the representative person acts on behalf of the party responsible for the declaration."@en ;
     schema:domainIncludes wco:RepresentativePerson ;
     schema:rangeIncludes xsd:string ;
@@ -808,7 +809,7 @@ wco:contactFunctionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:deleteDateTime a owl:DatatypeProperty ;
-    rdfs:label "Principal delete date/time"@en ;
+    rdfs:label "Delete date time"@en ;
     skos:definition "Date and time the bond user is removed from the bond."@en ;
     schema:domainIncludes wco:Principal ;
     schema:rangeIncludes xsd:dateTime ;
@@ -824,6 +825,7 @@ wco:endorsementTypeCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the type of special service a conveyance crew member is allowed to perform."@en ;
     schema:domainIncludes wco:CrewMember ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "EndorsementTypeCode" ;
     wco:jsonTag "endorsementTypeCode" ;
     wco:attributeId "394" ;
@@ -832,10 +834,11 @@ wco:endorsementTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:personCategoryCode a owl:DatatypeProperty ;
-    rdfs:label "Category of person code"@en ;
+    rdfs:label "Person category code"@en ;
     skos:definition "Code specifying the category of person (e.g. natural person, legal person)."@en ;
     schema:domainIncludes wco:Buyer, wco:Consignee, wco:Consignor, wco:NotifyParty, wco:Seller ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list (preferably new WCO codes)"@en ;
     wco:xmlTag "PersonCategoryCode" ;
     wco:jsonTag "personCategoryCode" ;
     wco:attributeId "R159" ;
@@ -843,11 +846,12 @@ wco:personCategoryCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:party ;
     wco:termStatus ts:active .
 
-wco:qualityAssuranceCode a owl:DatatypeProperty ;
-    rdfs:label "Agent quality assurance code"@en ;
+wco:qualityAssuranceCode a owl:ObjectProperty ;
+    rdfs:label "Quality assurance code"@en ;
     skos:definition "Code specifying where quality assurance level of the agent should be used."@en ;
     schema:domainIncludes wco:Agent ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:agent-quality-assurance-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 166 and 167)"@en ;
     wco:xmlTag "QualityAssuranceCode" ;
     wco:jsonTag "qualityAssuranceCode" ;
     wco:attributeId "249" ;
@@ -856,10 +860,11 @@ wco:qualityAssuranceCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:riderActionCode a owl:DatatypeProperty ;
-    rdfs:label "Principal rider action code"@en ;
+    rdfs:label "Rider action code"@en ;
     skos:definition "Code specifying the bond user rider action."@en ;
     schema:domainIncludes wco:Principal ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "RiderActionCode" ;
     wco:jsonTag "riderActionCode" ;
     wco:attributeId "616" ;
@@ -868,7 +873,7 @@ wco:riderActionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:shortNameText a owl:DatatypeProperty ;
-    rdfs:label "Master data party short name"@en ;
+    rdfs:label "Short name text"@en ;
     skos:definition "Short name of the party in the context of master data."@en ;
     schema:domainIncludes wco:MasterDataParty ;
     schema:rangeIncludes xsd:string ;
@@ -880,7 +885,7 @@ wco:shortNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:stuffingDateTime a owl:DatatypeProperty ;
-    rdfs:label "Vanning date/time"@en ;
+    rdfs:label "Stuffing date time"@en ;
     skos:definition "Date and time of loading cargo into a container."@en ;
     schema:domainIncludes wco:StuffingEstablishment ;
     schema:rangeIncludes xsd:dateTime ;
@@ -896,6 +901,7 @@ wco:supplementaryFilingTypeCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the level of transport contract."@en ;
     schema:domainIncludes wco:SupplementaryDeclarant ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list (preferably new WCO codes)"@en ;
     wco:xmlTag "SupplementaryFilingTypeCode" ;
     wco:jsonTag "supplementaryFilingTypeCode" ;
     wco:attributeId "590" ;

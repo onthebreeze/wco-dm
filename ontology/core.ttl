@@ -853,7 +853,7 @@ wco:WriteOff a owl:Class ;
 # --------------------------------------------------------------------------
 
 wco:accessText a owl:DatatypeProperty ;
-    rdfs:label "Binary file access information"@en ;
+    rdfs:label "Access text"@en ;
     skos:definition "Information on access for this binary file such as security and download parameters."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -865,11 +865,12 @@ wco:accessText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:accountIdentificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Bank account identifier"@en ;
+    rdfs:label "Account identification identifier"@en ;
     skos:definition "Identification of the bank account."@en ;
     skos:scopeNote "DeferredPayment: Identification of an account related to deferred payment."@en ;
     schema:domainIncludes wco:Bank, wco:DeferredPayment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "IBAN /SWIFT /BIC Codes"@en ;
     wco:xmlTag "AccountID" ;
     wco:jsonTag "accountId" ;
     wco:attributeId "372", "578" ;
@@ -890,7 +891,7 @@ wco:acknowledgementRequestIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:acquisitionDateTime a owl:DatatypeProperty ;
-    rdfs:label "Commodity acquisition date/time"@en ;
+    rdfs:label "Acquisition date time"@en ;
     skos:definition "Date and time the commodity was acquired."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:dateTime ;
@@ -901,11 +902,12 @@ wco:acquisitionDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:actionCode a owl:DatatypeProperty ;
+wco:actionCode a owl:ObjectProperty ;
     rdfs:label "Action code"@en ;
     skos:definition "Code specifying the action to be taken or already taken."@en ;
     schema:domainIncludes wco:Consignment, wco:ConsignmentItem, wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:action-code ;
+    wco:codeListBasis "UN/EDIFACT code list 1229 OR User code list"@en ;
     wco:xmlTag "ActionCode" ;
     wco:jsonTag "actionCode" ;
     wco:attributeId "460" ;
@@ -914,7 +916,7 @@ wco:actionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:actualDateTime a owl:DatatypeProperty ;
-    rdfs:label "Actual authentication date/time"@en ;
+    rdfs:label "Actual date time"@en ;
     skos:definition "Date and time when this authentication was actually signed or otherwise authenticated."@en ;
     schema:domainIncludes wco:Authentication ;
     schema:rangeIncludes xsd:dateTime ;
@@ -926,7 +928,7 @@ wco:actualDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:actualIndicator a owl:DatatypeProperty ;
-    rdfs:label "Estimated/actual indicator"@en ;
+    rdfs:label "Actual indicator"@en ;
     skos:definition "Indicator to differentiate between estimated and actual information (e.g. estimated and actual offices of entry or estimated and actual date of arrival)."@en ;
     schema:domainIncludes wco:ArrivalConveyanceFacility, wco:ArrivalLocation, wco:BorderTransportMeans, wco:DeclarationOffice, wco:DepartureLocation, wco:EntryOffice, wco:ReleaseOffice ;
     schema:rangeIncludes xsd:boolean ;
@@ -938,7 +940,7 @@ wco:actualIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:actualLocationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Actual authentication location identifier"@en ;
+    rdfs:label "Actual location identifier"@en ;
     skos:definition "Identification of the location where a document was signed or otherwise authenticated."@en ;
     schema:domainIncludes wco:Authentication ;
     schema:rangeIncludes xsd:string ;
@@ -950,7 +952,7 @@ wco:actualLocationIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:actualMeasure a owl:ObjectProperty ;
-    rdfs:label "Actual temperature"@en ;
+    rdfs:label "Actual measure"@en ;
     skos:definition "Measure of temperature."@en ;
     schema:domainIncludes wco:Temperature ;
     schema:rangeIncludes wco:Measure ;
@@ -962,7 +964,7 @@ wco:actualMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:actualRateAmount a owl:ObjectProperty ;
-    rdfs:label "Freight rate amount"@en ;
+    rdfs:label "Actual rate amount"@en ;
     skos:definition "Amount of actual freight rate charged for each mode of transportation used for an import or export freight movement."@en ;
     schema:domainIncludes wco:Freight ;
     schema:rangeIncludes wco:Amount ;
@@ -974,7 +976,7 @@ wco:actualRateAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:actualTemperatureMeasure a owl:ObjectProperty ;
-    rdfs:label "Actual temperature"@en ;
+    rdfs:label "Actual temperature measure"@en ;
     skos:definition "Measure of temperature."@en ;
     schema:domainIncludes wco:Process ;
     schema:rangeIncludes wco:Measure ;
@@ -986,7 +988,7 @@ wco:actualTemperatureMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:adValorumTaxRateNumeric a owl:DatatypeProperty ;
-    rdfs:label "Ad valorem tax base rate"@en ;
+    rdfs:label "Ad valorum tax rate numeric"@en ;
     skos:definition "Rate used in combination with rate of duty, tax or fee and unit of measure to provide multiple rates in for a single duty, tax or fee in the form of percentage."@en ;
     schema:domainIncludes wco:Rate ;
     schema:rangeIncludes xsd:decimal ;
@@ -998,10 +1000,11 @@ wco:adValorumTaxRateNumeric a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:additionCode a owl:DatatypeProperty ;
-    rdfs:label "Valuation additions qualifier code"@en ;
+    rdfs:label "Addition code"@en ;
     skos:definition "Code specifying the type of ˜WTO valuation agreement addition article 8: Price influence, Royalties, Assists, Proceeds, Commissions."@en ;
     schema:domainIncludes wco:ValuationAdjustment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 145, 146, 147, 148 and 149) OR User code list"@en ;
     wco:xmlTag "AdditionCode" ;
     wco:jsonTag "additionCode" ;
     wco:attributeId "188" ;
@@ -1010,7 +1013,7 @@ wco:additionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:advaloremTaxBaseAmount a owl:ObjectProperty ;
-    rdfs:label "Duty/tax/fee assessment basis amount"@en ;
+    rdfs:label "Advalorem tax base amount"@en ;
     skos:definition "Amount on which a duty, tax, or fee will be assessed."@en ;
     schema:domainIncludes wco:DutyTaxFeeAssessmentBasis, wco:TaxBase ;
     schema:rangeIncludes wco:Amount ;
@@ -1026,6 +1029,7 @@ wco:agencyAssignedCustomizationCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the agency responsible for the design and maintenance of the message type concerned, which further identifies the message."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "AgencyAssignedCustomizationCode" ;
     wco:jsonTag "agencyAssignedCustomizationCode" ;
     wco:attributeId "MD24" ;
@@ -1038,6 +1042,7 @@ wco:agencyAssignedCustomizationVersionCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the version of the agency assigned customization."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "AgencyAssignedCustomizationVersionCode" ;
     wco:jsonTag "agencyAssignedCustomizationVersionCode" ;
     wco:attributeId "MD25" ;
@@ -1046,7 +1051,7 @@ wco:agencyAssignedCustomizationVersionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:agencyNameText a owl:DatatypeProperty ;
-    rdfs:label "Agency name"@en ;
+    rdfs:label "Agency name text"@en ;
     skos:definition "Name of the agency responsible for the country’s program or partner profile."@en ;
     schema:domainIncludes wco:ProgramPartnerProfile ;
     schema:rangeIncludes xsd:string ;
@@ -1058,7 +1063,7 @@ wco:agencyNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:allDeliveryIndicator a owl:DatatypeProperty ;
-    rdfs:label "All waste delivery indicator"@en ;
+    rdfs:label "All delivery indicator"@en ;
     skos:definition "Indicator of whether the ship is delivering all waste on board the ship."@en ;
     schema:domainIncludes wco:Waste ;
     schema:rangeIncludes xsd:boolean ;
@@ -1070,7 +1075,7 @@ wco:allDeliveryIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:amountAmount a owl:ObjectProperty ;
-    rdfs:label "Additional document amount"@en ;
+    rdfs:label "Amount amount"@en ;
     skos:definition "Amount covered by the additional document."@en ;
     skos:scopeNote "Invoice: Amount indicating the total of a given invoice."@en ;
     skos:scopeNote "ObligationGuarantee: Amount of security in case that the type of security is in cash or in withdrawal from the security account."@en ;
@@ -1109,11 +1114,12 @@ wco:applicationReferenceIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:arrivalConfirmationCode a owl:DatatypeProperty ;
+wco:arrivalConfirmationCode a owl:ObjectProperty ;
     rdfs:label "Arrival confirmation code"@en ;
     skos:definition "Code specifying whether the start date of a customs control is confirmed or not."@en ;
     schema:domainIncludes wco:Consignment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:arrival-confirmation-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 164 and 165)"@en ;
     wco:xmlTag "ArrivalConfirmationCode" ;
     wco:jsonTag "arrivalConfirmationCode" ;
     wco:attributeId "162" ;
@@ -1122,7 +1128,7 @@ wco:arrivalConfirmationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:arrivalDateTime a owl:DatatypeProperty ;
-    rdfs:label "Itinerary arrival date/time"@en ;
+    rdfs:label "Arrival date time"@en ;
     skos:definition "Date and time of arrival at itinerary port of the means of transport."@en ;
     skos:scopeNote "ArrivalLocation: Date and time of arrival (actual or scheduled) of the means of transport at the first port (e.g. seaport, airport, freight terminal, rail station)."@en ;
     skos:scopeNote "BorderTransportMeans: Date and time of arrival (actual or scheduled) of the means of transport at the first port (e.g. seaport, airport, freight terminal, rail station)."@en ;
@@ -1143,6 +1149,7 @@ wco:associatedGovernmentProcedureCode a owl:DatatypeProperty ;
     skos:definition "Code specifying which governmental procedure is associated with the declaration."@en ;
     schema:domainIncludes wco:ConsignmentItem ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 For Customs: User code list, categorized based on the revised Kyoto Convention"@en ;
     wco:xmlTag "AssociatedGovernmentProcedureCode" ;
     wco:jsonTag "associatedGovernmentProcedureCode" ;
     wco:attributeId "233" ;
@@ -1150,11 +1157,12 @@ wco:associatedGovernmentProcedureCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:attachedTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Attached transport equipment code"@en ;
+wco:attachedTypeCode a owl:ObjectProperty ;
+    rdfs:label "Attached type code"@en ;
     skos:definition "Code specifying a type of equipment attached to another piece of transport equipment, such as loading tackle, sheets, ropes, chains."@en ;
     schema:domainIncludes wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:equipment-type-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8053"@en ;
     wco:xmlTag "AttachedTypeCode" ;
     wco:jsonTag "attachedTypeCode" ;
     wco:attributeId "387" ;
@@ -1163,7 +1171,7 @@ wco:attachedTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:authenticationText a owl:DatatypeProperty ;
-    rdfs:label "Authentication statement"@en ;
+    rdfs:label "Authentication text"@en ;
     skos:definition "Statement providing proof that the document has been authenticated."@en ;
     schema:domainIncludes wco:Authentication ;
     schema:rangeIncludes xsd:string ;
@@ -1175,7 +1183,7 @@ wco:authenticationText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:authorNameText a owl:DatatypeProperty ;
-    rdfs:label "Binary file author name"@en ;
+    rdfs:label "Author name text"@en ;
     skos:definition "Name of the author for this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -1187,7 +1195,7 @@ wco:authorNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:bestBeforeDateTime a owl:DatatypeProperty ;
-    rdfs:label "Product best before date/time"@en ;
+    rdfs:label "Best before date time"@en ;
     skos:definition "Date and time specifying when a product will be of best flavor or quality."@en ;
     schema:domainIncludes wco:ProductUsage ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1210,11 +1218,12 @@ wco:bindingTariffReferenceIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:birthCountryCode a owl:DatatypeProperty ;
+wco:birthCountryCode a owl:ObjectProperty ;
     rdfs:label "Birth country code"@en ;
     skos:definition "Code specifying the referenced person's country of birth as shown on the person's identity document."@en ;
     schema:domainIncludes wco:PersonData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "BirthCountryCode" ;
     wco:jsonTag "birthCountryCode" ;
     wco:attributeId "596" ;
@@ -1223,7 +1232,7 @@ wco:birthCountryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:birthDateTime a owl:DatatypeProperty ;
-    rdfs:label "Birth date/time"@en ;
+    rdfs:label "Birth date time"@en ;
     skos:definition "Date and time an individual was born."@en ;
     schema:domainIncludes wco:PersonData ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1235,7 +1244,7 @@ wco:birthDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:birthPlaceText a owl:DatatypeProperty ;
-    rdfs:label "Birth location name"@en ;
+    rdfs:label "Birth place text"@en ;
     skos:definition "Name of the location where a person is or was born."@en ;
     schema:domainIncludes wco:PersonData ;
     schema:rangeIncludes xsd:string ;
@@ -1259,7 +1268,7 @@ wco:boardedQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:bookingDateTime a owl:DatatypeProperty ;
-    rdfs:label "Booking date/time"@en ;
+    rdfs:label "Booking date time"@en ;
     skos:definition "Date and time of the booking."@en ;
     schema:domainIncludes wco:Reservation ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1271,10 +1280,11 @@ wco:bookingDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:businessProcessIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Business process context identifier"@en ;
+    rdfs:label "Business process identifier"@en ;
     skos:definition "Identification of the interaction between trading partners to achieve a given business objective."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "These values will be summarized and will be hierarchical where applicable. This list can be extended. Default value \"ALL\" if no restrictions apply."@en ;
     wco:xmlTag "BusinessProcessID" ;
     wco:jsonTag "businessProcessId" ;
     wco:attributeId "MD09" ;
@@ -1283,10 +1293,11 @@ wco:businessProcessIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:businessProcessRoleIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Business process role context identifier"@en ;
+    rdfs:label "Business process role identifier"@en ;
     skos:definition "Identification of the roles played by the trading partners.  These can be derived from the Business Process."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "To be supplied by the producer of My IP. Default value \"ALL\" if no restrictions apply. <Examples: Broker, ImpORter, forwarder etc."@en ;
     wco:xmlTag "BusinessProcessRoleID" ;
     wco:jsonTag "businessProcessRoleId" ;
     wco:attributeId "MD14" ;
@@ -1295,7 +1306,7 @@ wco:businessProcessRoleIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:cargoDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Brief cargo description"@en ;
+    rdfs:label "Cargo description text"@en ;
     skos:definition "Description of the cargo in general terms only."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:Commodity, wco:TransportedCommodity ;
     schema:rangeIncludes xsd:string ;
@@ -1307,7 +1318,7 @@ wco:cargoDescriptionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:carrierAssignedIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Reservation shipment identifier"@en ;
+    rdfs:label "Carrier assigned identifier"@en ;
     skos:definition "Identification of the carrier or its agent to identify a specific consignment by reference number."@en ;
     schema:domainIncludes wco:Consignment ;
     schema:rangeIncludes xsd:string ;
@@ -1318,14 +1329,17 @@ wco:carrierAssignedIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:categoryCode a owl:DatatypeProperty ;
-    rdfs:label "Authorization holder type code"@en ;
+wco:categoryCode a owl:ObjectProperty ;
+    rdfs:label "Category code"@en ;
     skos:definition "Code specifying the category of a document."@en ;
     skos:scopeNote "AuthorizationHolder: Code specifying the type of person being the holder of the authorization."@en ;
     skos:scopeNote "Commodity: Code specifying the grouping of similar products into non-commercial categories that are assigned by and useful to regulatory authorities.  More specific than the Goods group name (WCO ID 331) and Goods group name, coded (WCO ID 332)."@en ;
     skos:scopeNote "Temperature: Code specifying the storage condition of a commodity."@en ;
     schema:domainIncludes wco:AdditionalDocument, wco:AuthorizationHolder, wco:Commodity, wco:LPCO, wco:PreviousDocument, wco:Temperature, wco:TravelDocument ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:commodity-category-code, wco-cl:temperature-category-code, xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 6155"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 7009"@en ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "CategoryCode" ;
     wco:jsonTag "categoryCode" ;
     wco:attributeId "319", "328", "549", "D031" ;
@@ -1334,10 +1348,11 @@ wco:categoryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:categoryQualifierCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity category qualifier code"@en ;
+    rdfs:label "Category qualifier code"@en ;
     skos:definition "Code specifying the grouping of similar products identifying categories that are assigned by and useful to the cross-border regulatory authorities."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 3055 / User code list (1131)"@en ;
     wco:xmlTag "CategoryQualifierCode" ;
     wco:jsonTag "categoryQualifierCode" ;
     wco:attributeId "329" ;
@@ -1346,7 +1361,7 @@ wco:categoryQualifierCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:certificationIndicator a owl:DatatypeProperty ;
-    rdfs:label "Packaging certification indicator"@en ;
+    rdfs:label "Certification indicator"@en ;
     skos:definition "Indicator that the packaging has the proper certification regarding weight, capacity and usage."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
     schema:rangeIncludes xsd:boolean ;
@@ -1358,10 +1373,11 @@ wco:certificationIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:changeReasonCode a owl:DatatypeProperty ;
-    rdfs:label "Amendment code"@en ;
+    rdfs:label "Change reason code"@en ;
     skos:definition "Code specifying the reason for a change."@en ;
     schema:domainIncludes wco:Amendment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "ChangeReasonCode" ;
     wco:jsonTag "changeReasonCode" ;
     wco:attributeId "099" ;
@@ -1370,7 +1386,7 @@ wco:changeReasonCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:characterSetCode a owl:DatatypeProperty ;
-    rdfs:label "Binary file character set code"@en ;
+    rdfs:label "Character set code"@en ;
     skos:definition "Code specifying the character set for this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -1382,10 +1398,11 @@ wco:characterSetCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:characteristicCode a owl:DatatypeProperty ;
-    rdfs:label "Equipment size and type code"@en ;
+    rdfs:label "Characteristic code"@en ;
     skos:definition "Code specifying the characteristics (e.g. size and type of a piece of transport equipment)."@en ;
     schema:domainIncludes wco:TransportEquipment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO, IATA, EDIFACT (8053 or 8155) OR User code list"@en ;
     wco:xmlTag "CharacteristicCode" ;
     wco:jsonTag "characteristicCode" ;
     wco:attributeId "152" ;
@@ -1398,6 +1415,7 @@ wco:chargesTypeCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the type of charge or deduction."@en ;
     schema:domainIncludes wco:ChargeDeduction ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 5025"@en ;
     wco:xmlTag "ChargesTypeCode" ;
     wco:jsonTag "chargesTypeCode" ;
     wco:attributeId "371" ;
@@ -1406,7 +1424,7 @@ wco:chargesTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:cityNameText a owl:DatatypeProperty ;
-    rdfs:label "City name"@en ;
+    rdfs:label "City name text"@en ;
     skos:definition "Name of a city."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -1417,11 +1435,12 @@ wco:cityNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:classificationNameCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity classification name code"@en ;
+wco:classificationNameCode a owl:ObjectProperty ;
+    rdfs:label "Name code"@en ;
     skos:definition "Code specifying the scientific name of original plant/animal used as a material for food products, medications, cosmetics, medical materials, etc."@en ;
     schema:domainIncludes wco:Classification ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:classification-name-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7357"@en ;
     wco:xmlTag "NameCode" ;
     wco:jsonTag "nameCode" ;
     wco:attributeId "346" ;
@@ -1430,7 +1449,7 @@ wco:classificationNameCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:commercialCategorizationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Commodity identifier"@en ;
+    rdfs:label "Commercial categorization identifier"@en ;
     skos:definition "Identification of the commercial categorization of a commodity (e.g. PLU number)."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
@@ -1442,7 +1461,7 @@ wco:commercialCategorizationIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:commercialDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Commercial description"@en ;
+    rdfs:label "Commercial description text"@en ;
     skos:definition "Description of the commercial product as stated on the invoice and any other pertinent document."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
@@ -1465,13 +1484,16 @@ wco:communicationsAgreementIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:conditionCode a owl:DatatypeProperty ;
-    rdfs:label "Contract and carriage condition code"@en ;
+wco:conditionCode a owl:ObjectProperty ;
+    rdfs:label "Condition code"@en ;
     skos:definition "Code specifying the conditions of contract and carriage."@en ;
     skos:scopeNote "Seal: Code specifying the condition of a seal."@en ;
     skos:scopeNote "TradeTerms: Code specifying the delivery or transport terms."@en ;
     schema:domainIncludes wco:Seal, wco:TradeTerms, wco:TransportContractDocument, wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:tradeterm-condition-code, wco-cl:transport-contract-document-condition-code, xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 4053"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4065"@en ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "ConditionCode" ;
     wco:jsonTag "conditionCode" ;
     wco:attributeId "090", "091", "408" ;
@@ -1491,11 +1513,12 @@ wco:consolidationIndicator a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:containerCode a owl:DatatypeProperty ;
-    rdfs:label "Container transport code"@en ;
+wco:containerCode a owl:ObjectProperty ;
+    rdfs:label "Container code"@en ;
     skos:definition "Code specifying whether or not goods are transported in a container."@en ;
     schema:domainIncludes wco:Consignment, wco:TranshipmentLocation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:container-transport-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 68 and 69) For use with the EU CDM: - code 0 (Goods not transported in containers) - code 1 (Goods transported in containers)"@en ;
     wco:xmlTag "ContainerCode" ;
     wco:jsonTag "containerCode" ;
     wco:attributeId "096" ;
@@ -1504,7 +1527,7 @@ wco:containerCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:countQuantity a owl:ObjectProperty ;
-    rdfs:label "Commodity quantity"@en ;
+    rdfs:label "Count quantity"@en ;
     skos:definition "Quantity specifying the number of regulated items."@en ;
     skos:scopeNote "ControlResult: Quantity specifying the control results of an inspection, carried out by cross border regulatory agencies."@en ;
     schema:domainIncludes wco:Commodity, wco:ControlResult ;
@@ -1517,7 +1540,7 @@ wco:countQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:countryAgencyNameText a owl:DatatypeProperty ;
-    rdfs:label "Country agency name"@en ;
+    rdfs:label "Country agency name text"@en ;
     skos:definition "Name of the agency responsible for the country’s Authorized Economic Operator (AEO) program."@en ;
     schema:domainIncludes wco:AEOProgramProfile ;
     schema:rangeIncludes xsd:string ;
@@ -1528,7 +1551,7 @@ wco:countryAgencyNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:countryCode a owl:DatatypeProperty ;
+wco:countryCode a owl:ObjectProperty ;
     rdfs:label "Country code"@en ;
     skos:definition "Code specifying the name of the country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3."@en ;
     skos:scopeNote "CommercialDriversLicense: Code specifying the country or political entity issuing the commercial driver's license."@en ;
@@ -1542,7 +1565,8 @@ wco:countryCode a owl:DatatypeProperty ;
     skos:scopeNote "Storage: Code specifying the storage country."@en ;
     skos:scopeNote "TradeTerms: Code specifying the country code to cover the cases when UNLOCODE is not available to define a delivery terms location in IM/EX declarations."@en ;
     schema:domainIncludes wco:AEOProgramProfile, wco:Address, wco:CommercialDriversLicense, wco:DepartureLocation, wco:DestinationLocation, wco:DispatchCountry, wco:Exclusion, wco:ExportCountry, wco:MasterDataOffice, wco:Origin, wco:ProgramPartnerProfile, wco:Source, wco:Storage, wco:TradeTerms ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "CountryCode" ;
     wco:jsonTag "countryCode" ;
     wco:attributeId "062", "063", "242", "296", "396", "400", "447", "463", "465", "545", "592" ;
@@ -1551,7 +1575,7 @@ wco:countryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:countryNameText a owl:DatatypeProperty ;
-    rdfs:label "Departure country name"@en ;
+    rdfs:label "Country name text"@en ;
     skos:definition "Name of the country of departure."@en ;
     skos:scopeNote "Address: Name of the country or other geographical entity."@en ;
     skos:scopeNote "DestinationLocation: Name of the country of destination."@en ;
@@ -1571,6 +1595,7 @@ wco:countryRelationshipCode a owl:DatatypeProperty ;
     skos:definition "Code specifying whether the place specified for the performance of a (contractual) obligation is located in the country where the declaration is made, in another member country of the same economic or Customs union, or in a third country."@en ;
     schema:domainIncludes wco:TradeTerms ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "CountryRelationshipCode" ;
     wco:jsonTag "countryRelationshipCode" ;
     wco:attributeId "106" ;
@@ -1579,10 +1604,11 @@ wco:countryRelationshipCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:countrySubDivisionCode a owl:DatatypeProperty ;
-    rdfs:label "Country sub-entity identification code"@en ;
+    rdfs:label "Country sub division code"@en ;
     skos:definition "Code specifying the name of a country subdivision."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 3166-2 OR User code list"@en ;
     wco:xmlTag "CountrySubDivisionCode" ;
     wco:jsonTag "countrySubDivisionCode" ;
     wco:attributeId "244" ;
@@ -1591,7 +1617,7 @@ wco:countrySubDivisionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:countrySubDivisionNameText a owl:DatatypeProperty ;
-    rdfs:label "Country sub-entity name"@en ;
+    rdfs:label "Country sub division name text"@en ;
     skos:definition "Name of a country subdivision."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -1603,10 +1629,11 @@ wco:countrySubDivisionNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:countrySubdivisionCode a owl:DatatypeProperty ;
-    rdfs:label "Commercial driver's license state, province, or country subdivision code"@en ;
+    rdfs:label "Country subdivision code"@en ;
     skos:definition "Code specifying the state, province, or country subdivision issuing the commercial driver's license."@en ;
     schema:domainIncludes wco:CommercialDriversLicense ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 3166-2"@en ;
     wco:xmlTag "CountrySubdivisionCode" ;
     wco:jsonTag "countrySubdivisionCode" ;
     wco:attributeId "297" ;
@@ -1614,11 +1641,12 @@ wco:countrySubdivisionCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:currencyTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Currency code"@en ;
+wco:currencyTypeCode a owl:ObjectProperty ;
+    rdfs:label "Currency type code"@en ;
     skos:definition "Code specifying a monetary unit or currency."@en ;
     schema:domainIncludes wco:CurrencyExchange, wco:SpecificTaxBaseRate ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:currency-code ;
+    wco:codeListBasis "ISO 4217"@en ;
     wco:xmlTag "CurrencyTypeCode" ;
     wco:jsonTag "currencyTypeCode" ;
     wco:attributeId "135" ;
@@ -1626,12 +1654,14 @@ wco:currencyTypeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:currentCode a owl:DatatypeProperty ;
-    rdfs:label "Additional procedure code"@en ;
+wco:currentCode a owl:ObjectProperty ;
+    rdfs:label "Current code"@en ;
     skos:definition "Code specifying an additional procedure."@en ;
     skos:scopeNote "GovernmentProcedure: Code specifying a procedure."@en ;
     schema:domainIncludes wco:AdditionalProcedure, wco:GovernmentProcedure ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:additional-procedure-code, xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 For Customs: User code list, categorized based on the revised Kyoto Convention"@en ;
+    wco:codeListBasis "User code list (see EU CDM code list for DE 11 10 001 000)"@en ;
     wco:xmlTag "CurrentCode", "ProcedureCode" ;
     wco:jsonTag "currentCode", "procedureCode" ;
     wco:attributeId "166", "572" ;
@@ -1640,7 +1670,7 @@ wco:currentCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:customsValueAmount a owl:ObjectProperty ;
-    rdfs:label "Customs amount"@en ;
+    rdfs:label "Customs value amount"@en ;
     skos:definition "Amount declared for customs purposes of those goods in a consignment which are subject to the same customs procedure, and have the same tariff/statistical heading, country information and duty regime."@en ;
     schema:domainIncludes wco:ConsignmentItem, wco:GoodsItem ;
     schema:rangeIncludes wco:Amount ;
@@ -1652,7 +1682,7 @@ wco:customsValueAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:dangerousGoodsNumberIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Dangerous goods identifier"@en ;
+    rdfs:label "Dangerous goods number identifier"@en ;
     skos:definition "Identification of the emergency schedule identifier (e.g. as identified in IMO EmS Guide - Emergency Response Procedures for Ships Carrying Dangerous Goods)."@en ;
     schema:domainIncludes wco:EmergencySchedule ;
     schema:rangeIncludes xsd:string ;
@@ -1663,11 +1693,12 @@ wco:dangerousGoodsNumberIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:dangerousGoodsPackingRequirementGroupCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity dangerous goods packing group code"@en ;
+wco:dangerousGoodsPackingRequirementGroupCode a owl:ObjectProperty ;
+    rdfs:label "Dangerous goods packing requirement group code"@en ;
     skos:definition "Code specifying packing requirements based on the relative degree of danger represented by the hazardous material."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:commodity-dangerous-goods-packing-group-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7233"@en ;
     wco:xmlTag "DangerousGoodsPackingRequirementGroupCode" ;
     wco:jsonTag "dangerousGoodsPackingRequirementGroupCode" ;
     wco:attributeId "341" ;
@@ -1676,7 +1707,7 @@ wco:dangerousGoodsPackingRequirementGroupCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:deductAmount a owl:ObjectProperty ;
-    rdfs:label "Duty/tax/fee reduced assessed amount"@en ;
+    rdfs:label "Deduct amount"@en ;
     skos:definition "Amount of deduction from a duty or tax."@en ;
     schema:domainIncludes wco:DutyTaxFee ;
     schema:rangeIncludes wco:Amount ;
@@ -1688,7 +1719,7 @@ wco:deductAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:deductionQuantity a owl:ObjectProperty ;
-    rdfs:label "Deducted quantity"@en ;
+    rdfs:label "Deduction quantity"@en ;
     skos:definition "Quantity specifying the amount to be deducted from the tariff quantity to calculate the duty/tax/fee assessment basis for Customs."@en ;
     schema:domainIncludes wco:DutyTaxFee ;
     schema:rangeIncludes wco:Quantity ;
@@ -1700,7 +1731,7 @@ wco:deductionQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:deliveryEndDateTime a owl:DatatypeProperty ;
-    rdfs:label "Waste delivery end date/time"@en ;
+    rdfs:label "Delivery end date time"@en ;
     skos:definition "Date and time of end of waste delivery."@en ;
     schema:domainIncludes wco:Waste ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1712,7 +1743,7 @@ wco:deliveryEndDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:deliveryStartDateTime a owl:DatatypeProperty ;
-    rdfs:label "Waste delivery start date/time"@en ;
+    rdfs:label "Delivery start date time"@en ;
     skos:definition "Date and time of start of waste delivery."@en ;
     schema:domainIncludes wco:Waste ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1724,7 +1755,7 @@ wco:deliveryStartDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:departureDateTime a owl:DatatypeProperty ;
-    rdfs:label "Itinerary departure date/time"@en ;
+    rdfs:label "Departure date time"@en ;
     skos:definition "Date and time of departure of the means of transport."@en ;
     skos:scopeNote "ArrivalConveyanceFacility: Date and time of departure at itinerary port of the means of transport."@en ;
     skos:scopeNote "DepartureConveyanceFacility: Date and time of departure at itinerary port of the means of transport."@en ;
@@ -1740,11 +1771,12 @@ wco:departureDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:descriptionCode a owl:DatatypeProperty ;
-    rdfs:label "Purpose of call code"@en ;
+wco:descriptionCode a owl:ObjectProperty ;
+    rdfs:label "Description code"@en ;
     skos:definition "Code specifying the purpose of the conveyance call."@en ;
     schema:domainIncludes wco:CallPurpose ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:call-purpose-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8025"@en ;
     wco:xmlTag "DescriptionCode" ;
     wco:jsonTag "descriptionCode" ;
     wco:attributeId "148" ;
@@ -1753,7 +1785,7 @@ wco:descriptionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:descriptionText a owl:DatatypeProperty ;
-    rdfs:label "Binary file description"@en ;
+    rdfs:label "Description text"@en ;
     skos:definition "Description of this binary file."@en ;
     skos:scopeNote "Classification: Description of the classification in plain language."@en ;
     skos:scopeNote "Commodity: Description of the nature of a goods item sufficient to identify it for cross-border regulatory purposes such as customs, phytosanitary, statistical or transport."@en ;
@@ -1777,10 +1809,11 @@ wco:descriptionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:descriptionTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Effects description code"@en ;
+    rdfs:label "Description type code"@en ;
     skos:definition "Code specifying the type of personal belongings in the possession of individual crew members or passengers, which according to regulations in force at the place of arrival of a means of transport, are dutiable or subject to prohibitions or restrictions."@en ;
     schema:domainIncludes wco:Effects ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "To be defined by IMO"@en ;
     wco:xmlTag "DescriptionTypeCode" ;
     wco:jsonTag "descriptionTypeCode" ;
     wco:attributeId "524" ;
@@ -1789,7 +1822,7 @@ wco:descriptionTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:designationText a owl:DatatypeProperty ;
-    rdfs:label "Job title"@en ;
+    rdfs:label "Designation text"@en ;
     skos:definition "Job title or the rank of a person."@en ;
     schema:domainIncludes wco:PersonData ;
     schema:rangeIncludes xsd:string ;
@@ -1801,7 +1834,7 @@ wco:designationText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:diameterMeasure a owl:ObjectProperty ;
-    rdfs:label "Package dimension diameter"@en ;
+    rdfs:label "Diameter measure"@en ;
     skos:definition "Diameter of the package."@en ;
     schema:domainIncludes wco:Packaging ;
     schema:rangeIncludes wco:Measure ;
@@ -1813,7 +1846,7 @@ wco:diameterMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:dispatchDateTime a owl:DatatypeProperty ;
-    rdfs:label "Departure date/time"@en ;
+    rdfs:label "Dispatch date time"@en ;
     skos:definition "Date and time of the departure of the goods from original consignor."@en ;
     schema:domainIncludes wco:GoodsShipment ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1824,11 +1857,12 @@ wco:dispatchDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:documentSectionCode a owl:DatatypeProperty ;
-    rdfs:label "Document/message section code"@en ;
+wco:documentSectionCode a owl:ObjectProperty ;
+    rdfs:label "Document section code"@en ;
     skos:definition "Code specifying a section of a document/message."@en ;
     schema:domainIncludes wco:Pointer ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:document-message-section-code ;
+    wco:codeListBasis "UN/EDIFACT code list 1049"@en ;
     wco:xmlTag "DocumentSectionCode" ;
     wco:jsonTag "documentSectionCode" ;
     wco:attributeId "375" ;
@@ -1837,7 +1871,7 @@ wco:documentSectionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:dueDateTime a owl:DatatypeProperty ;
-    rdfs:label "Payment due date/time"@en ;
+    rdfs:label "Due date time"@en ;
     skos:definition "Date and time when an amount due should be made available to the creditor under the terms of payment."@en ;
     schema:domainIncludes wco:Payment ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1849,7 +1883,7 @@ wco:dueDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:durationDateTime a owl:DatatypeProperty ;
-    rdfs:label "Commodity process performed date/time"@en ;
+    rdfs:label "Duration date time"@en ;
     skos:definition "Date and time on which the process associated with the commodity was performed."@en ;
     schema:domainIncludes wco:Process ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1861,7 +1895,7 @@ wco:durationDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:durationInDaysQuantity a owl:ObjectProperty ;
-    rdfs:label "Transit control days quantity"@en ;
+    rdfs:label "Duration in days quantity"@en ;
     skos:definition "Quantity specifying the number of days a consignment is under transit control."@en ;
     schema:domainIncludes wco:TransitControl ;
     schema:rangeIncludes wco:Quantity ;
@@ -1873,10 +1907,11 @@ wco:durationInDaysQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:dutyRegimeCode a owl:DatatypeProperty ;
-    rdfs:label "Type of duty regime code"@en ;
+    rdfs:label "Duty regime code"@en ;
     skos:definition "Code specifying a type of duty regime."@en ;
     schema:domainIncludes wco:DutyTaxFee, wco:TaxCalculation ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 9213 OR User code list"@en ;
     wco:xmlTag "DutyRegimeCode" ;
     wco:jsonTag "dutyRegimeCode" ;
     wco:attributeId "164" ;
@@ -1885,7 +1920,7 @@ wco:dutyRegimeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:effectiveDateTime a owl:DatatypeProperty ;
-    rdfs:label "Document effective date/time"@en ;
+    rdfs:label "Effective date time"@en ;
     skos:definition "Date and time of effectiveness of the document (e.g. license, visa, permit, certificate, bond)."@en ;
     skos:scopeNote "AuthorizationWithdrawal: Date and time the document (e.g. license, visa, permit, certificate) is effective."@en ;
     skos:scopeNote "Exclusion: Date and time the document (e.g. license, visa, permit, certificate) is effective."@en ;
@@ -1900,7 +1935,7 @@ wco:effectiveDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:electedEntryDateTime a owl:DatatypeProperty ;
-    rdfs:label "Elected entry date/time"@en ;
+    rdfs:label "Elected entry date time"@en ;
     skos:definition "Date and time used at the discretion of the filer for duty calculation of non-quota goods when there is no immediate transport entry date (related to immediate delivery)."@en ;
     schema:domainIncludes wco:DutyTaxFee ;
     schema:rangeIncludes xsd:dateTime ;
@@ -1912,7 +1947,7 @@ wco:electedEntryDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:elementActiveIngredientIndicator a owl:DatatypeProperty ;
-    rdfs:label "Constituent element or component active ingredient indicator"@en ;
+    rdfs:label "Element active ingredient indicator"@en ;
     skos:definition "Indicator of which of the constituent element(s) in the mixture is the active ingredient."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes xsd:boolean ;
@@ -1924,10 +1959,11 @@ wco:elementActiveIngredientIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:elementCode a owl:DatatypeProperty ;
-    rdfs:label "Constituent element or component code"@en ;
+    rdfs:label "Element code"@en ;
     skos:definition "Code specifying representation of the constituent element."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "ElementCode" ;
     wco:jsonTag "elementCode" ;
     wco:attributeId "349" ;
@@ -1936,7 +1972,7 @@ wco:elementCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:elementDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Constituent element or component description"@en ;
+    rdfs:label "Element description text"@en ;
     skos:definition "Description of the materials contained within the product."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes xsd:string ;
@@ -1948,7 +1984,7 @@ wco:elementDescriptionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:elementNameText a owl:DatatypeProperty ;
-    rdfs:label "Constituent element or component name"@en ;
+    rdfs:label "Element name text"@en ;
     skos:definition "Name of the specified material within the product (e.g. asbestos or milk solids)."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes xsd:string ;
@@ -1960,7 +1996,7 @@ wco:elementNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:elementPercentNumeric a owl:DatatypeProperty ;
-    rdfs:label "Constituent element or component percentage"@en ;
+    rdfs:label "Element percent numeric"@en ;
     skos:definition "Percentage of a specified material contained within the product."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes xsd:decimal ;
@@ -1972,7 +2008,7 @@ wco:elementPercentNumeric a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:elementYieldAmount a owl:ObjectProperty ;
-    rdfs:label "Constituent element or component yield measure"@en ;
+    rdfs:label "Element yield amount"@en ;
     skos:definition "Measure of the specific material actually produced or estimated to be produced from the commodity."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes wco:Measure ;
@@ -1984,7 +2020,7 @@ wco:elementYieldAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:encodingCode a owl:DatatypeProperty ;
-    rdfs:label "Binary file encoding code"@en ;
+    rdfs:label "Encoding code"@en ;
     skos:definition "Code specifying the encoding of this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -1996,7 +2032,7 @@ wco:encodingCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:endDateTime a owl:DatatypeProperty ;
-    rdfs:label "Ship-to-ship activity end date/time"@en ;
+    rdfs:label "End date time"@en ;
     skos:definition "Date and time of the end of a ship-to-ship activity period."@en ;
     schema:domainIncludes wco:ShipToShipActivity ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2008,10 +2044,11 @@ wco:endDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:endorsementCode a owl:DatatypeProperty ;
-    rdfs:label "Commercial driver's license endorsement code"@en ;
+    rdfs:label "Endorsement code"@en ;
     skos:definition "Code specifying the type of special service authorization present on the commercial driver’s license."@en ;
     schema:domainIncludes wco:CommercialDriversLicense ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "EndorsementCode" ;
     wco:jsonTag "endorsementCode" ;
     wco:attributeId "359" ;
@@ -2020,7 +2057,7 @@ wco:endorsementCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:establishedYearDateTime a owl:DatatypeProperty ;
-    rdfs:label "AEO program established year date/time"@en ;
+    rdfs:label "Established year date time"@en ;
     skos:definition "Date and time the AEO program was established."@en ;
     schema:domainIncludes wco:AEOProgramProfile ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2032,7 +2069,7 @@ wco:establishedYearDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:eventEndDateTime a owl:DatatypeProperty ;
-    rdfs:label "Event end date/time"@en ;
+    rdfs:label "Event end date time"@en ;
     skos:definition "Date and time at which a specified event is completed."@en ;
     schema:domainIncludes wco:Control, wco:ObligationGuarantee, wco:OperationDischarge, wco:OperationStart, wco:OperationTermination, wco:Process, wco:RefusalToStart ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2044,7 +2081,7 @@ wco:eventEndDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:eventStartDateTime a owl:DatatypeProperty ;
-    rdfs:label "Event start date/time"@en ;
+    rdfs:label "Event start date time"@en ;
     skos:definition "Date and time at which a specified event becomes effective."@en ;
     schema:domainIncludes wco:Control, wco:ObligationGuarantee, wco:Process ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2055,11 +2092,12 @@ wco:eventStartDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:eventStatusCode a owl:DatatypeProperty ;
-    rdfs:label "Transport equipment status code"@en ;
+wco:eventStatusCode a owl:ObjectProperty ;
+    rdfs:label "Event status code"@en ;
     skos:definition "Code specifying the status of the transport equipment."@en ;
     schema:domainIncludes wco:Status ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:container-status-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8249"@en ;
     wco:xmlTag "EventStatusCode" ;
     wco:jsonTag "eventStatusCode" ;
     wco:attributeId "351" ;
@@ -2068,7 +2106,7 @@ wco:eventStatusCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:examinationImageBinaryObject a owl:DatatypeProperty ;
-    rdfs:label "Examination image"@en ;
+    rdfs:label "Examination image binary object"@en ;
     skos:definition "Digital information resulting from an inspection or examination (e.g. x-ray scan of a container)."@en ;
     schema:domainIncludes wco:ControlResult ;
     schema:rangeIncludes xsd:base64Binary ;
@@ -2080,7 +2118,7 @@ wco:examinationImageBinaryObject a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:exitDateTime a owl:DatatypeProperty ;
-    rdfs:label "Exit date/time"@en ;
+    rdfs:label "Exit date time"@en ;
     skos:definition "Date and time when the goods depart from last port, airport, or border post of customs territory whence consigned (country of export)."@en ;
     schema:domainIncludes wco:GoodsShipment ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2092,7 +2130,7 @@ wco:exitDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:exitToEntryChargeAmount a owl:ObjectProperty ;
-    rdfs:label "Charges amount"@en ;
+    rdfs:label "Exit to entry charge amount"@en ;
     skos:definition "Amount indicating the total cost of freight, insurance and all other costs and expenses from the foreign exit location to the entry location."@en ;
     schema:domainIncludes wco:CustomsValuation ;
     schema:rangeIncludes wco:Amount ;
@@ -2104,7 +2142,7 @@ wco:exitToEntryChargeAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:expectedArrivalDateTime a owl:DatatypeProperty ;
-    rdfs:label "Expected arrival of goods in the country of destination date/time"@en ;
+    rdfs:label "Expected arrival date time"@en ;
     skos:definition "Date and time that goods are expected to arrive in the country of destination."@en ;
     schema:domainIncludes wco:Consignment ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2116,7 +2154,7 @@ wco:expectedArrivalDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:expirationDateTime a owl:DatatypeProperty ;
-    rdfs:label "Document expiration date/time"@en ;
+    rdfs:label "Expiration date time"@en ;
     skos:definition "Date and time of expiration of the document (e.g. license, visa, permit, certificate, bond)."@en ;
     skos:scopeNote "AuthorizationWithdrawal: Date and time of expiration of the document (e.g. license, visa, permit, certificate)."@en ;
     skos:scopeNote "Exclusion: Date and time of expiration of the document (e.g. license, visa, permit, certificate)."@en ;
@@ -2131,7 +2169,7 @@ wco:expirationDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:expiryDateTime a owl:DatatypeProperty ;
-    rdfs:label "Product expiration date/time"@en ;
+    rdfs:label "Expiry date time"@en ;
     skos:definition "Date and time of expiration of the document (e.g. license, visa, permit, certificate)."@en ;
     schema:domainIncludes wco:ProductUsage ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2143,7 +2181,7 @@ wco:expiryDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:exportCertificateIndicator a owl:DatatypeProperty ;
-    rdfs:label "Certificate of export documents indicator"@en ;
+    rdfs:label "Export certificate indicator"@en ;
     skos:definition "Indicator by exporter/declarant whether they need certificate of export or other documents from customs or not."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:boolean ;
@@ -2155,7 +2193,7 @@ wco:exportCertificateIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:exportedInCurrentYearQuantity a owl:ObjectProperty ;
-    rdfs:label "Exported to date in current year quantity"@en ;
+    rdfs:label "Exported in current year quantity"@en ;
     skos:definition "Quantity specifying the total number of specimens exported in the current calendar year (1 January to 31 December) (including those covered by the present permit)."@en ;
     schema:domainIncludes wco:GoodsMeasure ;
     schema:rangeIncludes wco:Quantity ;
@@ -2167,7 +2205,7 @@ wco:exportedInCurrentYearQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:familyNameText a owl:DatatypeProperty ;
-    rdfs:label "Family name"@en ;
+    rdfs:label "Family name text"@en ;
     skos:definition "Family name of a person as mentioned in an official document."@en ;
     schema:domainIncludes wco:PersonData ;
     schema:rangeIncludes xsd:string ;
@@ -2179,7 +2217,7 @@ wco:familyNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:fileNameText a owl:DatatypeProperty ;
-    rdfs:label "Binary file name"@en ;
+    rdfs:label "File name text"@en ;
     skos:definition "Name of the file usually including the file type for this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -2191,7 +2229,7 @@ wco:fileNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:fillerDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Package filler description"@en ;
+    rdfs:label "Filler description text"@en ;
     skos:definition "Description of the material found within a package used to cushion the commodity or otherwise empty space."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
     schema:rangeIncludes xsd:string ;
@@ -2203,7 +2241,7 @@ wco:fillerDescriptionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:firstBestBeforeDateTime a owl:DatatypeProperty ;
-    rdfs:label "First product best before date/time"@en ;
+    rdfs:label "First best before date time"@en ;
     skos:definition "Date and time best before of the first product in a range."@en ;
     schema:domainIncludes wco:ProductUsage ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2215,7 +2253,7 @@ wco:firstBestBeforeDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:firstExpiryDateTime a owl:DatatypeProperty ;
-    rdfs:label "First product expiration (expiry) date/time"@en ;
+    rdfs:label "First expiry date time"@en ;
     skos:definition "Date and time of expiration of the document (e.g. license, visa, permit, certificate)."@en ;
     schema:domainIncludes wco:ProductUsage ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2227,7 +2265,7 @@ wco:firstExpiryDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:flashpointMeasure a owl:ObjectProperty ;
-    rdfs:label "Flashpoint temperature"@en ;
+    rdfs:label "Flashpoint measure"@en ;
     skos:definition "Measure of the flashpoint temperature of dangerous goods."@en ;
     schema:domainIncludes wco:DangerousGoods, wco:Temperature ;
     schema:rangeIncludes wco:Measure ;
@@ -2239,7 +2277,7 @@ wco:flashpointMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:forCarriageDeclaredValueAmount a owl:ObjectProperty ;
-    rdfs:label "Carriage amount"@en ;
+    rdfs:label "For carriage declared value amount"@en ;
     skos:definition "Amount declared by the shipper or his agent solely for the purpose of varying the carrier's level of liability from that provided in the contract of carriage, in case of loss or damage to goods or delayed delivery."@en ;
     schema:domainIncludes wco:Consignment ;
     schema:rangeIncludes wco:Amount ;
@@ -2255,6 +2293,7 @@ wco:freeTradeZoneStatusCode a owl:DatatypeProperty ;
     skos:definition "Code specifying that consignment into a free trade zone is a preliminary or final shipment."@en ;
     schema:domainIncludes wco:GoodsShipment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
     wco:xmlTag "FreeTradeZoneStatusCode" ;
     wco:jsonTag "freeTradeZoneStatusCode" ;
     wco:attributeId "303" ;
@@ -2263,7 +2302,7 @@ wco:freeTradeZoneStatusCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:freightChargeAmount a owl:ObjectProperty ;
-    rdfs:label "Freight costs amount"@en ;
+    rdfs:label "Freight charge amount"@en ;
     skos:definition "Amount indicating the total costs incurred by the shipper in moving goods, by whatever means, from one place to another under the terms of the contract of carriage. In addition to transport costs, this may include such elements as packing, documentation, loading, unloading, and insurance (i.e., to the extent that they relate to the freight cost)."@en ;
     schema:domainIncludes wco:CustomsValuation ;
     schema:rangeIncludes wco:Amount ;
@@ -2274,11 +2313,12 @@ wco:freightChargeAmount a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:freightChargeApportionmentCode a owl:DatatypeProperty ;
-    rdfs:label "Qualifier for apportioning freight charges code"@en ;
+wco:freightChargeApportionmentCode a owl:ObjectProperty ;
+    rdfs:label "Freight charge apportionment code"@en ;
     skos:definition "Code specifying the method of the proportional allocation of freight charges for each consignment in a multi consignment declaration."@en ;
     schema:domainIncludes wco:CustomsValuation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:freight-charge-apportioning-method-code ;
+    wco:codeListBasis "WCO code list/FreightChargeApportioningMethodCode"@en ;
     wco:xmlTag "FreightChargeApportionmentCode" ;
     wco:jsonTag "freightChargeApportionmentCode" ;
     wco:attributeId "124" ;
@@ -2286,11 +2326,12 @@ wco:freightChargeApportionmentCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:fullnessCode a owl:DatatypeProperty ;
-    rdfs:label "Transport equipment loaded status code"@en ;
+wco:fullnessCode a owl:ObjectProperty ;
+    rdfs:label "Fullness code"@en ;
     skos:definition "Code specifying how full a piece of transport equipment is."@en ;
     schema:domainIncludes wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-equipment-fullness-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8169"@en ;
     wco:xmlTag "FullnessCode" ;
     wco:jsonTag "fullnessCode" ;
     wco:attributeId "154" ;
@@ -2298,8 +2339,8 @@ wco:fullnessCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:functionCode a owl:DatatypeProperty ;
-    rdfs:label "Itinerary location type code"@en ;
+wco:functionCode a owl:ObjectProperty ;
+    rdfs:label "Function code"@en ;
     skos:definition "Code specifying the function of a document."@en ;
     skos:scopeNote "Agent: Code specifying the capacity in which the agent is acting."@en ;
     skos:scopeNote "Contact: Code specifying the function of a contact (e.g. department or person)."@en ;
@@ -2307,7 +2348,13 @@ wco:functionCode a owl:DatatypeProperty ;
     skos:scopeNote "GoodsMeasure: Code specifying the purpose of the measurement."@en ;
     skos:scopeNote "Itinerary: Code specifying the type of the itinerary location."@en ;
     schema:domainIncludes wco:AIP, wco:Agent, wco:Contact, wco:Declarant, wco:Declaration, wco:GoodsMeasure, wco:Itinerary, wco:LPCO ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:contact-function-code, wco-cl:document-function-code, wco-cl:goods-measure-function-code, xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 1225"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3139"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4405"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 4405 For use with the EU CDM: - code 2 (Representative (direct representation within the meaning of Article 18(1) of the code)) - code 3 (Representative (indirect representation within the meaning of Article 18(1) of the code))"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 6311"@en ;
     wco:xmlTag "FunctionCode" ;
     wco:jsonTag "functionCode" ;
     wco:attributeId "102", "251", "479", "487", "548", "D046" ;
@@ -2316,7 +2363,7 @@ wco:functionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:functionalDefinitionText a owl:DatatypeProperty ;
-    rdfs:label "Functional definition"@en ;
+    rdfs:label "Functional definition text"@en ;
     skos:definition "Definition of the function of the message."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
@@ -2327,11 +2374,12 @@ wco:functionalDefinitionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:genderCode a owl:DatatypeProperty ;
+wco:genderCode a owl:ObjectProperty ;
     rdfs:label "Gender code"@en ;
     skos:definition "Code specifying the gender of a person."@en ;
     schema:domainIncludes wco:PersonData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:person-gender-code ;
+    wco:codeListBasis "UN/EDIFACT code list 3499"@en ;
     wco:xmlTag "GenderCode" ;
     wco:jsonTag "genderCode" ;
     wco:attributeId "427" ;
@@ -2340,7 +2388,7 @@ wco:genderCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:geographicRegionText a owl:DatatypeProperty ;
-    rdfs:label "Source geographic region name"@en ;
+    rdfs:label "Geographic region text"@en ;
     skos:definition "Name of the source geographic region (non-political)."@en ;
     skos:scopeNote "Storage: Name of the geographic region (non-political) in which the goods have been stored."@en ;
     schema:domainIncludes wco:Source, wco:Storage ;
@@ -2353,10 +2401,11 @@ wco:geographicRegionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:geopoliticalIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Geopolitical context identifier"@en ;
+    rdfs:label "Geopolitical identifier"@en ;
     skos:definition "Identification of where the business process is to be conducted."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 3166 including ISO 3166_1 and ISO 3166_2. Default value \"ALL\" if no restrictions apply."@en ;
     wco:xmlTag "GeopoliticalID" ;
     wco:jsonTag "geopoliticalId" ;
     wco:attributeId "MD12" ;
@@ -2365,7 +2414,7 @@ wco:geopoliticalIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:givenNameText a owl:DatatypeProperty ;
-    rdfs:label "Given name"@en ;
+    rdfs:label "Given name text"@en ;
     skos:definition "Given name of a person as mentioned in an official document."@en ;
     schema:domainIncludes wco:PersonData ;
     schema:rangeIncludes xsd:string ;
@@ -2376,11 +2425,12 @@ wco:givenNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:goodsGroupCode a owl:DatatypeProperty ;
+wco:goodsGroupCode a owl:ObjectProperty ;
     rdfs:label "Goods group code"@en ;
     skos:definition "Code specifying general character or structure held in common by goods considered as a group."@en ;
     schema:domainIncludes wco:Commodity ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:goods-group-name-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7059"@en ;
     wco:xmlTag "GoodsGroupCode" ;
     wco:jsonTag "goodsGroupCode" ;
     wco:attributeId "332" ;
@@ -2389,7 +2439,7 @@ wco:goodsGroupCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:goodsGroupNameText a owl:DatatypeProperty ;
-    rdfs:label "Goods group name"@en ;
+    rdfs:label "Goods group name text"@en ;
     skos:definition "Name of the general character or structure held in common by goods considered as a group."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
@@ -2405,6 +2455,7 @@ wco:goodsStatusCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the status of goods as identified by customs for regulation purposes or as a result of an action by the declarant or government agency."@en ;
     schema:domainIncludes wco:Consignment, wco:ConsignmentItem, wco:GoodsItem, wco:GoodsShipment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 4405 OR User code list"@en ;
     wco:xmlTag "GoodsStatusCode" ;
     wco:jsonTag "goodsStatusCode" ;
     wco:attributeId "094" ;
@@ -2413,7 +2464,7 @@ wco:goodsStatusCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:grossVolumeMeasure a owl:ObjectProperty ;
-    rdfs:label "Gross volume"@en ;
+    rdfs:label "Gross volume measure"@en ;
     skos:definition "Measure of the gross volume of the item, including unoccupied volume of the packaging."@en ;
     schema:domainIncludes wco:GoodsMeasure ;
     schema:rangeIncludes wco:Measure ;
@@ -2425,7 +2476,7 @@ wco:grossVolumeMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:grossWeightMeasure a owl:ObjectProperty ;
-    rdfs:label "Gross tonnage"@en ;
+    rdfs:label "Gross weight measure"@en ;
     skos:definition "Measure of the overall size of a ship determined in accordance with the provisions of the international convention on tonnage measurement of ships, 1969."@en ;
     skos:scopeNote "GoodsMeasure: Weight of goods including packing but excluding carrier's equipment."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:GoodsMeasure ;
@@ -2450,7 +2501,7 @@ wco:hashCodeAlgorithmIDCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:hashCodeText a owl:DatatypeProperty ;
-    rdfs:label "Hash code"@en ;
+    rdfs:label "Hash code text"@en ;
     skos:definition "Hash code of the binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -2486,7 +2537,7 @@ wco:heavyOrBulkyGoodsIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:heightMeasure a owl:ObjectProperty ;
-    rdfs:label "Package dimension height"@en ;
+    rdfs:label "Height measure"@en ;
     skos:definition "Height of the package."@en ;
     schema:domainIncludes wco:Packaging ;
     schema:rangeIncludes wco:Measure ;
@@ -2497,11 +2548,12 @@ wco:heightMeasure a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:hierarchyCode a owl:DatatypeProperty ;
-    rdfs:label "Package hierarchy code"@en ;
+wco:hierarchyCode a owl:ObjectProperty ;
+    rdfs:label "Hierarchy code"@en ;
     skos:definition "Code specifying the level of packaging (e.g. inner, intermediate, outer, shipment level)."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:package-hierarchy-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7075"@en ;
     wco:xmlTag "HierarchyCode" ;
     wco:jsonTag "hierarchyCode" ;
     wco:attributeId "333" ;
@@ -2510,7 +2562,7 @@ wco:hierarchyCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:holderNameText a owl:DatatypeProperty ;
-    rdfs:label "Financial card holder name"@en ;
+    rdfs:label "Holder name text"@en ;
     skos:definition "Name of the cardholder as it appears on this financial card. This may include both an individual authorized to use the card as well as the organization that owns the card."@en ;
     schema:domainIncludes wco:FinancialCard ;
     schema:rangeIncludes xsd:string ;
@@ -2522,7 +2574,7 @@ wco:holderNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:houseNumberAdditionText a owl:DatatypeProperty ;
-    rdfs:label "House number addition"@en ;
+    rdfs:label "House number addition text"@en ;
     skos:definition "Identification of a house by additional number."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -2534,7 +2586,7 @@ wco:houseNumberAdditionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:houseNumberIdentifier a owl:DatatypeProperty ;
-    rdfs:label "House identifier"@en ;
+    rdfs:label "House number identifier"@en ;
     skos:definition "Identification of a house by number."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -2546,12 +2598,15 @@ wco:houseNumberIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:identificationCode a owl:DatatypeProperty ;
-    rdfs:label "Control result code"@en ;
+    rdfs:label "Identification code"@en ;
     skos:definition "Code specifying the results of a control."@en ;
     skos:scopeNote "ShipToShipActivity: Code specifying the ship-to-ship activity."@en ;
     skos:scopeNote "SubsidiaryRisk: Code specifying any risk to the class of the referenced dangerous goods (e.g. according to the IMO IMDG Code)."@en ;
     schema:domainIncludes wco:ControlResult, wco:ShipToShipActivity, wco:SubsidiaryRisk ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "To be defined"@en ;
+    wco:codeListBasis "To be defined by IMO"@en ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "IdentificationCode" ;
     wco:jsonTag "identificationCode" ;
     wco:attributeId "444", "526", "529" ;
@@ -2560,7 +2615,7 @@ wco:identificationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:identificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Appeal office identifier"@en ;
+    rdfs:label "Identification identifier"@en ;
     skos:definition "Identification of a specific document."@en ;
     skos:scopeNote "AEOMutualRecognitionParty: Identification of the AEO mutual recognition party."@en ;
     skos:scopeNote "AcceptanceLocation: Identification of the location where the goods are taken over by the carrier from the consignor."@en ;
@@ -2733,6 +2788,16 @@ wco:identificationIdentifier a owl:DatatypeProperty ;
     skos:scopeNote "Warehouse: Identification of a warehouse where a particular goods shipment will be / is / has been stored."@en ;
     schema:domainIncludes wco:AEOMutualRecognitionParty, wco:AIP, wco:AcceptanceLocation, wco:AdditionalDocument, wco:AdditionalIdentifier, wco:AdditionalReference, wco:Agent, wco:AppealOffice, wco:Applicant, wco:ApprovedEstablishmentLocation, wco:ArrivalConveyanceFacility, wco:ArrivalLocation, wco:ArrivalTransportMeans, wco:Assembler, wco:AssigningParty, wco:AssociatedTransportDocument, wco:Authentication, wco:Authenticator, wco:Authorization, wco:AuthorizationHolder, wco:AuthorizedPerson, wco:BerthLocation, wco:BinaryFile, wco:BorderTransportMeans, wco:BorderingOffice, wco:Buyer, wco:Cabin, wco:CarriedTransportEquipment, wco:Carrier, wco:CertificateOfResponsibilityHolder, wco:Certifier, wco:Classification, wco:Communication, wco:Consignee, wco:ConsignmentItem, wco:Consignor, wco:Consolidator, wco:ConsortiumCarrier, wco:ContactOffice, wco:ContainerOperator, wco:ContainerTerminalOperator, wco:ControlOffice, wco:CrewMember, wco:DangerousGoodsContactParty, wco:Declarant, wco:Declaration, wco:DeclarationOffice, wco:Deconsolidator, wco:DeliveryDestinationParty, wco:DepartureConveyanceFacility, wco:DepartureLocation, wco:DepartureTransportMeans, wco:DestinationLocation, wco:DisembarkationLocation, wco:Distiller, wco:Distributor, wco:DomesticDutyTaxParty, wco:DraymanOrLighterman, wco:EconomicOperator, wco:Effects, wco:EmbarkationLocation, wco:EntryOffice, wco:EquipmentOwner, wco:ExaminationLocation, wco:Exhibitor, wco:ExitOffice, wco:ExportOffice, wco:Exporter, wco:FacilityLocation, wco:FeedlotParty, wco:FinalTransportMeansLoadingLocation, wco:FinancialCard, wco:FreeTradeZone, wco:GoodsConsignedLocation, wco:GoodsLocation, wco:GoodsReceiptLocation, wco:GovernmentOfficer, wco:GovernmentServiceRequestor, wco:Grower, wco:GuaranteeOffice, wco:HarvestingTransportMeans, wco:IMOCompany, wco:IPR, wco:ISPSResponsibleParty, wco:Importer, wco:InsuranceCompany, wco:IntermediateCarrier, wco:IntermediateConsignee, wco:Invoice, wco:Issuer, wco:Itinerary, wco:ItineraryOffice, wco:LPCO, wco:LPCOAuthorizedParty, wco:LandingLocation, wco:LoadingLocation, wco:LoyaltyProgram, wco:Manufacturer, wco:MasterDataOffice, wco:MasterDataParty, wco:MasterDataRecipient, wco:MasterDataSender, wco:NationalReference, wco:NonVesselOperatingCarrier, wco:NotifyParty, wco:ObligationGuarantee, wco:Operator, wco:OrganicCertifyingOrganization, wco:Packer, wco:PassiveTransportMeans, wco:Payer, wco:PaymentOffice, wco:PermittedPort, wco:PersonOnBoard, wco:PortReceptionFacilityProvider, wco:PresentationOffice, wco:PreviousDocument, wco:Principal, wco:Processor, wco:Producer, wco:Product, wco:PropertyOperator, wco:PropertyOwner, wco:Recipient, wco:RefundRecipientParty, wco:RegisteredFacility, wco:ReleaseOffice, wco:RepairParty, wco:RightHolder, wco:Seal, wco:Seller, wco:Sender, wco:ShipChandler, wco:ShipToShipActivityLocation, wco:Stevedore, wco:StowPosition, wco:StuffingEstablishment, wco:Submitter, wco:SubsequentDeclarationOffice, wco:SupervisingOffice, wco:SupplementaryDeclarant, wco:Supplier, wco:SupportingDocument, wco:Surety, wco:Terminal, wco:Ticket, wco:TradingParty, wco:TranshipmentLocation, wco:TranshipmentTransportMeans, wco:TransitDepartureLocation, wco:TransitDestinationLocation, wco:TransitOffice, wco:TransitOperationDischargeOffice, wco:TransitOperationStartOffice, wco:TransitOperationTerminationOffice, wco:TransitPrincipal, wco:TransitTransportMeans, wco:TransportContractDocument, wco:TransportEquipment, wco:TransportEquipmentLocation, wco:TransportMeansOperator, wco:TransportMeansOwner, wco:TravelAgency, wco:TravelDocument, wco:TreatmentFacilityProvider, wco:UCR, wco:UltimateConsignee, wco:UnloadingLocation, wco:UnloadingParty, wco:VehicleOwner, wco:Verifier, wco:Veterinarian, wco:Warehouse ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 15459 OR equivalent"@en ;
+    wco:codeListBasis "ISO 6346, IATA"@en ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
+    wco:codeListBasis "International codes (e.g. DUNS, EAN) or user codes. To be used with CDT attributes \"Identification Scheme. Identifier\" and \"Identification Scheme Agency. Identifier\" to make the information unique."@en ;
+    wco:codeListBasis "Sea: ITU Standard or Lloyd's number Air: IATA aircraft ID Road: national license plate Rail: locomotive number"@en ;
+    wco:codeListBasis "UN/LOCODE (an..5) + user codes (an..30) Or user codes"@en ;
+    wco:codeListBasis "UN/LOCODE + User codes"@en ;
+    wco:codeListBasis "UN/LOCODE + User codes OR BayRowTier OR User code list (based on IMO FAL Convention)"@en ;
+    wco:codeListBasis "UN/LOCODE + User codes OR ISO 3166-1"@en ;
+    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
     wco:xmlTag "ID" ;
     wco:jsonTag "id" ;
     wco:attributeId "016", "145", "147", "159", "165", "240", "414", "418", "446", "452", "511", "551", "579", "605", "608", "614", "D005", "D008", "D014", "D016", "D018", "D023", "D035", "D060", "D062", "D063", "D065", "D067", "G001", "G002", "G003", "G004", "G005", "G006", "G008", "G009", "G010", "G011", "G012", "G013", "G014", "G015", "G017", "G019", "G020", "G021", "G022", "G023", "G025", "G027", "L004", "L006", "L008", "L010", "L013", "L015", "L017", "L019", "L024", "L029", "L041", "L049", "L051", "L053", "L054", "L058", "L066", "L073", "L075", "L084", "L086", "L087", "L091", "L093", "L095", "L099", "L101", "L103", "L104", "L109", "L121", "R002", "R004", "R008", "R010", "R012", "R013", "R015", "R017", "R019", "R021", "R023", "R025", "R026", "R028", "R030", "R032", "R033", "R035", "R036", "R038", "R040", "R043", "R044", "R046", "R049", "R051", "R053", "R055", "R056", "R059", "R061", "R066", "R068", "R072", "R074", "R076", "R078", "R080", "R081", "R084", "R086", "R088", "R089", "R090", "R092", "R094", "R096", "R098", "R100", "R104", "R106", "R108", "R110", "R112", "R114", "R119", "R121", "R123", "R128", "R130", "R131", "R133", "R135", "R137", "R139", "R141", "R142", "R143", "R144", "R146", "R149", "R151", "R153", "R155", "R157", "R160", "R161", "R162", "R164", "R166", "R168", "T002", "T004", "T006", "T007", "T016", "T026", "T031" ;
@@ -2740,11 +2805,12 @@ wco:identificationIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:identificationIssuingCountryCode a owl:DatatypeProperty ;
+wco:identificationIssuingCountryCode a owl:ObjectProperty ;
     rdfs:label "Identification issuing country code"@en ;
     skos:definition "Code specifying the issuing country of the identification."@en ;
     schema:domainIncludes wco:AEOMutualRecognitionParty, wco:AdditionalIdentifier, wco:Agent, wco:Applicant, wco:Assembler, wco:AssigningParty, wco:Authenticator, wco:AuthorizationHolder, wco:AuthorizedPerson, wco:Buyer, wco:Carrier, wco:CertificateOfResponsibilityHolder, wco:Certifier, wco:CompanySecurityOfficer, wco:Consignee, wco:Consignor, wco:Consolidator, wco:ConsortiumCarrier, wco:ContainerOperator, wco:ContainerTerminalOperator, wco:CrewMember, wco:DangerousGoodsContactParty, wco:Declarant, wco:Deconsolidator, wco:DeliveryDestinationParty, wco:Distiller, wco:Distributor, wco:DomesticDutyTaxParty, wco:DraymanOrLighterman, wco:EquipmentOwner, wco:Exhibitor, wco:Exporter, wco:FeedlotParty, wco:GovernmentServiceRequestor, wco:Grower, wco:ISPSResponsibleParty, wco:Importer, wco:InsuranceCompany, wco:IntermediateCarrier, wco:IntermediateConsignee, wco:LPCOAuthorizedParty, wco:LoadingProofParty, wco:Manufacturer, wco:MasterDataParty, wco:NonVesselOperatingCarrier, wco:NotifyParty, wco:Operator, wco:OrganicCertifyingOrganization, wco:Packer, wco:Payer, wco:PortFacilitySecurityOfficer, wco:Processor, wco:Producer, wco:PropertyOperator, wco:PropertyOwner, wco:Recipient, wco:RecognizedSecurityOrganization, wco:RefundRecipientParty, wco:RepairParty, wco:RepresentativePerson, wco:ResponsibleGovernmentAgency, wco:RightHolder, wco:Seller, wco:Sender, wco:ShipChandler, wco:ShipSecurityOfficer, wco:Stevedore, wco:StuffingEstablishment, wco:Submitter, wco:SupplementaryDeclarant, wco:Supplier, wco:Surety, wco:TradingParty, wco:TransitPrincipal, wco:TransportMeansOperator, wco:TransportMeansOwner, wco:UltimateConsignee, wco:UnloadingParty, wco:VehicleOwner, wco:Verifier, wco:Veterinarian ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "IdentificationIssuingCountryCode" ;
     wco:jsonTag "identificationIssuingCountryCode" ;
     wco:attributeId "550", "R147" ;
@@ -2752,8 +2818,8 @@ wco:identificationIssuingCountryCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:identificationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Type of identification code"@en ;
+wco:identificationTypeCode a owl:ObjectProperty ;
+    rdfs:label "Identification type code"@en ;
     skos:definition "Code specifying the type of identification used to identify a location."@en ;
     skos:scopeNote "ArrivalTransportMeans: Code specifying type of identifier of the means of transport used for the carriage of the goods at arrival."@en ;
     skos:scopeNote "BorderTransportMeans: Code specifying type of identifier of the means of transport used for the carriage of the goods in crossing the border."@en ;
@@ -2762,7 +2828,10 @@ wco:identificationTypeCode a owl:DatatypeProperty ;
     skos:scopeNote "PassiveTransportMeans: Code specifying type of identification of passive transport means."@en ;
     skos:scopeNote "TranshipmentTransportMeans: Code specifying the type of identification of transhipment transport means."@en ;
     schema:domainIncludes wco:ArrivalTransportMeans, wco:BorderTransportMeans, wco:Classification, wco:DepartureTransportMeans, wco:GoodsLocation, wco:PassiveTransportMeans, wco:TranshipmentTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:goods-location-identification-type-code, wco-cl:transport-means-identification-type-code, xsd:string ;
+    wco:codeListBasis "E.g. IMO, MMSI, Call sign, External sign, ENI"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
+    wco:codeListBasis "User code list (see EU CDM code list for DE 16 15 046 000)"@en ;
     wco:xmlTag "IdentificationTypeCode" ;
     wco:jsonTag "identificationTypeCode" ;
     wco:attributeId "337", "571", "T018", "T027", "T029", "T032", "T034" ;
@@ -2771,7 +2840,7 @@ wco:identificationTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:identifiedElementQuantity a owl:ObjectProperty ;
-    rdfs:label "Constituent element or component quantity"@en ;
+    rdfs:label "Identified element quantity"@en ;
     skos:definition "Quantity specifying the identified constituent element or component contained in the shipment."@en ;
     schema:domainIncludes wco:Constituent ;
     schema:rangeIncludes wco:Quantity ;
@@ -2783,10 +2852,11 @@ wco:identifiedElementQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:identifierTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity identifier type code"@en ;
+    rdfs:label "Identifier type code"@en ;
     skos:definition "Code specifying the type of commodity identifier."@en ;
     schema:domainIncludes wco:Product ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7143"@en ;
     wco:xmlTag "IDTypeCode" ;
     wco:jsonTag "idTypeCode" ;
     wco:attributeId "338" ;
@@ -2794,11 +2864,12 @@ wco:identifierTypeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:identityQualifierCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity identity number qualifier code"@en ;
+wco:identityQualifierCode a owl:ObjectProperty ;
+    rdfs:label "Identity qualifier code"@en ;
     skos:definition "Code specifying the type of unique number affixed by the manufacturer to one instance of a product for identification purposes, such as a serial number, vehicle identification number (VIN)."@en ;
     schema:domainIncludes wco:Commodity ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:commodity-identity-number-qualifier-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7405"@en ;
     wco:xmlTag "IdentityQualifierCode" ;
     wco:jsonTag "identityQualifierCode" ;
     wco:attributeId "347" ;
@@ -2807,7 +2878,7 @@ wco:identityQualifierCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:includedBinaryObject a owl:DatatypeProperty ;
-    rdfs:label "Binary file included binary object"@en ;
+    rdfs:label "Included binary object"@en ;
     skos:definition "Binary object included for this file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:base64Binary ;
@@ -2819,7 +2890,7 @@ wco:includedBinaryObject a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:indicator a owl:DatatypeProperty ;
-    rdfs:label "Split consignment indicator"@en ;
+    rdfs:label "Indicator"@en ;
     skos:definition "Indicator if the consignment covered by the related transport document was split."@en ;
     schema:domainIncludes wco:SplitConsignment ;
     schema:rangeIncludes xsd:boolean ;
@@ -2831,10 +2902,11 @@ wco:indicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:industryClassificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Industry classification context identifier"@en ;
+    rdfs:label "Industry classification identifier"@en ;
     skos:definition "Identification of the relevant trading partner industries."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN International Standard Industrial Classification (ISIC). Default value \"ALL\" if no restrictions apply."@en ;
     wco:xmlTag "IndustryClassificationID" ;
     wco:jsonTag "industryClassificationId" ;
     wco:attributeId "MD11" ;
@@ -2855,7 +2927,7 @@ wco:informationVerifiedIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:innermostUnitQuantity a owl:ObjectProperty ;
-    rdfs:label "Innermost packaging unit quantity"@en ;
+    rdfs:label "Innermost unit quantity"@en ;
     skos:definition "Quantity specifying the total number of individual units packaged within the smallest unit of containment."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
     schema:rangeIncludes wco:Quantity ;
@@ -2866,11 +2938,12 @@ wco:innermostUnitQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:instructionsCode a owl:DatatypeProperty ;
-    rdfs:label "Handling instructions code"@en ;
+wco:instructionsCode a owl:ObjectProperty ;
+    rdfs:label "Instructions code"@en ;
     skos:definition "Code specifying the directions for handling a shipment and/or delivery for a shipment."@en ;
     schema:domainIncludes wco:Handling ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:handling-code ;
+    wco:codeListBasis "UN/EDIFACT code list 4079"@en ;
     wco:xmlTag "InstructionsCode" ;
     wco:jsonTag "instructionsCode" ;
     wco:attributeId "093" ;
@@ -2879,7 +2952,7 @@ wco:instructionsCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:instructionsText a owl:DatatypeProperty ;
-    rdfs:label "Handling instructions"@en ;
+    rdfs:label "Instructions text"@en ;
     skos:definition "Directions for handling a consignment and/or delivery directions for a shipment."@en ;
     schema:domainIncludes wco:Handling ;
     schema:rangeIncludes xsd:string ;
@@ -2902,11 +2975,12 @@ wco:insuranceAmount a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:intendedUseCode a owl:DatatypeProperty ;
+wco:intendedUseCode a owl:ObjectProperty ;
     rdfs:label "Intended use code"@en ;
     skos:definition "Code specifying the intended use of the commodity."@en ;
     schema:domainIncludes wco:Commodity ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:intended-use-code ;
+    wco:codeListBasis "WCO code list/IntendedUseCode OR User code list"@en ;
     wco:xmlTag "IntendedUseCode" ;
     wco:jsonTag "intendedUseCode" ;
     wco:attributeId "330" ;
@@ -2915,7 +2989,7 @@ wco:intendedUseCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:intendedUseStatementText a owl:DatatypeProperty ;
-    rdfs:label "Intended use statement"@en ;
+    rdfs:label "Intended use statement text"@en ;
     skos:definition "Statement regarding the intended use of the commodity."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
@@ -2926,11 +3000,12 @@ wco:intendedUseStatementText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:issuingCountryCode a owl:DatatypeProperty ;
-    rdfs:label "National reference issuing country code"@en ;
+wco:issuingCountryCode a owl:ObjectProperty ;
+    rdfs:label "Issuing country code"@en ;
     skos:definition "Code specifying the name of the national reference issuing country or other geographical entity as specified in ISO 3166 and UN/ECE Rec 3."@en ;
     schema:domainIncludes wco:NationalReference ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "IssuingCountryCode" ;
     wco:jsonTag "issuingCountryCode" ;
     wco:attributeId "450" ;
@@ -2939,7 +3014,7 @@ wco:issuingCountryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:itemChargeAmount a owl:ObjectProperty ;
-    rdfs:label "Item amount"@en ;
+    rdfs:label "Item charge amount"@en ;
     skos:definition "Amount due for each chargeable item of goods or services."@en ;
     schema:domainIncludes wco:InvoiceLine ;
     schema:rangeIncludes wco:Amount ;
@@ -2955,6 +3030,7 @@ wco:jobTitleCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the job title or the rank of a person."@en ;
     schema:domainIncludes wco:PersonData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 28005 annex C"@en ;
     wco:xmlTag "JobTitleCode" ;
     wco:jsonTag "jobTitleCode" ;
     wco:attributeId "582" ;
@@ -2963,7 +3039,7 @@ wco:jobTitleCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:jurisdictionDateTime a owl:DatatypeProperty ;
-    rdfs:label "Jurisdiction (authority) date/time"@en ;
+    rdfs:label "Jurisdiction date time"@en ;
     skos:definition "Date and time of landing, bringing, or introduction at any place subject to a country's jurisdiction whether or not such landing, bringing, or introduction constitutes an import (e.g. the date of import used in US tariff laws)."@en ;
     schema:domainIncludes wco:Commodity, wco:Declaration ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2975,7 +3051,7 @@ wco:jurisdictionDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:lastBestBeforeDateTime a owl:DatatypeProperty ;
-    rdfs:label "Last product best before date/time"@en ;
+    rdfs:label "Last best before date time"@en ;
     skos:definition "Date and time best before of the last product in a range."@en ;
     schema:domainIncludes wco:ProductUsage ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2987,7 +3063,7 @@ wco:lastBestBeforeDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:lastDeliveryDateTime a owl:DatatypeProperty ;
-    rdfs:label "Waste last delivery date/time"@en ;
+    rdfs:label "Last delivery date time"@en ;
     skos:definition "Date and time when waste of any type was last delivered."@en ;
     schema:domainIncludes wco:Waste ;
     schema:rangeIncludes xsd:dateTime ;
@@ -2999,7 +3075,7 @@ wco:lastDeliveryDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:lastExpiryDateTime a owl:DatatypeProperty ;
-    rdfs:label "Last product expiration (expiry) date/time"@en ;
+    rdfs:label "Last expiry date time"@en ;
     skos:definition "Date and time of expiration of the document (e.g. license, visa, permit, certificate)."@en ;
     schema:domainIncludes wco:ProductUsage ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3011,7 +3087,7 @@ wco:lastExpiryDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:latitudeMeasure a owl:ObjectProperty ;
-    rdfs:label "Latitude"@en ;
+    rdfs:label "Latitude measure"@en ;
     skos:definition "Angular distance of a place north or south of the Earth's equator."@en ;
     schema:domainIncludes wco:GeoLocation ;
     schema:rangeIncludes wco:Measure ;
@@ -3022,11 +3098,12 @@ wco:latitudeMeasure a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:legalStatusCode a owl:DatatypeProperty ;
-    rdfs:label "Container legal status code"@en ;
+wco:legalStatusCode a owl:ObjectProperty ;
+    rdfs:label "Legal status code"@en ;
     skos:definition "Code specifying the container's legal status with respect to the International Convention on Containers."@en ;
     schema:domainIncludes wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:container-legal-status-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 162 and 163)"@en ;
     wco:xmlTag "LegalStatusCode" ;
     wco:jsonTag "legalStatusCode" ;
     wco:attributeId "157" ;
@@ -3035,7 +3112,7 @@ wco:legalStatusCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:lengthMeasure a owl:ObjectProperty ;
-    rdfs:label "Vessel length"@en ;
+    rdfs:label "Length measure"@en ;
     skos:definition "Length of single vehicle expressed in meters."@en ;
     skos:scopeNote "Packaging: Length of the package."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:Packaging ;
@@ -3048,7 +3125,7 @@ wco:lengthMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:levelIndicator a owl:DatatypeProperty ;
-    rdfs:label "Package level indicator"@en ;
+    rdfs:label "Level indicator"@en ;
     skos:definition "Indicator to identify if the package in an inner or outer package."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
     schema:rangeIncludes xsd:boolean ;
@@ -3059,11 +3136,12 @@ wco:levelIndicator a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:licensePlateIssuingCountryCode a owl:DatatypeProperty ;
-    rdfs:label "Transport equipment license plate country code"@en ;
+wco:licensePlateIssuingCountryCode a owl:ObjectProperty ;
+    rdfs:label "License plate issuing country code"@en ;
     skos:definition "Code specifying the license plate issuing country of a trailer used as transportation equipment."@en ;
     schema:domainIncludes wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "LicensePlateIssuingCountryCode" ;
     wco:jsonTag "licensePlateIssuingCountryCode" ;
     wco:attributeId "279" ;
@@ -3072,7 +3150,7 @@ wco:licensePlateIssuingCountryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:limitDateTime a owl:DatatypeProperty ;
-    rdfs:label "Limit date/time"@en ;
+    rdfs:label "Limit date time"@en ;
     skos:definition "Date and time by when the event has to be completed."@en ;
     schema:domainIncludes wco:AdditionalInformation, wco:Control, wco:OperationStart, wco:TransitControl ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3084,7 +3162,7 @@ wco:limitDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:lineText a owl:DatatypeProperty ;
-    rdfs:label "Street and number/P.O. box"@en ;
+    rdfs:label "Line text"@en ;
     skos:definition "Specification of the postal delivery point such as street and number or post office box."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -3096,10 +3174,11 @@ wco:lineText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:locationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Incoterms location identifier"@en ;
+    rdfs:label "Location identifier"@en ;
     skos:definition "Identification of the location or port of departure, shipment or destination, as required under the applicable delivery term."@en ;
     schema:domainIncludes wco:TradeTerms ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/LOCODE"@en ;
     wco:xmlTag "LocationID" ;
     wco:jsonTag "locationId" ;
     wco:attributeId "543" ;
@@ -3108,7 +3187,7 @@ wco:locationIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:locationNameText a owl:DatatypeProperty ;
-    rdfs:label "Document authentication location name"@en ;
+    rdfs:label "Location name text"@en ;
     skos:definition "Name of a location where a document was signed or otherwise authenticated."@en ;
     skos:scopeNote "TradeTerms: Name of the location or port of departure, shipment or destination, as required under the applicable terms of delivery (i.e., Incoterms)."@en ;
     schema:domainIncludes wco:Authentication, wco:TradeTerms ;
@@ -3121,7 +3200,7 @@ wco:locationNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:locationText a owl:DatatypeProperty ;
-    rdfs:label "Location in document"@en ;
+    rdfs:label "Location text"@en ;
     skos:definition "Location in the document in syntax (e.g. XPath)."@en ;
     schema:domainIncludes wco:Pointer ;
     schema:rangeIncludes xsd:string ;
@@ -3133,7 +3212,7 @@ wco:locationText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:longitudeMeasure a owl:ObjectProperty ;
-    rdfs:label "Longitude"@en ;
+    rdfs:label "Longitude measure"@en ;
     skos:definition "Angular distance of a place east or west of the standard (Greenwich) meridian."@en ;
     schema:domainIncludes wco:GeoLocation ;
     schema:rangeIncludes wco:Measure ;
@@ -3145,7 +3224,7 @@ wco:longitudeMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:lotNumberIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Commodity lot identifier"@en ;
+    rdfs:label "Lot number identifier"@en ;
     skos:definition "Identification of the production lot by number."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
@@ -3169,7 +3248,7 @@ wco:mainComponentIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:manufactureDateTime a owl:DatatypeProperty ;
-    rdfs:label "Manufacture date/time"@en ;
+    rdfs:label "Manufacture date time"@en ;
     skos:definition "Date and time that the commodity was manufactured, produced, or grown."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3181,7 +3260,7 @@ wco:manufactureDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:markingText a owl:DatatypeProperty ;
-    rdfs:label "Package markings"@en ;
+    rdfs:label "Marking text"@en ;
     skos:definition "Description of the markings on a consumer level package."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
     schema:rangeIncludes xsd:string ;
@@ -3193,10 +3272,11 @@ wco:markingText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:marksNumbersText a owl:DatatypeProperty ;
-    rdfs:label "Shipping marks"@en ;
+    rdfs:label "Marks numbers text"@en ;
     skos:definition "Marks and or numbers on a transport unit or package."@en ;
     schema:domainIncludes wco:Packaging ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/ECE Recommendation 15"@en ;
     wco:xmlTag "MarksNumbers" ;
     wco:jsonTag "marksNumbers" ;
     wco:attributeId "142" ;
@@ -3205,7 +3285,7 @@ wco:marksNumbersText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:maximumStorageRequirementMeasure a owl:ObjectProperty ;
-    rdfs:label "Maximum storage requirement temperature"@en ;
+    rdfs:label "Maximum storage requirement measure"@en ;
     skos:definition "Maximum temperature required to be maintained for a commodity, or in a container, or in a conveyance."@en ;
     schema:domainIncludes wco:Temperature ;
     schema:rangeIncludes wco:Measure ;
@@ -3217,7 +3297,7 @@ wco:maximumStorageRequirementMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:membersQuantity a owl:ObjectProperty ;
-    rdfs:label "Number of AEO members"@en ;
+    rdfs:label "Members quantity"@en ;
     skos:definition "Quantity specifying the number of members in a country’s Authorized Economic Operator (AEO) program."@en ;
     schema:domainIncludes wco:AEOProgramProfile ;
     schema:rangeIncludes wco:Quantity ;
@@ -3228,12 +3308,14 @@ wco:membersQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:methodCode a owl:DatatypeProperty ;
-    rdfs:label "Valuation method code"@en ;
+wco:methodCode a owl:ObjectProperty ;
+    rdfs:label "Method code"@en ;
     skos:definition "Code specifying the method on which the customs value is determined."@en ;
     skos:scopeNote "Payment: Code specifying a method of payment."@en ;
     schema:domainIncludes wco:CustomsValuation, wco:Payment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:payment-method-code, wco-cl:valuation-method-code ;
+    wco:codeListBasis "WCO code list/PaymentMethodCode"@en ;
+    wco:codeListBasis "WCO code list/ValuationMethodCode"@en ;
     wco:xmlTag "MethodCode" ;
     wco:jsonTag "methodCode" ;
     wco:attributeId "107", "122" ;
@@ -3242,7 +3324,7 @@ wco:methodCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:mimeCode a owl:DatatypeProperty ;
-    rdfs:label "Binary file MIME code"@en ;
+    rdfs:label "MIME code"@en ;
     skos:definition "Code specifying the Multipurpose Internet Mail Extensions (MIME) type for this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -3254,7 +3336,7 @@ wco:mimeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:minimumStorageRequirementMeasure a owl:ObjectProperty ;
-    rdfs:label "Minimum storage requirement temperature"@en ;
+    rdfs:label "Minimum storage requirement measure"@en ;
     skos:definition "Minimum temperature required to be maintained for a commodity, or in a container, or in a conveyance."@en ;
     schema:domainIncludes wco:Temperature ;
     schema:rangeIncludes wco:Measure ;
@@ -3266,7 +3348,7 @@ wco:minimumStorageRequirementMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:nameText a owl:DatatypeProperty ;
-    rdfs:label "Master data office name"@en ;
+    rdfs:label "Name text"@en ;
     skos:definition "Name of the exhibition in cases where goods are sent from the territory of the exporting Party for exhibition in another country and sold during or after the exhibition for importation into the territory of a Party."@en ;
     skos:scopeNote "AcceptanceLocation: Name of the location where the goods are taken over by the carrier from the consignor."@en ;
     skos:scopeNote "AdditionalDocument: Name of the additional document."@en ;
@@ -3384,6 +3466,7 @@ wco:nameText a owl:DatatypeProperty ;
     skos:scopeNote "WasteDeliveryLocation: Name of the location/port where waste of any type was or will be delivered."@en ;
     schema:domainIncludes wco:AcceptanceLocation, wco:AdditionalDocument, wco:Agent, wco:Applicant, wco:ApprovedEstablishmentLocation, wco:ArrivalConveyanceFacility, wco:ArrivalLocation, wco:ArrivalTransportMeans, wco:Assembler, wco:Authenticator, wco:AuthorizedPerson, wco:BerthLocation, wco:BorderTransportMeans, wco:Buyer, wco:CargoFacilityLocation, wco:Carrier, wco:Certifier, wco:Communication, wco:CompanySecurityOfficer, wco:ConnectionTransportMeans, wco:Consignee, wco:Consignor, wco:Consolidator, wco:ConsortiumCarrier, wco:Contact, wco:Counterpart, wco:DangerousGoodsContactParty, wco:Declarant, wco:Deconsolidator, wco:DeliveryDestinationParty, wco:DepartureConveyanceFacility, wco:DepartureLocation, wco:DepartureTransportMeans, wco:DestinationLocation, wco:DisembarkationLocation, wco:Distiller, wco:Distributor, wco:DomesticDutyTaxParty, wco:DraymanOrLighterman, wco:EmbarkationLocation, wco:EquipmentOwner, wco:Event, wco:ExaminationLocation, wco:Exhibitor, wco:Exporter, wco:FacilityLocation, wco:FeedlotParty, wco:FreeTradeZone, wco:GoodsConsignedLocation, wco:GoodsLocation, wco:GoodsReceiptLocation, wco:GovernmentOfficer, wco:GovernmentServiceRequestor, wco:Grower, wco:IMOCompany, wco:ISPSResponsibleParty, wco:Importer, wco:InsuranceCompany, wco:IntermediateCarrier, wco:Itinerary, wco:LPCO, wco:LPCOAuthorizedParty, wco:LandingLocation, wco:LoadingLocation, wco:LoadingProofParty, wco:Manufacturer, wco:MasterDataOffice, wco:MasterDataParty, wco:NotifyParty, wco:Operator, wco:OrganicCertifyingOrganization, wco:Packer, wco:Payer, wco:PortFacilitySecurityOfficer, wco:PortReceptionFacilityProvider, wco:Principal, wco:Processor, wco:Producer, wco:PropertyOperator, wco:PropertyOwner, wco:RecognizedSecurityOrganization, wco:RefundRecipientParty, wco:RegisteredFacility, wco:RepairParty, wco:RepresentativePerson, wco:RightHolder, wco:SealingParty, wco:Seller, wco:ShipChandler, wco:ShipSecurityOfficer, wco:ShipToShipActivityLocation, wco:StuffingEstablishment, wco:Submitter, wco:Supplier, wco:Surety, wco:Terminal, wco:TradingParty, wco:TranshipmentLocation, wco:TranshipmentTransportMeans, wco:TransitDestinationLocation, wco:TransitPrincipal, wco:TransportEquipment, wco:TransportEquipmentLocation, wco:TransportMeansOperator, wco:TransportMeansOwner, wco:TravelAgency, wco:TreatmentFacilityProvider, wco:UltimateConsignee, wco:UnloadingLocation, wco:UnloadingParty, wco:VehicleOwner, wco:Verifier, wco:Veterinarian, wco:Warehouse, wco:WasteDeliveryLocation ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "International code list (e.g. DUNS, EAN) OR User code list"@en ;
     wco:xmlTag "Name" ;
     wco:jsonTag "name", "name name" ;
     wco:attributeId "246", "358", "573", "622", "636", "D028", "D032", "L003", "L005", "L007", "L009", "L011", "L012", "L014", "L016", "L018", "L023", "L048", "L050", "L052", "L057", "L065", "L069", "L074", "L085", "L090", "L092", "L094", "L100", "L102", "L105", "L106", "L107", "L108", "L117", "L120", "R001", "R003", "R006", "R007", "R009", "R011", "R014", "R016", "R018", "R020", "R022", "R024", "R027", "R029", "R031", "R034", "R037", "R039", "R041", "R042", "R045", "R047", "R048", "R050", "R052", "R054", "R057", "R058", "R060", "R065", "R067", "R070", "R071", "R073", "R075", "R077", "R079", "R082", "R083", "R085", "R087", "R091", "R093", "R095", "R097", "R099", "R101", "R102", "R103", "R105", "R107", "R109", "R111", "R113", "R116", "R118", "R120", "R124", "R125", "R126", "R127", "R132", "R134", "R136", "R138", "R140", "R148", "R150", "R152", "R154", "R156", "R158", "R163", "R165", "T001", "T003", "T005", "T030", "T038" ;
@@ -3391,11 +3474,12 @@ wco:nameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:nationalityCode a owl:DatatypeProperty ;
+wco:nationalityCode a owl:ObjectProperty ;
     rdfs:label "Nationality code"@en ;
     skos:definition "Code specifying the nationality of a person."@en ;
     schema:domainIncludes wco:PersonData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:person-nationality-code ;
+    wco:codeListBasis "UN/EDIFACT code list 3207"@en ;
     wco:xmlTag "NationalityCode" ;
     wco:jsonTag "nationalityCode" ;
     wco:attributeId "424" ;
@@ -3404,7 +3488,7 @@ wco:nationalityCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:netNetWeightMeasure a owl:ObjectProperty ;
-    rdfs:label "Net net weight"@en ;
+    rdfs:label "Net net weight measure"@en ;
     skos:definition "Weight of the goods themselves without any packing."@en ;
     schema:domainIncludes wco:GoodsMeasure ;
     schema:rangeIncludes wco:Measure ;
@@ -3416,7 +3500,7 @@ wco:netNetWeightMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:netVolumeMeasure a owl:ObjectProperty ;
-    rdfs:label "Net volume"@en ;
+    rdfs:label "Net volume measure"@en ;
     skos:definition "Measure of the gross volume of the item, excluding unoccupied volume of the packaging."@en ;
     schema:domainIncludes wco:GoodsMeasure ;
     schema:rangeIncludes wco:Measure ;
@@ -3428,7 +3512,7 @@ wco:netVolumeMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:netWeightMeasure a owl:ObjectProperty ;
-    rdfs:label "Net tonnage"@en ;
+    rdfs:label "Net weight measure"@en ;
     skos:definition "Measure of the useful capacity of a ship determined in accordance with the provisions of international convention on tonnage measurements of ships, 1969."@en ;
     skos:scopeNote "GoodsMeasure: Weight of goods including any packaging that normally go with the goods."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:GoodsMeasure ;
@@ -3441,10 +3525,11 @@ wco:netWeightMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:officialConstraintsIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Official constraints context identifier"@en ;
+    rdfs:label "Official constraints identifier"@en ;
     skos:definition "Identification of any legal restrictions or requirements on this business process."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "Proposed guideline: Use relevant laws, treaties OR regulations : User code list and abbreviations are allowed. Default value \"NONE\" if no restrictions apply."@en ;
     wco:xmlTag "OfficialConstraintslID" ;
     wco:jsonTag "officialConstraintslId" ;
     wco:attributeId "MD13" ;
@@ -3453,7 +3538,7 @@ wco:officialConstraintsIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:otherChargeDeductionAmount a owl:ObjectProperty ;
-    rdfs:label "Other charges/deductions amount"@en ;
+    rdfs:label "Other charge deduction amount"@en ;
     skos:definition "Amount added or subtracted from the total invoice price (depending on the trade terms) not previously taken into account when determining the customs value."@en ;
     schema:domainIncludes wco:ChargeDeduction ;
     schema:rangeIncludes wco:Amount ;
@@ -3465,7 +3550,7 @@ wco:otherChargeDeductionAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:packageQuantity a owl:ObjectProperty ;
-    rdfs:label "Number of packages"@en ;
+    rdfs:label "Package quantity"@en ;
     skos:definition "Quantity specifying the number of individual items packaged in such a way that they cannot be divided without first undoing the packing."@en ;
     schema:domainIncludes wco:OperationTermination ;
     schema:rangeIncludes wco:Quantity ;
@@ -3477,7 +3562,7 @@ wco:packageQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:packingMaterialDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Packing material description"@en ;
+    rdfs:label "Packing material description text"@en ;
     skos:definition "Description of the type of material for packaging covered by UN/Recommendation 21."@en ;
     schema:domainIncludes wco:Packaging ;
     schema:rangeIncludes xsd:string ;
@@ -3489,7 +3574,7 @@ wco:packingMaterialDescriptionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:packingMethodDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Packing method description"@en ;
+    rdfs:label "Packing method description text"@en ;
     skos:definition "Description of the method used in packing the commodity (e.g. hermetically sealed, repacked in original container)."@en ;
     schema:domainIncludes wco:CommodityRelatedPackaging ;
     schema:rangeIncludes xsd:string ;
@@ -3500,11 +3585,12 @@ wco:packingMethodDescriptionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:partyRelationshipCode a owl:DatatypeProperty ;
-    rdfs:label "Party relationship indicator code"@en ;
+wco:partyRelationshipCode a owl:ObjectProperty ;
+    rdfs:label "Party relationship code"@en ;
     skos:definition "Code specifying the effect of relationship existing between two parties such as financial relationship."@en ;
     schema:domainIncludes wco:CustomsValuation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:party-relationship-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 135, 136 and 137)"@en ;
     wco:xmlTag "PartyRelationshipCode" ;
     wco:jsonTag "partyRelationshipCode" ;
     wco:attributeId "163" ;
@@ -3524,11 +3610,12 @@ wco:paymentAmount a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:paymentMethodCode a owl:DatatypeProperty ;
-    rdfs:label "Transport charges method of payment code"@en ;
+wco:paymentMethodCode a owl:ObjectProperty ;
+    rdfs:label "Payment method code"@en ;
     skos:definition "Code specifying the payment method for transport charges."@en ;
     schema:domainIncludes wco:Freight ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:freight-charge-payment-method-code ;
+    wco:codeListBasis "UN/EDIFACT code list 4215"@en ;
     wco:xmlTag "PaymentMethodCode" ;
     wco:jsonTag "paymentMethodCode" ;
     wco:attributeId "098" ;
@@ -3536,11 +3623,12 @@ wco:paymentMethodCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:paymentTermsCode a owl:DatatypeProperty ;
-    rdfs:label "Terms of payment code"@en ;
+wco:paymentTermsCode a owl:ObjectProperty ;
+    rdfs:label "Payment terms code"@en ;
     skos:definition "Code specifying the terms of payment expressed in international terms (e.g. Cash on Delivery (COD), 30/60/90 due dates, discounts, commissions) under which transaction is completed."@en ;
     schema:domainIncludes wco:CustomsValuation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:payment-terms-code ;
+    wco:codeListBasis "UN/ECE Recommendation 17"@en ;
     wco:xmlTag "PaymentTermsCode" ;
     wco:jsonTag "paymentTermsCode" ;
     wco:attributeId "301" ;
@@ -3549,7 +3637,7 @@ wco:paymentTermsCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:percentageNumeric a owl:DatatypeProperty ;
-    rdfs:label "Valuation adjustment percentage"@en ;
+    rdfs:label "Percentage numeric"@en ;
     skos:definition "Percentage adjustment made to the valuation."@en ;
     schema:domainIncludes wco:ValuationAdjustment ;
     schema:rangeIncludes xsd:decimal ;
@@ -3560,11 +3648,12 @@ wco:percentageNumeric a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:physicalStateCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity physical state code"@en ;
+wco:physicalStateCode a owl:ObjectProperty ;
+    rdfs:label "Physical state code"@en ;
     skos:definition "Code specifying the physical state of the commodity being imported."@en ;
     schema:domainIncludes wco:Commodity ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:commodity-physical-state-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7007"@en ;
     wco:xmlTag "PhysicalStateCode" ;
     wco:jsonTag "physicalStateCode" ;
     wco:attributeId "325" ;
@@ -3585,11 +3674,12 @@ wco:pnrIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:politicalRegionCode a owl:DatatypeProperty ;
-    rdfs:label "Source political region code"@en ;
+    rdfs:label "Political region code"@en ;
     skos:definition "Code specifying the political subdivision in which the goods have been produced or manufactured, according to criteria laid down for the purposes of application of the Customs tariff, or quantitative restrictions, or of any other measure related to trade."@en ;
     skos:scopeNote "Storage: Code specifying the political subdivision in which the goods have been stored."@en ;
     schema:domainIncludes wco:Source, wco:Storage ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 3166-2 OR User code list"@en ;
     wco:xmlTag "PoliticalRegionCode" ;
     wco:jsonTag "politicalRegionCode" ;
     wco:attributeId "292", "399" ;
@@ -3598,10 +3688,11 @@ wco:politicalRegionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:pollutantTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Dangerous goods pollutant type code"@en ;
+    rdfs:label "Pollutant type code"@en ;
     skos:definition "Code specifying the type of pollutant properties for the referenced dangerous goods (e.g. IMO IMDG Code or IBC Code/MARPOL Convention)."@en ;
     schema:domainIncludes wco:DangerousGoods ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "MARPOL as defined in IMDG and IBC"@en ;
     wco:xmlTag "PollutantTypeCode" ;
     wco:jsonTag "pollutantTypeCode" ;
     wco:attributeId "528" ;
@@ -3610,7 +3701,7 @@ wco:pollutantTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:portActivityDateTime a owl:DatatypeProperty ;
-    rdfs:label "Conveyance port activity date/time"@en ;
+    rdfs:label "Port activity date time"@en ;
     skos:definition "Date and time of conveyance activity (e.g. cargo loading or unloading, fueling, etc.)."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:Itinerary ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3622,7 +3713,7 @@ wco:portActivityDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:postOfficeBoxIdentifier a owl:DatatypeProperty ;
-    rdfs:label "P.O. box identifier"@en ;
+    rdfs:label "Post office box identifier"@en ;
     skos:definition "Identification of a Post-Office Box."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -3634,7 +3725,7 @@ wco:postOfficeBoxIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:postalReceptacleIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Receptacle (postal) identifier"@en ;
+    rdfs:label "Postal receptacle identifier"@en ;
     skos:definition "Identification of the postal receptacle."@en ;
     schema:domainIncludes wco:Consignment, wco:ConsignmentItem, wco:HouseConsignment ;
     schema:rangeIncludes xsd:string ;
@@ -3650,6 +3741,7 @@ wco:postcodeIdentifier a owl:DatatypeProperty ;
     skos:definition "Identification of the postal zone or address."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "PostcodeID" ;
     wco:jsonTag "postcodeId" ;
     wco:attributeId "245" ;
@@ -3658,7 +3750,7 @@ wco:postcodeIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:preparationDateTime a owl:DatatypeProperty ;
-    rdfs:label "Preparation date/time"@en ;
+    rdfs:label "Preparation date time"@en ;
     skos:definition "Date and time locally when an interchange or a functional group was prepared."@en ;
     schema:domainIncludes wco:CommunicationMetaData ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3670,10 +3762,11 @@ wco:preparationDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:previousCode a owl:DatatypeProperty ;
-    rdfs:label "Previous government procedure code"@en ;
+    rdfs:label "Previous code"@en ;
     skos:definition "Code specifying the government procedure, if any, which has been applied to the goods prior to the application of a different government procedure."@en ;
     schema:domainIncludes wco:GovernmentProcedure ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 For Customs: User code list, categorized based on the revised Kyoto Convention"@en ;
     wco:xmlTag "PreviousCode" ;
     wco:jsonTag "previousCode" ;
     wco:attributeId "161" ;
@@ -3682,7 +3775,7 @@ wco:previousCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:previousMovementReferenceNumberIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Previous movement identifier"@en ;
+    rdfs:label "Previous movement referencenumber identifier"@en ;
     skos:definition "Identification of the movement reference number assigned by customs to the pre-arrival declaration that was lodged first for the relevant consignment."@en ;
     schema:domainIncludes wco:SplitConsignment ;
     schema:rangeIncludes xsd:string ;
@@ -3694,7 +3787,7 @@ wco:previousMovementReferenceNumberIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:previouslyUsedIndicator a owl:DatatypeProperty ;
-    rdfs:label "Commodity previously used indicator"@en ;
+    rdfs:label "Previously used indicator"@en ;
     skos:definition "Indicator on whether or not the commodity has been previously used."@en ;
     schema:domainIncludes wco:ProductCharacteristics ;
     schema:rangeIncludes xsd:boolean ;
@@ -3706,7 +3799,7 @@ wco:previouslyUsedIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:productBestBeforeDateTime a owl:DatatypeProperty ;
-    rdfs:label "Product best before date/time"@en ;
+    rdfs:label "Product best before date time"@en ;
     skos:definition "Date and time specifying when a product will be of best flavor or quality."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3718,10 +3811,11 @@ wco:productBestBeforeDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:productClassificationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Product classification context identifier"@en ;
+    rdfs:label "Product classification identifier"@en ;
     skos:definition "Identification of the goods or services concerned in the collaboration."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "Use relevant HS codes OR text. Default value \"ALL\" if no restrictions apply."@en ;
     wco:xmlTag "ProductClassificationID" ;
     wco:jsonTag "productClassificationId" ;
     wco:attributeId "MD10" ;
@@ -3730,7 +3824,7 @@ wco:productClassificationIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:productExpiryDateTime a owl:DatatypeProperty ;
-    rdfs:label "Product expiration date/time"@en ;
+    rdfs:label "Product expiry date time"@en ;
     skos:definition "Date and time of expiration of the document (e.g. license, visa, permit, certificate)."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3742,7 +3836,7 @@ wco:productExpiryDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:programNameText a owl:DatatypeProperty ;
-    rdfs:label "AEO program name"@en ;
+    rdfs:label "Program name text"@en ;
     skos:definition "Name of the country’s Authorized Economic Operator (AEO) program."@en ;
     skos:scopeNote "ProgramPartnerProfile: Name of the country’s program or partner profile."@en ;
     schema:domainIncludes wco:AEOProgramProfile, wco:ProgramPartnerProfile ;
@@ -3755,7 +3849,7 @@ wco:programNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:properShippingNameText a owl:DatatypeProperty ;
-    rdfs:label "Proper shipping name"@en ;
+    rdfs:label "Proper shipping name text"@en ;
     skos:definition "Name used to describe the hazard properties and the composition of dangerous goods in accordance with United Nations Recommendations on the Transport of Dangerous Goods Model Regulations. Volume 1."@en ;
     schema:domainIncludes wco:DangerousGoods ;
     schema:rangeIncludes xsd:string ;
@@ -3767,11 +3861,12 @@ wco:properShippingNameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:qualifierCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity characteristic qualifier code"@en ;
+    rdfs:label "Qualifier code"@en ;
     skos:definition "Code specifying the various forms of commodity characteristics."@en ;
     skos:scopeNote "ProductName: Code specifying the commodity name (e.g. common name, registered name, brand name)."@en ;
     schema:domainIncludes wco:ProductCharacteristics, wco:ProductName ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7081"@en ;
     wco:xmlTag "QualifierCode" ;
     wco:jsonTag "qualifierCode" ;
     wco:attributeId "334", "335" ;
@@ -3780,7 +3875,7 @@ wco:qualifierCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:quantityQuantity a owl:ObjectProperty ;
-    rdfs:label "Additional document quantity"@en ;
+    rdfs:label "Quantity quantity"@en ;
     skos:definition "Quantity specifying the amount provided on the additional document."@en ;
     skos:scopeNote "Effects: Quantity specifying the number of personal belongings in the possession of individual crew members or passengers which according to regulations in force at the place of arrival of a means of transport are dutiable or subject to prohibitions or restrictions."@en ;
     skos:scopeNote "Packaging: Quantity specifying the number of individual items packaged in such a way that they cannot be divided without first undoing the packing."@en ;
@@ -3796,7 +3891,7 @@ wco:quantityQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:quotaOrderIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Quota identifier"@en ;
+    rdfs:label "Quota order identifier"@en ;
     skos:definition "Identification of an order specifying a quota."@en ;
     schema:domainIncludes wco:DutyTaxFee, wco:TaxCalculation ;
     schema:rangeIncludes xsd:string ;
@@ -3808,7 +3903,7 @@ wco:quotaOrderIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:rateNumeric a owl:DatatypeProperty ;
-    rdfs:label "Exchange rate"@en ;
+    rdfs:label "Rate numeric"@en ;
     skos:definition "Rate at which one specified currency is expressed in another specified currency."@en ;
     schema:domainIncludes wco:CurrencyExchange, wco:DutyTaxFeeAssessmentBasis ;
     schema:rangeIncludes xsd:decimal ;
@@ -3820,7 +3915,7 @@ wco:rateNumeric a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:rateQuantity a owl:ObjectProperty ;
-    rdfs:label "Freight rate quantity"@en ;
+    rdfs:label "Rate quantity"@en ;
     skos:definition "Quantity specifying the freight rate used such as 100 (if per 100 weight) 1000 if for 1000 kg."@en ;
     schema:domainIncludes wco:Freight ;
     schema:rangeIncludes wco:Quantity ;
@@ -3831,11 +3926,12 @@ wco:rateQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:rateTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Freight rate type code"@en ;
+wco:rateTypeCode a owl:ObjectProperty ;
+    rdfs:label "Rate type code"@en ;
     skos:definition "Code specifying the freight rate type: ocean, foreign inland, domestic inland, etc."@en ;
     schema:domainIncludes wco:Freight ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:rate-type-code ;
+    wco:codeListBasis "UN/EDIFACT code list 5419"@en ;
     wco:xmlTag "RateTypeCode" ;
     wco:jsonTag "rateTypeCode" ;
     wco:attributeId "309" ;
@@ -3848,6 +3944,7 @@ wco:reconciliationReasonCode a owl:DatatypeProperty ;
     skos:definition "Code specifying an issue eligible for reconciliation which allows certain issues to remain outstanding, pending final determination."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 4183"@en ;
     wco:xmlTag "ReconciliationReasonCode" ;
     wco:jsonTag "reconciliationReasonCode" ;
     wco:attributeId "300" ;
@@ -3856,7 +3953,7 @@ wco:reconciliationReasonCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:rectificationText a owl:DatatypeProperty ;
-    rdfs:label "Rectification of defects description"@en ;
+    rdfs:label "Rectification text"@en ;
     skos:definition "Description of the rectification of defects."@en ;
     schema:domainIncludes wco:Defects ;
     schema:rangeIncludes xsd:string ;
@@ -3868,12 +3965,13 @@ wco:rectificationText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:referenceIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Guarantee reference identifier"@en ;
+    rdfs:label "Reference identifier"@en ;
     skos:definition "Identification of the undertaking given as a written guarantee in cash, bond, or by other such means in order to ensure that an obligation will be fulfilled by reference number."@en ;
     skos:scopeNote "Bank: Identification of the bank that is to receive the deposit for duties, taxes, and fees."@en ;
     skos:scopeNote "Payment: Identification of the payment of a duty or tax by reference number."@en ;
     schema:domainIncludes wco:Bank, wco:DeclarationGuarantee, wco:ObligationGuarantee, wco:Payment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "SWIFT Code, IBAN Code or International code list (e.g. DUNS, EAN) OR User code list"@en ;
     wco:xmlTag "ReferenceID" ;
     wco:jsonTag "referenceId" ;
     wco:attributeId "014", "100", "546" ;
@@ -3882,7 +3980,7 @@ wco:referenceIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:regionIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Departure region identifier"@en ;
+    rdfs:label "Region identifier"@en ;
     skos:definition "Identification of a country's subdivision of departure."@en ;
     skos:scopeNote "DestinationLocation: Identification of a country's subdivision of destination."@en ;
     skos:scopeNote "ExportCountry: Identification of country subdivision where goods begin their journey to export location."@en ;
@@ -3897,11 +3995,12 @@ wco:regionIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:registrationCountrySubdivisionCode a owl:DatatypeProperty ;
-    rdfs:label "State or province of registration of conveyance code"@en ;
+    rdfs:label "Registration country subdivision code"@en ;
     skos:definition "Code specifying the ISO for the country subdivision in which the means of transport is registered."@en ;
     skos:scopeNote "TransportEquipment: Code specifying the country sub-division of transport equipment registration."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:TransportEquipment ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "ISO 3166-2"@en ;
     wco:xmlTag "RegistrationCountrySubdivisionCode" ;
     wco:jsonTag "registrationCountrySubdivisionCode" ;
     wco:attributeId "290", "293" ;
@@ -3910,7 +4009,7 @@ wco:registrationCountrySubdivisionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:registrationIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transit operation registration identifier"@en ;
+    rdfs:label "Registration identifier"@en ;
     skos:definition "Identification of the number under which a transit operation is nationally/regionally registered."@en ;
     schema:domainIncludes wco:TransitOperation ;
     schema:rangeIncludes xsd:string ;
@@ -3921,11 +4020,12 @@ wco:registrationIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:regulationCode a owl:DatatypeProperty ;
-    rdfs:label "Dangerous goods regulations code"@en ;
+wco:regulationCode a owl:ObjectProperty ;
+    rdfs:label "Regulation code"@en ;
     skos:definition "Code specifying the agency responsible for a set of classifications."@en ;
     schema:domainIncludes wco:DangerousGoods ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:dangerous-goods-regulations-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8273"@en ;
     wco:xmlTag "RegulationCode" ;
     wco:jsonTag "regulationCode" ;
     wco:attributeId "505" ;
@@ -3934,7 +4034,7 @@ wco:regulationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:releaseDateTime a owl:DatatypeProperty ;
-    rdfs:label "Release date/time"@en ;
+    rdfs:label "Release date time"@en ;
     skos:definition "Date and time the goods have been released from government custody."@en ;
     schema:domainIncludes wco:Status ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3946,10 +4046,11 @@ wco:releaseDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:requestOverrideCode a owl:DatatypeProperty ;
-    rdfs:label "Error condition override code"@en ;
+    rdfs:label "Request override code"@en ;
     skos:definition "Code specifying a request to override automatic processing procedures."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "RequestOverrideCode" ;
     wco:jsonTag "requestOverrideCode" ;
     wco:attributeId "095" ;
@@ -3958,7 +4059,7 @@ wco:requestOverrideCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:requestedAssignmentDateTime a owl:DatatypeProperty ;
-    rdfs:label "Free trade zone commodity status assignment date/time"@en ;
+    rdfs:label "Requested assignment date time"@en ;
     skos:definition "Date and time of filing that corresponds to the current status of the commodity in the free trade zone (e.g.  the original admission filing, the filing of a status change request)."@en ;
     schema:domainIncludes wco:Status ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3970,7 +4071,7 @@ wco:requestedAssignmentDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:requestedInspectionDateTime a owl:DatatypeProperty ;
-    rdfs:label "Requested government service date/time"@en ;
+    rdfs:label "Requested inspection date time"@en ;
     skos:definition "Date and time requested by the government service requestor for service."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:dateTime ;
@@ -3986,6 +4087,7 @@ wco:resealCode a owl:DatatypeProperty ;
     skos:definition "Code specifying if the seal is original or reseal and the possible reason for reseal."@en ;
     schema:domainIncludes wco:Seal ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "ResealCode" ;
     wco:jsonTag "resealCode" ;
     wco:attributeId "491" ;
@@ -3993,11 +4095,12 @@ wco:resealCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:residenceCountryCode a owl:DatatypeProperty ;
+wco:residenceCountryCode a owl:ObjectProperty ;
     rdfs:label "Residence country code"@en ;
     skos:definition "Code specifying the country of residence of a person."@en ;
     schema:domainIncludes wco:PersonData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "ResidenceCountryCode" ;
     wco:jsonTag "residenceCountryCode" ;
     wco:attributeId "428" ;
@@ -4005,11 +4108,12 @@ wco:residenceCountryCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:responsibleAgencyCode a owl:DatatypeProperty ;
+wco:responsibleAgencyCode a owl:ObjectProperty ;
     rdfs:label "Responsible agency code"@en ;
     skos:definition "Code specifying the agency controlling the specification, maintenance and publication of the message type."@en ;
     schema:domainIncludes wco:MDIP ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:responsible-agency-code ;
+    wco:codeListBasis "UN/EDIFACT code list 0051"@en ;
     wco:xmlTag "ResponsibleAgencyCode" ;
     wco:jsonTag "responsibleAgencyCode" ;
     wco:attributeId "MD22" ;
@@ -4017,11 +4121,12 @@ wco:responsibleAgencyCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:responsibleCountryCode a owl:DatatypeProperty ;
+wco:responsibleCountryCode a owl:ObjectProperty ;
     rdfs:label "Responsible country code"@en ;
     skos:definition "Code specifying the country controlling the specification, maintenance and publication of the message type."@en ;
     schema:domainIncludes wco:MDIP ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:country-code ;
+    wco:codeListBasis "ISO 3166-1"@en ;
     wco:xmlTag "ResponsibleCountryCode" ;
     wco:jsonTag "responsibleCountryCode" ;
     wco:attributeId "MD21" ;
@@ -4030,7 +4135,7 @@ wco:responsibleCountryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:responsibleagencynameText a owl:DatatypeProperty ;
-    rdfs:label "Responsible agency name"@en ;
+    rdfs:label "Responsibleagencyname text"@en ;
     skos:definition "Name to identify the agency controlling the specification, maintenance and publication of the message type."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
@@ -4042,10 +4147,11 @@ wco:responsibleagencynameText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:resultCode a owl:DatatypeProperty ;
-    rdfs:label "Control results at departure code"@en ;
+    rdfs:label "Result code"@en ;
     skos:definition "Code specifying the results of the controls carried out by the authorized consignor prior to departure."@en ;
     schema:domainIncludes wco:TransitControl ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "ResultCode" ;
     wco:jsonTag "resultCode" ;
     wco:attributeId "235" ;
@@ -4054,10 +4160,11 @@ wco:resultCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:reviewPlaceIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Declaration review location identifier"@en ;
+    rdfs:label "Review place identifier"@en ;
     skos:definition "Identification of the location where the declaration is reviewed by appropriate government agency. This may be different from place where declaration is lodged, paid, or acquitted."@en ;
     schema:domainIncludes wco:Control ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
     wco:xmlTag "ReviewPlaceID" ;
     wco:jsonTag "reviewPlaceId" ;
     wco:attributeId "289" ;
@@ -4066,7 +4173,7 @@ wco:reviewPlaceIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:reviewPlaceNameText a owl:DatatypeProperty ;
-    rdfs:label "Declaration review location name"@en ;
+    rdfs:label "Review place name text"@en ;
     skos:definition "Name of the location where the declaration is reviewed by appropriate government agency. This may be different from place where declaration is lodged, paid, or acquitted."@en ;
     schema:domainIncludes wco:Control ;
     schema:rangeIncludes xsd:string ;
@@ -4083,6 +4190,9 @@ wco:roleCode a owl:DatatypeProperty ;
     skos:scopeNote "Warehouse: Code specifying the role of a warehouse."@en ;
     schema:domainIncludes wco:AEOMutualRecognitionParty, wco:Agent, wco:Applicant, wco:Assembler, wco:AssigningParty, wco:Authenticator, wco:AuthorisationHolder, wco:AuthorizedPerson, wco:Buyer, wco:Carrier, wco:CertificateOfResponsibilityHolder, wco:Certifier, wco:CompanySecurityOfficer, wco:Consignee, wco:Consignor, wco:Consolidator, wco:ConsortiumCarrier, wco:ContainerOperator, wco:ContainerTerminalOperator, wco:CrewMember, wco:DangerousGoodsContactParty, wco:Declarant, wco:Deconsolidator, wco:DeliveryDestinationParty, wco:Distiller, wco:Distributor, wco:DomesticDutyTaxParty, wco:DraymanOrLighterman, wco:EconomicOperator, wco:EquipmentOwner, wco:Exhibitor, wco:Exporter, wco:FeedlotParty, wco:GovernmentOfficer, wco:GovernmentServiceRequestor, wco:Grower, wco:ISPSResponsibleParty, wco:Importer, wco:InsuranceCompany, wco:IntermediateCarrier, wco:IntermediateConsignee, wco:LPCOAuthorizedParty, wco:LoadingProofParty, wco:Manufacturer, wco:MasterDataParty, wco:NonVesselOperatingCarrier, wco:NotifyParty, wco:Operator, wco:OrganicCertifyingOrganization, wco:Packer, wco:Payer, wco:PortFacilitySecurityOfficer, wco:Principal, wco:Processor, wco:Producer, wco:PropertyOperator, wco:PropertyOwner, wco:Recipient, wco:RecognizedSecurityOrganization, wco:RefundRecipientParty, wco:RepairParty, wco:RepresentativePerson, wco:ResponsibleGovernmentAgency, wco:RightHolder, wco:Seller, wco:Sender, wco:ShipChandler, wco:ShipSecurityOfficer, wco:Stevedore, wco:StuffingEstablishment, wco:Submitter, wco:SupplementaryDeclarant, wco:Supplier, wco:Surety, wco:TradeRole, wco:TradingParty, wco:TransitPrincipal, wco:TransportMeansOperator, wco:TransportMeansOwner, wco:TravelAgency, wco:UltimateConsignee, wco:UnloadingParty, wco:VehicleOwner, wco:Verifier, wco:Veterinarian, wco:Warehouse ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3035 For use with the EU CDM: - Code FR1 Importer - Code FR2 Customer - Code FR3 Tax representative - Code FR4 Holder of the deferred payment authorisation - Code FR5 Vendor (IOSS) - Code FR7 Taxable person or of the person liable for payment of VAT"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3035 User code list"@en ;
     wco:xmlTag "RoleCode" ;
     wco:jsonTag "roleCode" ;
     wco:attributeId "594", "L119", "R005" ;
@@ -4091,10 +4201,11 @@ wco:roleCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:ruleCode a owl:DatatypeProperty ;
-    rdfs:label "Rule of origin code"@en ;
+    rdfs:label "Rule code"@en ;
     skos:definition "Code specifying the criterion of determination as to whether a good qualifies as an originating good in accordance with the rules."@en ;
     schema:domainIncludes wco:Origin ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "RuleCode" ;
     wco:jsonTag "ruleCode" ;
     wco:attributeId "436" ;
@@ -4103,7 +4214,7 @@ wco:ruleCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:sealsAffixedQuantity a owl:ObjectProperty ;
-    rdfs:label "Number of seals"@en ;
+    rdfs:label "Seals affixed quantity"@en ;
     skos:definition "Quantity specifying the number of seals affixed."@en ;
     schema:domainIncludes wco:Declaration, wco:TransportEquipment ;
     schema:rangeIncludes wco:Quantity ;
@@ -4115,7 +4226,7 @@ wco:sealsAffixedQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:seatIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Seat or berth identifier"@en ;
+    rdfs:label "Seat identifier"@en ;
     skos:definition "Identification of an assigned seat or berth."@en ;
     schema:domainIncludes wco:Reservation ;
     schema:rangeIncludes xsd:string ;
@@ -4131,6 +4242,7 @@ wco:securityLevelCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the security level."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:Itinerary ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "SecurityLevelCode" ;
     wco:jsonTag "securityLevelCode" ;
     wco:attributeId "302" ;
@@ -4143,6 +4255,7 @@ wco:sensitiveGoodsCode a owl:DatatypeProperty ;
     skos:definition "Code specifying goods presenting increased risks of fraud in the course of a transit procedure in accordance with national law."@en ;
     schema:domainIncludes wco:Commodity ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 170, 171 and 172) OR User code list"@en ;
     wco:xmlTag "SensitiveGoodsCode" ;
     wco:jsonTag "sensitiveGoodsCode" ;
     wco:attributeId "234" ;
@@ -4151,7 +4264,7 @@ wco:sensitiveGoodsCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:sequenceNumeric a owl:DatatypeProperty ;
-    rdfs:label "Sequence number"@en ;
+    rdfs:label "Sequence numeric"@en ;
     skos:definition "Number indicating the position in a sequence."@en ;
     schema:domainIncludes wco:AdditionalIdentifier, wco:AdditionalInformation, wco:ArrivalConveyanceFacility, wco:ArrivalLocation, wco:Bunker, wco:Cabin, wco:CallPurpose, wco:CarriedTransportEquipment, wco:Commodity, wco:CommunicationMetaData, wco:ConnectionTransportMeans, wco:Consignment, wco:ConsignmentItem, wco:DepartureConveyanceFacility, wco:DutyTaxFeeAssessmentBasis, wco:Effects, wco:EntryOffice, wco:GoodsItem, wco:GoodsShipment, wco:HouseConsignment, wco:Invoice, wco:InvoiceLine, wco:Itinerary, wco:Packaging, wco:PersonOnBoard, wco:Pointer, wco:Process, wco:ProductCharacteristics, wco:Seal, wco:ShipToShipActivity, wco:StoresItem, wco:TransitOperation, wco:TransportEquipment, wco:WasteItem ;
     schema:rangeIncludes xsd:decimal ;
@@ -4163,7 +4276,7 @@ wco:sequenceNumeric a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:signedDateTime a owl:DatatypeProperty ;
-    rdfs:label "Program partner signed date/time"@en ;
+    rdfs:label "Signed date time"@en ;
     skos:definition "Date and time the country’s program or partner profile was signed."@en ;
     schema:domainIncludes wco:ProgramPartnerProfile ;
     schema:rangeIncludes xsd:dateTime ;
@@ -4175,7 +4288,7 @@ wco:signedDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:sizeMeasure a owl:ObjectProperty ;
-    rdfs:label "Binary file size"@en ;
+    rdfs:label "Size measure"@en ;
     skos:definition "Measure of the size of this binary file."@en ;
     skos:scopeNote "Commodity: Measure specifying the dimensions or weight of the commodity."@en ;
     schema:domainIncludes wco:BinaryFile, wco:Commodity ;
@@ -4188,7 +4301,7 @@ wco:sizeMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:specificTaxBaseQuantity a owl:ObjectProperty ;
-    rdfs:label "Duty/tax/fee assessment basis in quantity"@en ;
+    rdfs:label "Specific tax base quantity"@en ;
     skos:definition "Quantity specifying the amount on which duty or tax or fee will be assessed."@en ;
     schema:domainIncludes wco:DutyTaxFee, wco:SpecificTaxBaseRate, wco:TaxBase ;
     schema:rangeIncludes wco:Quantity ;
@@ -4200,10 +4313,11 @@ wco:specificTaxBaseQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:specificationCode a owl:DatatypeProperty ;
-    rdfs:label "Role code"@en ;
+    rdfs:label "Specification code"@en ;
     skos:definition "Code specifying the role assigned to the government agency office."@en ;
     schema:domainIncludes wco:Role ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "SpecificationCode" ;
     wco:jsonTag "specificationCode" ;
     wco:attributeId "576" ;
@@ -4212,7 +4326,7 @@ wco:specificationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:splitIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Split-consignment identifier"@en ;
+    rdfs:label "Split identifier"@en ;
     skos:definition "Identification of a split-consignment in a transit declaration."@en ;
     schema:domainIncludes wco:Consignment ;
     schema:rangeIncludes xsd:string ;
@@ -4224,7 +4338,7 @@ wco:splitIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:startDateTime a owl:DatatypeProperty ;
-    rdfs:label "Ship-to-ship activity start date/time"@en ;
+    rdfs:label "Start date time"@en ;
     skos:definition "Date and time of the start of a ship-to-ship activity period."@en ;
     schema:domainIncludes wco:ShipToShipActivity ;
     schema:rangeIncludes xsd:dateTime ;
@@ -4236,7 +4350,7 @@ wco:startDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:statementAmountAmount a owl:ObjectProperty ;
-    rdfs:label "Additional statement amount"@en ;
+    rdfs:label "Statement amount amount"@en ;
     skos:definition "Amount expressed on the additional statement."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes wco:Amount ;
@@ -4248,10 +4362,11 @@ wco:statementAmountAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:statementCode a owl:DatatypeProperty ;
-    rdfs:label "Additional statement code"@en ;
+    rdfs:label "Statement code"@en ;
     skos:definition "Code specifying the form of an additional statement."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "StatementCode" ;
     wco:jsonTag "statementCode" ;
     wco:attributeId "226" ;
@@ -4260,7 +4375,7 @@ wco:statementCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:statementDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Additional statement description"@en ;
+    rdfs:label "Statement description text"@en ;
     skos:definition "Description of an additional statement."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:string ;
@@ -4272,7 +4387,7 @@ wco:statementDescriptionText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:statementIndicator a owl:DatatypeProperty ;
-    rdfs:label "Additional statement indicator"@en ;
+    rdfs:label "Statement indicator"@en ;
     skos:definition "Indicator of an additional statement."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
     schema:rangeIncludes xsd:boolean ;
@@ -4283,11 +4398,12 @@ wco:statementIndicator a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:statementTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Additional statement type code"@en ;
+wco:statementTypeCode a owl:ObjectProperty ;
+    rdfs:label "Statement type code"@en ;
     skos:definition "Code specifying the subject of the additional statement."@en ;
     schema:domainIncludes wco:AdditionalInformation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:statement-type-code ;
+    wco:codeListBasis "UN/EDIFACT code list 4451"@en ;
     wco:xmlTag "StatementTypeCode" ;
     wco:jsonTag "statementTypeCode" ;
     wco:attributeId "369" ;
@@ -4296,7 +4412,7 @@ wco:statementTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:statisticalValueAmount a owl:ObjectProperty ;
-    rdfs:label "Statistical amount"@en ;
+    rdfs:label "Statistical value amount"@en ;
     skos:definition "Amount indicating the value declared for statistical purposes of those goods in a consignment which have the same statistical heading."@en ;
     schema:domainIncludes wco:GoodsItem ;
     schema:rangeIncludes wco:Amount ;
@@ -4307,12 +4423,14 @@ wco:statisticalValueAmount a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:statusCode a owl:DatatypeProperty ;
-    rdfs:label "Document/message status code"@en ;
+wco:statusCode a owl:ObjectProperty ;
+    rdfs:label "Status code"@en ;
     skos:definition "Code specifying the status of a document."@en ;
     skos:scopeNote "PersonData: Code specifying the status of a person on board."@en ;
     schema:domainIncludes wco:AdditionalDocument, wco:Authorization, wco:Declaration, wco:ObligationGuarantee, wco:PersonData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:document-status-code, wco-cl:person-status-code ;
+    wco:codeListBasis "UN/EDIFACT code list 1373"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3035 UN/EDIFACT code list 7365"@en ;
     wco:xmlTag "StatusCode" ;
     wco:jsonTag "statusCode" ;
     wco:attributeId "429", "D047" ;
@@ -4321,10 +4439,11 @@ wco:statusCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:statusNameCode a owl:DatatypeProperty ;
-    rdfs:label "Declaration processing status code"@en ;
+    rdfs:label "Name code"@en ;
     skos:definition "Code specifying the processing status of a document."@en ;
     schema:domainIncludes wco:Status ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 4405 OR User code list"@en ;
     wco:xmlTag "NameCode" ;
     wco:jsonTag "nameCode" ;
     wco:attributeId "379" ;
@@ -4333,7 +4452,7 @@ wco:statusNameCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:storageRequirementMeasure a owl:ObjectProperty ;
-    rdfs:label "Storage requirement temperature"@en ;
+    rdfs:label "Storage requirement measure"@en ;
     skos:definition "Temperature required to be maintained for a commodity, or in a container, or in a conveyance."@en ;
     schema:domainIncludes wco:Temperature ;
     schema:rangeIncludes wco:Measure ;
@@ -4345,7 +4464,7 @@ wco:storageRequirementMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:streetNameText a owl:DatatypeProperty ;
-    rdfs:label "Street name"@en ;
+    rdfs:label "Street name text"@en ;
     skos:definition "Name of a street."@en ;
     schema:domainIncludes wco:Address ;
     schema:rangeIncludes xsd:string ;
@@ -4356,11 +4475,12 @@ wco:streetNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:supplierPartyTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Equipment supplier type code"@en ;
+wco:supplierPartyTypeCode a owl:ObjectProperty ;
+    rdfs:label "Supplier party type code"@en ;
     skos:definition "Code specifying a type of party that is the supplier of transport equipment."@en ;
     schema:domainIncludes wco:TransportEquipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-equipment-supplier-party-type-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8077"@en ;
     wco:xmlTag "SupplierPartyTypeCode" ;
     wco:jsonTag "supplierPartyTypeCode" ;
     wco:attributeId "151" ;
@@ -4369,10 +4489,11 @@ wco:supplierPartyTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:supportingRoleIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Supporting role context identifier"@en ;
+    rdfs:label "Supporting role identifier"@en ;
     skos:definition "Identification of other significant parties that will be using the data in the messages. Determine their role in the overall process."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "To be supplied by the producer of My IP. Default value \"ALL\" if no restrictions apply."@en ;
     wco:xmlTag "SupportingRoleID" ;
     wco:jsonTag "supportingRoleId" ;
     wco:attributeId "MD15" ;
@@ -4380,11 +4501,12 @@ wco:supportingRoleIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:syntaxIdentificationCode a owl:DatatypeProperty ;
+wco:syntaxIdentificationCode a owl:ObjectProperty ;
     rdfs:label "Syntax identification code"@en ;
     skos:definition "Code specifying the agency controlling a syntax and syntax level used in an interchange."@en ;
     schema:domainIncludes wco:CommunicationMetaData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:syntax-identifier-code ;
+    wco:codeListBasis "UN/EDIFACT code list 0001"@en ;
     wco:xmlTag "SyntaxIdentificationCode" ;
     wco:jsonTag "syntaxIdentificationCode" ;
     wco:attributeId "MD05" ;
@@ -4392,11 +4514,12 @@ wco:syntaxIdentificationCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:syntaxVersionCode a owl:DatatypeProperty ;
+wco:syntaxVersionCode a owl:ObjectProperty ;
     rdfs:label "Syntax version code"@en ;
     skos:definition "Code specifying the version number of the syntax identified in the syntax identifier (e.g. 0001)."@en ;
     schema:domainIncludes wco:CommunicationMetaData ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:syntax-version-code ;
+    wco:codeListBasis "UN/EDIFACT code list 0002"@en ;
     wco:xmlTag "SyntaxVersionCode" ;
     wco:jsonTag "syntaxVersionCode" ;
     wco:attributeId "MD06" ;
@@ -4405,10 +4528,11 @@ wco:syntaxVersionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:systemCapabilitiesIdentifier a owl:DatatypeProperty ;
-    rdfs:label "System capabilities context identifier"@en ;
+    rdfs:label "System capabilities identifier"@en ;
     skos:definition "Identification of major restrictions derived from system, a class of systems or standard in the business situation. Identify the type of system."@en ;
     schema:domainIncludes wco:ContextMetaData ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "To be supplied by the producer of My IP. Default value \"ALL\" if no restrictions apply."@en ;
     wco:xmlTag "SystemCapabilitiesID" ;
     wco:jsonTag "systemCapabilitiesId" ;
     wco:attributeId "MD16" ;
@@ -4429,7 +4553,7 @@ wco:tagIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:tareWeightMeasure a owl:ObjectProperty ;
-    rdfs:label "Tare weight"@en ;
+    rdfs:label "Tare weight measure"@en ;
     skos:definition "Weight (mass) of transport equipment including permanent equipment but excluding goods and loose accessories."@en ;
     schema:domainIncludes wco:TransportEquipmentMeasure ;
     schema:rangeIncludes wco:Measure ;
@@ -4440,11 +4564,12 @@ wco:tareWeightMeasure a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:tariffClassSpecificationCode a owl:DatatypeProperty ;
+wco:tariffClassSpecificationCode a owl:ObjectProperty ;
     rdfs:label "Tariff class specification code"@en ;
     skos:definition "Code specifying an applicable rate or tariff class."@en ;
     schema:domainIncludes wco:DutyTaxFee, wco:Rate ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:tariff-class-specification-code ;
+    wco:codeListBasis "UN/EDIFACT code list 5243"@en ;
     wco:xmlTag "TariffClassSpecificationCode" ;
     wco:jsonTag "tariffClassSpecificationCode" ;
     wco:attributeId "496" ;
@@ -4453,7 +4578,7 @@ wco:tariffClassSpecificationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:tariffQuantity a owl:ObjectProperty ;
-    rdfs:label "Tariff/supplementary quantity"@en ;
+    rdfs:label "Tariff quantity"@en ;
     skos:definition "Quantity specifying the goods in the unit as required by customs for tariff, statistical, fiscal purposes or as indicated in \"type\"."@en ;
     schema:domainIncludes wco:GoodsMeasure ;
     schema:rangeIncludes wco:Quantity ;
@@ -4489,7 +4614,7 @@ wco:taxAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:taxAssessedAmount a owl:ObjectProperty ;
-    rdfs:label "Duty/tax/fee reduced assessed amount"@en ;
+    rdfs:label "Tax assessed amount"@en ;
     skos:definition "Amount of assessed duty, tax or fee due (includes all types of charges and duties) and amount of reduction (if applicable). Assessed per duty, tax or fee type by item and/or declaration."@en ;
     schema:domainIncludes wco:Payment, wco:TaxCalculation ;
     schema:rangeIncludes wco:Amount ;
@@ -4501,7 +4626,7 @@ wco:taxAssessedAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:taxRateNumeric a owl:DatatypeProperty ;
-    rdfs:label "Duty/tax/fee rate"@en ;
+    rdfs:label "Tax rate numeric"@en ;
     skos:definition "Rate of duty, tax, or fee applicable to commodities or of tax applicable to services."@en ;
     schema:domainIncludes wco:DutyTaxFee, wco:Rate, wco:TaxBase ;
     schema:rangeIncludes xsd:decimal ;
@@ -4513,7 +4638,7 @@ wco:taxRateNumeric a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:taxationDateTime a owl:DatatypeProperty ;
-    rdfs:label "Taxation date/time"@en ;
+    rdfs:label "Taxation date time"@en ;
     skos:definition "Date and time on which tax or fee is due or calculated."@en ;
     schema:domainIncludes wco:DutyTaxFee ;
     schema:rangeIncludes xsd:dateTime ;
@@ -4525,7 +4650,7 @@ wco:taxationDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:technicalNameText a owl:DatatypeProperty ;
-    rdfs:label "Dangerous goods technical name"@en ;
+    rdfs:label "Technical name text"@en ;
     skos:definition "Chemical or biological name of the referenced dangerous goods."@en ;
     schema:domainIncludes wco:DangerousGoods ;
     schema:rangeIncludes xsd:string ;
@@ -4549,7 +4674,7 @@ wco:testIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:text a owl:DatatypeProperty ;
-    rdfs:label "Issuer name"@en ;
+    rdfs:label "Text"@en ;
     skos:definition "Name of the party having issued the document."@en ;
     skos:scopeNote "AdditionalIdentifier: Additional name of a party (e.g. short name, operating name)."@en ;
     schema:domainIncludes wco:AdditionalIdentifier, wco:Issuer ;
@@ -4562,7 +4687,7 @@ wco:text a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:titleText a owl:DatatypeProperty ;
-    rdfs:label "Binary file title"@en ;
+    rdfs:label "Title text"@en ;
     skos:definition "Title of this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -4574,7 +4699,7 @@ wco:titleText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:tolerancePercentageNumeric a owl:DatatypeProperty ;
-    rdfs:label "Tolerance percentage"@en ;
+    rdfs:label "Tolerance percentage numeric"@en ;
     skos:definition "Percentage of allowable tolerance (e.g. In order to take into account trade-related issues such as weight differences and moisture increase, an importer could enter up to 5% more than for which a certificate was issued. The number 5 will be recorded. Thus, on a certificate issued for 1000 tons, 1050 tons could be realized. In derogation from the general rule, preferential import arrangements may contain provisions showing that there is no tolerance. In such cases, the number 0 is entered)."@en ;
     schema:domainIncludes wco:GoodsMeasure ;
     schema:rangeIncludes xsd:decimal ;
@@ -4586,7 +4711,7 @@ wco:tolerancePercentageNumeric a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:totalPackageQuantity a owl:ObjectProperty ;
-    rdfs:label "Total number of packages"@en ;
+    rdfs:label "Total package quantity"@en ;
     skos:definition "Quantity specifying the total number of packages of the entire document (e.g. declaration/consignment)."@en ;
     schema:domainIncludes wco:Consignment, wco:Declaration ;
     schema:rangeIncludes wco:Quantity ;
@@ -4598,7 +4723,7 @@ wco:totalPackageQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:traderAssignedReferenceIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Trader reference identifier"@en ;
+    rdfs:label "Trader assigned reference identifier"@en ;
     skos:definition "Identification of the number assigned by a declarant such as a trader reference or a carrier reference."@en ;
     schema:domainIncludes wco:UCR ;
     schema:rangeIncludes xsd:string ;
@@ -4609,11 +4734,12 @@ wco:traderAssignedReferenceIdentifier a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:transactionNatureCode a owl:DatatypeProperty ;
-    rdfs:label "Nature of transaction code"@en ;
+wco:transactionNatureCode a owl:ObjectProperty ;
+    rdfs:label "Transaction nature code"@en ;
     skos:definition "Code specifying the nature of a transaction associated with a shipment."@en ;
     schema:domainIncludes wco:GoodsItem, wco:GoodsShipment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transaction-nature-type-code ;
+    wco:codeListBasis "WCO code list/TransactionNatureTypeCode (n1) + User code (n1) Remark: * First digit indicates WCO code table value; * Second digit can be used as additional user code to further define first digit"@en ;
     wco:xmlTag "TransactionNatureCode" ;
     wco:jsonTag "transactionNatureCode" ;
     wco:attributeId "103" ;
@@ -4621,11 +4747,12 @@ wco:transactionNatureCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:transitIndicator a owl:DatatypeProperty ;
-    rdfs:label "Transit passenger indicator code"@en ;
+wco:transitIndicator a owl:ObjectProperty ;
+    rdfs:label "Transit indicator"@en ;
     skos:definition "Code specifying if a person is a transit passenger."@en ;
     schema:domainIncludes wco:PersonOnBoard ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transit-passenger-indicator-code ;
+    wco:codeListBasis "WCO code list/TransitPassengerIndicatorCode"@en ;
     wco:xmlTag "TransitIndicator" ;
     wco:jsonTag "transitIndicator" ;
     wco:attributeId "431" ;
@@ -4633,11 +4760,12 @@ wco:transitIndicator a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:transportSplitCode a owl:DatatypeProperty ;
-    rdfs:label "Carrier split consignment code"@en ;
+wco:transportSplitCode a owl:ObjectProperty ;
+    rdfs:label "Transport split code"@en ;
     skos:definition "Code specifying split consignment for each load assigned by a carrier."@en ;
     schema:domainIncludes wco:Consignment ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:carrier-split-consignment-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7365 subset (codes 156 and 157)"@en ;
     wco:xmlTag "TransportSplitCode" ;
     wco:jsonTag "transportSplitCode" ;
     wco:attributeId "011" ;
@@ -4646,7 +4774,7 @@ wco:transportSplitCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:travelGroupNameText a owl:DatatypeProperty ;
-    rdfs:label "Travel group name"@en ;
+    rdfs:label "Travel group name text"@en ;
     skos:definition "Name of the travelling group."@en ;
     schema:domainIncludes wco:Reservation ;
     schema:rangeIncludes xsd:string ;
@@ -4657,8 +4785,8 @@ wco:travelGroupNameText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:typeCode a owl:DatatypeProperty ;
-    rdfs:label "Control office type code"@en ;
+wco:typeCode a owl:ObjectProperty ;
+    rdfs:label "Type code"@en ;
     skos:definition "Code specifying the name of a document."@en ;
     skos:scopeNote "AEOProgramProfile: Code specifying whether the country’s Authorized Economic Operator (AEO) program is a security based program, compliance based, or both."@en ;
     skos:scopeNote "Action: Code specifying the type of action to be taken."@en ;
@@ -4709,7 +4837,25 @@ wco:typeCode a owl:DatatypeProperty ;
     skos:scopeNote "Warehouse: Code specifying the type of warehouse."@en ;
     skos:scopeNote "WasteDeliveryLocation: Code specifying the type of place/port where waste of any type was or will be delivered (e.g. last or next port)."@en ;
     schema:domainIncludes wco:AEOProgramProfile, wco:AIP, wco:Action, wco:AdditionalDocument, wco:AdditionalReference, wco:Address, wco:ArrivalTransportMeans, wco:AssociatedTransportDocument, wco:Authentication, wco:Authorization, wco:BinaryFile, wco:BorderTransportMeans, wco:Characteristic, wco:Communication, wco:Control, wco:ControlOffice, wco:Declaration, wco:DepartureTransportMeans, wco:DutyTaxFee, wco:Event, wco:ExaminationLocation, wco:FacilityLocation, wco:GoodsLocation, wco:HarvestingTransportMeans, wco:IPR, wco:Invoice, wco:LPCO, wco:MasterDataRecipient, wco:MasterDataSender, wco:OperationTermination, wco:Origin, wco:Packaging, wco:PassiveTransportMeans, wco:Payment, wco:PersonData, wco:PreviousDocument, wco:ProductCharacteristics, wco:ProductCriteriaConformance, wco:ProgramPartnerProfile, wco:Seal, wco:SealingParty, wco:Source, wco:SupportingDocument, wco:TotalPersons, wco:TranshipmentLocation, wco:TransitTransportMeans, wco:TransportContractDocument, wco:TravelDocument, wco:Warehouse, wco:WasteDeliveryLocation ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:action-code, wco-cl:address-type-code, wco-cl:aeo-program-type-code, wco-cl:communication-means-type-code, wco-cl:government-agency-type-code, wco-cl:package-type-code, wco-cl:payment-type-code, wco-cl:program-partner-profile-type-code, wco-cl:reference-type-code, wco-cl:sealing-party-type-code, wco-cl:transport-means-type-code, xsd:string ;
+    wco:codeListBasis "UN/ECE Recommendation 21 Annex VI"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 1001 OR User code list"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 1153. For EU CDM usage: Additional references must be entered in the form of a code defined in Title I. The list of additional references and their respective codes can be found in the TARIC database, their format is a1an3. Member States may define national codes, national codes must have the format n1an3"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 1229 OR User code list"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3035"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3131"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3155"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3227"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3227 For use with the EU CDM: - Code A Designated location - Code B Authorised place - Code C Approved place - Code D Other"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 3227 OR User code list"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 5153 OR User code list"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 9303"@en ;
+    wco:codeListBasis "UN/EDIFACT code list 9415"@en ;
+    wco:codeListBasis "UN/Recommendation 28"@en ;
+    wco:codeListBasis "User code list"@en ;
+    wco:codeListBasis "WCO code list/AEOProgramTypeCode"@en ;
+    wco:codeListBasis "WCO code list/PaymentTypeCode"@en ;
+    wco:codeListBasis "WCO code list/ProgramPartnerProfileTypeCode"@en ;
     wco:xmlTag "Type", "TypeCode" ;
     wco:jsonTag "type", "typeCode", "typeCode typeCode" ;
     wco:attributeId "113", "141", "253", "260", "305", "397", "407", "410", "449", "453", "454", "458", "501", "514", "515", "547", "564", "580", "610", "623", "629", "634", "D006", "D009", "D013", "D019", "D024", "D025", "D037", "D059", "D061", "D064", "G016", "G018", "G024", "L047", "L110", "L111", "L112", "L113", "L118", "T008", "T009", "T010", "T011", "T017", "T036" ;
@@ -4718,7 +4864,7 @@ wco:typeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:typeDescriptionText a owl:DatatypeProperty ;
-    rdfs:label "Commodity process type description"@en ;
+    rdfs:label "Type description text"@en ;
     skos:definition "Description of the production method or other process applied to the commodity."@en ;
     schema:domainIncludes wco:Process ;
     schema:rangeIncludes xsd:string ;
@@ -4729,11 +4875,12 @@ wco:typeDescriptionText a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:core ;
     wco:termStatus ts:active .
 
-wco:typeIdentificationCode a owl:DatatypeProperty ;
-    rdfs:label "Commodity process type identification code"@en ;
+wco:typeIdentificationCode a owl:ObjectProperty ;
+    rdfs:label "Type identification code"@en ;
     skos:definition "Code specifying the process or production associated with the commodity (e.g. method of growing, pretreatment, etc.)."@en ;
     schema:domainIncludes wco:Process ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:commodity-process-type-identification-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7187"@en ;
     wco:xmlTag "TypeIdentificationCode" ;
     wco:jsonTag "typeIdentificationCode" ;
     wco:attributeId "340" ;
@@ -4742,7 +4889,7 @@ wco:typeIdentificationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:typeIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Cabin type identifier"@en ;
+    rdfs:label "Type identifier"@en ;
     skos:definition "Identification of the type of cabin or room on board."@en ;
     schema:domainIncludes wco:Cabin ;
     schema:rangeIncludes xsd:string ;
@@ -4754,7 +4901,7 @@ wco:typeIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:undgIdentifier a owl:DatatypeProperty ;
-    rdfs:label "United Nations Dangerous Goods (UNDG) identifier"@en ;
+    rdfs:label "UNDG identifier"@en ;
     skos:definition "Identification of the unique serial number assigned within the United Nations to substances and articles contained in a list of the dangerous goods most commonly carried."@en ;
     schema:domainIncludes wco:DangerousGoods ;
     schema:rangeIncludes xsd:string ;
@@ -4766,7 +4913,7 @@ wco:undgIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:uriIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Binary file URI identifier"@en ;
+    rdfs:label "URI identifier"@en ;
     skos:definition "Identification of the Uniform Resource Identifier (URI) for this binary file."@en ;
     schema:domainIncludes wco:BinaryFile ;
     schema:rangeIncludes xsd:string ;
@@ -4778,7 +4925,7 @@ wco:uriIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:usedQuantity a owl:ObjectProperty ;
-    rdfs:label "Control quantity"@en ;
+    rdfs:label "Used quantity"@en ;
     skos:definition "Quantity specifying the control or quarantine purposes."@en ;
     schema:domainIncludes wco:Control ;
     schema:rangeIncludes wco:Quantity ;
@@ -4790,10 +4937,11 @@ wco:usedQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:validationCode a owl:DatatypeProperty ;
-    rdfs:label "Error code"@en ;
+    rdfs:label "Validation code"@en ;
     skos:definition "Code specifying a data validation error."@en ;
     schema:domainIncludes wco:Error ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "ValidationCode" ;
     wco:jsonTag "validationCode" ;
     wco:attributeId "377" ;
@@ -4802,7 +4950,7 @@ wco:validationCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:validityDurationQuantity a owl:ObjectProperty ;
-    rdfs:label "Requested validity period quantity"@en ;
+    rdfs:label "Validity duration quantity"@en ;
     skos:definition "Quantity specifying the requested validity expressed in days (i.e., it will be a number of days indicated in the data field and not a period expressed as \"from ? until ?\")."@en ;
     schema:domainIncludes wco:Control, wco:Declaration, wco:TravelDocument ;
     schema:rangeIncludes wco:Quantity ;
@@ -4814,7 +4962,7 @@ wco:validityDurationQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:valueAmount a owl:ObjectProperty ;
-    rdfs:label "Guarantee amount"@en ;
+    rdfs:label "Value amount"@en ;
     skos:definition "Amount indicating the total value of the guarantee."@en ;
     skos:scopeNote "Commodity: Amount indicating the value of the commodity (not to be used for customs valuation purposes)."@en ;
     skos:scopeNote "Consignment: Amount declared for customs purposes of those goods in a consignment whether or not they are subject to the same customs procedure, tariff/statistical heading, country information and duty regime."@en ;
@@ -4828,10 +4976,11 @@ wco:valueAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:valueCode a owl:DatatypeProperty ;
-    rdfs:label "Characteristic value code"@en ;
+    rdfs:label "Value code"@en ;
     skos:definition "Code specifying the form of a characteristic value."@en ;
     schema:domainIncludes wco:Characteristic ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/EDIFACT code list 7111 / User code list"@en ;
     wco:xmlTag "ValueCode" ;
     wco:jsonTag "valueCode" ;
     wco:attributeId "455" ;
@@ -4853,7 +5002,7 @@ wco:versionIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:volumeMeasure a owl:ObjectProperty ;
-    rdfs:label "Package volume"@en ;
+    rdfs:label "Volume measure"@en ;
     skos:definition "Volume of the package."@en ;
     schema:domainIncludes wco:Packaging ;
     schema:rangeIncludes wco:Measure ;
@@ -4869,6 +5018,7 @@ wco:wasteTypeCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the type of waste being delivered."@en ;
     schema:domainIncludes wco:WasteItem ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "To be defined"@en ;
     wco:xmlTag "WasteTypeCode" ;
     wco:jsonTag "wasteTypeCode" ;
     wco:attributeId "532" ;
@@ -4881,6 +5031,7 @@ wco:wcoCategoryCode a owl:DatatypeProperty ;
     skos:definition "Code specifying the category within the WCO Data Model."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "WCO code list/WCOCategory"@en ;
     wco:xmlTag "WCOCategoryCode" ;
     wco:jsonTag "wcoCategoryCode" ;
     wco:attributeId "MD18" ;
@@ -4889,10 +5040,11 @@ wco:wcoCategoryCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:wcoDataModelVersionCode a owl:DatatypeProperty ;
-    rdfs:label "WCO Data Model version code"@en ;
+    rdfs:label "WCO data model version code"@en ;
     skos:definition "Code specifying the version of the WCO Data Model (e.g. 3.40)."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "WCO code list/WCODataModelVersion"@en ;
     wco:xmlTag "WCODataModelVersionCode" ;
     wco:jsonTag "wcoDataModelVersionCode" ;
     wco:attributeId "MD17" ;
@@ -4901,10 +5053,11 @@ wco:wcoDataModelVersionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:wcoTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Message type code"@en ;
+    rdfs:label "WCO type code"@en ;
     skos:definition "Code specifying the WCO Type."@en ;
     schema:domainIncludes wco:MDIP ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "WCO code list/WCOType"@en ;
     wco:xmlTag "WCOTypeCode" ;
     wco:jsonTag "wcoTypeCode" ;
     wco:attributeId "MD19" ;
@@ -4913,7 +5066,7 @@ wco:wcoTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:weightMeasure a owl:ObjectProperty ;
-    rdfs:label "Package weight"@en ;
+    rdfs:label "Weight measure"@en ;
     skos:definition "Weight of a package excluding all outer packing (e.g. 1 carton and its contents alone, without any further outer packaging, such as pallet and wrapping or banding)."@en ;
     schema:domainIncludes wco:Packaging ;
     schema:rangeIncludes wco:Measure ;
@@ -4925,7 +5078,7 @@ wco:weightMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:widthMeasure a owl:ObjectProperty ;
-    rdfs:label "Means of transport width"@en ;
+    rdfs:label "Width measure"@en ;
     skos:definition "Maximum distance from side to side of the means of transport."@en ;
     skos:scopeNote "Packaging: Width of the package."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:Packaging ;

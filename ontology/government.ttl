@@ -213,10 +213,11 @@ wco:TransitOperationTerminationOffice a owl:Class ;
 # --------------------------------------------------------------------------
 
 wco:nameCode a owl:DatatypeProperty ;
-    rdfs:label "Responsible government agency identifier"@en ;
+    rdfs:label "Name code"@en ;
     skos:definition "Identification of the government agency, responsible for regulatory and statutory obligations."@en ;
     schema:domainIncludes wco:ResponsibleGovernmentAgency ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/LOCODE + User codes"@en ;
     wco:xmlTag "NameCode" ;
     wco:jsonTag "nameCode" ;
     wco:attributeId "G007" ;
@@ -225,7 +226,7 @@ wco:nameCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:validityEndDateTime a owl:DatatypeProperty ;
-    rdfs:label "Validity end date/time"@en ;
+    rdfs:label "Validity end date time"@en ;
     skos:definition "Date and time when the government agency office will no longer be operational."@en ;
     schema:domainIncludes wco:MasterDataOffice ;
     schema:rangeIncludes xsd:dateTime ;
@@ -237,7 +238,7 @@ wco:validityEndDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:validityStartDateTime a owl:DatatypeProperty ;
-    rdfs:label "Validity start date/time"@en ;
+    rdfs:label "Validity start date time"@en ;
     skos:definition "Date and time when the government agency office started to be operational."@en ;
     schema:domainIncludes wco:MasterDataOffice ;
     schema:rangeIncludes xsd:dateTime ;

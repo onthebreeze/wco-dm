@@ -22,7 +22,7 @@ import re
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from _names import camel, class_name, local_name, split_den
+from _names import camel, class_name, label_from_den, local_name, split_den
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INT = ROOT / "intermediate"
@@ -63,13 +63,22 @@ def code_list_slug(name):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
-def resolve_range(attr, code_list_slugs):
-    """The range of a property: a code list, a value object, or an xsd type."""
+def norm_basis(text):
+    return " ".join((text or "").split()).strip().lower()
+
+
+def resolve_range(attr, code_list_slugs, by_basis=None):
+    """The range of a property: a code list, a value object, or an xsd type.
+
+    The library names a code list by the basis it draws on rather than by the register's name for
+    it, so the join is on that basis string. Twenty-six register entries share the basis "User code
+    list" and could not be told apart, so a reference is only turned into a link when exactly one
+    register entry carries that basis. The rest keep the reference as text."""
     cdt = (attr.get("core_data_type") or "").strip()
     if cdt in ("Code", "Identifier") and attr.get("code_list"):
-        slug = code_list_slug(attr["code_list"].split("\n")[0])
-        if slug in code_list_slugs:
-            return f"wco-cl:{slug}"
+        hit = (by_basis or {}).get(norm_basis(attr["code_list"]))
+        if hit and len(hit) == 1:
+            return f"wco-cl:{hit[0]}"
     if cdt in VALUE_OBJECT_OF:
         return f"wco:{VALUE_OBJECT_OF[cdt]}"
     if cdt in ("Code", "Identifier"):
@@ -111,6 +120,10 @@ def main():
     ONT.mkdir(exist_ok=True)
     MAP.mkdir(exist_ok=True)
     cl_slugs = {code_list_slug(c["name"]) for c in code_lists}
+    by_basis = collections.defaultdict(list)
+    for c in code_lists:
+        if c.get("basis"):
+            by_basis[norm_basis(c["basis"])].append(code_list_slug(c["name"]))
 
     # --- properties: one IRI per concept, domains gathered from every class that uses it ---
     props, collisions = {}, []
@@ -133,15 +146,19 @@ def main():
                 "source_row": a["source"]["row"],
             })
         p = props.setdefault(key, {
-            "local": key, "label": a.get("attr_name") or name, "definition": "",
+            "local": key, "label": label_from_den(a["dictionary_entry_name"], a.get("attr_name")),
+            "definition": "",
             "core_data_type": cdt, "glosses": [],
             "domains": [], "ranges": set(), "module": a["module"], "attr_ids": [],
+            "code_list_refs": set(),
             "xml_tags": set(), "json_tags": set(), "dens": [], "sources": [],
         })
         if definition:
             p["glosses"].append((class_name(a["class_name"]), definition))
         p["domains"].append(class_name(a["class_name"]))
-        p["ranges"].add(resolve_range(a, cl_slugs))
+        p["ranges"].add(resolve_range(a, cl_slugs, by_basis))
+        if a.get("code_list"):
+            p["code_list_refs"].add(" ".join(a["code_list"].split()))
         p["attr_ids"].append(a["attr_id"])
         if a.get("xml_tag"):
             p["xml_tags"].add(a["xml_tag"])
@@ -194,6 +211,8 @@ def main():
             domains = sorted(set(p["domains"]))
             lines.append("    schema:domainIncludes " + ", ".join(f"wco:{d}" for d in domains) + " ;")
             lines.append("    schema:rangeIncludes " + ", ".join(sorted(p["ranges"])) + " ;")
+            for ref in sorted(p["code_list_refs"]):
+                lines.append(f'    wco:codeListBasis "{esc(ref)}"@en ;')
             if p["xml_tags"]:
                 lines.append("    wco:xmlTag " + ", ".join(f'"{esc(t)}"' for t in sorted(p["xml_tags"])) + " ;")
             if p["json_tags"]:

@@ -92,11 +92,12 @@ wco:TransitTransportMeans a owl:Class ;
 # Properties
 # --------------------------------------------------------------------------
 
-wco:ballastOrCargoTypeCode a owl:DatatypeProperty ;
+wco:ballastOrCargoTypeCode a owl:ObjectProperty ;
     rdfs:label "Ballast or cargo type code"@en ;
     skos:definition "Code specifying whether the vessel entered the port in ballast, with bulk cargo or general cargo."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:ballast-or-cargo-type-code ;
+    wco:codeListBasis "UN/EDIFACT code list 7085"@en ;
     wco:xmlTag "BallastOrCargoTypeCode" ;
     wco:jsonTag "ballastOrCargoTypeCode" ;
     wco:attributeId "336" ;
@@ -117,7 +118,7 @@ wco:bookingReferenceIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:builtYearDateTime a owl:DatatypeProperty ;
-    rdfs:label "Conveyance built year date/time"@en ;
+    rdfs:label "Built year date time"@en ;
     skos:definition "Date and time the vessel was built."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:dateTime ;
@@ -129,7 +130,7 @@ wco:builtYearDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:bunkerFuelQuantity a owl:ObjectProperty ;
-    rdfs:label "Vessel bunker fuel quantity"@en ;
+    rdfs:label "Bunker fuel quantity"@en ;
     skos:definition "Quantity specifying the bunker fuel on board a vessel upon arrival at the initial port of arrival."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Quantity ;
@@ -141,10 +142,11 @@ wco:bunkerFuelQuantity a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:bunkerFuelTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Vessel bunker fuel value code"@en ;
+    rdfs:label "Bunker fuel type code"@en ;
     skos:definition "Code specifying the type of fuel carried in ships bunker. Specify coal, diesel oil, or fuel oil."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "User code list"@en ;
     wco:xmlTag "BunkerFuelTypeCode" ;
     wco:jsonTag "bunkerFuelTypeCode" ;
     wco:attributeId "312" ;
@@ -153,7 +155,7 @@ wco:bunkerFuelTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:bunkerFuelValueAmount a owl:ObjectProperty ;
-    rdfs:label "Vessel bunker fuel amount"@en ;
+    rdfs:label "Bunker fuel value amount"@en ;
     skos:definition "Amount indicating the value of the bunker fuel laden in a vessel upon arrival at the initial port of arrival."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Amount ;
@@ -165,10 +167,11 @@ wco:bunkerFuelValueAmount a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:constructionPlaceIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Construction of vessel location identifier"@en ;
+    rdfs:label "Construction place identifier"@en ;
     skos:definition "Identification of the location where a conveyance such as a vessel has been constructed."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:string ;
+    wco:codeListBasis "UN/LOCODE + User codes OR User code list"@en ;
     wco:xmlTag "ConstructionPlaceID" ;
     wco:jsonTag "constructionPlaceId" ;
     wco:attributeId "288" ;
@@ -177,7 +180,7 @@ wco:constructionPlaceIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:conveyanceFirstPortOfArrivalDateTime a owl:DatatypeProperty ;
-    rdfs:label "Arrival at first port of arrival in the customs territory with the intent to unload date/time"@en ;
+    rdfs:label "Conveyance first port of arrival date time"@en ;
     skos:definition "Date and time on which the conveyance transporting the merchandise from the foreign country arrived at the first domestic port with the intent to unload."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:dateTime ;
@@ -189,7 +192,7 @@ wco:conveyanceFirstPortOfArrivalDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:conveyancePortLocationText a owl:DatatypeProperty ;
-    rdfs:label "Position of conveyance in port"@en ;
+    rdfs:label "Conveyance port location text"@en ;
     skos:definition "Location of conveyance in port."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:string ;
@@ -201,7 +204,7 @@ wco:conveyancePortLocationText a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:crewQuantity a owl:ObjectProperty ;
-    rdfs:label "Number of crew"@en ;
+    rdfs:label "Crew quantity"@en ;
     skos:definition "Quantity specifying the total number of the members of the crew, including the captain/master, of a means of a transport."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Quantity ;
@@ -212,11 +215,12 @@ wco:crewQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:directionCode a owl:DatatypeProperty ;
-    rdfs:label "Transport means direction code"@en ;
+wco:directionCode a owl:ObjectProperty ;
+    rdfs:label "Direction code"@en ;
     skos:definition "Code specifying the direction of the transport means (i.e., inbound or outbound)."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:ConnectionTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-means-direction-code ;
+    wco:codeListBasis "WCO code list/TransportMeansDirectionCode"@en ;
     wco:xmlTag "DirectionCode" ;
     wco:jsonTag "directionCode" ;
     wco:attributeId "604" ;
@@ -225,7 +229,7 @@ wco:directionCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:dischargeCompletedDateTime a owl:DatatypeProperty ;
-    rdfs:label "Consignment unloading date/time"@en ;
+    rdfs:label "Discharge completed date time"@en ;
     skos:definition "Date and time the cargo was outturned."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:dateTime ;
@@ -237,7 +241,7 @@ wco:dischargeCompletedDateTime a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:dpgListIndicator a owl:DatatypeProperty ;
-    rdfs:label "DPG list ship class indicator"@en ;
+    rdfs:label "DPG list indicator"@en ;
     skos:definition "Indicator whether the vessel has a dangerous and/or polluting goods (DPG) list on board."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:boolean ;
@@ -249,7 +253,7 @@ wco:dpgListIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:draftLevelAftMeasure a owl:ObjectProperty ;
-    rdfs:label "Vessel draft level aft"@en ;
+    rdfs:label "Draft level aft measure"@en ;
     skos:definition "Depth of water from the surface of water to the bottom of the vessel measured at the draft mark of the stern."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Measure ;
@@ -261,7 +265,7 @@ wco:draftLevelAftMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:draftLevelForMeasure a owl:ObjectProperty ;
-    rdfs:label "Vessel draft level for"@en ;
+    rdfs:label "Draft level for measure"@en ;
     skos:definition "Depth of water from the surface of water to the bottom of the vessel measured at the draft mark of the bow."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Measure ;
@@ -273,7 +277,7 @@ wco:draftLevelForMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:importationIntoPortLimitsDateTime a owl:DatatypeProperty ;
-    rdfs:label "Importation into port limits date/time"@en ;
+    rdfs:label "Importation into port limits date time"@en ;
     skos:definition "Date and time on which the conveyance transporting the merchandise from the foreign country arrived within the limits of the domestic port with the intent to unload."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:dateTime ;
@@ -284,11 +288,12 @@ wco:importationIntoPortLimitsDateTime a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:infShipClassCode a owl:DatatypeProperty ;
+wco:infShipClassCode a owl:ObjectProperty ;
     rdfs:label "INF ship class code"@en ;
     skos:definition "Code specifying the International Safe Carriage of Packaged Irradiated Nuclear Fuel, Plutonium and High-Level Radioactive Wastes on Board Ships, as assigned to a ship carrying INF cargo."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:inf-ship-class-code ;
+    wco:codeListBasis "Chapter VII of SOLAS (Carriage of dangerous goods)"@en ;
     wco:xmlTag "INFShipClassCode" ;
     wco:jsonTag "infShipClassCode" ;
     wco:attributeId "471" ;
@@ -296,11 +301,12 @@ wco:infShipClassCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:intermediateTransportMeansModeAndTypeIdentificationCode a owl:DatatypeProperty ;
-    rdfs:label "Mode/type of means of intermediate transport code"@en ;
+wco:intermediateTransportMeansModeAndTypeIdentificationCode a owl:ObjectProperty ;
+    rdfs:label "Intermediate transport means mode and type identification code"@en ;
     skos:definition "Code specifying the mode and type of means of transport which transports the goods from consignor to exporting carrier and from importing carrier to consignee."@en ;
     schema:domainIncludes wco:TransitTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-means-type-code ;
+    wco:codeListBasis "UN/Recommendation 28"@en ;
     wco:xmlTag "IntermediateTransportMeansModeAndTypeIdentificationCode" ;
     wco:jsonTag "intermediateTransportMeansModeAndTypeIdentificationCode" ;
     wco:attributeId "T035" ;
@@ -309,7 +315,7 @@ wco:intermediateTransportMeansModeAndTypeIdentificationCode a owl:DatatypeProper
     wco:termStatus ts:active .
 
 wco:journeyIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Conveyance identifier"@en ;
+    rdfs:label "Journey identifier"@en ;
     skos:definition "Identification of the journey of a means of transport, for example voyage number, flight number, trip number."@en ;
     schema:domainIncludes wco:BorderTransportMeans, wco:TransitTransportMeans ;
     schema:rangeIncludes xsd:string ;
@@ -321,7 +327,7 @@ wco:journeyIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:maneuveringSpeedMeasure a owl:ObjectProperty ;
-    rdfs:label "Means of transport maneuvering speed"@en ;
+    rdfs:label "Maneuvering speed measure"@en ;
     skos:definition "Maneuvering speed of the means of transport at the pilot station location or port area entrance."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Measure ;
@@ -333,7 +339,7 @@ wco:maneuveringSpeedMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:maximumDraftMeasure a owl:ObjectProperty ;
-    rdfs:label "Vessel draft level"@en ;
+    rdfs:label "Maximum draft measure"@en ;
     skos:definition "Level in meters of forward/after draft."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Measure ;
@@ -344,8 +350,8 @@ wco:maximumDraftMeasure a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:modeCode a owl:DatatypeProperty ;
-    rdfs:label "Mode of transport at arrival code"@en ;
+wco:modeCode a owl:ObjectProperty ;
+    rdfs:label "Mode code"@en ;
     skos:definition "Code specifying mode of transport used for carriage of the goods at arrival."@en ;
     skos:scopeNote "BorderTransportMeans: Code specifying mode of transport used for the carriage of the goods in crossing the border."@en ;
     skos:scopeNote "ConnectionTransportMeans: Code specifying the mode of transport used for connection."@en ;
@@ -353,7 +359,8 @@ wco:modeCode a owl:DatatypeProperty ;
     skos:scopeNote "HarvestingTransportMeans: Code specifying the mode of transport used for harvesting."@en ;
     skos:scopeNote "TransitTransportMeans: Code specifying the mode of transport used for transit."@en ;
     schema:domainIncludes wco:ArrivalTransportMeans, wco:BorderTransportMeans, wco:ConnectionTransportMeans, wco:DepartureTransportMeans, wco:HarvestingTransportMeans, wco:TransitTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-means-mode-code ;
+    wco:codeListBasis "UN/Recommendation 19"@en ;
     wco:xmlTag "ModeCode" ;
     wco:jsonTag "modeCode" ;
     wco:attributeId "T020", "T021", "T022", "T023", "T024", "T037" ;
@@ -361,11 +368,12 @@ wco:modeCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:movementDescriptionCode a owl:DatatypeProperty ;
-    rdfs:label "Movement type description code"@en ;
+wco:movementDescriptionCode a owl:ObjectProperty ;
+    rdfs:label "Movement description code"@en ;
     skos:definition "Code specifying a type of transport movement."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-means-movement-description-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8335"@en ;
     wco:xmlTag "MovementDescriptionCode" ;
     wco:jsonTag "movementDescriptionCode" ;
     wco:attributeId "T025" ;
@@ -373,11 +381,12 @@ wco:movementDescriptionCode a owl:DatatypeProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:operationTypeCode a owl:DatatypeProperty ;
-    rdfs:label "Transport means operation type code"@en ;
+wco:operationTypeCode a owl:ObjectProperty ;
+    rdfs:label "Operation type code"@en ;
     skos:definition "Code specifying the type of commercial operation of a transport means."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-means-operation-type-code ;
+    wco:codeListBasis "User code list (e.g. IATA code list)"@en ;
     wco:xmlTag "OperationTypeCode" ;
     wco:jsonTag "operationTypeCode" ;
     wco:attributeId "T019" ;
@@ -386,7 +395,7 @@ wco:operationTypeCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:passengerQuantity a owl:ObjectProperty ;
-    rdfs:label "Number of passengers"@en ;
+    rdfs:label "Passenger quantity"@en ;
     skos:definition "Quantity specifying the total number of the passengers on board, embarking, or disembarking a means of transport."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Quantity ;
@@ -397,8 +406,8 @@ wco:passengerQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:registrationNationalityCode a owl:DatatypeProperty ;
-    rdfs:label "Nationality of means of transport at arrival code"@en ;
+wco:registrationNationalityCode a owl:ObjectProperty ;
+    rdfs:label "Registration nationality code"@en ;
     skos:definition "Code specifying nationality of active means of transport used for the carriage of the goods at place of arrival (import)."@en ;
     skos:scopeNote "BorderTransportMeans: Code specifying nationality of the active means of transport used for the carriage of the goods in crossing the border."@en ;
     skos:scopeNote "DepartureTransportMeans: Code specifying the nationality of the active means of transport used at the location of departure."@en ;
@@ -406,7 +415,8 @@ wco:registrationNationalityCode a owl:DatatypeProperty ;
     skos:scopeNote "TranshipmentTransportMeans: Code specifying the nationality of transhipment means of transport."@en ;
     skos:scopeNote "TransitTransportMeans: Code specifying the nationality of means of transport used for transit."@en ;
     schema:domainIncludes wco:ArrivalTransportMeans, wco:BorderTransportMeans, wco:DepartureTransportMeans, wco:PassiveTransportMeans, wco:TranshipmentTransportMeans, wco:TransitTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:transport-means-registration-nationality-code ;
+    wco:codeListBasis "UN/EDIFACT code list 8453"@en ;
     wco:xmlTag "RegistrationNationalityCode" ;
     wco:jsonTag "registrationNationalityCode" ;
     wco:attributeId "T012", "T013", "T014", "T015", "T028", "T033" ;
@@ -415,7 +425,7 @@ wco:registrationNationalityCode a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:registrationPlaceIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Transport means registration location identifier"@en ;
+    rdfs:label "Registration place identifier"@en ;
     skos:definition "Identification of the location at which a means of transport has been officially registered."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:string ;
@@ -451,7 +461,7 @@ wco:securityPlanApprovedIndicator a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:stayIdentifier a owl:DatatypeProperty ;
-    rdfs:label "Stay reference identifier"@en ;
+    rdfs:label "Stay identifier"@en ;
     skos:definition "Identification of the stay of a means of transport in a port or airport or other place of service."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes xsd:string ;
@@ -463,7 +473,7 @@ wco:stayIdentifier a owl:DatatypeProperty ;
     wco:termStatus ts:active .
 
 wco:summerDeadWeightTonnageMeasure a owl:ObjectProperty ;
-    rdfs:label "Summer dead weight tonnage"@en ;
+    rdfs:label "Summer dead weight tonnage measure"@en ;
     skos:definition "Weight in metric tons of cargo, ship's fuel, passengers and crew carried by a ship when loaded to its maximum summer load line."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Measure ;
@@ -475,7 +485,7 @@ wco:summerDeadWeightTonnageMeasure a owl:ObjectProperty ;
     wco:termStatus ts:active .
 
 wco:transportEquipmentQuantity a owl:ObjectProperty ;
-    rdfs:label "Number of containers"@en ;
+    rdfs:label "Transport equipment quantity"@en ;
     skos:definition "Quantity specifying the total number of freight containers or similar unit load devices."@en ;
     schema:domainIncludes wco:BorderTransportMeans ;
     schema:rangeIncludes wco:Quantity ;
@@ -486,11 +496,12 @@ wco:transportEquipmentQuantity a owl:ObjectProperty ;
     rdfs:isDefinedBy wco-mod:transport ;
     wco:termStatus ts:active .
 
-wco:travelClassCode a owl:DatatypeProperty ;
+wco:travelClassCode a owl:ObjectProperty ;
     rdfs:label "Travel class code"@en ;
     skos:definition "Code specifying the class of travel."@en ;
     schema:domainIncludes wco:ConnectionTransportMeans ;
-    schema:rangeIncludes xsd:string ;
+    schema:rangeIncludes wco-cl:travel-class-code ;
+    wco:codeListBasis "WCO code list/TravelClassCode"@en ;
     wco:xmlTag "TravelClassCode" ;
     wco:jsonTag "travelClassCode" ;
     wco:attributeId "603" ;
