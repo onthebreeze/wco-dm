@@ -60,6 +60,7 @@ def nav_html(current=None):
     out.append(f'<a href="{BASE}classes/">Classes</a>')
     out.append(f'<a href="{BASE}properties/">Properties</a>')
     out.append(f'<a href="{BASE}code-lists/">Code lists</a>')
+    out.append(f'<a href="{BASE}modules/">Modules</a>')
     out.append(f'<a href="{BASE}schemas/">Schemas</a>')
 
     return '<nav class="sitenav">' + "".join(out) + "</nav>"
@@ -437,7 +438,8 @@ def main():
 
     # Both indexes are grouped by the WCO superclass the model assigns each term to, because a flat
     # list of 283 classes or 441 properties is a wall rather than a way in.
-    MODULE_ORDER = ["core", "party", "location", "document", "government", "transport", "data-types"]
+    MODULE_ORDER = ["core", "party", "location", "document", "government", "transport",
+                    "data-types", "code-lists", "governance"]
     MODULE_NOTE = {
         "core": "Cross-cutting terms, used throughout the model and not tied to one superclass.",
         "party": "The people and organisations in a transaction, and the roles they play.",
@@ -446,6 +448,8 @@ def main():
         "government": "Authorities, procedures and the decisions they take.",
         "transport": "Means of transport, equipment and the movement itself.",
         "data-types": "The core data types and their supplementary components.",
+        "code-lists": "The code lists the model names, and the codes WCO owns.",
+        "governance": "The vocabulary's own machinery: the annotations and the lifecycle scheme.",
     }
 
     def grouped_index(kind, title, lead, headers, row, col_classes, folder):
@@ -461,7 +465,8 @@ def main():
         for m in order:
             items = sorted(by_module[m], key=lambda t: display_label(g, t).lower())
             body.append(
-                f'<section id="{html.escape(m)}"><h2>{html.escape(m)} ({len(items)})</h2>'
+                f'<section id="{html.escape(m)}"><h2>'
+                f'<a class="modhead" href="{BASE}module/{m}">{html.escape(m)}</a> ({len(items)})</h2>'
                 + (f'<p class="muted">{MODULE_NOTE[m]}</p>' if m in MODULE_NOTE else "")
                 + table(headers, [row(t) for t in items], col_classes=col_classes) + "</section>")
         (DIST / folder).mkdir(parents=True, exist_ok=True)
@@ -525,6 +530,37 @@ def main():
     (out / "index.html").write_text(page(
         "Code lists", "Every code list the WCO Data Model names, and what is known about each.",
         "".join(body), [("Vocabulary", BASE), ("Code lists", None)], current="code-lists"))
+    counts["page"] += 1
+
+    # An index of the modules, so the per-module pages are reachable from the masthead rather than
+    # only from a term that happens to sit in one.
+    mod_terms = defaultdict(lambda: defaultdict(list))
+    for t, kind in kinds.items():
+        m = module_of(t)
+        if m:
+            mod_terms[m][kind].append(t)
+    order = [m for m in MODULE_ORDER if m in mod_terms] + sorted(m for m in mod_terms if m not in MODULE_ORDER)
+    rows_mod = []
+    for m in order:
+        counts_by_kind = mod_terms[m]
+        rows_mod.append((
+            f'<a href="{BASE}module/{m}">{html.escape(m)}</a>',
+            html.escape(MODULE_NOTE.get(m, "")),
+            str(len(counts_by_kind.get("class", []))),
+            str(len(counts_by_kind.get("property", []))),
+            str(len(counts_by_kind.get("code-list", []))),
+        ))
+    (DIST / "modules").mkdir(parents=True, exist_ok=True)
+    (DIST / "modules" / "index.html").write_text(page(
+        "Modules", "How the WCO Data Model vocabulary is divided.",
+        f"<h1>Modules ({len(order)})</h1>"
+        '<p class="definition">The library marks every class and attribute with the WCO superclass '
+        'it belongs to, and those marks divide the vocabulary. A module page gathers everything '
+        'defined in one of them: its classes, its properties and its code lists together, where the '
+        'category indexes cut the other way.</p>'
+        + table(["Module", "Holds", "Classes", "Properties", "Code lists"], rows_mod,
+                col_classes=["name", "prose", "num", "num", "num"]),
+        [("Vocabulary", BASE), ("Modules", None)], current="modules"))
     counts["page"] += 1
 
     # The whole graph, for a machine asking at the root. The root HTML page comes from the Nextra
@@ -694,6 +730,8 @@ table.listing td{overflow-wrap:anywhere}
 .c-mod{width:110px;white-space:nowrap}
 .jump{font-size:14px;color:var(--muted);margin:0 0 18px}
 .jump a{margin-right:2px}
+a.modhead{text-decoration:none}
+a.modhead:hover{text-decoration:underline}
 .rel{font-weight:600;color:var(--brand)}
 .rel-candidate{color:var(--muted);font-weight:500}
 a.more{font-size:13.5px;color:var(--muted)}
