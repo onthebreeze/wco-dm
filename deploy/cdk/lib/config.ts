@@ -38,12 +38,26 @@ export const EXCLUDE_FROM_SEARCH = true;
 export const GITHUB_ISSUER = 'https://token.actions.githubusercontent.com';
 
 /**
- * The repository and branch allowed to assume that role. Nothing else can: the sub claim pins
- * both, so a workflow in another repository, or on another branch of this one, is refused.
+ * The repository and branch allowed to assume the deploy role. Nothing else can: the subject claim
+ * pins both, so a workflow in another repository, or on another branch of this one, is refused.
  *
  * `test` rather than `main`, which is the same arrangement the UN/CEFACT standards sites use. Work
  * lands on main continuously; a merge to test is the deliberate act that publishes it. Protect the
  * branch, because push access to it is write access to the bucket.
+ *
+ * The subject is written with identifiers rather than names because this repository has GitHub's
+ * immutable subject claims enabled, so the token carries
+ * `repo:<owner>@<owner id>/<repo>@<repo id>:ref:...`. That is the stronger form and worth keeping:
+ * a repository renamed, or deleted and recreated under the same name, gets new identifiers and no
+ * longer satisfies the condition. The name-based form, which is what most documentation shows,
+ * simply never matches here, and the failure reads as a plain authorisation error with nothing to
+ * say why.
+ *
+ *     gh api repos/<owner>/<repo>/actions/oidc/customization/sub
  */
 export const REPOSITORY = 'onthebreeze/wco-dm';
+export const OWNER_ID = 13426392;
+export const REPOSITORY_ID = 1422865470;
 export const BRANCH = 'test';
+export const SUBJECT =
+  `repo:onthebreeze@${OWNER_ID}/wco-dm@${REPOSITORY_ID}:ref:refs/heads/${BRANCH}`;

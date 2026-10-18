@@ -9,6 +9,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 import {
   BRANCH, BUCKET, EXCLUDE_FROM_SEARCH, FORMATS, GITHUB_ISSUER, HOSTNAME, PRODUCTION, REPOSITORY,
+  SUBJECT,
 } from './config';
 
 export interface SiteStackProps extends StackProps {
@@ -145,7 +146,7 @@ export class SiteStack extends Stack {
       assumedBy: new iam.WebIdentityPrincipal(oidcProvider.openIdConnectProviderArn, {
         StringEquals: {
           'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
-          'token.actions.githubusercontent.com:sub': `repo:${REPOSITORY}:ref:refs/heads/${BRANCH}`,
+          'token.actions.githubusercontent.com:sub': SUBJECT,
         },
       }),
     });
