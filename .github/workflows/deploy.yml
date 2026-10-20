@@ -61,6 +61,15 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - run: pip install boto3
+
+      # The pipeline uploads content; it does not deploy the CDK. An edit to a viewer-request or
+      # viewer-response function would otherwise go green here and never reach the edge, which has
+      # happened. `cdk synth` needs no AWS access; the comparison needs only cloudfront:GetFunction.
+      - name: Check the deployed edge functions still match this repository
+        run: |
+          npm ci --prefix deploy/cdk
+          python3 deploy/aws/check-function-drift.py WcoTestSite
+
       - run: python3 deploy/aws/upload-s3.py dist
       - name: Invalidate the distribution
         run: |

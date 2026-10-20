@@ -159,6 +159,17 @@ export class SiteStack extends Stack {
       }),
     );
 
+    // Read-only, so that the pipeline can check whether the deployed viewer functions still match
+    // this repository. The pipeline does not deploy the CDK, so a function edit otherwise goes
+    // green and never reaches the edge. Comparing synthesised code against live code needs this one
+    // permission; a full `cdk diff` would need CloudFormation rights this role should not have.
+    deployRole.addToPolicy(
+      new iam.PolicyStatement({
+        actions: ['cloudfront:GetFunction', 'cloudfront:DescribeFunction'],
+        resources: [`arn:aws:cloudfront::${this.account}:function/*`],
+      }),
+    );
+
     new CfnOutput(this, 'Bucket', { value: bucket.bucketName });
     new CfnOutput(this, 'DistributionId', { value: distribution.distributionId });
     new CfnOutput(this, 'DistributionDomain', { value: distribution.distributionDomainName });
