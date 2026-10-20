@@ -114,7 +114,9 @@ function raw(handler, path, accept) {
 }
 const robots = raw(vocab, '/robots.txt', BROWSER);
 check('robots.txt is answered at the edge', robots.statusCode, 200);
-check('robots.txt disallows everything', robots.body, 'User-agent: *\nDisallow: /\n');
+check('robots.txt allows crawling', robots.body.indexOf('Allow: /') !== -1, true);
+check('robots.txt does not disallow', robots.body.indexOf('Disallow') === -1, true);
+check('robots.txt explains why', robots.body.indexOf('X-Robots-Tag') !== -1, true);
 check('robots.txt is plain text', robots.headers['content-type'].value, 'text/plain; charset=utf-8');
 check('robots.txt on a docs-only site too', raw(docs, '/robots.txt', BROWSER).statusCode, 200);
 // It must not be mistaken for a negotiable resource, whatever the client asks for.

@@ -63,9 +63,18 @@ function handler(event) {
 
   // Keep the test sites out of search engines. These are public copies of UN content and must
   // never compete with the authoritative sites in results. The X-Robots-Tag header on every
-  // response handles indexing; this stops the crawl in the first place. Serving it from the edge
-  // rather than the build means it cannot be forgotten in a repository and cannot possibly travel
-  // into a production deployment, because only the test distributions run this function.
+  // response is what does that: noindex is the only directive that actually removes a page from
+  // an index, and it is set on every representation, not just the HTML.
+  //
+  // Crawling is deliberately allowed. A disallow would not help and would hurt twice over: a
+  // blocked URL can still be listed from inbound links, because the crawler indexes the address
+  // without fetching it; and a crawler that never fetches the response never sees the noindex, so
+  // the disallow undermines the directive that works. It would also block the machine clients this
+  // vocabulary exists to serve, which is the opposite of the point of publishing it.
+  //
+  // Serving the file from the edge rather than the build means it cannot be forgotten in a
+  // repository and cannot travel into a production deployment, because only the test distributions
+  // run this function.
   if (EXCLUDE_FROM_SEARCH && uri === '/robots.txt') {
     return {
       statusCode: 200,
@@ -75,7 +84,16 @@ function handler(event) {
         'cache-control': { value: 'public, max-age=3600' },
         'x-robots-tag': { value: 'noindex, nofollow' },
       },
-      body: 'User-agent: *\nDisallow: /\n',
+      body:
+        '# Test deployment of the WCO Data Model vocabulary.\n' +
+        '#\n' +
+        '# Kept out of search results by X-Robots-Tag: noindex, nofollow on every response,\n' +
+        '# which is the directive that actually removes a page from an index.\n' +
+        '#\n' +
+        '# Crawling is deliberately allowed: machine clients need the vocabulary, and a crawler\n' +
+        '# that cannot fetch a page never sees the noindex.\n' +
+        'User-agent: *\n' +
+        'Allow: /\n',
     };
   }
 

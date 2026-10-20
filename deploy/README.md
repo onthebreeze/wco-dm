@@ -34,9 +34,16 @@ certificate, a bootstrap and an access assignment that the shared account alread
 **`test-wcodm.trade-commons.org`.** The prefix is what says the site is not authoritative, and it
 matches the eight sibling sites.
 
-**Public, not indexed.** The distribution is open to anyone with the address. `X-Robots-Tag:
-noindex, nofollow` is set on every response and `/robots.txt` is answered from the edge with a
-disallow, both so that this rendering cannot compete with WCO's own publication in search results.
+**Public, not indexed, and crawlable.** The distribution is open to anyone with the address.
+`X-Robots-Tag: noindex, nofollow` is set on every response, including the Turtle and JSON-LD
+representations, so that this rendering cannot compete with WCO's own publication in search
+results. That header is the whole mechanism: noindex is the only directive that removes a page
+from an index.
+
+`/robots.txt` is answered from the edge and **allows** crawling. A disallow would not help and
+would hurt twice: a blocked URL can still be listed from inbound links, and a crawler that never
+fetches the response never sees the noindex. It would also block the machine clients a vocabulary
+exists to serve.
 Every page carries a banner saying it is unofficial, generated from WCO's published workbooks, and
 that the model is licensed material. The banner is derived from the host rather than from a flag:
 any build at a host other than `vocabulary.wcoomd.org` shows it, so a deployment cannot quietly
@@ -139,7 +146,7 @@ for path in / /Consignment /module/party /classes/ /docs/artefact-generation \
   done
 done
 
-curl -s "$host/robots.txt"                       # disallow, served from the edge
+curl -s "$host/robots.txt"                       # allow, served from the edge
 curl -sI "$host/Consignment" | grep -i robots    # noindex, nofollow
 curl -sI "$host/packages/meta-data/4.3.0/MDIP_4p3p0.xsd" | grep -i content-type   # application/xml
 ```
